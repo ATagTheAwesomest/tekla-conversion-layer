@@ -68,18 +68,42 @@ api.MapPost("/jobs/{job}/trucks/{truck}/ship", (string job, string truck, ShipRe
         ? Run(pf, "Ship", new JsonObject { ["CommitType"] = "Save", ["JobNumber"] = job, ["TruckNumber"] = truck, ["Date"] = ship?.Date }, ct)
         : Task.FromResult(WritesDisabled()));
 
-// Any other PowerFab command, e.g. POST /api/powerfab/GetProductionControlJobs with the command's fields as JSON.
-// Commands whose name does not start with "Get" may change data, so they need POWERFAB_ALLOW_WRITES.
+// Every PowerFab command gets its own route, generated from PowerFabCommands. Reads answer GET (query
+// string as the command's fields) and POST (JSON body); writes answer POST only and need POWERFAB_ALLOW_WRITES.
+// GET /api/commands lists them all so the web app can discover what is there.
+api.MapGet("/commands", () => PowerFabCommands.All.Select(c => new
+{
+    name = c.Name,
+    access = c.IsWrite ? "write" : "read",
+    path = $"/api/commands/{c.Name}",
+    methods = c.IsWrite ? new[] { "POST" } : ["GET", "POST"],
+    enabled = !c.IsWrite || settings.AllowWrites,
+}));
+
+foreach (var command in PowerFabCommands.All)
+{
+    api.MapPost($"/commands/{command.Name}", (JsonObject? fields, PowerFabClient pf, CancellationToken ct) =>
+        RunCommand(pf, command, fields, ct));
+    if (!command.IsWrite)
+        api.MapGet($"/commands/{command.Name}", (HttpRequest request, PowerFabClient pf, CancellationToken ct) =>
+            RunCommand(pf, command, QueryFields(request.Query), ct));
+}
+
+// Pass-through for any command by name, e.g. POST /api/powerfab/GetProductionControlJobs with the fields as JSON.
+// Known commands use their table entry; an unknown name may change data unless it starts with "Get".
 api.MapPost("/powerfab/{command}", (string command, JsonObject? fields, PowerFabClient pf, CancellationToken ct) =>
 {
-    if (command is "ConnectRemote" or "CloseRemote" or "Connect")
+    if (PowerFabCommands.SessionCommands.Contains(command))
         return Task.FromResult(Results.Problem("The service manages the PowerFab session itself.", statusCode: 400));
-    if (!command.StartsWith("Get", StringComparison.Ordinal) && !settings.AllowWrites)
-        return Task.FromResult(WritesDisabled());
-    return Run(pf, command, fields, ct);
+    var known = PowerFabCommands.Find(command)
+        ?? new PowerFabCommand(command, command.StartsWith("Get", StringComparison.Ordinal) ? CommandAccess.Read : CommandAccess.Write);
+    return RunCommand(pf, known, fields, ct);
 });
 
 app.Run();
+
+Task<IResult> RunCommand(PowerFabClient pf, PowerFabCommand command, JsonObject? fields, CancellationToken ct) =>
+    command.IsWrite && !settings.AllowWrites ? Task.FromResult(WritesDisabled()) : Run(pf, command.Name, fields, ct);
 
 Task<IResult> LoadPiece(PowerFabClient pf, string job, string truck, PieceRequest piece, string commitType, CancellationToken ct)
 {
@@ -123,6 +147,15 @@ static async Task<IResult> Run(PowerFabClient pf, string command, JsonObject? fi
     {
         return Results.Problem(ex.Message, statusCode: ex.CommandRejected ? 422 : 502);
     }
+}
+
+// ?JobNumber=25-351&Sequence=1&Sequence=2 becomes { "JobNumber": "25-351", "Sequence": ["1", "2"] }.
+static JsonObject QueryFields(IQueryCollection query)
+{
+    var fields = new JsonObject();
+    foreach (var (key, values) in query)
+        fields[key] = values.Count == 1 ? values[0] : new JsonArray(values.Select(v => (JsonNode?)v).ToArray());
+    return fields;
 }
 
 static IResult WritesDisabled() =>

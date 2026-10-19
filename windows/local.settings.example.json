@@ -1,5 +1,5 @@
 {
-  "Urls": "http://127.0.0.1:8080",
+  "Urls": "http://127.0.0.1:8090",
   "API_TOKEN": "",
   "POWERFAB_MODE": "mock",
   "POWERFAB_HOST": "localhost",
