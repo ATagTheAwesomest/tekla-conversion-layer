@@ -1,0 +1,11 @@
+{
+  "Urls": "http://127.0.0.1:8080",
+  "API_TOKEN": "",
+  "POWERFAB_MODE": "mock",
+  "POWERFAB_HOST": "localhost",
+  "POWERFAB_PORT": "9154",
+  "POWERFAB_USERNAME": "",
+  "POWERFAB_PASSWORD": "",
+  "POWERFAB_ALLOW_WRITES": "false",
+  "CORS_ORIGINS": ""
+}

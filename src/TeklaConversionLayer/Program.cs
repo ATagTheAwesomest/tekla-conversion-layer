@@ -6,7 +6,15 @@ using Microsoft.AspNetCore.Mvc;
 using TeklaConversionLayer;
 using TeklaPowerFab.TeklaPowerFabAPI;
 
-var builder = WebApplication.CreateBuilder(args);
+var builder = WebApplication.CreateBuilder(new WebApplicationOptions
+{
+    Args = args,
+    // A Windows service starts in System32, so anchor everything to the install folder.
+    ContentRootPath = AppContext.BaseDirectory,
+});
+builder.Host.UseWindowsService();
+// Same keys as .env.example. Used when running as a Windows service, where there is no .env file.
+builder.Configuration.AddJsonFile("local.settings.json", optional: true, reloadOnChange: false);
 var settings = Settings.From(builder.Configuration);
 
 builder.Services.AddSingleton(settings);

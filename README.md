@@ -36,6 +36,22 @@ talk to the real thing. Add `--profile tunnel` to also start the Cloudflare Tunn
 Without Docker: `dotnet run --project src/TeklaConversionLayer` (with the same variables set), and
 `dotnet test` for the tests.
 
+## Running on Windows without Docker
+
+Docker Desktop will not install on Windows Server or older Windows 10, so the service can also run as
+a plain Windows service. The package is self-contained: no .NET install is needed on the server.
+
+1. On a machine with the .NET 10 SDK, run `powershell -File windows/build-release.ps1`. It writes
+   `dist/TeklaConversionLayer-win-x64.zip`.
+2. Unzip it on the server, copy `local.settings.example.json` to `local.settings.json` and fill it in
+   (same keys as `.env.example`, plus `Urls`).
+3. In an administrator PowerShell in that folder: `.\install-service.ps1`. The service starts with
+   Windows and restarts after a crash.
+4. Point the Cloudflare Tunnel's public hostname at `http://localhost:8080`.
+
+`local.settings.json` holds the API token and PowerFab password, so keep it out of git (it is not in
+the package) and readable only by administrators.
+
 ## API
 
 Every `/api` call needs `Authorization: Bearer <API_TOKEN>`. Errors come back as JSON problem
