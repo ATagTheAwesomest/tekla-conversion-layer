@@ -1,0 +1,8 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/TeklaConversionLayer/TeklaConversionLayer.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/TeklaConversionLayer.Tests/TeklaConversionLayer.Tests.csproj" />
+  </Folder>
+</Solution>

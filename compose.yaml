@@ -1,0 +1,21 @@
+services:
+  api:
+    build: .
+    restart: unless-stopped
+    env_file: .env
+    # Only reachable from this machine. The web app reaches it through the tunnel below.
+    ports:
+      - "127.0.0.1:8080:8080"
+
+  # Cloudflare Tunnel: publishes the API over HTTPS without opening a port on the firewall.
+  # Create a tunnel in the Cloudflare dashboard, route its public hostname to http://api:8080,
+  # and put its token in CLOUDFLARE_TUNNEL_TOKEN. Start with: docker compose --profile tunnel up -d
+  tunnel:
+    image: cloudflare/cloudflared:2026.9.0
+    profiles: ["tunnel"]
+    restart: unless-stopped
+    command: tunnel --no-autoupdate run
+    environment:
+      TUNNEL_TOKEN: ${CLOUDFLARE_TUNNEL_TOKEN:?set CLOUDFLARE_TUNNEL_TOKEN in .env}
+    depends_on:
+      - api
