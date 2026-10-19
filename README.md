@@ -52,6 +52,19 @@ a plain Windows service. The package is self-contained: no .NET install is neede
 `local.settings.json` holds the API token and PowerFab password, so keep it out of git (it is not in
 the package) and readable only by administrators.
 
+### Updating a server that runs from a clone
+
+On the server, with git and the .NET 10 SDK installed, an update is one command from the repo root in
+an administrator PowerShell:
+
+```powershell
+.\windows\deploy.ps1
+```
+
+It runs `git pull --ff-only`, builds the code, stops the service, copies the build into
+`C:\TeklaConversionLayer` (leaving `local.settings.json` alone), starts the service and checks `/health`.
+If the pull fails, nothing is deployed.
+
 ## API
 
 Every `/api` call needs `Authorization: Bearer <API_TOKEN>`. Errors come back as JSON problem
