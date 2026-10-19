@@ -9,7 +9,7 @@ loads) and passes any other PowerFab command through, so the rest of PowerFab ca
 iPad (terra-loads-web)
    │  HTTPS + JSON, "Authorization: Bearer <API_TOKEN>"
    ▼
-Cloudflare Tunnel (cloudflared container, no inbound firewall port)
+Tailscale Funnel (tailscale container, outbound only, no inbound firewall port)
    │  http://api:8080
    ▼
 tekla-conversion-layer (this container, on the PowerFab server)
@@ -31,7 +31,13 @@ curl http://127.0.0.1:8080/health
 
 `POWERFAB_MODE=mock` (the default) runs against an in-memory fake PowerFab, so everything can be
 built and tried without a PowerFab server. Switch to `remote` and fill in the `POWERFAB_*` values to
-talk to the real thing. Add `--profile tunnel` to also start the Cloudflare Tunnel.
+talk to the real thing. Add `--profile tunnel` to also start Tailscale Funnel, which publishes the API at
+`https://<TS_HOSTNAME>.<tailnet>.ts.net`. One-time setup: create a free Tailscale account, enable
+HTTPS certificates and Funnel for the tailnet (Funnel needs a `funnel` attribute in the tailnet
+policy file; the admin console offers to add it), then create a reusable auth key and put it in
+`.env` as `TS_AUTHKEY`. The serve rules are in [tailscale-serve.json](tailscale-serve.json). The
+`${TS_CERT_DOMAIN}` placeholder in it is expanded by Tailscale's container; this was taken from
+Tailscale community guides and has not been run yet.
 
 Without Docker: `dotnet run --project src/TeklaConversionLayer` (with the same variables set), and
 `dotnet test` for the tests.
@@ -121,14 +127,16 @@ can send raw requests. Those two will settle most of the list above in a few min
 4. Server OS. This image is a Linux container. On Windows Server that needs Docker Desktop or
    another WSL2-backed Docker; if only Windows containers are allowed there, the project can be
    rebuilt on a Windows base image, or run as a plain Windows service without Docker.
-5. A Cloudflare account and the hostname the API should live at, for the tunnel.
+5. A free Tailscale account and an auth key, for the public HTTPS address.
 6. The web app's origin (for `CORS_ORIGINS`).
 
 ## Security
 
 - The token is compared in constant time; generate it with `openssl rand -hex 32`.
-- The port is bound to `127.0.0.1` only. Outside access is through the Cloudflare Tunnel, which
-  provides HTTPS. Cloudflare Access can be added in front of it for a second layer.
+- The port is bound to `127.0.0.1` only. Outside access is through Tailscale Funnel, which
+  provides HTTPS. Funnel makes the address public, so the API token is the only gate: keep it long
+  and secret. Without Funnel, remove `AllowFunnel` from the serve file and install Tailscale on the
+  iPad to keep the API private to your tailnet.
 - Writes are off by default. The container runs as a non-root user.
 - `.env` is ignored by git. Never commit PowerFab credentials or the API token.
 
