@@ -21,4 +21,4 @@ New-Service -Name $name -BinaryPathName "`"$exe`"" -DisplayName 'Tekla Conversio
 # Restart automatically after a crash.
 sc.exe failure $name reset= 86400 actions= restart/5000/restart/5000/restart/30000 | Out-Null
 Start-Service $name
-Write-Host "Service started. Check: Invoke-RestMethod http://127.0.0.1:8080/health"
+Write-Host "Service started. Check: Invoke-RestMethod http://127.0.0.1:8090/health"

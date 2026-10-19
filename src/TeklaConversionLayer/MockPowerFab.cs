@@ -4,8 +4,9 @@ namespace TeklaConversionLayer;
 
 /// <summary>
 /// In-memory stand-in for the PowerFab Remote Server, so the service runs and tests without PowerFab.
-/// It speaks the same FabSuiteXMLRequest envelope but only implements ConnectRemote, CloseRemote,
-/// GetLoads, Load and Ship. Its GetLoads response layout is our guess, not PowerFab's.
+/// It speaks the same FabSuiteXMLRequest envelope but only really implements ConnectRemote, CloseRemote,
+/// GetLoads, Load and Ship. Its GetLoads response layout is our guess, not PowerFab's. Every other
+/// command gets a fake success marked with MockResponse, which says nothing about PowerFab's real reply.
 /// </summary>
 public sealed class MockPowerFab
 {
@@ -46,7 +47,9 @@ public sealed class MockPowerFab
                 "GetLoads" => GetLoads(command),
                 "Load" => Load(command),
                 "Ship" => Ship(command),
-                var other => Fail(other, $"The mock does not implement {other}."),
+                var other => Ok(other,
+                    new XElement("MockResponse", "true"),
+                    new XElement("Note", $"Fake reply from mock mode. The real {other} reply layout is not known here.")),
             });
         }
     }

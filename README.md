@@ -47,7 +47,8 @@ a plain Windows service. The package is self-contained: no .NET install is neede
    (same keys as `.env.example`, plus `Urls`).
 3. In an administrator PowerShell in that folder: `.\install-service.ps1`. The service starts with
    Windows and restarts after a crash.
-4. Point the Cloudflare Tunnel's public hostname at `http://localhost:8080`.
+4. Point the Cloudflare Tunnel's public hostname at `http://localhost:8090`, the port in the example
+   `Urls` (the Docker setup above uses 8080; the Windows service uses 8090).
 
 `local.settings.json` holds the API token and PowerFab password, so keep it out of git (it is not in
 the package) and readable only by administrators.
@@ -78,14 +79,37 @@ command (its message is passed through), `502` PowerFab unreachable or replied w
 | POST | `/api/jobs/{job}/trucks/{truck}/pieces` | `Load` (CommitType Save) | Body `{ "mainMark": "1001-C1", "quantity": 1, "sequence": "1" }` |
 | DELETE | `/api/jobs/{job}/trucks/{truck}/pieces` | `Load` (CommitType Delete) | Same body. Takes pieces off the truck. |
 | POST | `/api/jobs/{job}/trucks/{truck}/ship` | `Ship` | Optional body `{ "date": "2026-10-19" }` |
-| POST | `/api/powerfab/{command}` | any | Body is the command's fields as JSON. See below. |
+| GET | `/api/commands` | none | Lists every PowerFab command with its route and whether it is a read or a write. |
+| GET | `/api/commands/{command}?Field=value` | that command | Read commands only. Query string becomes the fields; a repeated key becomes a list. |
+| POST | `/api/commands/{command}` | that command | Any command. Body is the command's fields as JSON. |
+| POST | `/api/powerfab/{command}` | any | Pass-through by name, including names not in the table. |
 
-Load, unload, ship and every pass-through command whose name does not start with `Get` are refused
-until `POWERFAB_ALLOW_WRITES=true`. That keeps the service read-only while it is being checked
-against real data.
+Load, unload, ship and every write command are refused until `POWERFAB_ALLOW_WRITES=true`. That
+keeps the service read-only while it is being checked against real data.
 
-**Pass-through.** PowerFab has about 250 commands (inventory, purchasing, production control,
-time tracking, and so on). Instead of wrapping each one by hand, `POST /api/powerfab/{command}`
+**Every command.** [PowerFabCommands.cs](src/TeklaConversionLayer/PowerFabCommands.cs) holds all 252
+commands of PowerFab's `FabSuiteXMLRequest`, copied from the property list of `fsreqFabSuiteXMLRequest`
+in [Tekla's PowerFab 2026 API reference](https://developer.tekla.com/doc/tekla-powerfab/2026/fsreq-fab-suite-xml-request-properties-78439)
+(257 entries, less `Connect`, `ConnectRemote`, `Close`, `CloseRemote` and the `ConnectionGUID` field,
+which the service handles itself). The `Tekla.PowerFab.API` package only carries the transport, not the
+command classes, so the reference is the source. Each command gets `/api/commands/{command}`, generated
+from that one table.
+
+- **Read** (122): names starting with `Get` or ending in `_Get`, plus `CNCData`, `MaxTruck`, `Ping`,
+  `InventoryTransaction_GetLastTransactionID`, `ProductionControlCutListItem_Swap_GetAvailable`,
+  `ProductionControlLoad_IsDuplicateLoadNumber` and the `Val*` commands (judged a lookup from their names; Tekla gives no description).
+- **Write** (130): everything else, including anything whose effect is unclear from the reference
+  (`ExportJob`, `MakeReport`, `PrepareReportData`, `TrimbleIdentityToken`, `ExtensionCommand`, `Lang`,
+  `Version`...). Treating an unclear command as a write only means it stays behind the switch.
+
+These routes do not reshape anything: the fields and the reply are each command's own XML as JSON, the
+same as the pass-through. **Request and response layouts for these commands are not checked against a
+real PowerFab**, only `GetProductionControlJobs` is. Look up a command's fields in Tekla's reference
+(`fsreq<Command>` and `fsres<Command>` classes) before relying on it. In mock mode, every command other
+than `GetLoads`, `Load` and `Ship` returns a fake success with `"MockResponse": "true"`.
+
+**Pass-through.** `POST /api/powerfab/{command}` sends any command by name. A command in the table
+uses its read/write class; an unknown name counts as a write unless it starts with `Get`. It
 turns the JSON body into the command's XML: object keys become child elements, arrays become
 repeated elements. The reply is PowerFab's XML turned back into JSON, where an element that appears
 once is an object and one that repeats is an array. Field names come from Tekla's API reference
