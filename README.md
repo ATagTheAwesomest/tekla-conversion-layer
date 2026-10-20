@@ -112,7 +112,9 @@ than `GetLoads`, `Load` and `Ship` returns a fake success with `"MockResponse": 
 uses its read/write class; an unknown name counts as a write unless it starts with `Get`. It
 turns the JSON body into the command's XML: object keys become child elements, arrays become
 repeated elements. The reply is PowerFab's XML turned back into JSON, where an element that appears
-once is an object and one that repeats is an array. Field names come from Tekla's API reference
+once is an object and one that repeats is an array. Attributes become `@name` keys, and a value that
+carries one keeps its text under `#text`: `<Weight UOM="kg">123</Weight>` becomes
+`{ "@UOM": "kg", "#text": "123" }`. PowerFab sends weights, lengths, capacities and dimensions this way. Field names come from Tekla's API reference
 (for example [fsreqLoad](https://developer.tekla.com/doc/tekla-powerfab/2025/fsreq-load-class-56627)).
 Commands the web app relies on should get a proper endpoint like the ones above once their real
 response shape is known.

@@ -42,15 +42,22 @@ public static class XmlJson
         return element;
     }
 
-    /// <summary>Leaf elements become strings; repeated child names become arrays. Namespaces are dropped.</summary>
+    /// <summary>
+    /// Leaf elements become strings; repeated child names become arrays. Namespaces are dropped.
+    /// Attributes become "@name" keys, and a leaf's text sits next to them under "#text", so
+    /// &lt;Weight UOM="kg"&gt;123&lt;/Weight&gt; becomes { "@UOM": "kg", "#text": "123" }.
+    /// </summary>
     public static JsonNode? ToJson(XElement element)
     {
-        if (!element.HasElements && !element.HasAttributes)
+        var attributes = element.Attributes().Where(a => !a.IsNamespaceDeclaration).ToList();
+        if (!element.HasElements && attributes.Count == 0)
             return JsonValue.Create(element.Value);
 
         var obj = new JsonObject();
-        foreach (var attribute in element.Attributes().Where(a => !a.IsNamespaceDeclaration))
+        foreach (var attribute in attributes)
             obj["@" + attribute.Name.LocalName] = attribute.Value;
+        if (!element.HasElements && element.Value.Length > 0)
+            obj["#text"] = element.Value;
 
         foreach (var group in element.Elements().GroupBy(e => e.Name.LocalName))
         {
