@@ -1,0 +1,13 @@
+{
+  "command": "ValJob",
+  "request": {
+    "JobNumber": "EPM-001"
+  },
+  "status": 200,
+  "bytes": 71,
+  "note": "Trimmed: lists keep their first 3 items. Names, phones and street addresses are masked.",
+  "response": {
+    "Successful": "1",
+    "CommandGUID": "C023F8A7-10B8-48D3-A096-ED0C51A1DBD7"
+  }
+}

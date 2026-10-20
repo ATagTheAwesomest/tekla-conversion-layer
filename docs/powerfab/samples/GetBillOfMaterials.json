@@ -1,0 +1,112 @@
+{
+  "command": "GetBillOfMaterials",
+  "request": {
+    "JobNumber": "EPM-001"
+  },
+  "status": 200,
+  "bytes": 146237,
+  "note": "Trimmed: lists keep their first 3 items. Names, phones and street addresses are masked.",
+  "response": {
+    "Successful": "1",
+    "CommandGUID": "9B5AEB8D-123E-40FC-966D-358144C9CF28",
+    "ProductionControlID": "13",
+    "JobNumber": "EPM-001",
+    "InputDisplayUnits": {
+      "SizeUOM": "Imperial",
+      "LengthUOM": "Imperial",
+      "LengthTypeIDMetric": "101",
+      "LengthTypeIDImperial": "1",
+      "WeightUOM": "Imperial",
+      "PriceUOM": "Imperial"
+    },
+    "Assembly": [
+      {
+        "MainMark": "1B1",
+        "DrawingNumber": "1",
+        "ApprovalStatus": "IFF",
+        "ApprovalStatusDescription": "In For Fabrication",
+        "ApprovalStatusPurpose": "Approved",
+        "AssemblyQuantity": "1",
+        "TotalQuantity": "59",
+        "Weight": {
+          "@UOM": "kg"
+        },
+        "AssemblySequence": {
+          "Sequence": "1",
+          "Quantity": "1"
+        },
+        "BillOfMaterials": [
+          "",
+          "",
+          "",
+          "… 5 more"
+        ]
+      },
+      {
+        "MainMark": "1B2",
+        "DrawingNumber": "1",
+        "ApprovalStatus": "IFF",
+        "ApprovalStatusDescription": "In For Fabrication",
+        "ApprovalStatusPurpose": "Approved",
+        "AssemblyQuantity": "1",
+        "TotalQuantity": "70",
+        "Weight": {
+          "@UOM": "kg"
+        },
+        "AssemblySequence": {
+          "Sequence": "1",
+          "Quantity": "1"
+        },
+        "BillOfMaterials": [
+          "",
+          "",
+          "",
+          "… 7 more"
+        ]
+      },
+      {
+        "MainMark": "2B1",
+        "DrawingNumber": "2",
+        "ApprovalStatus": "IFF",
+        "ApprovalStatusDescription": "In For Fabrication",
+        "ApprovalStatusPurpose": "Approved",
+        "AssemblyQuantity": "1",
+        "TotalQuantity": "33",
+        "Weight": {
+          "@UOM": "kg"
+        },
+        "AssemblySequence": {
+          "Sequence": "1",
+          "Quantity": "1"
+        },
+        "BillOfMaterials": [
+          "",
+          "",
+          "",
+          "… 5 more"
+        ]
+      },
+      "… 589 more"
+    ],
+    "FilterSet": {
+      "Filter": {
+        "Name": "Job #",
+        "DisplayName": "Job #",
+        "FilterItems": {
+          "FilterItem": {
+            "@Field1": "13",
+            "@Field2": "EPM-001"
+          }
+        }
+      }
+    },
+    "HoldSettings": {
+      "Purchasing": "Prompt",
+      "Production": "Prompt",
+      "Inspections": "Prompt",
+      "ShippingAssign": "Prompt",
+      "ShippingLoad": "Prompt",
+      "ShippingShip": "Prevent"
+    }
+  }
+}

@@ -1,0 +1,80 @@
+{
+  "command": "GetProjectStatus",
+  "request": {
+    "JobNumber": "EPM-001"
+  },
+  "status": 200,
+  "bytes": 1060,
+  "note": "Trimmed: lists keep their first 3 items. Names, phones and street addresses are masked.",
+  "response": {
+    "Successful": "1",
+    "CommandGUID": "B3DA48AA-D66E-430D-B4D2-E11FB0742017",
+    "ProductionControlID": "13",
+    "JobNumber": "EPM-001",
+    "JobDescription": "Tekla EPM Demo",
+    "JobLocation": "",
+    "GroupName": "",
+    "GroupName2": "",
+    "ProjectID": "4",
+    "HasProjectSchedule": "1",
+    "InputDisplayUnits": {
+      "SizeUOM": "Imperial",
+      "LengthUOM": "Imperial",
+      "LengthTypeIDMetric": "101",
+      "LengthTypeIDImperial": "1",
+      "WeightUOM": "Imperial",
+      "PriceUOM": "Imperial"
+    },
+    "Assemblies": {
+      "Quantity": "1230"
+    },
+    "Drawings": {
+      "Total": "1131",
+      "TotalApproved": "386"
+    },
+    "Sequences": {
+      "Total": "5"
+    },
+    "Lots": {
+      "Total": "1"
+    },
+    "TrimbleConnect": {
+      "ProjectID": "Qqs7brRWc_g",
+      "Region": "northAmerica"
+    },
+    "FilterSet": {
+      "Filter": {
+        "Name": "Job #",
+        "DisplayName": "Job #",
+        "FilterItems": {
+          "FilterItem": {
+            "@Field1": "13",
+            "@Field2": "EPM-001",
+            "#text": "EPM-001"
+          }
+        }
+      }
+    },
+    "PRJFilterSet": {
+      "Filter": {
+        "Name": "Job #",
+        "DisplayName": "Job #",
+        "FilterItems": {
+          "FilterItem": {
+            "@Field1": "4",
+            "@Field2": "EPM-001",
+            "#text": "EPM-001"
+          }
+        }
+      }
+    },
+    "HoldSettings": {
+      "Purchasing": "Prompt",
+      "Production": "Prompt",
+      "Inspections": "Prompt",
+      "ShippingAssign": "Prompt",
+      "ShippingLoad": "Prompt",
+      "ShippingShip": "Prevent"
+    }
+  }
+}

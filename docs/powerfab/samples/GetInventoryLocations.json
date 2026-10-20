@@ -1,0 +1,29 @@
+{
+  "command": "GetInventoryLocations",
+  "request": {
+    "JobNumber": "EPM-001"
+  },
+  "status": 200,
+  "bytes": 414,
+  "note": "Trimmed: lists keep their first 3 items. Names, phones and street addresses are masked.",
+  "response": {
+    "Successful": "1",
+    "CommandGUID": "6B3FDBBE-56B1-4928-B39F-013EFD306645",
+    "Locations": {
+      "Location": [
+        "",
+        "0",
+        "A",
+        "… 19 more"
+      ]
+    },
+    "SecondaryLocations": {
+      "Location": [
+        "",
+        "5231",
+        "5232",
+        "… 2 more"
+      ]
+    }
+  }
+}

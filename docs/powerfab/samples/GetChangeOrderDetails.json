@@ -1,0 +1,41 @@
+{
+  "command": "GetChangeOrderDetails",
+  "request": {
+    "JobNumber": "EPM-001"
+  },
+  "status": 200,
+  "bytes": 703,
+  "note": "Trimmed: lists keep their first 3 items. Names, phones and street addresses are masked.",
+  "response": {
+    "Successful": "1",
+    "CommandGUID": "98A60F20-BE9D-46DE-80BC-CDE973B737AD",
+    "JobNumber": "EPM-001",
+    "ChangeOrders": {
+      "ChangeOrder": {
+        "ChangeOrderID": "1",
+        "ChangeOrderNumber": "1",
+        "ChangeOrderDate": "2020-08-18",
+        "JobNumber": "EPM-001",
+        "Firm": "Tekla EPM - Client",
+        "FirmContact": "Project Manager",
+        "Subject": "Cost Due to RFI Response 0027",
+        "DescriptionOfChange": "Added materials not previously called out in design.  See BOM",
+        "ChangeAdded": {
+          "@Units": "Calendar Days",
+          "#text": "2"
+        },
+        "ChangeCauseAmount": {
+          "@Currency": "USD",
+          "#text": "11750"
+        },
+        "ChangeRequestedBy": "GC RFI 27",
+        "ResponseRequestedBy": "2020-08-19",
+        "ResponseReceivedOn": "2020-08-27",
+        "Approved": "1",
+        "SentVia": "E-mail",
+        "Author": "Administrator",
+        "ContractItem": "CO #1"
+      }
+    }
+  }
+}

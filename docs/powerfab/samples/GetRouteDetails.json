@@ -1,0 +1,37 @@
+{
+  "command": "GetRouteDetails",
+  "request": {
+    "RouteID": 1
+  },
+  "status": 200,
+  "bytes": 514,
+  "note": "Trimmed: lists keep their first 3 items. Names, phones and street addresses are masked.",
+  "response": {
+    "Successful": "1",
+    "CommandGUID": "10BD446A-8FA3-477F-9F9D-E1457016A00B",
+    "RouteID": "1",
+    "Route": "SP",
+    "Description": "Sample - Painted",
+    "RouteStation": [
+      {
+        "StationID": "1",
+        "Description": "Cut/Saw/Beamline/BurnTable",
+        "Type": "Production",
+        "IsTFSStation": "1"
+      },
+      {
+        "StationID": "2",
+        "Description": "Layout/Weld",
+        "Type": "Production",
+        "IsTFSStation": "0"
+      },
+      {
+        "StationID": "4",
+        "Description": "Quality Control",
+        "Type": "Production",
+        "IsTFSStation": "0"
+      },
+      "… 1 more"
+    ]
+  }
+}

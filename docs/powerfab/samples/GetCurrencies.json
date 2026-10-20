@@ -1,0 +1,21 @@
+{
+  "command": "GetCurrencies",
+  "request": {
+    "JobNumber": "EPM-001"
+  },
+  "status": 200,
+  "bytes": 211,
+  "note": "Trimmed: lists keep their first 3 items. Names, phones and street addresses are masked.",
+  "response": {
+    "Successful": "1",
+    "CommandGUID": "4CD3D885-11A8-4661-B33C-33F37DA09D8A",
+    "Currency": {
+      "CurrencyID": "1",
+      "Abbreviation": "USD",
+      "Description": "US Dollars",
+      "DisplayPrefix": "$",
+      "DecimalPlaces": "2",
+      "DefaultCurrency": "1"
+    }
+  }
+}

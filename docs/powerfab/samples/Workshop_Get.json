@@ -1,0 +1,20 @@
+{
+  "command": "Workshop_Get",
+  "request": {
+    "JobNumber": "EPM-001"
+  },
+  "status": 200,
+  "bytes": 132,
+  "note": "Trimmed: lists keep their first 3 items. Names, phones and street addresses are masked.",
+  "response": {
+    "Successful": "1",
+    "ResultData": {
+      "LastLogID": "0",
+      "Workshop": {
+        "WorkshopID": "1",
+        "Name": "Main Workshop",
+        "Description": "Main Workshop"
+      }
+    }
+  }
+}

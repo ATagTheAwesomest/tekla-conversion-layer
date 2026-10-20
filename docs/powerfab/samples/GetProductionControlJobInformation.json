@@ -1,0 +1,20 @@
+{
+  "command": "GetProductionControlJobInformation",
+  "request": {
+    "JobNumber": "EPM-001"
+  },
+  "status": 200,
+  "bytes": 231,
+  "note": "Trimmed: lists keep their first 3 items. Names, phones and street addresses are masked.",
+  "response": {
+    "Successful": "1",
+    "CommandGUID": "7B1BEAA8-5454-4CB6-832B-7D066B51A9F4",
+    "LastLogID": "270",
+    "ProductionControlJobInformation": {
+      "ProductionControlID": "13",
+      "JobNumber": "EPM-001",
+      "JobDescription": "Tekla EPM Demo",
+      "JobDate": "2020-08-31"
+    }
+  }
+}

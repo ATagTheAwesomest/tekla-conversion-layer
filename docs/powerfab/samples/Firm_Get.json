@@ -1,0 +1,240 @@
+{
+  "command": "Firm_Get",
+  "request": {
+    "GetOptions": {
+      "IncludeAddresses": 1,
+      "IncludeContacts": 1,
+      "IncludeInactive": 1
+    }
+  },
+  "status": 200,
+  "bytes": 11469,
+  "note": "Trimmed: lists keep their first 3 items. Names, phones and street addresses are masked.",
+  "response": {
+    "Successful": "1",
+    "ResultData": {
+      "LastLogID": "18,15,18",
+      "GetOptions": {
+        "IncludeAddresses": "1",
+        "IncludeContacts": "1",
+        "IncludeInactive": "1"
+      },
+      "Firm": [
+        {
+          "FirmID": "9",
+          "FirmType": "Client",
+          "Name": "Music Hall of Fame",
+          "Code": "Music Hall of Fame",
+          "PrimaryCurrency": {
+            "@ID": "1",
+            "#text": "USD"
+          },
+          "ShipToAddress": {
+            "FirmAddressID": "14",
+            "FirmID": "9",
+            "Description": "Music Hall of Fame",
+            "Address1": "<redacted>",
+            "City": "Muskogee",
+            "State": "ok",
+            "Zip": "74401",
+            "Country": "USA",
+            "IsShipTo": "1",
+            "IsBillTo": "1",
+            "Active": "1"
+          },
+          "BillToAddress": {
+            "FirmAddressID": "14",
+            "FirmID": "9",
+            "Description": "Music Hall of Fame",
+            "Address1": "<redacted>",
+            "City": "Muskogee",
+            "State": "ok",
+            "Zip": "74401",
+            "Country": "USA",
+            "IsShipTo": "1",
+            "IsBillTo": "1",
+            "Active": "1"
+          },
+          "Contact": {
+            "FirmContactID": "13",
+            "FirmID": "9",
+            "Name": "<redacted>",
+            "Inspector": "0",
+            "Active": "1"
+          },
+          "IsActive": "1"
+        },
+        {
+          "FirmID": "1",
+          "FirmType": "Client",
+          "Name": "Tekla EPM - Client",
+          "Code": "EPM - Client",
+          "PrimaryCurrency": {
+            "@ID": "1",
+            "#text": "USD"
+          },
+          "ShipToAddress": {
+            "FirmAddressID": "1",
+            "FirmID": "1",
+            "Description": "Default - Shipping",
+            "Attn": "<redacted>",
+            "Address1": "<redacted>",
+            "Address2": "<redacted>",
+            "City": "Kennesaw",
+            "State": "GA",
+            "Zip": "30144",
+            "Phone": "<redacted>",
+            "IsShipTo": "1",
+            "Active": "1"
+          },
+          "BillToAddress": {
+            "FirmAddressID": "6",
+            "FirmID": "1",
+            "Description": "Default - Mailing",
+            "Attn": "<redacted>",
+            "Address1": "<redacted>",
+            "Address2": "<redacted>",
+            "City": "Kennesaw",
+            "State": "GA",
+            "Zip": "30144",
+            "Phone": "<redacted>",
+            "IsBillTo": "1",
+            "Active": "1"
+          },
+          "Contact": {
+            "FirmContactID": "2",
+            "FirmID": "1",
+            "Name": "<redacted>",
+            "Phone": "<redacted>",
+            "Inspector": "0",
+            "Active": "1"
+          },
+          "IsActive": "1"
+        },
+        {
+          "FirmID": "10",
+          "FirmType": "Client",
+          "Name": "TEST",
+          "Code": "TEST",
+          "PrimaryCurrency": {
+            "@ID": "1",
+            "#text": "USD"
+          },
+          "ShipToAddress": {
+            "FirmAddressID": "15",
+            "FirmID": "10",
+            "Description": "Test job site 1",
+            "Attn": "<redacted>",
+            "Address1": "<redacted>",
+            "Address2": "<redacted>",
+            "City": "Dairy",
+            "State": "Maine",
+            "Zip": "12345",
+            "Country": "USA",
+            "Phone": "<redacted>",
+            "IsShipTo": "1",
+            "IsBillTo": "1",
+            "Active": "1"
+          },
+          "BillToAddress": {
+            "FirmAddressID": "15",
+            "FirmID": "10",
+            "Description": "Test job site 1",
+            "Attn": "<redacted>",
+            "Address1": "<redacted>",
+            "Address2": "<redacted>",
+            "City": "Dairy",
+            "State": "Maine",
+            "Zip": "12345",
+            "Country": "USA",
+            "Phone": "<redacted>",
+            "IsShipTo": "1",
+            "IsBillTo": "1",
+            "Active": "1"
+          },
+          "Contact": {
+            "FirmContactID": "15",
+            "FirmID": "10",
+            "Name": "<redacted>",
+            "Phone": "<redacted>",
+            "Inspector": "0",
+            "Active": "1"
+          },
+          "IsActive": "1"
+        },
+        "… 7 more"
+      ],
+      "FirmAddress": [
+        {
+          "FirmAddressID": "6",
+          "FirmID": "1",
+          "Description": "Default - Mailing",
+          "Attn": "<redacted>",
+          "Address1": "<redacted>",
+          "Address2": "<redacted>",
+          "City": "Kennesaw",
+          "State": "GA",
+          "Zip": "30144",
+          "Phone": "<redacted>",
+          "IsBillTo": "1",
+          "Active": "1"
+        },
+        {
+          "FirmAddressID": "1",
+          "FirmID": "1",
+          "Description": "Default - Shipping",
+          "Attn": "<redacted>",
+          "Address1": "<redacted>",
+          "Address2": "<redacted>",
+          "City": "Kennesaw",
+          "State": "GA",
+          "Zip": "30144",
+          "Phone": "<redacted>",
+          "IsShipTo": "1",
+          "Active": "1"
+        },
+        {
+          "FirmAddressID": "11",
+          "FirmID": "1",
+          "Description": "EPM-001",
+          "Attn": "<redacted>",
+          "Address1": "<redacted>",
+          "City": "Kennesaw",
+          "State": "GA",
+          "Zip": "30144",
+          "Phone": "<redacted>",
+          "IsShipTo": "1",
+          "Active": "1"
+        },
+        "… 12 more"
+      ],
+      "FirmContact": [
+        {
+          "FirmContactID": "10",
+          "FirmID": "1",
+          "Name": "<redacted>",
+          "Phone": "<redacted>",
+          "Inspector": "0",
+          "Active": "1"
+        },
+        {
+          "FirmContactID": "9",
+          "FirmID": "1",
+          "Name": "<redacted>",
+          "Phone": "<redacted>",
+          "Inspector": "0",
+          "Active": "1"
+        },
+        {
+          "FirmContactID": "2",
+          "FirmID": "1",
+          "Name": "<redacted>",
+          "Phone": "<redacted>",
+          "Inspector": "0",
+          "Active": "1"
+        },
+        "… 12 more"
+      ]
+    }
+  }
+}

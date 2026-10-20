@@ -1,0 +1,148 @@
+{
+  "command": "GetPricingInformation",
+  "request": {
+    "JobNumber": "EPM-001"
+  },
+  "status": 200,
+  "bytes": 4145221,
+  "note": "Trimmed: lists keep their first 3 items. Names, phones and street addresses are masked.",
+  "response": {
+    "Successful": "1",
+    "CommandGUID": "9EDA0CCA-8DED-4B00-A7CD-7A1366CAA45E",
+    "AvailableMaterial": [
+      {
+        "SupplierName": "Warehouse",
+        "Shape": "C",
+        "Grade": "A36",
+        "Dimensions": {
+          "@Metric": "0",
+          "#text": "3 x 3.5"
+        },
+        "MaterialPrice": [
+          {
+            "Length": {
+              "@UOM": "in",
+              "#text": "240"
+            },
+            "Price": {
+              "@Currency": "USD",
+              "@Units": "/CWT",
+              "#text": "25.6"
+            }
+          },
+          {
+            "Length": {
+              "@UOM": "in",
+              "#text": "480"
+            },
+            "Price": {
+              "@Currency": "USD",
+              "@Units": "/CWT",
+              "#text": "25.6"
+            }
+          },
+          {
+            "Length": {
+              "@UOM": "in",
+              "#text": "720"
+            },
+            "Price": {
+              "@Currency": "USD",
+              "@Units": "/CWT",
+              "#text": "25.6"
+            }
+          }
+        ]
+      },
+      {
+        "SupplierName": "Warehouse",
+        "Shape": "C",
+        "Grade": "A529-50",
+        "Dimensions": {
+          "@Metric": "0",
+          "#text": "3 x 3.5"
+        },
+        "MaterialPrice": [
+          {
+            "Length": {
+              "@UOM": "in",
+              "#text": "240"
+            },
+            "Price": {
+              "@Currency": "USD",
+              "@Units": "/CWT",
+              "#text": "25.6"
+            }
+          },
+          {
+            "Length": {
+              "@UOM": "in",
+              "#text": "480"
+            },
+            "Price": {
+              "@Currency": "USD",
+              "@Units": "/CWT",
+              "#text": "25.6"
+            }
+          },
+          {
+            "Length": {
+              "@UOM": "in",
+              "#text": "720"
+            },
+            "Price": {
+              "@Currency": "USD",
+              "@Units": "/CWT",
+              "#text": "25.6"
+            }
+          }
+        ]
+      },
+      {
+        "SupplierName": "Warehouse",
+        "Shape": "C",
+        "Grade": "A572-50",
+        "Dimensions": {
+          "@Metric": "0",
+          "#text": "3 x 3.5"
+        },
+        "MaterialPrice": [
+          {
+            "Length": {
+              "@UOM": "in",
+              "#text": "240"
+            },
+            "Price": {
+              "@Currency": "USD",
+              "@Units": "/CWT",
+              "#text": "25.6"
+            }
+          },
+          {
+            "Length": {
+              "@UOM": "in",
+              "#text": "480"
+            },
+            "Price": {
+              "@Currency": "USD",
+              "@Units": "/CWT",
+              "#text": "25.6"
+            }
+          },
+          {
+            "Length": {
+              "@UOM": "in",
+              "#text": "720"
+            },
+            "Price": {
+              "@Currency": "USD",
+              "@Units": "/CWT",
+              "#text": "25.6"
+            }
+          }
+        ]
+      },
+      "… 10319 more"
+    ]
+  }
+}

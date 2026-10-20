@@ -1,0 +1,61 @@
+{
+  "command": "FirmAddresses_Get",
+  "request": {
+    "JobNumber": "EPM-001"
+  },
+  "status": 200,
+  "bytes": 3146,
+  "note": "Trimmed: lists keep their first 3 items. Names, phones and street addresses are masked.",
+  "response": {
+    "Successful": "1",
+    "ResultData": {
+      "LastLogID": "15",
+      "GetOptions": "",
+      "FirmAddress": [
+        {
+          "FirmAddressID": "1",
+          "FirmID": "1",
+          "Description": "Default - Shipping",
+          "Attn": "<redacted>",
+          "Address1": "<redacted>",
+          "Address2": "<redacted>",
+          "City": "Kennesaw",
+          "State": "GA",
+          "Zip": "30144",
+          "Phone": "<redacted>",
+          "IsShipTo": "1",
+          "Active": "1"
+        },
+        {
+          "FirmAddressID": "2",
+          "FirmID": "2",
+          "Description": "Default - Shipping",
+          "Attn": "<redacted>",
+          "Address1": "<redacted>",
+          "Address2": "<redacted>",
+          "City": "Kennesaw",
+          "State": "GA",
+          "Zip": "30144",
+          "Phone": "<redacted>",
+          "IsShipTo": "1",
+          "Active": "1"
+        },
+        {
+          "FirmAddressID": "3",
+          "FirmID": "3",
+          "Description": "Default - Shipping",
+          "Attn": "<redacted>",
+          "Address1": "<redacted>",
+          "Address2": "<redacted>",
+          "City": "Kennesaw",
+          "State": "GA",
+          "Zip": "30144",
+          "Phone": "<redacted>",
+          "IsShipTo": "1",
+          "Active": "1"
+        },
+        "… 12 more"
+      ]
+    }
+  }
+}

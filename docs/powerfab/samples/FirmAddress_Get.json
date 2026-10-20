@@ -1,0 +1,172 @@
+{
+  "command": "FirmAddress_Get",
+  "request": {
+    "JobNumber": "EPM-001"
+  },
+  "status": 200,
+  "bytes": 9767,
+  "note": "Trimmed: lists keep their first 3 items. Names, phones and street addresses are masked.",
+  "response": {
+    "Successful": "1",
+    "ResultData": {
+      "FirmAddressList": [
+        {
+          "Firm": {
+            "FirmID": "7",
+            "FirmType": "Detailer",
+            "Name": "Detailer",
+            "Code": "Detailer",
+            "PrimaryCurrency": {
+              "@ID": "1"
+            },
+            "ShipToAddress": {
+              "FirmAddressID": "12",
+              "FirmID": "7",
+              "Description": "Default",
+              "Address1": "<redacted>",
+              "City": "Kennesaw",
+              "State": "GA",
+              "IsShipTo": "1",
+              "IsBillTo": "1",
+              "Active": "1"
+            },
+            "BillToAddress": {
+              "FirmAddressID": "12",
+              "FirmID": "7",
+              "Description": "Default",
+              "Address1": "<redacted>",
+              "City": "Kennesaw",
+              "State": "GA",
+              "IsShipTo": "1",
+              "IsBillTo": "1",
+              "Active": "1"
+            },
+            "Contact": {
+              "FirmContactID": "11",
+              "FirmID": "7",
+              "Name": "<redacted>",
+              "Inspector": "0",
+              "Active": "1"
+            },
+            "InfoSharing": "0"
+          },
+          "FirmAddress": {
+            "FirmAddressID": "12",
+            "FirmID": "7",
+            "Description": "Default",
+            "Address1": "<redacted>",
+            "City": "Kennesaw",
+            "State": "GA",
+            "IsShipTo": "1",
+            "IsBillTo": "1",
+            "Active": "1"
+          }
+        },
+        {
+          "Firm": {
+            "FirmID": "6",
+            "FirmType": "Coating",
+            "Name": "Galvanizer",
+            "Code": "Galvanizer",
+            "PrimaryCurrency": {
+              "@ID": "1"
+            },
+            "ShipToAddress": {
+              "FirmAddressID": "10",
+              "FirmID": "6",
+              "Description": "Default",
+              "Address1": "<redacted>",
+              "IsShipTo": "1",
+              "IsBillTo": "1",
+              "Active": "1"
+            },
+            "BillToAddress": {
+              "FirmAddressID": "10",
+              "FirmID": "6",
+              "Description": "Default",
+              "Address1": "<redacted>",
+              "IsShipTo": "1",
+              "IsBillTo": "1",
+              "Active": "1"
+            },
+            "Contact": {
+              "FirmContactID": "6",
+              "FirmID": "6",
+              "Name": "<redacted>",
+              "Inspector": "0",
+              "Active": "1"
+            },
+            "Notes": "Generic Destination Assignment"
+          },
+          "FirmAddress": {
+            "FirmAddressID": "10",
+            "FirmID": "6",
+            "Description": "Default",
+            "Address1": "<redacted>",
+            "IsShipTo": "1",
+            "IsBillTo": "1",
+            "Active": "1"
+          }
+        },
+        {
+          "Firm": {
+            "FirmID": "9",
+            "FirmType": "Client",
+            "Name": "Music Hall of Fame",
+            "Code": "Music Hall of Fame",
+            "PrimaryCurrency": {
+              "@ID": "1"
+            },
+            "ShipToAddress": {
+              "FirmAddressID": "14",
+              "FirmID": "9",
+              "Description": "Music Hall of Fame",
+              "Address1": "<redacted>",
+              "City": "Muskogee",
+              "State": "ok",
+              "Zip": "74401",
+              "Country": "USA",
+              "IsShipTo": "1",
+              "IsBillTo": "1",
+              "Active": "1"
+            },
+            "BillToAddress": {
+              "FirmAddressID": "14",
+              "FirmID": "9",
+              "Description": "Music Hall of Fame",
+              "Address1": "<redacted>",
+              "City": "Muskogee",
+              "State": "ok",
+              "Zip": "74401",
+              "Country": "USA",
+              "IsShipTo": "1",
+              "IsBillTo": "1",
+              "Active": "1"
+            },
+            "Contact": {
+              "FirmContactID": "13",
+              "FirmID": "9",
+              "Name": "<redacted>",
+              "Inspector": "0",
+              "Active": "1"
+            }
+          },
+          "FirmAddress": {
+            "FirmAddressID": "14",
+            "FirmID": "9",
+            "Description": "Music Hall of Fame",
+            "Address1": "<redacted>",
+            "City": "Muskogee",
+            "State": "ok",
+            "Zip": "74401",
+            "Country": "USA",
+            "IsShipTo": "1",
+            "IsBillTo": "1",
+            "Active": "1"
+          }
+        },
+        "… 7 more"
+      ]
+    }
+  }
+}

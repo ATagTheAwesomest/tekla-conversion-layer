@@ -1,0 +1,83 @@
+{
+  "command": "GetDrawings",
+  "request": {
+    "JobNumber": "EPM-001"
+  },
+  "status": 200,
+  "bytes": 190565,
+  "note": "Trimmed: lists keep their first 3 items. Names, phones and street addresses are masked.",
+  "response": {
+    "Successful": "1",
+    "CommandGUID": "EEAF75B0-204E-43AC-A86C-57EF0BECD9A9",
+    "ProductionControlID": "13",
+    "JobNumber": "EPM-001",
+    "InputDisplayUnits": {
+      "SizeUOM": "Imperial",
+      "LengthUOM": "Imperial",
+      "LengthTypeIDMetric": "101",
+      "LengthTypeIDImperial": "1",
+      "WeightUOM": "Imperial",
+      "PriceUOM": "Imperial"
+    },
+    "Drawing": [
+      {
+        "DrawingNumber": "1",
+        "Description": "1",
+        "ApprovalStatus": "IFF",
+        "Revision": "",
+        "AssemblyQuantity": "2",
+        "TotalQuantity": "129",
+        "Weight": {
+          "@UOM": "kg",
+          "#text": "1891.350612183018143"
+        }
+      },
+      {
+        "DrawingNumber": "2",
+        "Description": "2",
+        "ApprovalStatus": "IFF",
+        "Revision": "",
+        "AssemblyQuantity": "2",
+        "TotalQuantity": "48",
+        "Weight": {
+          "@UOM": "kg",
+          "#text": "918.596871138775566"
+        }
+      },
+      {
+        "DrawingNumber": "3",
+        "Description": "3",
+        "ApprovalStatus": "IFF",
+        "Revision": "",
+        "AssemblyQuantity": "2",
+        "TotalQuantity": "43",
+        "Weight": {
+          "@UOM": "kg",
+          "#text": "650.017937672371778"
+        }
+      },
+      "… 1128 more"
+    ],
+    "FilterSet": {
+      "Filter": {
+        "Name": "Job #",
+        "DisplayName": "Job #",
+        "FilterItems": {
+          "FilterItem": {
+            "@Field1": "13",
+            "@Field2": "EPM-001",
+            "#text": "EPM-001"
+          }
+        }
+      }
+    },
+    "HoldSettings": {
+      "Purchasing": "Prompt",
+      "Production": "Prompt",
+      "Inspections": "Prompt",
+      "ShippingAssign": "Prompt",
+      "ShippingLoad": "Prompt",
+      "ShippingShip": "Prevent"
+    }
+  }
+}

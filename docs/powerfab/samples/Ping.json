@@ -1,0 +1,15 @@
+{
+  "command": "Ping",
+  "request": {
+    "JobNumber": "EPM-001"
+  },
+  "status": 200,
+  "bytes": 128,
+  "note": "Trimmed: lists keep their first 3 items. Names, phones and street addresses are masked.",
+  "response": {
+    "Successful": "1",
+    "CommandGUID": "7494F595-F913-495B-B8EB-26DA687FC549",
+    "IdleTimeout": "43200",
+    "SecondsBeforeIdleTimeout": "43199"
+  }
+}

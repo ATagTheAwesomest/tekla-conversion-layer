@@ -1,0 +1,15 @@
+{
+  "command": "GetFilterSelections",
+  "request": {
+    "JobNumber": "EPM-001"
+  },
+  "status": 200,
+  "bytes": 112,
+  "note": "Trimmed: lists keep their first 3 items. Names, phones and street addresses are masked.",
+  "response": {
+    "Successful": "1",
+    "CommandGUID": "63CA3332-1DF3-42DB-8CE0-0EEA743B5CF4",
+    "FilterSetType": "",
+    "FilterSetSubType": ""
+  }
+}

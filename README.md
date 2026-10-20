@@ -119,6 +119,10 @@ carries one keeps its text under `#text`: `<Weight UOM="kg">123</Weight>` become
 Commands the web app relies on should get a proper endpoint like the ones above once their real
 response shape is known.
 
+**What each command returns.** [docs/powerfab/](docs/powerfab/README.md) is a wiki of every read command
+called against a live PowerFab: the request that worked, the reply's fields, a trimmed real sample, gotchas, and
+which commands came back empty or refused. Start there before building on a command.
+
 ## How it talks to PowerFab
 
 Code: [PowerFabClient.cs](src/TeklaConversionLayer/PowerFabClient.cs). It logs in once with

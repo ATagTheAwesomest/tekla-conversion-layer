@@ -1,0 +1,18 @@
+{
+  "command": "DrawingRevision_Get",
+  "request": {
+    "ProjectID": 4
+  },
+  "status": 200,
+  "bytes": 85,
+  "note": "Trimmed: lists keep their first 3 items. Names, phones and street addresses are masked.",
+  "response": {
+    "Successful": "1",
+    "ResultData": {
+      "LastLogID": "2257",
+      "GetOptions": {
+        "Revisions": "all"
+      }
+    }
+  }
+}

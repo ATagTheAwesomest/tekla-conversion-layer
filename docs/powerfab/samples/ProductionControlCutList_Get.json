@@ -1,0 +1,59 @@
+{
+  "command": "ProductionControlCutList_Get",
+  "request": {
+    "JobNumber": "EPM-001"
+  },
+  "status": 200,
+  "bytes": 787,
+  "note": "Trimmed: lists keep their first 3 items. Names, phones and street addresses are masked.",
+  "response": {
+    "Successful": "1",
+    "ResultData": {
+      "LastLogID": "0",
+      "GetOptions": {
+        "FilterSet": {
+          "Filter": [
+            {
+              "Name": "Cut List Is Completed",
+              "DisplayName": "Cut List Is Completed",
+              "FilterItems": {
+                "FilterItem": {
+                  "@Field1": "0",
+                  "@Field2": "Not Completed",
+                  "#text": "Not Completed"
+                }
+              }
+            },
+            {
+              "Name": "Cut List Is Scheduled",
+              "DisplayName": "Cut List Is Scheduled",
+              "FilterItems": {
+                "FilterItem": {
+                  "@Field1": "1",
+                  "@Field2": "Scheduled",
+                  "#text": "Scheduled"
+                }
+              }
+            }
+          ]
+        }
+      },
+      "ProductionControlCutList": {
+        "ProductionControlCutListID": "1",
+        "Description": "Seq 1 WF",
+        "ProductionControlID": "13",
+        "JobNumber": "EPM-001",
+        "DateCreated": "2020-09-01",
+        "DateRequired": "2020-09-25",
+        "TotalCuttingDetails": "125",
+        "TotalCut": "0",
+        "TotalRemaining": "109",
+        "TotalInStock": "0",
+        "TotalInvalidated": "16",
+        "TotalValidationRequired": "0",
+        "WarningCount": "0",
+        "WarningChangeCount": "0"
+      }
+    }
+  }
+}

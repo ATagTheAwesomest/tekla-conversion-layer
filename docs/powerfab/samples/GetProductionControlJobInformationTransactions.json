@@ -1,0 +1,29 @@
+{
+  "command": "GetProductionControlJobInformationTransactions",
+  "request": {
+    "JobNumber": "EPM-001"
+  },
+  "status": 200,
+  "bytes": 451,
+  "note": "Trimmed: lists keep their first 3 items. Names, phones and street addresses are masked.",
+  "response": {
+    "Successful": "1",
+    "CommandGUID": "5792804B-AC4B-4609-BE55-8DDE03A8270D",
+    "LastLogID": "270",
+    "ProductionControlJobInformationTransaction": {
+      "TransactionType": "edit",
+      "OldProductionControlJobInformation": {
+        "ProductionControlID": "13",
+        "JobNumber": "EPM-001",
+        "JobDescription": "Tekla EPM Demo",
+        "JobDate": "2020-08-31"
+      },
+      "NewProductionControlJobInformation": {
+        "ProductionControlID": "13",
+        "JobNumber": "EPM-001",
+        "JobDescription": "Tekla EPM Demo",
+        "JobDate": "2020-08-31"
+      }
+    }
+  }
+}

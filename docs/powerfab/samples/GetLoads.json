@@ -1,0 +1,523 @@
+{
+  "command": "GetLoads",
+  "request": {
+    "JobNumber": "25-351",
+    "IncludeLoads": true,
+    "IncludeUnshippedLoads": true,
+    "IncludeCompletedMaterial": true,
+    "IncludeRemainingMaterial": true
+  },
+  "status": 200,
+  "bytes": 418887,
+  "note": "Trimmed: lists keep their first 3 items. Names, phones and street addresses are masked.",
+  "response": {
+    "Successful": "1",
+    "CommandGUID": "15D9D77E-5DFE-4957-AC09-A3D7B0496DFD",
+    "ProductionControlID": "80",
+    "JobNumber": "25-351",
+    "InputDisplayUnits": {
+      "SizeUOM": "Imperial",
+      "LengthUOM": "Imperial",
+      "LengthTypeIDMetric": "101",
+      "LengthTypeIDImperial": "1",
+      "WeightUOM": "Imperial",
+      "PriceUOM": "Imperial"
+    },
+    "Destination": {
+      "DestinationName": "Jobsite",
+      "Load": [
+        {
+          "LoadNumber": "1",
+          "ShippedFromFirm": "",
+          "ShippedFromFirmAddress": "",
+          "DestinationGroup": "",
+          "ShippedToFirmAddress": "",
+          "TrailerNumber": "",
+          "Carrier": "",
+          "Capacity": {
+            "@UOM": "kg",
+            "#text": "19958.06428"
+          },
+          "DateShipped": "2026-09-30",
+          "AssignedQuantity": "48",
+          "AssignedWeight": {
+            "@UOM": "kg",
+            "#text": "16225.8763078766"
+          },
+          "LoadedQuantity": "48",
+          "LoadedWeight": {
+            "@UOM": "kg",
+            "#text": "16225.8763078766"
+          },
+          "Material": [
+            {
+              "MainMark": "52312005",
+              "PieceMark": "52312005",
+              "Sequence": "5231",
+              "LotNumber": "",
+              "AssignedQuantity": "1",
+              "AssignedWeight": {
+                "@UOM": "kg",
+                "#text": "273.318602441639"
+              },
+              "LoadedQuantity": "1",
+              "LoadedWeight": {
+                "@UOM": "kg",
+                "#text": "273.318602441639"
+              },
+              "QuantityAtLocation": "1",
+              "DrawingNumber": "52312005",
+              "DrawingRevision": "0",
+              "Shape": "W",
+              "Dimensions": {
+                "@Metric": "0",
+                "#text": "10 x 33"
+              },
+              "Length": {
+                "@UOM": "in",
+                "#text": "208.25"
+              },
+              "ShippingLength": {
+                "@UOM": "in",
+                "#text": "208.25"
+              },
+              "Grade": "A992",
+              "Finish": "3-1"
+            },
+            {
+              "MainMark": "52312007",
+              "PieceMark": "52312007",
+              "Sequence": "5231",
+              "LotNumber": "",
+              "AssignedQuantity": "1",
+              "AssignedWeight": {
+                "@UOM": "kg",
+                "#text": "307.621525422889"
+              },
+              "LoadedQuantity": "1",
+              "LoadedWeight": {
+                "@UOM": "kg",
+                "#text": "307.621525422889"
+              },
+              "QuantityAtLocation": "1",
+              "DrawingNumber": "52312007",
+              "DrawingRevision": "0",
+              "Shape": "W",
+              "Dimensions": {
+                "@Metric": "0",
+                "#text": "10 x 33"
+              },
+              "Length": {
+                "@UOM": "in",
+                "#text": "235.75"
+              },
+              "ShippingLength": {
+                "@UOM": "in",
+                "#text": "235.75"
+              },
+              "Grade": "A992",
+              "Finish": "3-1"
+            },
+            {
+              "MainMark": "52313002",
+              "PieceMark": "52313002",
+              "Sequence": "5231",
+              "LotNumber": "",
+              "AssignedQuantity": "1",
+              "AssignedWeight": {
+                "@UOM": "kg",
+                "#text": "328.979305325863"
+              },
+              "LoadedQuantity": "1",
+              "LoadedWeight": {
+                "@UOM": "kg",
+                "#text": "328.979305325863"
+              },
+              "QuantityAtLocation": "1",
+              "DrawingNumber": "52313002",
+              "DrawingRevision": "0",
+              "Shape": "W",
+              "Dimensions": {
+                "@Metric": "0",
+                "#text": "10 x 33"
+              },
+              "Length": {
+                "@UOM": "in",
+                "#text": "235"
+              },
+              "ShippingLength": {
+                "@UOM": "in",
+                "#text": "235"
+              },
+              "Grade": "A992",
+              "Finish": "3-1"
+            },
+            "… 30 more"
+          ]
+        },
+        {
+          "LoadNumber": "2",
+          "ShippedFromFirm": "",
+          "ShippedFromFirmAddress": "",
+          "DestinationGroup": "",
+          "ShippedToFirmAddress": "",
+          "TrailerNumber": "",
+          "Carrier": "",
+          "Capacity": {
+            "@UOM": "kg",
+            "#text": "19958.06428"
+          },
+          "DateShipped": "2026-10-13",
+          "AssignedQuantity": "49",
+          "AssignedWeight": {
+            "@UOM": "kg",
+            "#text": "13719.6527571285"
+          },
+          "LoadedQuantity": "49",
+          "LoadedWeight": {
+            "@UOM": "kg",
+            "#text": "13719.6527571285"
+          },
+          "Material": [
+            {
+              "MainMark": "52311001",
+              "PieceMark": "52311001",
+              "Sequence": "5231",
+              "LotNumber": "",
+              "AssignedQuantity": "1",
+              "AssignedWeight": {
+                "@UOM": "kg",
+                "#text": "263.75265509131"
+              },
+              "LoadedQuantity": "1",
+              "LoadedWeight": {
+                "@UOM": "kg",
+                "#text": "263.75265509131"
+              },
+              "QuantityAtLocation": "1",
+              "DrawingNumber": "52311001",
+              "DrawingRevision": "0",
+              "Shape": "W",
+              "Dimensions": {
+                "@Metric": "0",
+                "#text": "8 x 35"
+              },
+              "Length": {
+                "@UOM": "in",
+                "#text": "167"
+              },
+              "ShippingLength": {
+                "@UOM": "in",
+                "#text": "167"
+              },
+              "Grade": "A992",
+              "Finish": "3-1"
+            },
+            {
+              "MainMark": "52311002",
+              "PieceMark": "52311002",
+              "Sequence": "5231",
+              "LotNumber": "",
+              "AssignedQuantity": "7",
+              "AssignedWeight": {
+                "@UOM": "kg",
+                "#text": "1974.3074002894"
+              },
+              "LoadedQuantity": "7",
+              "LoadedWeight": {
+                "@UOM": "kg",
+                "#text": "1974.3074002894"
+              },
+              "QuantityAtLocation": "7",
+              "DrawingNumber": "52311002",
+              "DrawingRevision": "0",
+              "Shape": "W",
+              "Dimensions": {
+                "@Metric": "0",
+                "#text": "8 x 35"
+              },
+              "Length": {
+                "@UOM": "in",
+                "#text": "167"
+              },
+              "ShippingLength": {
+                "@UOM": "in",
+                "#text": "167"
+              },
+              "Grade": "A992",
+              "Finish": "3-1"
+            },
+            {
+              "MainMark": "52311003",
+              "PieceMark": "52311003",
+              "Sequence": "5231",
+              "LotNumber": "",
+              "AssignedQuantity": "5",
+              "AssignedWeight": {
+                "@UOM": "kg",
+                "#text": "1410.21957163528"
+              },
+              "LoadedQuantity": "5",
+              "LoadedWeight": {
+                "@UOM": "kg",
+                "#text": "1410.21957163528"
+              },
+              "QuantityAtLocation": "5",
+              "DrawingNumber": "52311003",
+              "DrawingRevision": "0",
+              "Shape": "W",
+              "Dimensions": {
+                "@Metric": "0",
+                "#text": "8 x 35"
+              },
+              "Length": {
+                "@UOM": "in",
+                "#text": "167"
+              },
+              "ShippingLength": {
+                "@UOM": "in",
+                "#text": "167"
+              },
+              "Grade": "A992",
+              "Finish": "3-1"
+            },
+            "… 23 more"
+          ]
+        },
+        {
+          "LoadNumber": "3",
+          "ShippedFromFirm": "",
+          "ShippedFromFirmAddress": "",
+          "DestinationGroup": "",
+          "ShippedToFirmAddress": "",
+          "TrailerNumber": "",
+          "Carrier": "",
+          "Capacity": {
+            "@UOM": "kg",
+            "#text": "19958.06428"
+          },
+          "AssignedQuantity": "46",
+          "AssignedWeight": {
+            "@UOM": "kg",
+            "#text": "14502.8023452597"
+          },
+          "LoadedQuantity": "45",
+          "LoadedWeight": {
+            "@UOM": "kg",
+            "#text": "14196.0464838947"
+          },
+          "Material": [
+            {
+              "MainMark": "52321002",
+              "PieceMark": "52321002",
+              "Sequence": "5232",
+              "LotNumber": "",
+              "AssignedQuantity": "1",
+              "AssignedWeight": {
+                "@UOM": "kg",
+                "#text": "294.187167912884"
+              },
+              "LoadedQuantity": "1",
+              "LoadedWeight": {
+                "@UOM": "kg",
+                "#text": "294.187167912884"
+              },
+              "QuantityAtLocation": "0",
+              "DrawingNumber": "52321002",
+              "DrawingRevision": "0",
+              "Shape": "W",
+              "Dimensions": {
+                "@Metric": "0",
+                "#text": "8 x 40"
+              },
+              "Length": {
+                "@UOM": "in",
+                "#text": "167"
+              },
+              "ShippingLength": {
+                "@UOM": "in",
+                "#text": "167"
+              },
+              "Grade": "A992",
+              "Finish": "3-1"
+            },
+            {
+              "MainMark": "52321007",
+              "PieceMark": "52321007",
+              "Sequence": "5232",
+              "LotNumber": "",
+              "AssignedQuantity": "3",
+              "AssignedWeight": {
+                "@UOM": "kg",
+                "#text": "845.703663114831"
+              },
+              "LoadedQuantity": "3",
+              "LoadedWeight": {
+                "@UOM": "kg",
+                "#text": "845.703663114831"
+              },
+              "QuantityAtLocation": "0",
+              "DrawingNumber": "52321007",
+              "DrawingRevision": "0",
+              "Shape": "W",
+              "Dimensions": {
+                "@Metric": "0",
+                "#text": "8 x 35"
+              },
+              "Length": {
+                "@UOM": "in",
+                "#text": "167"
+              },
+              "ShippingLength": {
+                "@UOM": "in",
+                "#text": "167"
+              },
+              "Grade": "A992",
+              "Finish": "3-1"
+            },
+            {
+              "MainMark": "52321008",
+              "PieceMark": "52321008",
+              "Sequence": "5232",
+              "LotNumber": "",
+              "AssignedQuantity": "3",
+              "AssignedWeight": {
+                "@UOM": "kg",
+                "#text": "845.703663114831"
+              },
+              "LoadedQuantity": "3",
+              "LoadedWeight": {
+                "@UOM": "kg",
+                "#text": "845.703663114831"
+              },
+              "QuantityAtLocation": "0",
+              "DrawingNumber": "52321008",
+              "DrawingRevision": "0",
+              "Shape": "W",
+              "Dimensions": {
+                "@Metric": "0",
+                "#text": "8 x 35"
+              },
+              "Length": {
+                "@UOM": "in",
+                "#text": "167"
+              },
+              "ShippingLength": {
+                "@UOM": "in",
+                "#text": "167"
+              },
+              "Grade": "A992",
+              "Finish": "3-1"
+            },
+            "… 29 more"
+          ]
+        },
+        "… 2 more"
+      ],
+      "Remaining": {
+        "MaterialRemaining": [
+          {
+            "MainMark": "52311004",
+            "PieceMark": "52311004",
+            "Sequence": "5231",
+            "LotNumber": "",
+            "TotalQuantity": "1",
+            "Quantity": "1",
+            "InspectionFailures": "0",
+            "Weight": {
+              "@UOM": "kg",
+              "#text": "290.115696615829"
+            },
+            "DrawingNumber": "52311004",
+            "DrawingRevision": "0",
+            "Shape": "HSS",
+            "Dimensions": {
+              "@Metric": "0",
+              "#text": "6 x 6 x 3/8"
+            },
+            "Length": {
+              "@UOM": "in",
+              "#text": "245.625"
+            },
+            "Grade": "A500C",
+            "Finish": "3-1"
+          },
+          {
+            "MainMark": "52311005",
+            "PieceMark": "52311005",
+            "Sequence": "5231",
+            "LotNumber": "",
+            "TotalQuantity": "10",
+            "Quantity": "6",
+            "InspectionFailures": "0",
+            "Weight": {
+              "@UOM": "kg",
+              "#text": "1815.70462500679"
+            },
+            "DrawingNumber": "52311005",
+            "DrawingRevision": "0",
+            "Shape": "HSS",
+            "Dimensions": {
+              "@Metric": "0",
+              "#text": "6 x 6 x 3/8"
+            },
+            "Length": {
+              "@UOM": "in",
+              "#text": "245.625"
+            },
+            "Grade": "A500C",
+            "Finish": "3-1"
+          },
+          {
+            "MainMark": "52311008",
+            "PieceMark": "52311008",
+            "Sequence": "5231",
+            "LotNumber": "",
+            "TotalQuantity": "4",
+            "Quantity": "4",
+            "InspectionFailures": "0",
+            "Weight": {
+              "@UOM": "kg",
+              "#text": "1160.46278646332"
+            },
+            "DrawingNumber": "52311008",
+            "DrawingRevision": "0",
+            "Shape": "HSS",
+            "Dimensions": {
+              "@Metric": "0",
+              "#text": "6 x 6 x 3/8"
+            },
+            "Length": {
+              "@UOM": "in",
+              "#text": "245.625"
+            },
+            "Grade": "A500C",
+            "Finish": "3-1"
+          },
+          "… 940 more"
+        ]
+      }
+    },
+    "FilterSet": {
+      "Filter": {
+        "Name": "Job #",
+        "DisplayName": "Job #",
+        "FilterItems": {
+          "FilterItem": {
+            "@Field1": "80",
+            "@Field2": "25-351",
+            "#text": "25-351"
+          }
+        }
+      }
+    },
+    "HoldSettings": {
+      "Purchasing": "Prompt",
+      "Production": "Prompt",
+      "Inspections": "Prompt",
+      "ShippingAssign": "Prompt",
+      "ShippingLoad": "Prompt",
+      "ShippingShip": "Prevent"
+    }
+  }
+}

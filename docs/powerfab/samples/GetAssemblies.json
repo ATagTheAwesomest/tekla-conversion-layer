@@ -1,0 +1,91 @@
+{
+  "command": "GetAssemblies",
+  "request": {
+    "JobNumber": "EPM-001"
+  },
+  "status": 200,
+  "bytes": 113368,
+  "note": "Trimmed: lists keep their first 3 items. Names, phones and street addresses are masked.",
+  "response": {
+    "Successful": "1",
+    "CommandGUID": "416D95FF-FB54-4BE7-9A35-2DDBC1C1243C",
+    "ProductionControlID": "13",
+    "JobNumber": "EPM-001",
+    "InputDisplayUnits": {
+      "SizeUOM": "Imperial",
+      "LengthUOM": "Imperial",
+      "LengthTypeIDMetric": "101",
+      "LengthTypeIDImperial": "1",
+      "WeightUOM": "Imperial",
+      "PriceUOM": "Imperial"
+    },
+    "Assembly": [
+      {
+        "MainMark": "1B1",
+        "DrawingNumber": "1",
+        "ApprovalStatus": "IFF",
+        "ApprovalStatusPurpose": "Approved",
+        "AssemblyQuantity": "1",
+        "TotalQuantity": "59",
+        "Weight": {
+          "@UOM": "kg"
+        },
+        "AssemblySequence": {
+          "Sequence": "1",
+          "Quantity": "1"
+        }
+      },
+      {
+        "MainMark": "1B2",
+        "DrawingNumber": "1",
+        "ApprovalStatus": "IFF",
+        "ApprovalStatusPurpose": "Approved",
+        "AssemblyQuantity": "1",
+        "TotalQuantity": "70",
+        "Weight": {
+          "@UOM": "kg"
+        },
+        "AssemblySequence": {
+          "Sequence": "1",
+          "Quantity": "1"
+        }
+      },
+      {
+        "MainMark": "2B1",
+        "DrawingNumber": "2",
+        "ApprovalStatus": "IFF",
+        "ApprovalStatusPurpose": "Approved",
+        "AssemblyQuantity": "1",
+        "TotalQuantity": "33",
+        "Weight": {
+          "@UOM": "kg"
+        },
+        "AssemblySequence": {
+          "Sequence": "1",
+          "Quantity": "1"
+        }
+      },
+      "… 589 more"
+    ],
+    "FilterSet": {
+      "Filter": {
+        "Name": "Job #",
+        "DisplayName": "Job #",
+        "FilterItems": {
+          "FilterItem": {
+            "@Field1": "13",
+            "@Field2": "EPM-001"
+          }
+        }
+      }
+    },
+    "HoldSettings": {
+      "Purchasing": "Prompt",
+      "Production": "Prompt",
+      "Inspections": "Prompt",
+      "ShippingAssign": "Prompt",
+      "ShippingLoad": "Prompt",
+      "ShippingShip": "Prevent"
+    }
+  }
+}

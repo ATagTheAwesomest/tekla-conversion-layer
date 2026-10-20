@@ -1,0 +1,44 @@
+{
+  "command": "DrawingInputOptions_Get",
+  "request": {
+    "ProjectID": 4
+  },
+  "status": 200,
+  "bytes": 787,
+  "note": "Trimmed: lists keep their first 3 items. Names, phones and street addresses are masked.",
+  "response": {
+    "Successful": "1",
+    "ResultData": {
+      "InputOptions": {
+        "ApprovalStatus": [
+          {
+            "ApprovalStatusID": "2",
+            "ApprovalStatus": "A",
+            "Description": "Approved",
+            "Purpose": "Approved"
+          },
+          {
+            "ApprovalStatusID": "1",
+            "ApprovalStatus": "H",
+            "Description": "Hold",
+            "Purpose": "Hold"
+          },
+          {
+            "ApprovalStatusID": "5",
+            "ApprovalStatus": "IFA",
+            "Description": "In For Approval"
+          },
+          "… 4 more"
+        ],
+        "Category": [
+          "Assembly",
+          "General Arrangement",
+          "Multi-Drawing",
+          "… 1 more"
+        ],
+        "CheckedBy": "LS",
+        "DetailedBy": "DH"
+      }
+    }
+  }
+}

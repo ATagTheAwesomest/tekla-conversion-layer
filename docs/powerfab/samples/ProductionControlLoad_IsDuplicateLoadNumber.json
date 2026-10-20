@@ -1,0 +1,16 @@
+{
+  "command": "ProductionControlLoad_IsDuplicateLoadNumber",
+  "request": {
+    "ProductionControlID": 13,
+    "LoadNumber": "1"
+  },
+  "status": 200,
+  "bytes": 51,
+  "note": "Trimmed: lists keep their first 3 items. Names, phones and street addresses are masked.",
+  "response": {
+    "Successful": "1",
+    "ResultData": {
+      "IsDuplicate": "0"
+    }
+  }
+}
