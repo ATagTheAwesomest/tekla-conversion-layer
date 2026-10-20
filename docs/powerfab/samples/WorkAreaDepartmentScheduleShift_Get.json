@@ -1,7 +1,7 @@
 {
   "command": "WorkAreaDepartmentScheduleShift_Get",
   "request": {
-    "JobNumber": "EPM-001"
+    "JobNumber": "TESTTEST"
   },
   "status": 200,
   "bytes": 1366,

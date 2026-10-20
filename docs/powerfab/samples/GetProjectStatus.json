@@ -1,22 +1,22 @@
 {
   "command": "GetProjectStatus",
   "request": {
-    "JobNumber": "EPM-001"
+    "JobNumber": "TESTTEST"
   },
   "status": 200,
-  "bytes": 1060,
+  "bytes": 1076,
   "note": "Trimmed: lists keep their first 3 items. Names, phones and street addresses are masked.",
   "response": {
     "Successful": "1",
-    "CommandGUID": "09CEDDA6-0A05-4393-8CD2-D8E7688671DD",
-    "ProductionControlID": "13",
-    "JobNumber": "EPM-001",
-    "JobDescription": "Tekla EPM Demo",
-    "JobLocation": "",
-    "GroupName": "",
+    "CommandGUID": "F8CD4FDA-72FD-4EDD-9F69-793CF68AF368",
+    "ProductionControlID": "90",
+    "JobNumber": "TESTTEST",
+    "JobDescription": "TESTTEST",
+    "JobLocation": "TESTTEST",
+    "GroupName": "<redacted>",
     "GroupName2": "",
-    "ProjectID": "4",
-    "HasProjectSchedule": "1",
+    "ProjectID": "29",
+    "HasProjectSchedule": "0",
     "InputDisplayUnits": {
       "SizeUOM": "Imperial",
       "LengthUOM": "Imperial",
@@ -26,20 +26,20 @@
       "PriceUOM": "Imperial"
     },
     "Assemblies": {
-      "Quantity": "1230"
+      "Quantity": "4254"
     },
     "Drawings": {
-      "Total": "1131",
-      "TotalApproved": "386"
+      "Total": "613",
+      "TotalApproved": "0"
     },
     "Sequences": {
-      "Total": "5"
+      "Total": "4"
     },
     "Lots": {
       "Total": "1"
     },
     "TrimbleConnect": {
-      "ProjectID": "Qqs7brRWc_g",
+      "ProjectID": "E37TTMSsQhw",
       "Region": "northAmerica"
     },
     "FilterSet": {
@@ -48,9 +48,9 @@
         "DisplayName": "Job #",
         "FilterItems": {
           "FilterItem": {
-            "@Field1": "13",
-            "@Field2": "EPM-001",
-            "#text": "EPM-001"
+            "@Field1": "90",
+            "@Field2": "TESTTEST",
+            "#text": "TESTTEST"
           }
         }
       }
@@ -61,9 +61,9 @@
         "DisplayName": "Job #",
         "FilterItems": {
           "FilterItem": {
-            "@Field1": "4",
-            "@Field2": "EPM-001",
-            "#text": "EPM-001"
+            "@Field1": "29",
+            "@Field2": "<source job> Test",
+            "#text": "<source job> Test"
           }
         }
       }

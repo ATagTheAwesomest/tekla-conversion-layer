@@ -90,9 +90,9 @@ samples, people's names, usernames, phone numbers and street addresses are maske
 | `ResultData.Firm[].ShipToAddress.FirmID` | number (as text) | 10 | `9`, `1` |
 | `ResultData.Firm[].ShipToAddress.Description` | text | 10 | `Music Hall of Fame`, `Default - Shipping` |
 | `ResultData.Firm[].ShipToAddress.Address1` | text | 8 | `<redacted>`, `<redacted>` |
-| `ResultData.Firm[].ShipToAddress.City` | text | 7 | `Muskogee`, `Kennesaw` |
+| `ResultData.Firm[].ShipToAddress.City` | text | 7 | `<redacted>`, `<redacted>` |
 | `ResultData.Firm[].ShipToAddress.State` | text | 7 | `ok`, `GA` |
-| `ResultData.Firm[].ShipToAddress.Zip` | number (as text) | 6 | `74401`, `30144` |
+| `ResultData.Firm[].ShipToAddress.Zip` | number (as text) | 6 | `<redacted>`, `<redacted>` |
 | `ResultData.Firm[].ShipToAddress.Country` | text | 2 | `USA` |
 | `ResultData.Firm[].ShipToAddress.IsShipTo` | number (as text) | 10 | `1` |
 | `ResultData.Firm[].ShipToAddress.IsBillTo` | number (as text) | 6 | `1` |
@@ -102,9 +102,9 @@ samples, people's names, usernames, phone numbers and street addresses are maske
 | `ResultData.Firm[].BillToAddress.FirmID` | number (as text) | 10 | `9`, `1` |
 | `ResultData.Firm[].BillToAddress.Description` | text | 10 | `Music Hall of Fame`, `Default - Mailing` |
 | `ResultData.Firm[].BillToAddress.Address1` | text | 8 | `<redacted>`, `<redacted>` |
-| `ResultData.Firm[].BillToAddress.City` | text | 7 | `Muskogee`, `Kennesaw` |
+| `ResultData.Firm[].BillToAddress.City` | text | 7 | `<redacted>`, `<redacted>` |
 | `ResultData.Firm[].BillToAddress.State` | text | 7 | `ok`, `GA` |
-| `ResultData.Firm[].BillToAddress.Zip` | number (as text) | 6 | `74401`, `30144` |
+| `ResultData.Firm[].BillToAddress.Zip` | number (as text) | 6 | `<redacted>`, `<redacted>` |
 | `ResultData.Firm[].BillToAddress.Country` | text | 2 | `USA` |
 | `ResultData.Firm[].BillToAddress.IsShipTo` | number (as text) | 6 | `1` |
 | `ResultData.Firm[].BillToAddress.IsBillTo` | number (as text) | 10 | `1` |
@@ -152,9 +152,9 @@ samples, people's names, usernames, phone numbers and street addresses are maske
         "FirmID": "9",
         "Description": "Music Hall of Fame",
         "Address1": "<redacted>",
-        "City": "Muskogee",
+        "City": "<redacted>",
         "State": "ok",
-        "Zip": "74401",
+        "Zip": "<redacted>",
         "Country": "USA",
         "IsShipTo": "1",
         "IsBillTo": "1",
@@ -165,7 +165,7 @@ samples, people's names, usernames, phone numbers and street addresses are maske
         "FirmID": "9",
         "Description": "Music Hall of Fame",
         "Address1": "<redacted>",
-        "City": "Muskogee",
+        "City": "<redacted>",
   …
 ```
 
@@ -202,7 +202,7 @@ samples, people's names, usernames, phone numbers and street addresses are maske
 | `ResultData.FirmAddressList[].Firm.ShipToAddress.FirmID` | number (as text) | 10 | `7`, `6` |
 | `ResultData.FirmAddressList[].Firm.ShipToAddress.Description` | text | 10 | `Default`, `Music Hall of Fame` |
 | `ResultData.FirmAddressList[].Firm.ShipToAddress.Address1` | text | 8 | `<redacted>`, `<redacted>` |
-| `ResultData.FirmAddressList[].Firm.ShipToAddress.City` | text | 7 | `Kennesaw`, `Muskogee` |
+| `ResultData.FirmAddressList[].Firm.ShipToAddress.City` | text | 7 | `<redacted>`, `<redacted>` |
 | `ResultData.FirmAddressList[].Firm.ShipToAddress.State` | text | 7 | `GA`, `ok` |
 | `ResultData.FirmAddressList[].Firm.ShipToAddress.IsShipTo` | number (as text) | 10 | `1` |
 | `ResultData.FirmAddressList[].Firm.ShipToAddress.IsBillTo` | number (as text) | 6 | `1` |
@@ -212,7 +212,7 @@ samples, people's names, usernames, phone numbers and street addresses are maske
 | `ResultData.FirmAddressList[].Firm.BillToAddress.FirmID` | number (as text) | 10 | `7`, `6` |
 | `ResultData.FirmAddressList[].Firm.BillToAddress.Description` | text | 10 | `Default`, `Music Hall of Fame` |
 | `ResultData.FirmAddressList[].Firm.BillToAddress.Address1` | text | 8 | `<redacted>`, `<redacted>` |
-| `ResultData.FirmAddressList[].Firm.BillToAddress.City` | text | 7 | `Kennesaw`, `Muskogee` |
+| `ResultData.FirmAddressList[].Firm.BillToAddress.City` | text | 7 | `<redacted>`, `<redacted>` |
 | `ResultData.FirmAddressList[].Firm.BillToAddress.State` | text | 7 | `GA`, `ok` |
 | `ResultData.FirmAddressList[].Firm.BillToAddress.IsShipTo` | number (as text) | 6 | `1` |
 | `ResultData.FirmAddressList[].Firm.BillToAddress.IsBillTo` | number (as text) | 10 | `1` |
@@ -229,17 +229,17 @@ samples, people's names, usernames, phone numbers and street addresses are maske
 | `ResultData.FirmAddressList[].FirmAddress.FirmID` | number (as text) | 6 | `7`, `6` |
 | `ResultData.FirmAddressList[].FirmAddress.Description` | text | 6 | `Default`, `Music Hall of Fame` |
 | `ResultData.FirmAddressList[].FirmAddress.Address1` | text | 4 | `<redacted>`, `<redacted>` |
-| `ResultData.FirmAddressList[].FirmAddress.City` | text | 3 | `Kennesaw`, `Muskogee` |
+| `ResultData.FirmAddressList[].FirmAddress.City` | text | 3 | `<redacted>`, `<redacted>` |
 | `ResultData.FirmAddressList[].FirmAddress.State` | text | 3 | `GA`, `ok` |
 | `ResultData.FirmAddressList[].FirmAddress.IsShipTo` | number (as text) | 6 | `1` |
 | `ResultData.FirmAddressList[].FirmAddress.IsBillTo` | number (as text) | 6 | `1` |
 | `ResultData.FirmAddressList[].FirmAddress.Active` | number (as text) | 6 | `1` |
 | `ResultData.FirmAddressList[].Firm.Notes` | text | 1 | `Generic Destination Assignment` |
-| `ResultData.FirmAddressList[].Firm.ShipToAddress.Zip` | number (as text) | 6 | `74401`, `30144` |
+| `ResultData.FirmAddressList[].Firm.ShipToAddress.Zip` | number (as text) | 6 | `<redacted>`, `<redacted>` |
 | `ResultData.FirmAddressList[].Firm.ShipToAddress.Country` | text | 2 | `USA` |
-| `ResultData.FirmAddressList[].Firm.BillToAddress.Zip` | number (as text) | 6 | `74401`, `30144` |
+| `ResultData.FirmAddressList[].Firm.BillToAddress.Zip` | number (as text) | 6 | `<redacted>`, `<redacted>` |
 | `ResultData.FirmAddressList[].Firm.BillToAddress.Country` | text | 2 | `USA` |
-| `ResultData.FirmAddressList[].FirmAddress.Zip` | number (as text) | 2 | `74401`, `12345` |
+| `ResultData.FirmAddressList[].FirmAddress.Zip` | number (as text) | 2 | `<redacted>`, `<redacted>` |
 | `ResultData.FirmAddressList[].FirmAddress.Country` | text | 2 | `USA` |
 | `ResultData.FirmAddressList[].Firm.ShipToAddress.Attn` | text | 5 | `<redacted>`, `<redacted>` |
 | `ResultData.FirmAddressList[].Firm.ShipToAddress.Address2` | text | 5 | `<redacted>`, `<redacted>` |
@@ -269,7 +269,7 @@ samples, people's names, usernames, phone numbers and street addresses are maske
           "FirmID": "7",
           "Description": "Default",
           "Address1": "<redacted>",
-          "City": "Kennesaw",
+          "City": "<redacted>",
           "State": "GA",
           "IsShipTo": "1",
           "IsBillTo": "1",
@@ -280,7 +280,7 @@ samples, people's names, usernames, phone numbers and street addresses are maske
           "FirmID": "7",
           "Description": "Default",
           "Address1": "<redacted>",
-          "City": "Kennesaw",
+          "City": "<redacted>",
           "State": "GA",
   …
 ```
@@ -317,9 +317,9 @@ samples, people's names, usernames, phone numbers and street addresses are maske
 | `ResultData.FirmAddress[].Attn` | text | 10 | `<redacted>`, `<redacted>` |
 | `ResultData.FirmAddress[].Address1` | text | 13 | `<redacted>`, `<redacted>` |
 | `ResultData.FirmAddress[].Address2` | text | 9 | `<redacted>`, `<redacted>` |
-| `ResultData.FirmAddress[].City` | text | 12 | `Kennesaw`, `Muskogee` |
+| `ResultData.FirmAddress[].City` | text | 12 | `<redacted>`, `<redacted>` |
 | `ResultData.FirmAddress[].State` | text | 12 | `GA`, `ok` |
-| `ResultData.FirmAddress[].Zip` | number (as text) | 11 | `30144`, `74401` |
+| `ResultData.FirmAddress[].Zip` | number (as text) | 11 | `<redacted>`, `<redacted>` |
 | `ResultData.FirmAddress[].Phone` | text | 10 | `<redacted>`, `<redacted>` |
 | `ResultData.FirmAddress[].IsShipTo` | number (as text) | 11 | `1` |
 | `ResultData.FirmAddress[].Active` | number (as text) | 15 | `1` |
@@ -338,9 +338,9 @@ samples, people's names, usernames, phone numbers and street addresses are maske
       "Attn": "<redacted>",
       "Address1": "<redacted>",
       "Address2": "<redacted>",
-      "City": "Kennesaw",
+      "City": "<redacted>",
       "State": "GA",
-      "Zip": "30144",
+      "Zip": "<redacted>",
       "Phone": "<redacted>",
       "IsShipTo": "1",
       "Active": "1"
@@ -408,10 +408,10 @@ samples, people's names, usernames, phone numbers and street addresses are maske
 **Request that worked:**
 
 ```json
-{"JobNumber":"EPM-001"}
+{"JobNumber":"TESTTEST"}
 ```
 
-**Result:** HTTP 200, 398 bytes, 467 ms.
+**Result:** HTTP 200, 398 bytes, 44 ms.
 
 **Response fields:**
 
@@ -460,9 +460,11 @@ samples, people's names, usernames, phone numbers and street addresses are maske
 **Attempts:**
 
 - `{"Username":"admin"}` → 200, 84 bytes
+- `{"JobNumber":"TESTTEST"}` → 422: Username is required
+- `{"Username":"admin"}` → 200, 84 bytes
 - `{"JobNumber":"EPM-001"}` → 422: Username is required
 
-**Result:** HTTP 200, 84 bytes, 114 ms.
+**Result:** HTTP 200, 84 bytes, 44 ms.
 
 **Response fields:**
 
@@ -527,33 +529,153 @@ samples, people's names, usernames, phone numbers and street addresses are maske
 **Best attempt:**
 
 ```json
-{"JobNumber":"EPM-001"}
+{"JobNumber":"TESTTEST"}
 ```
 
 **Attempts:**
 
 - `{"JobNumber":"EPM-001"}` → 422: Permission denied.
+- `{"JobNumber":"TESTTEST"}` → 422: Permission denied.
 
 **Gotchas:**
 
 - PowerFab answered "Permission denied." for the API user (the PowerFab External User the service logs in as).
 
-## Write commands (not run)
+## Write commands
 
-These change PowerFab data, so they were not called. The service refuses them while `POWERFAB_ALLOW_WRITES` is off. Purposes come from the command name and Tekla's reference, not from a call.
+Run on the test jobs only (EPM-001, TESTTEST), each change undone afterwards. "Not run" means no request was sent; those purposes come from the command name and Tekla's reference.
 
-| Command | What it does |
-|---|---|
-| `Firm_Insert` | Creates a Firm record (from the name). |
-| `Firm_Update` | Edits a Firm record (from the name). |
-| `Firm_Delete` | Deletes a Firm record (from the name). |
-| `FirmAddress_Insert` | Creates a FirmAddress record (from the name). |
-| `FirmAddress_Update` | Edits a FirmAddress record (from the name). |
-| `FirmAddress_Delete` | Deletes a FirmAddress record (from the name). |
-| `FirmContact_Insert` | Creates a FirmContact record (from the name). |
-| `FirmContact_Update` | Edits a FirmContact record (from the name). |
-| `FirmContact_Delete` | Deletes a FirmContact record (from the name). |
-| `Lang` | Unclear from the reference; classed as a write until shown to be a read. |
-| `Version` | Probably returns the PowerFab/API version, but classed as a write until shown to be a read. |
-| `TrimbleIdentityToken` | Trimble Identity sign-in token. Not called: it deals in credentials. |
-| `TrimbleIdentityAccessToken` | Trimble Identity access token. Not called: it deals in credentials. |
+| Command | Status | What it does |
+|---|---|---|
+| [`Firm_Insert`](#firm_insert) | ⏸ not run | Creates a Firm record (from the name). |
+| [`Firm_Update`](#firm_update) | ⏸ not run | Edits a Firm record (from the name). |
+| [`Firm_Delete`](#firm_delete) | ⏸ not run | Deletes a Firm record (from the name). |
+| [`FirmAddress_Insert`](#firmaddress_insert) | ⏸ not run | Creates a FirmAddress record (from the name). |
+| [`FirmAddress_Update`](#firmaddress_update) | ⏸ not run | Edits a FirmAddress record (from the name). |
+| [`FirmAddress_Delete`](#firmaddress_delete) | ⏸ not run | Deletes a FirmAddress record (from the name). |
+| [`FirmContact_Insert`](#firmcontact_insert) | ⏸ not run | Creates a FirmContact record (from the name). |
+| [`FirmContact_Update`](#firmcontact_update) | ⏸ not run | Edits a FirmContact record (from the name). |
+| [`FirmContact_Delete`](#firmcontact_delete) | ⏸ not run | Deletes a FirmContact record (from the name). |
+| [`Lang`](#lang) | ✅ data | Unclear from the reference; classed as a write until shown to be a read. |
+| [`Version`](#version) | ✅ data | Probably returns the PowerFab/API version, but classed as a write until shown to be a read. |
+| [`TrimbleIdentityToken`](#trimbleidentitytoken) | ⏸ not run | Trimble Identity sign-in token. Not called: it deals in credentials. |
+| [`TrimbleIdentityAccessToken`](#trimbleidentityaccesstoken) | ⏸ not run | Trimble Identity access token. Not called: it deals in credentials. |
+
+### `Firm_Insert`
+
+**Status:** ⏸ not run
+
+**What it does.** Creates a Firm record (from the name).
+
+### `Firm_Update`
+
+**Status:** ⏸ not run
+
+**What it does.** Edits a Firm record (from the name).
+
+### `Firm_Delete`
+
+**Status:** ⏸ not run
+
+**What it does.** Deletes a Firm record (from the name).
+
+### `FirmAddress_Insert`
+
+**Status:** ⏸ not run
+
+**What it does.** Creates a FirmAddress record (from the name).
+
+### `FirmAddress_Update`
+
+**Status:** ⏸ not run
+
+**What it does.** Edits a FirmAddress record (from the name).
+
+### `FirmAddress_Delete`
+
+**Status:** ⏸ not run
+
+**What it does.** Deletes a FirmAddress record (from the name).
+
+### `FirmContact_Insert`
+
+**Status:** ⏸ not run
+
+**What it does.** Creates a FirmContact record (from the name).
+
+### `FirmContact_Update`
+
+**Status:** ⏸ not run
+
+**What it does.** Edits a FirmContact record (from the name).
+
+### `FirmContact_Delete`
+
+**Status:** ⏸ not run
+
+**What it does.** Deletes a FirmContact record (from the name).
+
+### `Lang`
+
+**Status:** ✅ worked
+
+**What it does.** Returns the language code.
+
+**Request that worked:**
+
+```json
+{}
+```
+
+**Reply:** only `Successful` and a `CommandGUID`.
+
+**Attempts:**
+
+- `{}` → 200: accepted
+
+**Gotchas:**
+
+- Reply is the plain string `"en"`.
+
+### `Version`
+
+**Status:** ✅ worked
+
+**What it does.** Returns the PowerFab version.
+
+**Request that worked:**
+
+```json
+{}
+```
+
+**Reply** (trimmed; [samples/Version.json](samples/Version.json)):
+
+```json
+{
+  "MajorVersion": "2026",
+  "MinorVersion": "SP3",
+  "PatchNumber": "0",
+  "InterfaceVersionNumber": "2026.0.0"
+}
+```
+
+**Attempts:**
+
+- `{}` → 200: accepted
+
+**Gotchas:**
+
+- Reply: `MajorVersion` "2026", `MinorVersion` "SP3", `PatchNumber` "0", `InterfaceVersionNumber` "2026.0.0".
+
+### `TrimbleIdentityToken`
+
+**Status:** ⏸ not run
+
+**What it does.** Trimble Identity sign-in token. Not called: it deals in credentials.
+
+### `TrimbleIdentityAccessToken`
+
+**Status:** ⏸ not run
+
+**What it does.** Trimble Identity access token. Not called: it deals in credentials.

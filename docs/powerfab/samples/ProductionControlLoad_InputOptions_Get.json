@@ -1,71 +1,20 @@
 {
   "command": "ProductionControlLoad_InputOptions_Get",
   "request": {
-    "ProductionControlID": 13
+    "ProductionControlID": 90
   },
   "status": 200,
-  "bytes": 2150,
+  "bytes": 3422,
   "note": "Trimmed: lists keep their first 3 items. Names, phones and street addresses are masked.",
   "response": {
     "Successful": "1",
     "ResultData": {
       "InputOptions": {
-        "NextLoadNumber": "1",
+        "NextLoadNumber": "7",
         "DefaultCapacity": "19958.06428",
         "DefaultMaximumLength": "0",
-        "ShippedFrom": {
-          "Firm": {
-            "FirmID": "6",
-            "FirmType": "Coating",
-            "Name": "Galvanizer",
-            "Code": "Galvanizer",
-            "PrimaryCurrency": {
-              "@ID": "1",
-              "#text": "USD"
-            },
-            "ShipToAddress": {
-              "FirmAddressID": "10",
-              "FirmID": "6",
-              "Description": "Default",
-              "Address1": "<redacted>",
-              "IsShipTo": "1",
-              "IsBillTo": "1",
-              "Active": "1"
-            },
-            "BillToAddress": {
-              "FirmAddressID": "10",
-              "FirmID": "6",
-              "Description": "Default",
-              "Address1": "<redacted>",
-              "IsShipTo": "1",
-              "IsBillTo": "1",
-              "Active": "1"
-            },
-            "Contact": {
-              "FirmContactID": "6",
-              "FirmID": "6",
-              "Name": "<redacted>",
-              "Inspector": "0",
-              "Active": "1"
-            },
-            "Notes": "Generic Destination Assignment"
-          },
-          "FirmAddress": {
-            "FirmAddressID": "10",
-            "FirmID": "6",
-            "Description": "Default",
-            "Address1": "<redacted>",
-            "IsShipTo": "1",
-            "IsBillTo": "1",
-            "Active": "1"
-          }
-        },
-        "ShippingDestinationGroup": {
-          "ShippingDestinationGroup": {
-            "ShippingDestinationGroupID": "1",
-            "DestinationGroup": "Galvanizer"
-          },
-          "ShippedTo": {
+        "ShippedFrom": [
+          {
             "Firm": {
               "FirmID": "6",
               "FirmType": "Coating",
@@ -111,8 +60,155 @@
               "IsBillTo": "1",
               "Active": "1"
             }
+          },
+          {
+            "Firm": {
+              "FirmID": "5",
+              "FirmType": "My Company",
+              "Name": "My Company",
+              "Code": "My Company",
+              "PrimaryCurrency": {
+                "@ID": "1",
+                "#text": "USD"
+              },
+              "ShipToAddress": {
+                "FirmAddressID": "5",
+                "FirmID": "5",
+                "Description": "Default",
+                "IsShipTo": "1",
+                "IsBillTo": "1",
+                "Active": "1"
+              },
+              "BillToAddress": {
+                "FirmAddressID": "5",
+                "FirmID": "5",
+                "Description": "Default",
+                "IsShipTo": "1",
+                "IsBillTo": "1",
+                "Active": "1"
+              },
+              "Contact": {
+                "FirmContactID": "5",
+                "FirmID": "5",
+                "Name": "<redacted>",
+                "Inspector": "0",
+                "Active": "1"
+              }
+            },
+            "FirmAddress": {
+              "FirmAddressID": "5",
+              "FirmID": "5",
+              "Description": "Default",
+              "IsShipTo": "1",
+              "IsBillTo": "1",
+              "Active": "1"
+            }
           }
-        },
+        ],
+        "ShippingDestinationGroup": [
+          {
+            "ShippingDestinationGroup": {
+              "ShippingDestinationGroupID": "1",
+              "DestinationGroup": "Galvanizer"
+            },
+            "ShippedTo": {
+              "Firm": {
+                "FirmID": "6",
+                "FirmType": "Coating",
+                "Name": "Galvanizer",
+                "Code": "Galvanizer",
+                "PrimaryCurrency": {
+                  "@ID": "1",
+                  "#text": "USD"
+                },
+                "ShipToAddress": {
+                  "FirmAddressID": "10",
+                  "FirmID": "6",
+                  "Description": "Default",
+                  "Address1": "<redacted>",
+                  "IsShipTo": "1",
+                  "IsBillTo": "1",
+                  "Active": "1"
+                },
+                "BillToAddress": {
+                  "FirmAddressID": "10",
+                  "FirmID": "6",
+                  "Description": "Default",
+                  "Address1": "<redacted>",
+                  "IsShipTo": "1",
+                  "IsBillTo": "1",
+                  "Active": "1"
+                },
+                "Contact": {
+                  "FirmContactID": "6",
+                  "FirmID": "6",
+                  "Name": "<redacted>",
+                  "Inspector": "0",
+                  "Active": "1"
+                },
+                "Notes": "Generic Destination Assignment"
+              },
+              "FirmAddress": {
+                "FirmAddressID": "10",
+                "FirmID": "6",
+                "Description": "Default",
+                "Address1": "<redacted>",
+                "IsShipTo": "1",
+                "IsBillTo": "1",
+                "Active": "1"
+              }
+            }
+          },
+          {
+            "ShippingDestinationGroup": {
+              "ShippingDestinationGroupID": "2",
+              "DestinationGroup": "Workshop"
+            },
+            "ShippedTo": {
+              "Firm": {
+                "FirmID": "5",
+                "FirmType": "My Company",
+                "Name": "My Company",
+                "Code": "My Company",
+                "PrimaryCurrency": {
+                  "@ID": "1",
+                  "#text": "USD"
+                },
+                "ShipToAddress": {
+                  "FirmAddressID": "5",
+                  "FirmID": "5",
+                  "Description": "Default",
+                  "IsShipTo": "1",
+                  "IsBillTo": "1",
+                  "Active": "1"
+                },
+                "BillToAddress": {
+                  "FirmAddressID": "5",
+                  "FirmID": "5",
+                  "Description": "Default",
+                  "IsShipTo": "1",
+                  "IsBillTo": "1",
+                  "Active": "1"
+                },
+                "Contact": {
+                  "FirmContactID": "5",
+                  "FirmID": "5",
+                  "Name": "<redacted>",
+                  "Inspector": "0",
+                  "Active": "1"
+                }
+              },
+              "FirmAddress": {
+                "FirmAddressID": "5",
+                "FirmID": "5",
+                "Description": "Default",
+                "IsShipTo": "1",
+                "IsBillTo": "1",
+                "Active": "1"
+              }
+            }
+          }
+        ],
         "FieldSettings": {
           "TrailerNumber": {
             "Show": "1",

@@ -1,7 +1,7 @@
 {
   "command": "WorkAreaDepartment_Get",
   "request": {
-    "JobNumber": "EPM-001"
+    "JobNumber": "TESTTEST"
   },
   "status": 200,
   "bytes": 152,
@@ -9,7 +9,7 @@
   "response": {
     "Successful": "1",
     "ResultData": {
-      "LastLogID": "0",
+      "LastLogID": "8",
       "WorkAreaDepartment": {
         "WorkAreaDepartmentID": "1",
         "WorkshopID": "1",

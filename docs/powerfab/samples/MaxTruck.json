@@ -1,18 +1,18 @@
 {
   "command": "MaxTruck",
   "request": {
-    "JobNumber": "EPM-001"
+    "JobNumber": "TESTTEST"
   },
   "status": 200,
-  "bytes": 844,
+  "bytes": 846,
   "note": "Trimmed: lists keep their first 3 items. Names, phones and street addresses are masked.",
   "response": {
     "Successful": "1",
-    "CommandGUID": "0D8DA57F-957F-438E-A146-DF2A84CA9F64",
-    "ProductionControlID": "13",
-    "JobNumber": "EPM-001",
-    "MaxTruck": "",
-    "NextAvailableLoadNumber": "1",
+    "CommandGUID": "5A61459E-E72C-4000-BB4A-DA814BA35AB9",
+    "ProductionControlID": "90",
+    "JobNumber": "TESTTEST",
+    "MaxTruck": "6",
+    "NextAvailableLoadNumber": "7",
     "DefaultCapacity": {
       "@UOM": "kg",
       "#text": "19958.06428"

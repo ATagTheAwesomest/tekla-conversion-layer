@@ -1,0 +1,10 @@
+[
+ [
+  {"id":"R01_Nested_ReportOption","command":"PrepareReportData","body":{"ReportGroup":"ProductionControlShippingTicket","ReportTypeID":21,"ReportGUID":"a0a1106d-bda9-11f1-8386-2cea7f483ab7","ReportOptions":{"ReportOption":[{"OptionName":"ProductionControlID","OptionValue":"90"},{"OptionName":"ProductionControlLoadID","OptionValue":"383"}]}}},
+  {"id":"R02_Nested_Option","command":"PrepareReportData","body":{"ReportGroup":"ProductionControlShippingTicket","ReportTypeID":21,"ReportGUID":"a0a1106d-bda9-11f1-8386-2cea7f483ab7","ReportOptions":{"Option":[{"OptionName":"ProductionControlID","OptionValue":"90"},{"OptionName":"ProductionControlLoadID","OptionValue":"383"}]}}},
+  {"id":"R03_Direct_Fields","command":"PrepareReportData","body":{"ReportGroup":"ProductionControlShippingTicket","ReportTypeID":21,"ReportGUID":"a0a1106d-bda9-11f1-8386-2cea7f483ab7","ReportOptions":{"ProductionControlID":"90","ProductionControlLoadID":"383"}}},
+  {"id":"R04_Top_Level_Options","command":"PrepareReportData","body":{"ReportGroup":"ProductionControlShippingTicket","ReportTypeID":21,"ReportGUID":"a0a1106d-bda9-11f1-8386-2cea7f483ab7","ProductionControlID":"90","ProductionControlLoadID":"383"}},
+  {"id":"R05_Option_Name_Value","command":"PrepareReportData","body":{"ReportGroup":"ProductionControlShippingTicket","ReportTypeID":21,"ReportGUID":"a0a1106d-bda9-11f1-8386-2cea7f483ab7","ReportOptions":{"ReportOption":{"OptionName":"ProductionControlID","OptionValue":"90"}}}},
+  {"id":"R06_Make_Direct","command":"MakeReport","timeout":120000,"body":{"ReportGroup":"ProductionControlShippingTicket","ReportTypeID":21,"ReportGUID":"a0a1106d-bda9-11f1-8386-2cea7f483ab7","ExportFormat":"PDF","ReportOptions":{"ReportOption":[{"OptionName":"ProductionControlID","OptionValue":"90"},{"OptionName":"ProductionControlLoadID","OptionValue":"383"}]}}}
+ ]
+]

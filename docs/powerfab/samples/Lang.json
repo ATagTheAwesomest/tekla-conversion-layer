@@ -1,0 +1,7 @@
+{
+  "command": "Lang",
+  "request": {},
+  "status": 200,
+  "note": "Trimmed: lists keep their first 3 items. Names, phones and street addresses are masked.",
+  "response": "en"
+}

@@ -1,0 +1,11 @@
+{
+  "command": "ProductionControlLoad_Delete",
+  "request": {
+    "ProductionControlLoadID": "407"
+  },
+  "status": 200,
+  "note": "Trimmed: lists keep their first 3 items. Names, phones and street addresses are masked.",
+  "response": {
+    "Successful": "1"
+  }
+}

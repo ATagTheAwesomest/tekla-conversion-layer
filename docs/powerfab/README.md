@@ -5,21 +5,22 @@ What every Tekla PowerFab command returns through this service, checked against 
 response fields, sample, gotchas), and every sample is real data, trimmed.
 
 - **Test job:** `EPM-001` ("Tekla EPM Demo", Closed, ProductionControlID 13, ProjectID 4). Data rich in drawings,
-  assemblies, cut lists, RFIs and transmittals, but it has **no loads**. Load samples come from job `25-351`, read on
-  2026-10-19 before the API user was limited to EPM-001; they carry marks, quantities, weights and dates only.
-- **Read only:** only read commands were called.
+  assemblies, cut lists, RFIs and transmittals, but it has **no loads**.
+- **Second test job:** `TESTTEST` (Open, ProductionControlID 90, ProjectID 29), a copy of a real job with 4,254 pieces and loads. Load samples and the shipping tests come from it.
+- **Writes:** run on the two test jobs only, each change undone afterwards. See [Shipping rules](shipping-rules.md) and the write sections of each page.
 - **Masked:** people's names, usernames, phone numbers and street addresses in samples are replaced with `<redacted>`.
 - **Not invented:** everything below was observed in a reply unless it says "inferred" or "not worked out".
 
 ## Run summary
 
 - Commands in the table: **252** (122 read, 130 write).
-- Read commands called: **122**, 192 requests in all ([calls.json](../../tools/powerfab-wiki/calls.json)).
-- ✅ returned data: **61** · ⚪ empty: **15** · ⛔ permission denied: **31** · ⚠️ refused: **15**.
-- Write commands: none called. See "Write commands (not run)" on each page.
+- Read commands called: **122**, 388 requests in all ([calls.json](../../tools/powerfab-wiki/calls.json)).
+- ✅ returned data: **64** · ⚪ empty: **13** · ⛔ permission denied: **31** · ⚠️ refused: **14**.
+- Write commands (130), run on the test jobs only: ✅ worked **27** · ⚠️ refused **41** · ⛔ permission denied **1** · ⏸ not run **61**.
 
 ## Pages
 
+- [Shipping rules](shipping-rules.md): what PowerFab accepts and refuses when assigning, loading, shipping, unshipping and returning, with its exact messages.
 - [Jobs, projects and sequences](jobs-and-projects.md): Find a job, its IDs, status, sequences, lots, filters and schedule.
 - [Loads and shipping](loads-and-shipping.md): Trucks, what is on them, what is left to ship, shipping status and load settings.
 - [Assemblies, material and drawings](assemblies-and-drawings.md): Main marks, quantities, weights, bill of materials, model IDs, drawings, revisions, RFIs and change orders.
@@ -72,7 +73,7 @@ The service's mock and README listed guesses about PowerFab's replies. What the 
 | `Material` with `MainMark`, `Sequence`, `Quantity` | `Material` has `MainMark`, `PieceMark`, `Sequence`, `AssignedQuantity` (planned) and `LoadedQuantity` (on the truck), plus weight, length, shape, size, grade, finish |
 | `LoadNumber` in `GetLoads` = `TruckNumber` in `Load` | Still unconfirmed (no write has been run), but `LoadNumber` is the only truck number in the reads |
 | Weights as numbers | Objects `{"@UOM":"kg","#text":"…"}`, in kg |
-| The first 4 characters of a mark are the sequence | True on 25-351 (mark `52312005`, sequence `5231`), **false on EPM-001** (mark `1B1`, sequence `1`). The `Sequence` field holds it |
+| The first 4 characters of a mark are the sequence | True on TESTTEST (mark `55311005`, sequence `5531`), **false on EPM-001** (mark `1B1`, sequence `1`). The `Sequence` field holds it |
 | `GetProductionControlJobs` lists the jobs | Lists **open** jobs only; closed jobs like EPM-001 are missing |
 
 ## Rerunning this
@@ -99,6 +100,7 @@ node tools/powerfab-wiki/build.mjs ../powerfab-raw
 | What yard/inventory locations exist? | [`GetInventoryLocations`](inventory-purchasing-costs.md#getinventorylocations) | ✅ data |
 | What is on each truck, and what is left to ship? | [`GetLoads`](loads-and-shipping.md#getloads) | ✅ data |
 | Which Tekla model objects belong to a mark? | [`GetModelObjectIDs`](assemblies-and-drawings.md#getmodelobjectids) | ✅ data |
+| Which open jobs are there? | [`GetProductionControlJobs`](jobs-and-projects.md#getproductioncontroljobs) | ✅ data |
 | How far along is a job in production and shipping? | [`GetProductionShippingStatus`](loads-and-shipping.md#getproductionshippingstatus) | ✅ data |
 | What are a job's ProductionControlID and ProjectID, and how big is it? | [`GetProjectStatus`](jobs-and-projects.md#getprojectstatus) | ✅ data |
 | Which shipping ticket layouts does PowerFab have? | [`GetReportTypes`](inspections-and-reports.md#getreporttypes) | ✅ data |
@@ -125,7 +127,6 @@ Everything below came back with no data. Fix the cause in the last column and re
 | [`CostCode_Get`](inventory-purchasing-costs.md#costcode_get) | ⛔ permission denied | Permission denied. |
 | [`CostType_Get`](inventory-purchasing-costs.md#costtype_get) | ⛔ permission denied | Permission denied. |
 | [`DrawingFile_Get`](assemblies-and-drawings.md#drawingfile_get) | ⚠️ refused | DrawingID - Value is required |
-| [`DrawingRevision_Get`](assemblies-and-drawings.md#drawingrevision_get) | ⚪ empty | Successful, but nothing in the reply |
 | [`EstimateJobCostGroupSummary_Get`](inventory-purchasing-costs.md#estimatejobcostgroupsummary_get) | ⚠️ refused | EstimateJobCostGroupSummary - Element is required |
 | [`EstimateJobCostSummary_Get`](inventory-purchasing-costs.md#estimatejobcostsummary_get) | ⚠️ refused | SummaryBy - Value is required |
 | [`EstimateSummary_Get`](inventory-purchasing-costs.md#estimatesummary_get) | ⛔ permission denied | Permission denied. |
@@ -145,7 +146,6 @@ Everything below came back with no data. Fix the cause in the last column and re
 | [`GetNestData`](production-and-cutting.md#getnestdata) | ⚠️ refused | CutListItemID is required |
 | [`GetNestImage`](production-and-cutting.md#getnestimage) | ⚪ empty | Successful, but nothing in the reply |
 | [`GetNestStatus`](production-and-cutting.md#getneststatus) | ⚠️ refused | NestID is required. |
-| [`GetProductionControlJobs`](jobs-and-projects.md#getproductioncontroljobs) | ⚪ empty | Successful, but nothing in the reply |
 | [`GetProjectSchedule`](jobs-and-projects.md#getprojectschedule) | ⚠️ refused | Baseline plan not found. |
 | [`GetProjectScheduleBaselinePlans`](jobs-and-projects.md#getprojectschedulebaselineplans) | ⛔ permission denied | Permission denied. |
 | [`GetProjectScheduleSnapshots`](jobs-and-projects.md#getprojectschedulesnapshots) | ⚠️ refused | Baseline plan not found. |
@@ -176,18 +176,64 @@ Everything below came back with no data. Fix the cause in the last column and re
 | [`TrimbleViewpointSettings_Get`](firms-users-settings.md#trimbleviewpointsettings_get) | ⛔ permission denied | Permission denied. |
 | [`ValCutListItem`](production-and-cutting.md#valcutlistitem) | ⚠️ refused | CutListItemID/CutListSerialNumber/ExternalNestID/NestID is required |
 | [`ValInventory`](inventory-purchasing-costs.md#valinventory) | ⚠️ refused | SerialNumber is required |
-| [`ValTruck`](loads-and-shipping.md#valtruck) | ⚠️ refused | ActionIfNotExist is required |
 | [`WorkAreaDepartmentFutureTask_Get`](production-and-cutting.md#workareadepartmentfuturetask_get) | ⚪ empty | Successful, but nothing in the reply |
 | [`WorkPackageDepartmentTaskCompletion_Get`](production-and-cutting.md#workpackagedepartmenttaskcompletion_get) | ⚠️ refused | WorkPackageDepartmentTaskCompletion - Element is required |
 | [`WorkPackageGroup1List_Get`](production-and-cutting.md#workpackagegroup1list_get) | ⚪ empty | Successful, but nothing in the reply |
 | [`WorkPackageGroup2List_Get`](production-and-cutting.md#workpackagegroup2list_get) | ⚪ empty | Successful, but nothing in the reply |
 | [`WorkPackage_Get`](production-and-cutting.md#workpackage_get) | ⚪ empty | Successful, but nothing in the reply |
 
+## Write commands that did not work
+
+| Command | Status | What PowerFab said (last attempt) |
+|---|---|---|
+| [`DeleteInspectionTestRecord`](inspections-and-reports.md#deleteinspectiontestrecord) | ⚠️ refused | InspectionTestRecordID is required |
+| [`DrawingLog_Delete`](assemblies-and-drawings.md#drawinglog_delete) | ⚠️ refused | DrawingLogID - Value is required |
+| [`DrawingLog_Insert`](assemblies-and-drawings.md#drawinglog_insert) | ⚠️ refused | Permission denied. |
+| [`DrawingLog_Update`](assemblies-and-drawings.md#drawinglog_update) | ⚠️ refused | DrawingLog - Element is required |
+| [`ExportProjectSchedule`](jobs-and-projects.md#exportprojectschedule) | ⚠️ refused | ScheduleBaselineID is required. |
+| [`InspectionDocumentAdd`](inspections-and-reports.md#inspectiondocumentadd) | ⚠️ refused | InspectionTestRecordID is required |
+| [`MakeReport`](inspections-and-reports.md#makereport) | ⚠️ refused | ProductionControlID report option is required. |
+| [`PrepareReportData`](inspections-and-reports.md#preparereportdata) | ⚠️ refused | ProductionControlID report option is required. |
+| [`ProductionControlCutListItem_Swap`](production-and-cutting.md#productioncontrolcutlistitem_swap) | ⚠️ refused | ProductionControlCutListItemID - Value is required |
+| [`ProductionControlLoadMaterial_Return`](loads-and-shipping.md#productioncontrolloadmaterial_return) | ⚠️ refused | Unable to return items from the jobsite. |
+| [`ProductionControlLoadMaterial_Unreturn`](loads-and-shipping.md#productioncontrolloadmaterial_unreturn) | ⚠️ refused | ProductionControlItemTrucksReturnID - Value is required |
+| [`ProductionControlLoad_AddAttachedFile`](loads-and-shipping.md#productioncontrolload_addattachedfile) | ⚠️ refused | ProductionControlLoadID - Value is required |
+| [`Return`](loads-and-shipping.md#return) | ⚠️ refused | The load 'WIKI-2' has not been shipped. |
+| [`SaveCNCFile`](production-and-cutting.md#savecncfile) | ⚠️ refused | CNCFileID is required |
+| [`SaveInspectionTestRecord`](inspections-and-reports.md#saveinspectiontestrecord) | ⚠️ refused | InspectionTestVersionID is required |
+| [`SaveNest`](production-and-cutting.md#savenest) | ⛔ permission denied | Permission denied. |
+| [`SaveTimeTrackingRecord`](production-and-cutting.md#savetimetrackingrecord) | ⚠️ refused | StartDate is required |
+| [`SetAssemblyAssociation`](production-and-cutting.md#setassemblyassociation) | ⚠️ refused | MainMark is required |
+| [`SetCutListItemNestID`](production-and-cutting.md#setcutlistitemnestid) | ⚠️ refused | CutListItem is required. |
+| [`SplicePackage_TFS`](production-and-cutting.md#splicepackage_tfs) | ⚠️ refused | NestSolutionID - Value is required |
+| [`SplitPackage_TFS`](production-and-cutting.md#splitpackage_tfs) | ⚠️ refused | NestSolutionID - Value is required |
+| [`TFSCut`](production-and-cutting.md#tfscut) | ⚠️ refused | CutListItemID/CutListSerialNumber/ExternalNestID/NestID is required |
+| [`TFSManual`](production-and-cutting.md#tfsmanual) | ⚠️ refused | Quantity is required |
+| [`WorkPackageDepartmentTaskCompletion_Delete`](production-and-cutting.md#workpackagedepartmenttaskcompletion_delete) | ⚠️ refused | HTTP 502 from the tunnel |
+| [`WorkPackageDepartmentTaskCompletion_Insert`](production-and-cutting.md#workpackagedepartmenttaskcompletion_insert) | ⚠️ refused | HTTP 502 from the tunnel |
+| [`WorkPackageDepartmentTaskCompletion_Update`](production-and-cutting.md#workpackagedepartmenttaskcompletion_update) | ⚠️ refused | HTTP 502 from the tunnel |
+| [`WorkPackageDepartmentTask_Delete`](production-and-cutting.md#workpackagedepartmenttask_delete) | ⚠️ refused | WorkPackageDepartmentTaskID - Value is required |
+| [`WorkPackageDepartmentTask_Insert`](production-and-cutting.md#workpackagedepartmenttask_insert) | ⚠️ refused | WorkPackageDepartmentID - Value is required |
+| [`WorkPackageDepartmentTask_OffsetFutureWorkPackage`](production-and-cutting.md#workpackagedepartmenttask_offsetfutureworkpackage) | ⚠️ refused | WorkPackageDepartmentTaskID - Value is required |
+| [`WorkPackageDepartmentTask_Schedule`](production-and-cutting.md#workpackagedepartmenttask_schedule) | ⚠️ refused | WorkPackageDepartmentTaskID - Value is required |
+| [`WorkPackageDepartmentTask_Split`](production-and-cutting.md#workpackagedepartmenttask_split) | ⚠️ refused | WorkPackageDepartmentTaskID - Value is required |
+| [`WorkPackageDepartmentTask_Unschedule`](production-and-cutting.md#workpackagedepartmenttask_unschedule) | ⚠️ refused | WorkPackageDepartmentTaskID - Value is required |
+| [`WorkPackageDepartmentTask_Update`](production-and-cutting.md#workpackagedepartmenttask_update) | ⚠️ refused | WorkPackageDepartmentTaskID - Value is required |
+| [`WorkPackageDepartment_Delete`](production-and-cutting.md#workpackagedepartment_delete) | ⚠️ refused | WorkPackageDepartmentID - Value is required |
+| [`WorkPackageDepartment_Insert`](production-and-cutting.md#workpackagedepartment_insert) | ⚠️ refused | WorkPackageID - Value is required |
+| [`WorkPackageDepartment_Update`](production-and-cutting.md#workpackagedepartment_update) | ⚠️ refused | WorkPackageDepartmentID - Value is required |
+| [`WorkPackage_Delete`](production-and-cutting.md#workpackage_delete) | ⚠️ refused | WorkPackageID - Value is required |
+| [`WorkPackage_Insert`](production-and-cutting.md#workpackage_insert) | ⚠️ refused | Permission denied. |
+| [`WorkPackage_OffsetFutureWorkPackage`](production-and-cutting.md#workpackage_offsetfutureworkpackage) | ⚠️ refused | WorkPackageID - Value is required |
+| [`WorkPackage_ScheduleToWorkshop`](production-and-cutting.md#workpackage_scheduletoworkshop) | ⚠️ refused | WorkshopID - Value is required |
+| [`WorkPackage_Unschedule`](production-and-cutting.md#workpackage_unschedule) | ⚠️ refused | WorkPackageID - Value is required |
+| [`WorkPackage_Update`](production-and-cutting.md#workpackage_update) | ⚠️ refused | WorkPackageID - Value is required |
+
 ## Access of the API user
 
-On 2026-10-20 the PowerFab External User behind the service was changed: it now reads job EPM-001 only (job 25-351
-answers "Permission denied." for reads that worked on 2026-10-19), and it gained departments, shifts, work-area
-schedules and work package departments and tasks. Still refused: inventory, purchasing and PO terms, inspections,
+The PowerFab External User behind the service sees the two test jobs, EPM-001 and TESTTEST. It can read departments,
+shifts, work-area schedules and work package departments and tasks, and it can write loads, load material, extra items,
+drawings and revisions, exports, shop floor entries and instance locations. Still refused: inventory, purchasing and PO terms, inspections,
 estimating, cost codes and types, labor rates, time tracking, remnants, the newer transmittal read, schedule
 baselines, countries and Trimble Viewpoint settings.
 

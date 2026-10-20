@@ -294,12 +294,13 @@ the location restriction, the last inventory transaction ID, currencies and the 
 **Best attempt:**
 
 ```json
-{"JobNumber":"EPM-001"}
+{"JobNumber":"TESTTEST"}
 ```
 
 **Attempts:**
 
 - `{"JobNumber":"EPM-001"}` → 422: Permission denied.
+- `{"JobNumber":"TESTTEST"}` → 422: Permission denied.
 
 **Gotchas:**
 
@@ -321,6 +322,8 @@ the location restriction, the last inventory transaction ID, currencies and the 
 
 - `{"JobNumber":"EPM-001"}` → 422: SummaryField is required
 - `{"SummaryField":"Shape"}` → 422: Permission denied.
+- `{"SummaryField":"Shape"}` → 422: Permission denied.
+- `{"JobNumber":"TESTTEST"}` → 422: SummaryField is required
 
 **Gotchas:**
 
@@ -336,12 +339,13 @@ the location restriction, the last inventory transaction ID, currencies and the 
 **Best attempt:**
 
 ```json
-{"JobNumber":"EPM-001"}
+{"JobNumber":"TESTTEST"}
 ```
 
 **Attempts:**
 
 - `{"JobNumber":"EPM-001"}` → 422: InventoryLocationSweepSerialNumber is required
+- `{"JobNumber":"TESTTEST"}` → 422: InventoryLocationSweepSerialNumber is required
 
 **Gotchas:**
 
@@ -356,12 +360,13 @@ the location restriction, the last inventory transaction ID, currencies and the 
 **Best attempt:**
 
 ```json
-{"JobNumber":"EPM-001"}
+{"JobNumber":"TESTTEST"}
 ```
 
 **Attempts:**
 
 - `{"JobNumber":"EPM-001"}` → 422: Permission denied.
+- `{"JobNumber":"TESTTEST"}` → 422: Permission denied.
 
 **Gotchas:**
 
@@ -386,6 +391,10 @@ the location restriction, the last inventory transaction ID, currencies and the 
 - `{"Workflow":"consumed","SinceInventoryTransactionID":0}` → 422: Permission denied.
 - `{"JobNumber":"EPM-001"}` → 422: Workflow - Value is required
 - `{"Workflow":"Inventory"}` → 422: SinceInventoryTransactionID - Value is required
+- `{"Workflow":"Inventory","SinceInventoryTransactionID":0}` → 422: Workflow - Value (Inventory) is not valid.
+- `{"Workflow":"consumed","SinceInventoryTransactionID":0}` → 422: Permission denied.
+- `{"JobNumber":"TESTTEST"}` → 422: Workflow - Value is required
+- `{"Workflow":"Inventory"}` → 422: SinceInventoryTransactionID - Value is required
 
 **Gotchas:**
 
@@ -401,11 +410,12 @@ the location restriction, the last inventory transaction ID, currencies and the 
 **Best attempt:**
 
 ```json
-{"JobNumber":"EPM-001"}
+{"JobNumber":"TESTTEST"}
 ```
 
 **Attempts:**
 
+- `{"JobNumber":"TESTTEST"}` → 422: SerialNumber is required
 - `{"JobNumber":"EPM-001"}` → 422: SerialNumber is required
 
 **Gotchas:**
@@ -421,12 +431,13 @@ the location restriction, the last inventory transaction ID, currencies and the 
 **Best attempt:**
 
 ```json
-{"JobNumber":"EPM-001"}
+{"JobNumber":"TESTTEST"}
 ```
 
 **Attempts:**
 
 - `{"JobNumber":"EPM-001"}` → 422: Permission denied.
+- `{"JobNumber":"TESTTEST"}` → 422: Permission denied.
 
 **Gotchas:**
 
@@ -441,12 +452,13 @@ the location restriction, the last inventory transaction ID, currencies and the 
 **Best attempt:**
 
 ```json
-{"JobNumber":"EPM-001"}
+{"JobNumber":"TESTTEST"}
 ```
 
 **Attempts:**
 
 - `{"JobNumber":"EPM-001"}` → 422: Permission denied.
+- `{"JobNumber":"TESTTEST"}` → 422: Permission denied.
 
 **Gotchas:**
 
@@ -461,12 +473,13 @@ the location restriction, the last inventory transaction ID, currencies and the 
 **Best attempt:**
 
 ```json
-{"JobNumber":"EPM-001"}
+{"JobNumber":"TESTTEST"}
 ```
 
 **Attempts:**
 
 - `{"JobNumber":"EPM-001"}` → 422: Permission denied.
+- `{"JobNumber":"TESTTEST"}` → 422: Permission denied.
 
 **Gotchas:**
 
@@ -481,12 +494,13 @@ the location restriction, the last inventory transaction ID, currencies and the 
 **Best attempt:**
 
 ```json
-{"JobNumber":"EPM-001"}
+{"JobNumber":"TESTTEST"}
 ```
 
 **Attempts:**
 
 - `{"JobNumber":"EPM-001"}` → 422: Permission denied.
+- `{"JobNumber":"TESTTEST"}` → 422: Permission denied.
 
 **Gotchas:**
 
@@ -501,12 +515,13 @@ the location restriction, the last inventory transaction ID, currencies and the 
 **Best attempt:**
 
 ```json
-{"JobNumber":"EPM-001"}
+{"JobNumber":"TESTTEST"}
 ```
 
 **Attempts:**
 
 - `{"JobNumber":"EPM-001"}` → 422: Permission denied.
+- `{"JobNumber":"TESTTEST"}` → 422: Permission denied.
 
 **Gotchas:**
 
@@ -530,6 +545,10 @@ the location restriction, the last inventory transaction ID, currencies and the 
 - `{"JobNumber":"EPM-001"}` → 422: GetOptions - Element is required
 - `{"GetOptions":{"SummaryType":"Job"}}` → 422: StartDate - Value is required
 - `{"GetOptions":{"ProductionControlID":13}}` → 422: SummaryType - Value is required
+- `{"GetOptions":{"SummaryType":"Job","StartDate":"2017-01-01","EndDate":"2026-12-31"}}` → 422: SummaryType - Value (Job) is not valid.
+- `{"GetOptions":{"SummaryType":"Job"}}` → 422: StartDate - Value is required
+- `{"GetOptions":{"ProductionControlID":90}}` → 422: SummaryType - Value is required
+- `{"JobNumber":"TESTTEST"}` → 422: GetOptions - Element is required
 
 **Gotchas:**
 
@@ -551,6 +570,8 @@ the location restriction, the last inventory transaction ID, currencies and the 
 
 - `{"ExportedSinceUnixTime":0}` → 422: Permission denied.
 - `{"JobNumber":"EPM-001"}` → 422: ExportedSinceUnixTime - Value is required
+- `{"ExportedSinceUnixTime":0}` → 422: Permission denied.
+- `{"JobNumber":"TESTTEST"}` → 422: ExportedSinceUnixTime - Value is required
 
 **Gotchas:**
 
@@ -566,12 +587,13 @@ the location restriction, the last inventory transaction ID, currencies and the 
 **Best attempt:**
 
 ```json
-{"JobNumber":"EPM-001"}
+{"JobNumber":"TESTTEST"}
 ```
 
 **Attempts:**
 
 - `{"JobNumber":"EPM-001"}` → 422: Permission denied.
+- `{"JobNumber":"TESTTEST"}` → 422: Permission denied.
 
 **Gotchas:**
 
@@ -586,12 +608,13 @@ the location restriction, the last inventory transaction ID, currencies and the 
 **Best attempt:**
 
 ```json
-{"JobNumber":"EPM-001"}
+{"JobNumber":"TESTTEST"}
 ```
 
 **Attempts:**
 
 - `{"JobNumber":"EPM-001"}` → 422: Permission denied.
+- `{"JobNumber":"TESTTEST"}` → 422: Permission denied.
 
 **Gotchas:**
 
@@ -606,12 +629,13 @@ the location restriction, the last inventory transaction ID, currencies and the 
 **Best attempt:**
 
 ```json
-{"JobNumber":"EPM-001"}
+{"JobNumber":"TESTTEST"}
 ```
 
 **Attempts:**
 
 - `{"JobNumber":"EPM-001"}` → 422: Permission denied.
+- `{"JobNumber":"TESTTEST"}` → 422: Permission denied.
 
 **Gotchas:**
 
@@ -626,12 +650,13 @@ the location restriction, the last inventory transaction ID, currencies and the 
 **Best attempt:**
 
 ```json
-{"JobNumber":"EPM-001"}
+{"JobNumber":"TESTTEST"}
 ```
 
 **Attempts:**
 
 - `{"JobNumber":"EPM-001"}` → 422: Permission denied.
+- `{"JobNumber":"TESTTEST"}` → 422: Permission denied.
 
 **Gotchas:**
 
@@ -646,12 +671,13 @@ the location restriction, the last inventory transaction ID, currencies and the 
 **Best attempt:**
 
 ```json
-{"JobNumber":"EPM-001"}
+{"JobNumber":"TESTTEST"}
 ```
 
 **Attempts:**
 
 - `{"JobNumber":"EPM-001"}` → 422: Permission denied.
+- `{"JobNumber":"TESTTEST"}` → 422: Permission denied.
 
 **Gotchas:**
 
@@ -673,6 +699,8 @@ the location restriction, the last inventory transaction ID, currencies and the 
 
 - `{"EstimateID":1}` → 422: Permission denied.
 - `{"JobNumber":"EPM-001"}` → 422: EstimateID - Value is required
+- `{"EstimateID":1}` → 422: Permission denied.
+- `{"JobNumber":"TESTTEST"}` → 422: EstimateID - Value is required
 
 **Gotchas:**
 
@@ -697,6 +725,10 @@ the location restriction, the last inventory transaction ID, currencies and the 
 - `{"JobNumber":"EPM-001"}` → 422: SummaryBy - Value is required
 - `{"EstimateJobCostSummary":{"EstimateID":1,"SummaryBy":"CostCode"}}` → 422: SummaryBy - Value is required
 - `{"SummaryBy":"CostCode","EstimateJobCostSummary":{"EstimateID":1}}` → 422: EstimateID - Value is required
+- `{"EstimateID":1,"SummaryBy":"CostCode"}` → 422: EstimateJobCostSummary - Element is required
+- `{"EstimateJobCostSummary":{"EstimateID":1,"SummaryBy":"CostCode"}}` → 422: SummaryBy - Value is required
+- `{"JobNumber":"TESTTEST"}` → 422: SummaryBy - Value is required
+- `{"SummaryBy":"CostCode","EstimateJobCostSummary":{"EstimateID":1}}` → 422: EstimateID - Value is required
 
 **Gotchas:**
 
@@ -718,6 +750,8 @@ the location restriction, the last inventory transaction ID, currencies and the 
 
 - `{"EstimateID":1,"SummaryBy":"CostCode"}` → 422: EstimateJobCostGroupSummary - Element is required
 - `{"JobNumber":"EPM-001"}` → 422: SummaryBy - Value is required
+- `{"EstimateID":1,"SummaryBy":"CostCode"}` → 422: EstimateJobCostGroupSummary - Element is required
+- `{"JobNumber":"TESTTEST"}` → 422: SummaryBy - Value is required
 
 **Gotchas:**
 
@@ -732,12 +766,13 @@ the location restriction, the last inventory transaction ID, currencies and the 
 **Best attempt:**
 
 ```json
-{"JobNumber":"EPM-001"}
+{"JobNumber":"TESTTEST"}
 ```
 
 **Attempts:**
 
 - `{"JobNumber":"EPM-001"}` → 422: Permission denied.
+- `{"JobNumber":"TESTTEST"}` → 422: Permission denied.
 
 **Gotchas:**
 
@@ -752,12 +787,13 @@ the location restriction, the last inventory transaction ID, currencies and the 
 **Best attempt:**
 
 ```json
-{"JobNumber":"EPM-001"}
+{"JobNumber":"TESTTEST"}
 ```
 
 **Attempts:**
 
 - `{"JobNumber":"EPM-001"}` → 422: Permission denied.
+- `{"JobNumber":"TESTTEST"}` → 422: Permission denied.
 
 **Gotchas:**
 
@@ -772,12 +808,13 @@ the location restriction, the last inventory transaction ID, currencies and the 
 **Best attempt:**
 
 ```json
-{"JobNumber":"EPM-001"}
+{"JobNumber":"TESTTEST"}
 ```
 
 **Attempts:**
 
 - `{"JobNumber":"EPM-001"}` → 422: Permission denied.
+- `{"JobNumber":"TESTTEST"}` → 422: Permission denied.
 
 **Gotchas:**
 
@@ -792,55 +829,266 @@ the location restriction, the last inventory transaction ID, currencies and the 
 **Best attempt:**
 
 ```json
-{"JobNumber":"EPM-001"}
+{"JobNumber":"TESTTEST"}
 ```
 
 **Attempts:**
 
 - `{"JobNumber":"EPM-001"}` → 422: Permission denied.
+- `{"JobNumber":"TESTTEST"}` → 422: Permission denied.
 
 **Gotchas:**
 
 - PowerFab answered "Permission denied." for the API user (the PowerFab External User the service logs in as).
 
-## Write commands (not run)
+## Write commands
 
-These change PowerFab data, so they were not called. The service refuses them while `POWERFAB_ALLOW_WRITES` is off. Purposes come from the command name and Tekla's reference, not from a call.
+Run on the test jobs only (EPM-001, TESTTEST), each change undone afterwards. "Not run" means no request was sent; those purposes come from the command name and Tekla's reference.
 
-| Command | What it does |
-|---|---|
-| `InventoryAdd` | Changes data (from the name). |
-| `InventoryMove` | Changes data (from the name). |
-| `InventoryRemnant_Upsert` | Creates or edits a InventoryRemnant record (from the name). |
-| `InventoryAuditScan` | Changes data (from the name). |
-| `InventoryAuditSave` | Changes data (from the name). |
-| `CreateInventoryLocationSweep` | Changes data (from the name). |
-| `InventoryLocationSweepScan` | Changes data (from the name). |
-| `InventoryLocationSweepComplete` | Changes data (from the name). |
-| `Receive` | Receives material, likely against a purchase order (from the name). |
-| `ReceiveASN` | Receives an advance shipping notice (from the name). |
-| `ReceiveChecklistScan` | Scans an item on a receiving checklist (from the name). |
-| `PurchaseOrder_UpdateSyncStatus` | Changes data (from the name). |
-| `PurchaseOrderFOB_Insert` | Creates a PurchaseOrderFOB record (from the name). |
-| `PurchaseOrderFOB_Update` | Edits a PurchaseOrderFOB record (from the name). |
-| `PurchaseOrderFOB_Delete` | Deletes a PurchaseOrderFOB record (from the name). |
-| `PurchaseOrderPaymentTerm_Insert` | Creates a PurchaseOrderPaymentTerm record (from the name). |
-| `PurchaseOrderPaymentTerm_Update` | Edits a PurchaseOrderPaymentTerm record (from the name). |
-| `PurchaseOrderPaymentTerm_Delete` | Deletes a PurchaseOrderPaymentTerm record (from the name). |
-| `PurchaseOrderPOType_Insert` | Creates a PurchaseOrderPOType record (from the name). |
-| `PurchaseOrderPOType_Update` | Edits a PurchaseOrderPOType record (from the name). |
-| `PurchaseOrderPOType_Delete` | Deletes a PurchaseOrderPOType record (from the name). |
-| `PurchaseOrderShippingMethod_Insert` | Creates a PurchaseOrderShippingMethod record (from the name). |
-| `PurchaseOrderShippingMethod_Update` | Edits a PurchaseOrderShippingMethod record (from the name). |
-| `PurchaseOrderShippingMethod_Delete` | Deletes a PurchaseOrderShippingMethod record (from the name). |
-| `PurchaseOrderSubcontractItem_Insert` | Creates a PurchaseOrderSubcontractItem record (from the name). |
-| `PurchaseOrderSubcontractItem_Update` | Edits a PurchaseOrderSubcontractItem record (from the name). |
-| `PurchaseOrderSubcontractItem_Delete` | Deletes a PurchaseOrderSubcontractItem record (from the name). |
-| `EstimateSummary_Update` | Edits a EstimateSummary record (from the name). |
-| `CostCode_Upsert` | Creates or edits a CostCode record (from the name). |
-| `CostCode_Delete` | Deletes a CostCode record (from the name). |
-| `CostType_Upsert` | Creates or edits a CostType record (from the name). |
-| `CostType_Delete` | Deletes a CostType record (from the name). |
-| `LaborRate_Upsert` | Creates or edits a LaborRate record (from the name). |
-| `LaborRate_Delete` | Deletes a LaborRate record (from the name). |
-| `IntermediateCompanyCodes` | Unclear from the reference. |
+| Command | Status | What it does |
+|---|---|---|
+| [`InventoryAdd`](#inventoryadd) | ⏸ not run | Changes data (from the name). |
+| [`InventoryMove`](#inventorymove) | ⏸ not run | Changes data (from the name). |
+| [`InventoryRemnant_Upsert`](#inventoryremnant_upsert) | ⏸ not run | Creates or edits a InventoryRemnant record (from the name). |
+| [`InventoryAuditScan`](#inventoryauditscan) | ⏸ not run | Changes data (from the name). |
+| [`InventoryAuditSave`](#inventoryauditsave) | ⏸ not run | Changes data (from the name). |
+| [`CreateInventoryLocationSweep`](#createinventorylocationsweep) | ⏸ not run | Changes data (from the name). |
+| [`InventoryLocationSweepScan`](#inventorylocationsweepscan) | ⏸ not run | Changes data (from the name). |
+| [`InventoryLocationSweepComplete`](#inventorylocationsweepcomplete) | ⏸ not run | Changes data (from the name). |
+| [`Receive`](#receive) | ⏸ not run | Receives material, likely against a purchase order (from the name). |
+| [`ReceiveASN`](#receiveasn) | ⏸ not run | Receives an advance shipping notice (from the name). |
+| [`ReceiveChecklistScan`](#receivechecklistscan) | ⏸ not run | Scans an item on a receiving checklist (from the name). |
+| [`PurchaseOrder_UpdateSyncStatus`](#purchaseorder_updatesyncstatus) | ⏸ not run | Changes data (from the name). |
+| [`PurchaseOrderFOB_Insert`](#purchaseorderfob_insert) | ⏸ not run | Creates a PurchaseOrderFOB record (from the name). |
+| [`PurchaseOrderFOB_Update`](#purchaseorderfob_update) | ⏸ not run | Edits a PurchaseOrderFOB record (from the name). |
+| [`PurchaseOrderFOB_Delete`](#purchaseorderfob_delete) | ⏸ not run | Deletes a PurchaseOrderFOB record (from the name). |
+| [`PurchaseOrderPaymentTerm_Insert`](#purchaseorderpaymentterm_insert) | ⏸ not run | Creates a PurchaseOrderPaymentTerm record (from the name). |
+| [`PurchaseOrderPaymentTerm_Update`](#purchaseorderpaymentterm_update) | ⏸ not run | Edits a PurchaseOrderPaymentTerm record (from the name). |
+| [`PurchaseOrderPaymentTerm_Delete`](#purchaseorderpaymentterm_delete) | ⏸ not run | Deletes a PurchaseOrderPaymentTerm record (from the name). |
+| [`PurchaseOrderPOType_Insert`](#purchaseorderpotype_insert) | ⏸ not run | Creates a PurchaseOrderPOType record (from the name). |
+| [`PurchaseOrderPOType_Update`](#purchaseorderpotype_update) | ⏸ not run | Edits a PurchaseOrderPOType record (from the name). |
+| [`PurchaseOrderPOType_Delete`](#purchaseorderpotype_delete) | ⏸ not run | Deletes a PurchaseOrderPOType record (from the name). |
+| [`PurchaseOrderShippingMethod_Insert`](#purchaseordershippingmethod_insert) | ⏸ not run | Creates a PurchaseOrderShippingMethod record (from the name). |
+| [`PurchaseOrderShippingMethod_Update`](#purchaseordershippingmethod_update) | ⏸ not run | Edits a PurchaseOrderShippingMethod record (from the name). |
+| [`PurchaseOrderShippingMethod_Delete`](#purchaseordershippingmethod_delete) | ⏸ not run | Deletes a PurchaseOrderShippingMethod record (from the name). |
+| [`PurchaseOrderSubcontractItem_Insert`](#purchaseordersubcontractitem_insert) | ⏸ not run | Creates a PurchaseOrderSubcontractItem record (from the name). |
+| [`PurchaseOrderSubcontractItem_Update`](#purchaseordersubcontractitem_update) | ⏸ not run | Edits a PurchaseOrderSubcontractItem record (from the name). |
+| [`PurchaseOrderSubcontractItem_Delete`](#purchaseordersubcontractitem_delete) | ⏸ not run | Deletes a PurchaseOrderSubcontractItem record (from the name). |
+| [`EstimateSummary_Update`](#estimatesummary_update) | ⏸ not run | Edits a EstimateSummary record (from the name). |
+| [`CostCode_Upsert`](#costcode_upsert) | ⏸ not run | Creates or edits a CostCode record (from the name). |
+| [`CostCode_Delete`](#costcode_delete) | ⏸ not run | Deletes a CostCode record (from the name). |
+| [`CostType_Upsert`](#costtype_upsert) | ⏸ not run | Creates or edits a CostType record (from the name). |
+| [`CostType_Delete`](#costtype_delete) | ⏸ not run | Deletes a CostType record (from the name). |
+| [`LaborRate_Upsert`](#laborrate_upsert) | ⏸ not run | Creates or edits a LaborRate record (from the name). |
+| [`LaborRate_Delete`](#laborrate_delete) | ⏸ not run | Deletes a LaborRate record (from the name). |
+| [`IntermediateCompanyCodes`](#intermediatecompanycodes) | ⏸ not run | Unclear from the reference. |
+
+### `InventoryAdd`
+
+**Status:** ⏸ not run
+
+**What it does.** Changes data (from the name).
+
+### `InventoryMove`
+
+**Status:** ⏸ not run
+
+**What it does.** Changes data (from the name).
+
+### `InventoryRemnant_Upsert`
+
+**Status:** ⏸ not run
+
+**What it does.** Creates or edits a InventoryRemnant record (from the name).
+
+### `InventoryAuditScan`
+
+**Status:** ⏸ not run
+
+**What it does.** Changes data (from the name).
+
+### `InventoryAuditSave`
+
+**Status:** ⏸ not run
+
+**What it does.** Changes data (from the name).
+
+### `CreateInventoryLocationSweep`
+
+**Status:** ⏸ not run
+
+**What it does.** Changes data (from the name).
+
+### `InventoryLocationSweepScan`
+
+**Status:** ⏸ not run
+
+**What it does.** Changes data (from the name).
+
+### `InventoryLocationSweepComplete`
+
+**Status:** ⏸ not run
+
+**What it does.** Changes data (from the name).
+
+### `Receive`
+
+**Status:** ⏸ not run
+
+**What it does.** Receives material, likely against a purchase order (from the name).
+
+### `ReceiveASN`
+
+**Status:** ⏸ not run
+
+**What it does.** Receives an advance shipping notice (from the name).
+
+### `ReceiveChecklistScan`
+
+**Status:** ⏸ not run
+
+**What it does.** Scans an item on a receiving checklist (from the name).
+
+### `PurchaseOrder_UpdateSyncStatus`
+
+**Status:** ⏸ not run
+
+**What it does.** Changes data (from the name).
+
+### `PurchaseOrderFOB_Insert`
+
+**Status:** ⏸ not run
+
+**What it does.** Creates a PurchaseOrderFOB record (from the name).
+
+### `PurchaseOrderFOB_Update`
+
+**Status:** ⏸ not run
+
+**What it does.** Edits a PurchaseOrderFOB record (from the name).
+
+### `PurchaseOrderFOB_Delete`
+
+**Status:** ⏸ not run
+
+**What it does.** Deletes a PurchaseOrderFOB record (from the name).
+
+### `PurchaseOrderPaymentTerm_Insert`
+
+**Status:** ⏸ not run
+
+**What it does.** Creates a PurchaseOrderPaymentTerm record (from the name).
+
+### `PurchaseOrderPaymentTerm_Update`
+
+**Status:** ⏸ not run
+
+**What it does.** Edits a PurchaseOrderPaymentTerm record (from the name).
+
+### `PurchaseOrderPaymentTerm_Delete`
+
+**Status:** ⏸ not run
+
+**What it does.** Deletes a PurchaseOrderPaymentTerm record (from the name).
+
+### `PurchaseOrderPOType_Insert`
+
+**Status:** ⏸ not run
+
+**What it does.** Creates a PurchaseOrderPOType record (from the name).
+
+### `PurchaseOrderPOType_Update`
+
+**Status:** ⏸ not run
+
+**What it does.** Edits a PurchaseOrderPOType record (from the name).
+
+### `PurchaseOrderPOType_Delete`
+
+**Status:** ⏸ not run
+
+**What it does.** Deletes a PurchaseOrderPOType record (from the name).
+
+### `PurchaseOrderShippingMethod_Insert`
+
+**Status:** ⏸ not run
+
+**What it does.** Creates a PurchaseOrderShippingMethod record (from the name).
+
+### `PurchaseOrderShippingMethod_Update`
+
+**Status:** ⏸ not run
+
+**What it does.** Edits a PurchaseOrderShippingMethod record (from the name).
+
+### `PurchaseOrderShippingMethod_Delete`
+
+**Status:** ⏸ not run
+
+**What it does.** Deletes a PurchaseOrderShippingMethod record (from the name).
+
+### `PurchaseOrderSubcontractItem_Insert`
+
+**Status:** ⏸ not run
+
+**What it does.** Creates a PurchaseOrderSubcontractItem record (from the name).
+
+### `PurchaseOrderSubcontractItem_Update`
+
+**Status:** ⏸ not run
+
+**What it does.** Edits a PurchaseOrderSubcontractItem record (from the name).
+
+### `PurchaseOrderSubcontractItem_Delete`
+
+**Status:** ⏸ not run
+
+**What it does.** Deletes a PurchaseOrderSubcontractItem record (from the name).
+
+### `EstimateSummary_Update`
+
+**Status:** ⏸ not run
+
+**What it does.** Edits a EstimateSummary record (from the name).
+
+### `CostCode_Upsert`
+
+**Status:** ⏸ not run
+
+**What it does.** Creates or edits a CostCode record (from the name).
+
+### `CostCode_Delete`
+
+**Status:** ⏸ not run
+
+**What it does.** Deletes a CostCode record (from the name).
+
+### `CostType_Upsert`
+
+**Status:** ⏸ not run
+
+**What it does.** Creates or edits a CostType record (from the name).
+
+### `CostType_Delete`
+
+**Status:** ⏸ not run
+
+**What it does.** Deletes a CostType record (from the name).
+
+### `LaborRate_Upsert`
+
+**Status:** ⏸ not run
+
+**What it does.** Creates or edits a LaborRate record (from the name).
+
+### `LaborRate_Delete`
+
+**Status:** ⏸ not run
+
+**What it does.** Deletes a LaborRate record (from the name).
+
+### `IntermediateCompanyCodes`
+
+**Status:** ⏸ not run
+
+**What it does.** Unclear from the reference.

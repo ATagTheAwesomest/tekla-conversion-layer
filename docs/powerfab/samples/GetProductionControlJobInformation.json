@@ -1,20 +1,39 @@
 {
   "command": "GetProductionControlJobInformation",
   "request": {
-    "JobNumber": "EPM-001"
+    "JobNumber": "TESTTEST"
   },
   "status": 200,
-  "bytes": 231,
+  "bytes": 549,
   "note": "Trimmed: lists keep their first 3 items. Names, phones and street addresses are masked.",
   "response": {
     "Successful": "1",
-    "CommandGUID": "87180097-A4A1-44AD-AF5E-49A7A7FB8ED4",
-    "LastLogID": "270",
+    "CommandGUID": "A5E68641-8AAE-42E5-A50E-774276B12CAE",
+    "LastLogID": "271",
     "ProductionControlJobInformation": {
-      "ProductionControlID": "13",
-      "JobNumber": "EPM-001",
-      "JobDescription": "Tekla EPM Demo",
-      "JobDate": "2020-08-31"
+      "ProductionControlID": "90",
+      "JobNumber": "TESTTEST",
+      "JobDescription": "TESTTEST",
+      "JobLocation": "TESTTEST",
+      "JobDate": "2026-08-06",
+      "Notes": "TESTTEST",
+      "GroupName": "<redacted>",
+      "ShipTo": {
+        "CompanyName": "TEST",
+        "FirmType": "Client",
+        "PhoneNumber": "<redacted>",
+        "ShippingAddress": {
+          "Address1": "<redacted>",
+          "Address2": "<redacted>",
+          "City": "<redacted>",
+          "State": "Maine",
+          "PostalCode": "12345",
+          "Country": "USA"
+        },
+        "Contact": {
+          "ContactName": "<redacted>"
+        }
+      }
     }
   }
 }

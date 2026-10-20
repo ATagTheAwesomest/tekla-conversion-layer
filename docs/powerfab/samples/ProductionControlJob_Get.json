@@ -1,40 +1,77 @@
 {
   "command": "ProductionControlJob_Get",
   "request": {
-    "JobNumber": "EPM-001"
+    "JobNumber": "TESTTEST"
   },
   "status": 200,
-  "bytes": 499,
+  "bytes": 1198,
   "note": "Trimmed: lists keep their first 3 items. Names, phones and street addresses are masked.",
   "response": {
     "Successful": "1",
     "ResultData": {
-      "LastLogID": "270",
+      "LastLogID": "271",
       "GetOptions": {
         "FilterSet": ""
       },
-      "ProductionControlJob": {
-        "ProductionControlID": "13",
-        "JobNumber": "EPM-001",
-        "JobDescription": "Tekla EPM Demo",
-        "JobStatus": {
-          "JobStatusID": "2",
-          "Description": "Closed",
-          "Purpose": "10",
-          "IsDefault": "0",
-          "Active": "1"
+      "ProductionControlJob": [
+        {
+          "ProductionControlID": "13",
+          "JobNumber": "EPM-001",
+          "JobDescription": "Tekla EPM Demo",
+          "JobStatus": {
+            "JobStatusID": "2",
+            "Description": "Closed",
+            "Purpose": "10",
+            "IsDefault": "0",
+            "Active": "1"
+          },
+          "JobDate": "2020-08-31",
+          "TFSDropOption": "1000",
+          "InputDisplayUnits": {
+            "SizeUOM": "Imperial",
+            "LengthUOM": "Imperial",
+            "LengthTypeIDMetric": "101",
+            "LengthTypeIDImperial": "1",
+            "WeightUOM": "Imperial",
+            "PriceUOM": "Imperial"
+          }
         },
-        "JobDate": "2020-08-31",
-        "TFSDropOption": "1000",
-        "InputDisplayUnits": {
-          "SizeUOM": "Imperial",
-          "LengthUOM": "Imperial",
-          "LengthTypeIDMetric": "101",
-          "LengthTypeIDImperial": "1",
-          "WeightUOM": "Imperial",
-          "PriceUOM": "Imperial"
+        {
+          "ProductionControlID": "90",
+          "JobNumber": "TESTTEST",
+          "JobDescription": "TESTTEST",
+          "JobLocation": "TESTTEST",
+          "DistanceToJob": "0",
+          "JobStatus": {
+            "JobStatusID": "1",
+            "Description": "Open",
+            "Purpose": "0",
+            "IsDefault": "1",
+            "Active": "1"
+          },
+          "JobDate": "2026-08-06",
+          "ShipToName": "<redacted>",
+          "ShipToAttn": "<redacted>",
+          "ShipToAddress1": "<redacted>",
+          "ShipToAddress2": "<redacted>",
+          "ShipToCity": "<redacted>",
+          "ShipToState": "<redacted>",
+          "ShipToZip": "<redacted>",
+          "ShipToCountry": "<redacted>",
+          "ShipToPhone": "<redacted>",
+          "Comment1": "TESTTEST",
+          "GroupName": "<redacted>",
+          "TFSDropOption": "1000",
+          "InputDisplayUnits": {
+            "SizeUOM": "Imperial",
+            "LengthUOM": "Imperial",
+            "LengthTypeIDMetric": "101",
+            "LengthTypeIDImperial": "1",
+            "WeightUOM": "Imperial",
+            "PriceUOM": "Imperial"
+          }
         }
-      }
+      ]
     }
   }
 }

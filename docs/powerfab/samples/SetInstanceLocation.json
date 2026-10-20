@@ -1,0 +1,16 @@
+{
+  "command": "SetInstanceLocation",
+  "request": {
+    "JobNumber": "EPM-001",
+    "MainMark": "A32",
+    "Sequence": "3",
+    "InstanceNumbers": "1",
+    "InstanceLocation": ""
+  },
+  "status": 200,
+  "note": "Trimmed: lists keep their first 3 items. Names, phones and street addresses are masked.",
+  "response": {
+    "Successful": "1",
+    "CommandGUID": "05AA6919-7844-4CF0-94E3-F616E69A2AC5"
+  }
+}

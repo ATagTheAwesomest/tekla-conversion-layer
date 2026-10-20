@@ -1,11 +1,11 @@
 // Builds the PowerFab wiki (docs/powerfab/) from raw replies saved by probe.mjs.
 //
-//   node tools/powerfab-wiki/build.mjs <raw dir> [more raw dirs]
+//   node tools/powerfab-wiki/build.mjs <read dir>... [--writes <scenario dir>...]
 //
-// Prose (purpose, gotchas, groups) lives in meta.mjs. Field tables, results and samples come from
-// the replies, so rerunning probe.mjs + build.mjs refreshes the wiki. It also writes calls.json:
-// every request that was sent, so probe.mjs can repeat the run. A record marked fromSample was
-// rebuilt from an earlier trimmed sample, for a reply the API user can no longer get.
+// Read dirs hold probe.mjs output, scenario dirs hold scenario.mjs output. Prose (purpose, gotchas,
+// groups, shipping rules) lives in meta.mjs. Field tables, results and samples come from the
+// replies, so rerunning the probes + build.mjs refreshes the wiki. It also writes calls.json:
+// every read request that was sent, so probe.mjs can repeat the run.
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -15,8 +15,11 @@ const here = path.dirname(fileURLToPath(import.meta.url));
 const repo = path.resolve(here, '..', '..');
 const docs = path.join(repo, 'docs', 'powerfab');
 const samplesDir = path.join(docs, 'samples');
-const rawDirs = process.argv.slice(2);
-if (!rawDirs.length) { console.error('usage: node build.mjs <raw dir> [more raw dirs]'); process.exit(1); }
+const args = process.argv.slice(2);
+const split = args.indexOf('--writes');
+const rawDirs = split < 0 ? args : args.slice(0, split);
+const writeDirs = split < 0 ? [] : args.slice(split + 1);
+if (!rawDirs.length) { console.error('usage: node build.mjs <read dir>... [--writes <scenario dir>...]'); process.exit(1); }
 
 // ---- command table (same source as the service) ----
 const cs = fs.readFileSync(path.join(repo, 'src', 'TeklaConversionLayer', 'PowerFabCommands.cs'), 'utf8');
@@ -29,7 +32,16 @@ const records = rawDirs.flatMap(dir => fs.readdirSync(dir).filter(f => f.endsWit
   .map(f => JSON.parse(fs.readFileSync(path.join(dir, f), 'utf8'))))
   .sort((a, b) => a.id.localeCompare(b.id));
 fs.writeFileSync(path.join(here, 'calls.json'),
-  JSON.stringify(records.filter(r => !r.fromSample).map(r => ({ id: r.id, command: r.command, body: r.body })), null, 1) + '\n');
+  JSON.stringify(records.map(r => ({ id: r.id, command: r.command, body: r.body })), null, 1) + '\n');
+
+// Scenario replies (writes, plus the reads between them). Steps that were skipped sent nothing.
+const readJson = file => { try { return JSON.parse(fs.readFileSync(file, 'utf8').replace(/^﻿/, '')); } catch { return null; } };
+const writeRecords = writeDirs.flatMap(dir => fs.readdirSync(dir).filter(f => f.endsWith('.json'))
+  .map(f => readJson(path.join(dir, f))))
+  .filter(r => r && !Array.isArray(r) && r.command && r.status !== undefined && r.status !== 'skipped');
+// ValTruck counts as a read by name but creates a load with ActionIfNotExist "Add": its scenario replies join its read attempts.
+records.push(...writeRecords.filter(r => r.command === 'ValTruck'));
+writeRecords.splice(0, writeRecords.length, ...writeRecords.filter(r => !isRead(r.command)));
 
 // Envelope fields PowerFab repeats on many replies; documented once in the README.
 const COMMON = ['InputDisplayUnits', 'FilterSet', 'PRJFilterSet', 'HoldSettings', 'FieldSettings'];
@@ -37,17 +49,24 @@ const ENVELOPE = new Set(['Successful', 'CommandGUID', 'LastLogID', 'GetOptions'
 const isCommonPath = p => p.split('.').some((seg, i, a) => i < a.length - 1 && COMMON.includes(seg.replace('[]', '')));
 
 // People's names, phone numbers and street addresses are masked in what goes into the repo.
-const PRIVATE_KEYS = new Set(['Phone', 'Fax', 'Email', 'Address1', 'Address2', 'Attn', 'Username', 'FirstName', 'LastName']);
+const PRIVATE_KEYS = new Set(['Phone', 'Fax', 'Email', 'Address1', 'Address2', 'Attn', 'Username', 'FirstName', 'LastName', 'GroupName', 'GroupName2', 'ContactName', 'City', 'Zip']);
 function sanitize(node, p = '') {
-  if (Array.isArray(node)) return node.map(x => sanitize(x, p));
+  if (Array.isArray(node)) {
+    const key = p.split('.').pop();
+    return node.map(x => typeof x === 'string' && x.trim() !== '' && PRIVATE_KEYS.has(key) ? '<redacted>' : sanitize(x, p));
+  }
   if (node && typeof node === 'object') {
     const out = {};
     for (const [k, v] of Object.entries(node)) {
-      const masked = typeof v === 'string' && v !== '' && (PRIVATE_KEYS.has(k) || (k === 'Name' && /Contact/.test(p)));
+      // Address blocks (ShipToCity, BillToName...) are masked except their IDs.
+      const addressField = /^(ShipTo|BillTo)/.test(k) && !/ID$/.test(k) && !/Firm|Destination|Group/.test(k);
+      const masked = typeof v === 'string' && v !== '' && (PRIVATE_KEYS.has(k) || addressField || /Phone|Fax|Email/.test(k) || (k === 'Name' && /Contact/.test(p)));
       out[k] = masked ? '<redacted>' : sanitize(v, p + '.' + k);
     }
     return out;
   }
+  // The source job of the TESTTEST copy is a real job: its number is not published.
+  if (typeof node === 'string' && node.includes('25-351')) return node.replaceAll('25-351', '<source job>');
   return node;
 }
 
@@ -111,7 +130,9 @@ function fields(resp) {
 }
 function sanitizeValue(p, v) {
   const key = p.replace(/\[\]/g, '').split('.').pop();
-  return PRIVATE_KEYS.has(key) || (key === 'Name' && /Contact/.test(p)) ? '<redacted>' : v;
+  const addressField = /^(ShipTo|BillTo)/.test(key) && !/ID$/.test(key) && !/Firm|Destination|Group/.test(key);
+  if (v !== '' && (PRIVATE_KEYS.has(key) || addressField || /Phone|Fax|Email/.test(key) || (key === 'Name' && /Contact/.test(p)))) return '<redacted>';
+  return typeof v === 'string' ? v.replaceAll('25-351', '<source job>') : v;
 }
 const oneOrMany = resp => { // paths that appeared as object in one place and list in another
   const out = new Set();
@@ -191,6 +212,46 @@ function block(name) {
   return out.join('\n');
 }
 
+// ---- write commands ----
+const writeResults = {};
+for (const name of allNames.filter(n => !isRead(n))) {
+  const tries = writeRecords.filter(r => r.command === name);
+  const ok = tries.findLast(t => t.status === 200);
+  const denied = tries.length && tries.every(t => /Permission denied/.test(t.response?.detail ?? ''));
+  const state = !tries.length ? 'not run' : ok ? 'data' : denied ? 'denied' : 'error';
+  writeResults[name] = { tries, ok, state };
+  if (ok) fs.writeFileSync(path.join(samplesDir, name + '.json'), JSON.stringify({
+    command: name, request: ok.body, status: ok.status,
+    note: 'Trimmed: lists keep their first 3 items. Names, phones and street addresses are masked.',
+    response: trim(sanitize(ok.response), 3),
+  }, null, 2) + '\n');
+}
+const writeBadge = { data: '✅ worked', error: '⚠️ refused', denied: '⛔ permission denied', 'not run': '⏸ not run' };
+
+function writeBlock(name) {
+  const { tries, ok, state } = writeResults[name];
+  const m = commands[name] ?? {};
+  const out = [`### \`${name}\``, '', `**Status:** ${writeBadge[state]}`, ''];
+  out.push(`**What it does.** ${m.purpose ?? writeNotes[name] ?? 'Inferred from the name only.'}`, '');
+  if (state === 'not run') return out.concat(m.gotchas?.length ? ['**Gotchas:**', '', ...m.gotchas.map(g => '- ' + g), ''] : []).join('\n');
+  if (ok) {
+    out.push('**Request that worked:**', '', fence('json', JSON.stringify(sanitize(ok.body))), '');
+    const sample = JSON.stringify(trim(sanitize(contentOf(ok.response, name)), 2, 60), null, 2).split('\n');
+    if (sample.join('') === '{}') out.push('**Reply:** only `Successful` and a `CommandGUID`.', '');
+    else out.push(`**Reply** (trimmed; [samples/${name}.json](samples/${name}.json)):`, '', fence('json', sample.length > 28 ? sample.slice(0, 28).join('\n') + '\n  …' : sample.join('\n')), '');
+  }
+  const seen = new Set();
+  const lines = [];
+  for (const t of tries) {
+    const said = t.status === 200 ? 'accepted' : t.response?.detail ?? (t.status === 502 ? 'HTTP 502 from the tunnel' : t.error ?? '');
+    const line = `- \`${JSON.stringify(sanitize(t.body))}\` → ${t.status}: ${said}`;
+    if (!seen.has(line)) { seen.add(line); lines.push(line); }
+  }
+  out.push('**Attempts:**', '', ...lines.slice(0, 14), ...(lines.length > 14 ? [`- … ${lines.length - 14} more`] : []), '');
+  if (m.gotchas?.length) out.push('**Gotchas:**', '', ...m.gotchas.map(g => '- ' + g), '');
+  return out.join('\n');
+}
+
 // ---- group pages ----
 const assigned = new Set();
 for (const [file, g] of Object.entries(groups)) {
@@ -207,10 +268,11 @@ for (const [file, g] of Object.entries(groups)) {
     ...reads.map(block),
   ];
   if (writes.length) {
-    page.push('## Write commands (not run)', '',
-      'These change PowerFab data, so they were not called. The service refuses them while `POWERFAB_ALLOW_WRITES` is off. Purposes come from the command name and Tekla\'s reference, not from a call.', '',
-      '| Command | What it does |', '|---|---|',
-      ...writes.map(n => `| \`${n}\` | ${writeNotes[n] ?? 'Not described; inferred from the name only.'} |`), '');
+    page.push('## Write commands', '',
+      'Run on the test jobs only (EPM-001, TESTTEST), each change undone afterwards. "Not run" means no request was sent; those purposes come from the command name and Tekla\'s reference.', '',
+      '| Command | Status | What it does |', '|---|---|---|',
+      ...writes.map(n => `| [\`${n}\`](#${n.toLowerCase()}) | ${badge[writeResults[n].state]} | ${writeNotes[n] ?? 'Not described; inferred from the name only.'} |`), '',
+      ...writes.map(writeBlock));
   }
   fs.writeFileSync(path.join(docs, file), page.join('\n'));
 }
@@ -222,14 +284,18 @@ const fileOf = n => Object.entries(groups).find(([, g]) => g.reads.includes(n) |
 const link = n => `[\`${n}\`](${fileOf(n)}#${n.toLowerCase()})`;
 const readNames = allNames.filter(isRead);
 const count = s => readNames.filter(n => results[n].state === s).length;
+const writeNames = allNames.filter(n => !isRead(n));
+const wcount = s => writeNames.filter(n => writeResults[n].state === s).length;
+fs.copyFileSync(path.join(here, 'shipping-rules.md'), path.join(docs, 'shipping-rules.md')); // hand-written, kept next to meta.mjs
 const lines = [
   readme.top, '',
   '## Run summary', '',
   `- Commands in the table: **${allNames.length}** (${readNames.length} read, ${allNames.length - readNames.length} write).`,
   `- Read commands called: **${readNames.filter(n => results[n].best).length}**, ${records.length} requests in all ([calls.json](../../tools/powerfab-wiki/calls.json)).`,
   `- ✅ returned data: **${count('data')}** · ⚪ empty: **${count('empty')}** · ⛔ permission denied: **${count('denied')}** · ⚠️ refused: **${count('error')}**.`,
-  '- Write commands: none called. See "Write commands (not run)" on each page.', '',
+  `- Write commands (${writeNames.length}), run on the test jobs only: ✅ worked **${wcount('data')}** · ⚠️ refused **${wcount('error')}** · ⛔ permission denied **${wcount('denied')}** · ⏸ not run **${wcount('not run')}**.`, '',
   '## Pages', '',
+  '- [Shipping rules](shipping-rules.md): what PowerFab accepts and refuses when assigning, loading, shipping, unshipping and returning, with its exact messages.',
   ...Object.entries(groups).map(([f, g]) => `- [${g.title}](${f}): ${g.blurb}`), '',
   readme.middle, '',
   '## Which command answers which question', '',
@@ -242,6 +308,12 @@ const lines = [
     const r = results[n];
     const said = r.state === 'empty' ? 'Successful, but nothing in the reply' : r.best ? r.best.response?.detail ?? r.best.error : 'not called';
     return `| ${link(n)} | ${badge[r.state]} | ${String(said).replace(/\|/g, '\\|')} |`;
+  }), '',
+  '## Write commands that did not work', '',
+  '| Command | Status | What PowerFab said (last attempt) |', '|---|---|---|',
+  ...writeNames.filter(n => writeResults[n].state !== 'data' && writeResults[n].state !== 'not run').map(n => {
+    const t = writeResults[n].tries.at(-1);
+    return `| ${link(n)} | ${writeBadge[writeResults[n].state]} | ${String(t.response?.detail ?? (t.status === 502 ? 'HTTP 502 from the tunnel' : t.error ?? '')).replace(/\|/g, '\\|')} |`;
   }), '',
   readme.bottom, '',
 ];

@@ -1,28 +1,41 @@
 {
   "command": "GetProductionControlJobInformationTransactions",
   "request": {
-    "JobNumber": "EPM-001"
+    "JobNumber": "TESTTEST"
   },
   "status": 200,
-  "bytes": 451,
+  "bytes": 623,
   "note": "Trimmed: lists keep their first 3 items. Names, phones and street addresses are masked.",
   "response": {
     "Successful": "1",
-    "CommandGUID": "79658ECB-8594-46B1-93C7-470E40F00F2E",
-    "LastLogID": "270",
+    "CommandGUID": "21843895-22B7-48EE-9455-CA34B784126F",
+    "LastLogID": "271",
     "ProductionControlJobInformationTransaction": {
-      "TransactionType": "edit",
-      "OldProductionControlJobInformation": {
-        "ProductionControlID": "13",
-        "JobNumber": "EPM-001",
-        "JobDescription": "Tekla EPM Demo",
-        "JobDate": "2020-08-31"
-      },
+      "TransactionType": "add",
       "NewProductionControlJobInformation": {
-        "ProductionControlID": "13",
-        "JobNumber": "EPM-001",
-        "JobDescription": "Tekla EPM Demo",
-        "JobDate": "2020-08-31"
+        "ProductionControlID": "90",
+        "JobNumber": "TESTTEST",
+        "JobDescription": "TESTTEST",
+        "JobLocation": "TESTTEST",
+        "JobDate": "2026-08-06",
+        "Notes": "TESTTEST",
+        "GroupName": "<redacted>",
+        "ShipTo": {
+          "CompanyName": "TEST",
+          "FirmType": "Client",
+          "PhoneNumber": "<redacted>",
+          "ShippingAddress": {
+            "Address1": "<redacted>",
+            "Address2": "<redacted>",
+            "City": "<redacted>",
+            "State": "Maine",
+            "PostalCode": "12345",
+            "Country": "USA"
+          },
+          "Contact": {
+            "ContactName": "<redacted>"
+          }
+        }
       }
     }
   }

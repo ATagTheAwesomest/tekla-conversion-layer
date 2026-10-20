@@ -1,0 +1,17 @@
+{
+  "command": "Ship",
+  "request": {
+    "CommitType": "Ship",
+    "JobNumber": "TESTTEST",
+    "TruckNumber": "WIKI-T2",
+    "Date": "2026-10-20"
+  },
+  "status": 200,
+  "note": "Trimmed: lists keep their first 3 items. Names, phones and street addresses are masked.",
+  "response": {
+    "Successful": "1",
+    "CommandGUID": "16F965DD-3764-402F-8204-1E535DA30A06",
+    "ProductionControlID": "90",
+    "JobNumber": "TESTTEST"
+  }
+}

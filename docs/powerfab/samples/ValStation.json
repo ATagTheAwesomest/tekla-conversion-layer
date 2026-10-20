@@ -1,7 +1,7 @@
 {
   "command": "ValStation",
   "request": {
-    "JobNumber": "EPM-001",
+    "JobNumber": "TESTTEST",
     "Station": "Quality Control"
   },
   "status": 200,
@@ -9,7 +9,7 @@
   "note": "Trimmed: lists keep their first 3 items. Names, phones and street addresses are masked.",
   "response": {
     "Successful": "1",
-    "CommandGUID": "DE376489-E15A-4C3E-9618-B525E1E2292E",
+    "CommandGUID": "1A489522-45E8-4E80-B804-1D4202ED08DA",
     "StationID": "4"
   }
 }

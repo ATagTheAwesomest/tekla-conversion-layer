@@ -1,5 +1,7 @@
 // Hand-written part of the wiki. build.mjs adds results, field tables and samples from real replies.
 // Keep every statement here to what a reply showed, or say plainly that it is inferred.
+import { writeCommands } from './writes.meta.mjs';
+
 const w = s => s.trim().split(/\s+/);
 
 export const groups = {
@@ -18,11 +20,11 @@ side; 4 for EPM-001). \`GetProjectStatus\` returns both in one call, so call it 
   'loads-and-shipping.md': {
     title: 'Loads and shipping',
     blurb: 'Trucks, what is on them, what is left to ship, shipping status and load settings.',
-    intro: `The commands behind terra-loads-web. **EPM-001 has no loads at all** (\`MaxTruck\` is empty and
-\`NextAvailableLoadNumber\` is 1), so the load samples here come from job 25-351, the only job on the server with
-trucks. Those samples contain marks, quantities, weights and dates only; nothing in them names a customer or person.
-There are two ways to read loads: the older \`GetLoads\` (by JobNumber, units on every value) and the newer
-\`ProductionControlLoad_Get\` (by ProductionControlID, more fields, metric numbers with no unit).`,
+    intro: `The commands behind the shipping app. Samples come from TESTTEST (ProductionControlID 90), which has loads;
+EPM-001 has none. Two sets of commands cover loads: the older \`GetLoads\`, \`Load\`, \`Ship\`, \`Return\`, \`MaxTruck\` and
+\`ValTruck\` (job number and mark based, values with units), and the newer \`ProductionControlLoad_*\` family (by
+ProductionControlID and load ID, bare metric numbers). See [shipping-rules.md](shipping-rules.md) for what PowerFab
+allows and refuses.`,
     reads: w(`GetLoads ProductionControlLoad_Get ProductionControlLoadRemaining_Get MaxTruck
       ProductionControlLoad_InputOptions_Get ProductionControlLoad_IsDuplicateLoadNumber ValTruck
       GetProductionShippingStatus ProductionShippingProductivity_Get`),
@@ -140,7 +142,7 @@ export const commands = {
   Project_Get: {
     purpose: 'Project records: job number, description, location, date, status, drawing logs and, with `IncludeFirms`, the firms on the project (client, detailer, billing).',
     ask: 'Who is the client and detailer on a job, and is it open or closed?',
-    gotchas: ['`JobNumber` does **not** filter: the reply held both EPM-001 and 25-351. Filter the `Project` list yourself.', '`JobStatus` is an object (`Description`: "Open"/"Closed").'],
+    gotchas: ['`JobNumber` does **not** filter: the reply held every project the API user can see (EPM-001 and TESTTEST). The server does not apply that filter.', '`JobStatus` is an object (`Description`: "Open"/"Closed").'],
   },
   GetProductionControlJobInformation: {
     purpose: 'Job information block: ProductionControlID, job number, description, date, notes.',
@@ -151,7 +153,7 @@ export const commands = {
   GetSequences: {
     purpose: 'Every sequence on the job with assembly count, piece count and total weight.',
     ask: 'What sequences does a job have and how much does each weigh?',
-    gotchas: ['Weight is `{"@UOM":"kg","#text":"77814.45…"}`: kilograms with long decimals, even though `InputDisplayUnits` says Imperial. Multiply by 2.20462 for lb.', 'EPM-001 sequences are `1`–`5`; 25-351 sequences are 4 digits (`5231`). Do not assume the sequence is the first 4 characters of a mark: EPM-001 marks look like `1B1`.'],
+    gotchas: ['Weight is `{"@UOM":"kg","#text":"77814.45…"}`: kilograms with long decimals, even though `InputDisplayUnits` says Imperial. Multiply by 2.20462 for lb.', 'EPM-001 sequences are `1`–`5` and its marks look like `1B1`; TESTTEST sequences are 4 digits (`5531`) and its marks start with them (`55311005`). The `Sequence` field is the reliable source.'],
   },
   GetLots: {
     purpose: 'Lots on the job with assembly count, piece count and weight. EPM-001 has one unnamed lot.',
@@ -160,7 +162,7 @@ export const commands = {
   GetFilterSetDetails: { purpose: 'Details of a filter set.', unverified: true, gotchas: ['Empty without a `FilterSetType`; the right values were not worked out.'] },
   FilterSelections_PDC_Get: {
     purpose: 'Values available for one production-control filter. With `FilterName: "Job #"` it lists the jobs (ProductionControlID + job number) the filter can pick.',
-    gotchas: ['Listed only the open jobs (25-351), like `GetProductionControlJobs`.'],
+    gotchas: ['Listed only open jobs, like `GetProductionControlJobs`.'],
   },
   FilterSelections_PRJ_Get: {
     purpose: 'Values available for one project filter.',
@@ -182,9 +184,8 @@ export const commands = {
   GetLoads: {
     purpose: 'Loads (trucks) on a job with what is assigned and loaded on each, plus the material still to ship.',
     ask: 'What is on each truck, and what is left to ship?',
-    sample: 'GetLoads__25-351_full',
     gotchas: [
-      '**Send all four Include flags.** With only `JobNumber` the reply has the destination name and nothing else. On EPM-001 even the full request is empty because the job has no loads; the sample is from 25-351.',
+      '**Send all four Include flags.** With only `JobNumber` the reply has the destination name and nothing else. On EPM-001, which has no loads, even the full request returns no `Load`.',
       'Loads sit under `Destination.Load`, not at the top. Each has `LoadNumber` (the truck number), `AssignedQuantity` and `LoadedQuantity`; `DateShipped` is present **only on shipped loads**.',
       'Pieces are `Material[]` with `MainMark`, `PieceMark`, `Sequence`, `AssignedQuantity`, `LoadedQuantity`, `QuantityAtLocation`. Assigned = planned for this truck, Loaded = actually put on.',
       'Unshipped material is `Destination.Remaining.MaterialRemaining[]` with `TotalQuantity` and `Quantity` (still to ship).',
@@ -195,13 +196,11 @@ export const commands = {
   ProductionControlLoad_Get: {
     purpose: 'Newer load read: every load on a job with totals (quantity, length, weight, gross/model weight, surface area), ship status and, with `IncludeMaterial`, each piece with its item IDs, drawing IDs and load history.',
     ask: 'What are a truck\'s totals and who loaded what, when?',
-    sample: 'ProductionControlLoad_Get__pc80',
     gotchas: [
-      'Takes `ProductionControlID`, **not** `JobNumber`. Sending only `JobNumber` silently returned the loads of a different job (25-351), so always pass the ID.',
+      'Takes `ProductionControlID`, **not** `JobNumber`. Sending only `JobNumber` silently returned the loads of a different job, so always pass the ID.',
       'Numbers here have **no unit attribute** and are metric: weight in kg, length in mm, area in m². `Capacity` 19958.06 kg is 44,000 lb.',
       '`Shipped` is "1"/"0" and `ShippedDate` appears only when shipped.',
       'Material carries `ProductionControlItemID`, the stable piece ID, and `Loaded` entries with date and quantity: good for history, but `Loaded` is an object for one entry and a list for several.',
-      'EPM-001 (ProductionControlID 13) has no loads; the sample is 25-351 (ProductionControlID 80).',
     ],
   },
   ProductionControlLoadRemaining_Get: {
@@ -212,7 +211,7 @@ export const commands = {
   MaxTruck: {
     purpose: 'Highest load number on the job, the next free load number, default capacity and which load fields (trailer, carrier, categories) are shown or required.',
     ask: 'What is the next load number, and which load fields are required?',
-    gotchas: ['On EPM-001 `MaxTruck` is an empty string (no loads); on 25-351 it was "5" with next 6.', 'Show/Required/RestrictToList flags are "1"/"0" strings.'],
+    gotchas: ['On EPM-001 `MaxTruck` is an empty string (no loads); on TESTTEST it was "6" with next 7.', 'Show/Required/RestrictToList flags are "1"/"0" strings.'],
   },
   ProductionControlLoad_InputOptions_Get: {
     purpose: 'Choices for a new load: next load number, default capacity and length, shipped-from firm/address and shipping destination groups.',
@@ -294,7 +293,7 @@ export const commands = {
   GetStations: {
     purpose: 'Production stations used on the job and their type.',
     ask: 'Which production stations does a job go through?',
-    gotchas: ['Empty for 25-351 but four stations on EPM-001.'],
+    gotchas: ['Four stations on EPM-001 and TESTTEST.'],
   },
   ValStation: { purpose: 'Checks a station name and returns its `StationID`.', gotchas: ['Station names include slashes, e.g. "Cut/Saw/Beamline/BurnTable".'] },
   GetRouteDetails: { purpose: 'A route (e.g. SP "Sample - Painted") and its stations in order.', gotchas: ['Needs `RouteID` or `Route`. Pieces carry their route in `ProductionControlLoadRemaining_Get`.'] },
@@ -419,7 +418,9 @@ export const commands = {
   TrimbleViewpointSettings_Get: { purpose: 'Trimble viewpoint settings.' },
 };
 
-// Write commands: what each does, from the name and Tekla's reference. None were called.
+Object.assign(commands, writeCommands);
+
+// Write commands: what each does, from the name and Tekla's reference. Observed facts are in writes.meta.mjs.
 const inferred = '(from the name)';
 export const writeNotes = {
   Load: 'Puts pieces on a truck (`CommitType` Save) or takes them off (Delete). Used by the service\'s `/trucks/{truck}/pieces` routes.',
@@ -476,9 +477,9 @@ What every Tekla PowerFab command returns through this service, checked against 
 response fields, sample, gotchas), and every sample is real data, trimmed.
 
 - **Test job:** \`EPM-001\` ("Tekla EPM Demo", Closed, ProductionControlID 13, ProjectID 4). Data rich in drawings,
-  assemblies, cut lists, RFIs and transmittals, but it has **no loads**. Load samples come from job \`25-351\`, read on
-  2026-10-19 before the API user was limited to EPM-001; they carry marks, quantities, weights and dates only.
-- **Read only:** only read commands were called.
+  assemblies, cut lists, RFIs and transmittals, but it has **no loads**.
+- **Second test job:** \`TESTTEST\` (Open, ProductionControlID 90, ProjectID 29), a copy of a real job with 4,254 pieces and loads. Load samples and the shipping tests come from it.
+- **Writes:** run on the two test jobs only, each change undone afterwards. See [Shipping rules](shipping-rules.md) and the write sections of each page.
 - **Masked:** people's names, usernames, phone numbers and street addresses in samples are replaced with \`<redacted>\`.
 - **Not invented:** everything below was observed in a reply unless it says "inferred" or "not worked out".`,
   middle: `## Quick start
@@ -525,7 +526,7 @@ The service's mock and README listed guesses about PowerFab's replies. What the 
 | \`Material\` with \`MainMark\`, \`Sequence\`, \`Quantity\` | \`Material\` has \`MainMark\`, \`PieceMark\`, \`Sequence\`, \`AssignedQuantity\` (planned) and \`LoadedQuantity\` (on the truck), plus weight, length, shape, size, grade, finish |
 | \`LoadNumber\` in \`GetLoads\` = \`TruckNumber\` in \`Load\` | Still unconfirmed (no write has been run), but \`LoadNumber\` is the only truck number in the reads |
 | Weights as numbers | Objects \`{"@UOM":"kg","#text":"…"}\`, in kg |
-| The first 4 characters of a mark are the sequence | True on 25-351 (mark \`52312005\`, sequence \`5231\`), **false on EPM-001** (mark \`1B1\`, sequence \`1\`). The \`Sequence\` field holds it |
+| The first 4 characters of a mark are the sequence | True on TESTTEST (mark \`55311005\`, sequence \`5531\`), **false on EPM-001** (mark \`1B1\`, sequence \`1\`). The \`Sequence\` field holds it |
 | \`GetProductionControlJobs\` lists the jobs | Lists **open** jobs only; closed jobs like EPM-001 are missing |
 
 ## Rerunning this
@@ -543,9 +544,9 @@ node tools/powerfab-wiki/build.mjs ../powerfab-raw
 \`tools/powerfab-wiki/meta.mjs\`.`,
   bottom: `## Access of the API user
 
-On 2026-10-20 the PowerFab External User behind the service was changed: it now reads job EPM-001 only (job 25-351
-answers "Permission denied." for reads that worked on 2026-10-19), and it gained departments, shifts, work-area
-schedules and work package departments and tasks. Still refused: inventory, purchasing and PO terms, inspections,
+The PowerFab External User behind the service sees the two test jobs, EPM-001 and TESTTEST. It can read departments,
+shifts, work-area schedules and work package departments and tasks, and it can write loads, load material, extra items,
+drawings and revisions, exports, shop floor entries and instance locations. Still refused: inventory, purchasing and PO terms, inspections,
 estimating, cost codes and types, labor rates, time tracking, remnants, the newer transmittal read, schedule
 baselines, countries and Trimble Viewpoint settings.
 

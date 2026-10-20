@@ -19,7 +19,7 @@ back empty; drawing weights in `GetDrawings` and `Drawing_Get` are filled.
 | [`ProductionControlFinish_Get`](#productioncontrolfinish_get) | ✅ data |  |
 | [`GetDrawings`](#getdrawings) | ✅ data | Which drawings are on a job and are they approved? |
 | [`Drawing_Get`](#drawing_get) | ✅ data |  |
-| [`DrawingRevision_Get`](#drawingrevision_get) | ⚪ empty |  |
+| [`DrawingRevision_Get`](#drawingrevision_get) | ✅ data |  |
 | [`DrawingLog_Get`](#drawinglog_get) | ✅ data |  |
 | [`DrawingInputOptions_Get`](#drawinginputoptions_get) | ✅ data |  |
 | [`DrawingFile_Get`](#drawingfile_get) | ⚠️ refused |  |
@@ -40,33 +40,30 @@ back empty; drawing weights in `GetDrawings` and `Drawing_Get` are filled.
 **Request that worked:**
 
 ```json
-{"JobNumber":"EPM-001"}
+{"JobNumber":"TESTTEST"}
 ```
 
-**Result:** HTTP 200, 130,606 bytes, 268 ms.
+**Result:** HTTP 200, 136,337 bytes, 197 ms.
 
 **Response fields:**
 
 | Field | Type | Times seen | Example |
 |---|---|---|---|
-| `ProductionControlID` | number (as text) | 1 | `13` |
-| `JobNumber` | text | 1 | `EPM-001` |
+| `ProductionControlID` | number (as text) | 1 | `90` |
+| `JobNumber` | text | 1 | `TESTTEST` |
 | `InputDisplayUnits` | object | 1 | common block, see README |
-| `Assembly` | list (592–592) | 1 |  |
-| `Assembly[].MainMark` | text | 592 | `1B1`, `1B2` |
-| `Assembly[].DrawingNumber` | number (as text) | 592 | `1`, `2` |
-| `Assembly[].ApprovalStatus` | text | 592 | `IFF`, `P` |
-| `Assembly[].ApprovalStatusPurpose` | text | 143 | `Approved` |
-| `Assembly[].AssemblyQuantity` | number (as text) | 592 | `1`, `2` |
-| `Assembly[].TotalQuantity` | number (as text) | 592 | `59`, `70` |
-| `Assembly[].Weight` | object | 592 |  |
-| `Assembly[].Weight.@UOM` | text | 592 | `kg` |
-| `Assembly[].Weight.#text` | number (as text) | 592 | `797.251695464567266`, `1094.098916718450877` |
-| `Assembly[].AssemblySequence` | object or list | 592 |  |
-| `Assembly[].AssemblySequence.Sequence` | number (as text) | 574 | `1`, `2` |
-| `Assembly[].AssemblySequence.Quantity` | number (as text) | 574 | `1`, `2` |
-| `Assembly[].AssemblySequence[].Sequence` | number (as text) | 43 | `1`, `2` |
-| `Assembly[].AssemblySequence[].Quantity` | number (as text) | 43 | `20`, `4` |
+| `Assembly` | list (613–613) | 1 |  |
+| `Assembly[].MainMark` | number (as text) | 613 | `55311000`, `55311001` |
+| `Assembly[].DrawingNumber` | number (as text) | 613 | `55311000`, `55311001` |
+| `Assembly[].ApprovalStatus` | text | 613 |  |
+| `Assembly[].AssemblyQuantity` | number (as text) | 613 | `1`, `11` |
+| `Assembly[].TotalQuantity` | number (as text) | 613 | `6`, `66` |
+| `Assembly[].Weight` | object | 613 |  |
+| `Assembly[].Weight.@UOM` | text | 613 | `kg` |
+| `Assembly[].Weight.#text` | number (as text) | 613 | `263.709695670973021`, `3102.48305759762704` |
+| `Assembly[].AssemblySequence` | object | 613 |  |
+| `Assembly[].AssemblySequence.Sequence` | number (as text) | 613 | `5531`, `5532` |
+| `Assembly[].AssemblySequence.Quantity` | number (as text) | 613 | `1`, `11` |
 | `FilterSet` | object | 1 | common block, see README |
 | `HoldSettings` | object | 1 | common block, see README |
 
@@ -76,22 +73,21 @@ back empty; drawing weights in `GetDrawings` and `Drawing_Get` are filled.
 {
   "Assembly": [
     {
-      "MainMark": "1B1",
-      "DrawingNumber": "1",
-      "ApprovalStatus": "IFF",
-      "ApprovalStatusPurpose": "Approved",
+      "MainMark": "55311000",
+      "DrawingNumber": "55311000",
+      "ApprovalStatus": "",
       "AssemblyQuantity": "1",
-      "TotalQuantity": "59",
+      "TotalQuantity": "6",
       "Weight": {
         "@UOM": "kg",
-        "#text": "797.251695464567266"
+        "#text": "263.709695670973021"
       },
       "AssemblySequence": {
-        "Sequence": "1",
+        "Sequence": "5531",
         "Quantity": "1"
       }
     },
-    "… 591 more"
+    "… 612 more"
   ]
 }
 ```
@@ -100,7 +96,6 @@ back empty; drawing weights in `GetDrawings` and `Drawing_Get` are filled.
 
 - On EPM-001 every `Weight` was `{"@UOM":"kg"}` with no value (all 592). Weights were not tried with other options. Get weight from `GetDrawings` or `ProductionControlLoadRemaining_Get`.
 - `AssemblySequence` is an object for one sequence and a list when a mark is in several.
-- One or many: `Assembly.AssemblySequence` came back as an object in one place and a list in another. Always normalise to a list.
 
 ### `GetBillOfMaterials`
 
@@ -477,6 +472,9 @@ back empty; drawing weights in `GetDrawings` and `Drawing_Get` are filled.
 - `{"DrawingID":2916,"GetOptions":{"IncludeDrawingLogDetails":1,"Revisions":"all","Transmittals":"all"}}` → 200, 1291 bytes
 - `{"JobNumber":"EPM-001"}` → 422: Either ProjectID, ProductionControlID, or DrawingID must be specified.
 - `{"ProjectID":4}` → 200, 484750 bytes
+- `{"DrawingID":2916,"GetOptions":{"IncludeDrawingLogDetails":1,"Revisions":"all","Transmittals":"all"}}` → 200, 1291 bytes
+- `{"ProjectID":29}` → 200, 212852 bytes
+- `{"JobNumber":"TESTTEST"}` → 422: Either ProjectID, ProductionControlID, or DrawingID must be specified.
 
 **Result:** HTTP 200, 484,750 bytes, 801 ms.
 
@@ -566,22 +564,56 @@ back empty; drawing weights in `GetDrawings` and `Drawing_Get` are filled.
 
 ### `DrawingRevision_Get`
 
-**Status:** ⚪ empty
+**Status:** ✅ data
 
 **Purpose.** Drawing revisions.
 
 **Request that worked:**
 
 ```json
-{"ProjectID":4}
+{"ProjectID":29}
 ```
 
 **Attempts:**
 
 - `{"JobNumber":"EPM-001"}` → 422: Either ProjectID, ProductionControlID, DrawingID, or DrawingRevisionID must be specified.
 - `{"ProjectID":4}` → 200, empty
+- `{"ProjectID":29}` → 200, 63848 bytes
+- `{"JobNumber":"TESTTEST"}` → 422: Either ProjectID, ProductionControlID, DrawingID, or DrawingRevisionID must be specified.
 
-**Result:** HTTP 200, 85 bytes, 97 ms. **Came back empty**: no data beyond the reply envelope.
+**Result:** HTTP 200, 63,848 bytes, 97 ms.
+
+**Response fields:**
+
+| Field | Type | Times seen | Example |
+|---|---|---|---|
+| `ResultData` | object | 1 |  |
+| `ResultData.LastLogID` | number (as text) | 1 | `2265` |
+| `ResultData.GetOptions` | object | 1 |  |
+| `ResultData.GetOptions.Revisions` | text | 1 | `all` |
+| `ResultData.DrawingRevision` | list (613–613) | 1 |  |
+| `ResultData.DrawingRevision[].DrawingRevisionID` | number (as text) | 613 | `991`, `992` |
+| `ResultData.DrawingRevision[].DrawingID` | number (as text) | 613 | `11123`, `11124` |
+| `ResultData.DrawingRevision[].Revision` | number (as text) | 613 | `0` |
+| `ResultData.DrawingRevision[].DateRevised` | text | 613 | `2026-08-10` |
+| `ResultData.DrawingRevision[].Latest` | number (as text) | 613 | `1` |
+
+**Sample** (trimmed; full trimmed sample in [samples/DrawingRevision_Get.json](samples/DrawingRevision_Get.json)):
+
+```json
+{
+  "DrawingRevision": [
+    {
+      "DrawingRevisionID": "991",
+      "DrawingID": "11123",
+      "Revision": "0",
+      "DateRevised": "2026-08-10",
+      "Latest": "1"
+    },
+    "… 612 more"
+  ]
+}
+```
 
 **Gotchas:**
 
@@ -655,6 +687,8 @@ back empty; drawing weights in `GetDrawings` and `Drawing_Get` are filled.
 
 - `{"JobNumber":"EPM-001"}` → 422: ProjectID - Value is required
 - `{"ProjectID":4}` → 200, 787 bytes
+- `{"ProjectID":29}` → 200, 676 bytes
+- `{"JobNumber":"TESTTEST"}` → 422: ProjectID - Value is required
 
 **Result:** HTTP 200, 787 bytes, 87 ms.
 
@@ -710,13 +744,15 @@ back empty; drawing weights in `GetDrawings` and `Drawing_Get` are filled.
 **Best attempt:**
 
 ```json
-{"JobNumber":"EPM-001"}
+{"JobNumber":"TESTTEST"}
 ```
 
 **Attempts:**
 
 - `{"DrawingID":2916}` → 422: FileName - Value is required
 - `{"JobNumber":"EPM-001"}` → 422: DrawingID - Value is required
+- `{"DrawingID":2916}` → 422: FileName - Value is required
+- `{"JobNumber":"TESTTEST"}` → 422: DrawingID - Value is required
 
 **Gotchas:**
 
@@ -731,12 +767,13 @@ back empty; drawing weights in `GetDrawings` and `Drawing_Get` are filled.
 **Best attempt:**
 
 ```json
-{"JobNumber":"EPM-001"}
+{"JobNumber":"TESTTEST"}
 ```
 
 **Attempts:**
 
 - `{"JobNumber":"EPM-001"}` → 422: Document index base directory has not been set.
+- `{"JobNumber":"TESTTEST"}` → 422: Document index base directory has not been set.
 
 **Gotchas:**
 
@@ -771,9 +808,9 @@ back empty; drawing weights in `GetDrawings` and `Drawing_Get` are filled.
 | `Transmittals.Transmittal[].Recipient.Name` | text | 5 | `Tekla EPM - Client`, `Detailer` |
 | `Transmittals.Transmittal[].Recipient.Address1` | text | 5 | `<redacted>`, `<redacted>` |
 | `Transmittals.Transmittal[].Recipient.Address2` | text | 3 | `<redacted>` |
-| `Transmittals.Transmittal[].Recipient.City` | text | 5 | `Kennesaw` |
+| `Transmittals.Transmittal[].Recipient.City` | text | 5 | `<redacted>` |
 | `Transmittals.Transmittal[].Recipient.State` | text | 5 | `GA` |
-| `Transmittals.Transmittal[].Recipient.Zip` | number (as text) | 3 | `30144` |
+| `Transmittals.Transmittal[].Recipient.Zip` | number (as text) | 3 | `<redacted>` |
 | `Transmittals.Transmittal[].Recipient.Phone` | text | 3 | `<redacted>` |
 | `Transmittals.Transmittal[].Recipient.Attn` | text | 5 | `<redacted>`, `<redacted>` |
 | `Transmittals.Transmittal[].Title` | text | 5 | `Sequence 1`, `Sequence 2` |
@@ -807,9 +844,9 @@ back empty; drawing weights in `GetDrawings` and `Drawing_Get` are filled.
           "Name": "Tekla EPM - Client",
           "Address1": "<redacted>",
           "Address2": "<redacted>",
-          "City": "Kennesaw",
+          "City": "<redacted>",
           "State": "GA",
-          "Zip": "30144",
+          "Zip": "<redacted>",
           "Phone": "<redacted>",
           "Attn": "<redacted>"
         },
@@ -841,12 +878,13 @@ back empty; drawing weights in `GetDrawings` and `Drawing_Get` are filled.
 **Best attempt:**
 
 ```json
-{"JobNumber":"EPM-001"}
+{"JobNumber":"TESTTEST"}
 ```
 
 **Attempts:**
 
 - `{"JobNumber":"EPM-001"}` → 422: Permission denied.
+- `{"JobNumber":"TESTTEST"}` → 422: Permission denied.
 
 **Gotchas:**
 
@@ -1006,21 +1044,293 @@ back empty; drawing weights in `GetDrawings` and `Drawing_Get` are filled.
 }
 ```
 
-## Write commands (not run)
+## Write commands
 
-These change PowerFab data, so they were not called. The service refuses them while `POWERFAB_ALLOW_WRITES` is off. Purposes come from the command name and Tekla's reference, not from a call.
+Run on the test jobs only (EPM-001, TESTTEST), each change undone afterwards. "Not run" means no request was sent; those purposes come from the command name and Tekla's reference.
 
-| Command | What it does |
-|---|---|
-| `Drawing_Insert` | Creates a Drawing record (from the name). |
-| `Drawing_Update` | Edits a Drawing record (from the name). |
-| `Drawing_Delete` | Deletes a Drawing record (from the name). |
-| `DrawingRevision_Insert` | Creates a DrawingRevision record (from the name). |
-| `DrawingRevision_Update` | Edits a DrawingRevision record (from the name). |
-| `DrawingRevision_Delete` | Deletes a DrawingRevision record (from the name). |
-| `DrawingLog_Insert` | Creates a DrawingLog record (from the name). |
-| `DrawingLog_Update` | Edits a DrawingLog record (from the name). |
-| `DrawingLog_Delete` | Deletes a DrawingLog record (from the name). |
-| `ProductionControlFinish_Insert` | Creates a ProductionControlFinish record (from the name). |
-| `ProductionControlFinish_Update` | Edits a ProductionControlFinish record (from the name). |
-| `ProductionControlFinish_Delete` | Deletes a ProductionControlFinish record (from the name). |
+| Command | Status | What it does |
+|---|---|---|
+| [`Drawing_Insert`](#drawing_insert) | ✅ data | Creates a Drawing record (from the name). |
+| [`Drawing_Update`](#drawing_update) | ✅ data | Edits a Drawing record (from the name). |
+| [`Drawing_Delete`](#drawing_delete) | ✅ data | Deletes a Drawing record (from the name). |
+| [`DrawingRevision_Insert`](#drawingrevision_insert) | ✅ data | Creates a DrawingRevision record (from the name). |
+| [`DrawingRevision_Update`](#drawingrevision_update) | ✅ data | Edits a DrawingRevision record (from the name). |
+| [`DrawingRevision_Delete`](#drawingrevision_delete) | ✅ data | Deletes a DrawingRevision record (from the name). |
+| [`DrawingLog_Insert`](#drawinglog_insert) | ⚠️ refused | Creates a DrawingLog record (from the name). |
+| [`DrawingLog_Update`](#drawinglog_update) | ⚠️ refused | Edits a DrawingLog record (from the name). |
+| [`DrawingLog_Delete`](#drawinglog_delete) | ⚠️ refused | Deletes a DrawingLog record (from the name). |
+| [`ProductionControlFinish_Insert`](#productioncontrolfinish_insert) | ⏸ not run | Creates a ProductionControlFinish record (from the name). |
+| [`ProductionControlFinish_Update`](#productioncontrolfinish_update) | ⏸ not run | Edits a ProductionControlFinish record (from the name). |
+| [`ProductionControlFinish_Delete`](#productioncontrolfinish_delete) | ⏸ not run | Deletes a ProductionControlFinish record (from the name). |
+
+### `Drawing_Insert`
+
+**Status:** ✅ worked
+
+**What it does.** Creates a drawing.
+
+**Request that worked:**
+
+```json
+{"ProjectID":4,"DrawingLogID":24,"DrawingNumberDisplay":"WIKI-1","Description":"wiki test drawing"}
+```
+
+**Reply** (trimmed; [samples/Drawing_Insert.json](samples/Drawing_Insert.json)):
+
+```json
+{
+  "Drawing": {
+    "DrawingID": "12277",
+    "ProjectID": "4",
+    "DrawingLogID": "24",
+    "DrawingNumberDisplay": "WIKI-1",
+    "Description": "wiki test drawing",
+    "DetailingHours": "0",
+    "ReSubmit": "0"
+  }
+}
+```
+
+**Attempts:**
+
+- `{"ProjectID":4}` → 422: DrawingLogID - Value is required
+- `{"ProjectID":4,"DrawingLogID":24,"DrawingNumber":"WIKI-1","Description":"wiki test drawing"}` → 422: DrawingNumberDisplay - Value is required
+- `{"ProjectID":4,"DrawingLogID":24,"DrawingNumberDisplay":"WIKI-1","Description":"wiki test drawing"}` → 200: accepted
+
+**Gotchas:**
+
+- Required: `ProjectID`, `DrawingLogID`, `DrawingNumberDisplay`. `DrawingNumber` is not accepted. Worked in drawing log 24 of EPM-001.
+
+### `Drawing_Update`
+
+**Status:** ✅ worked
+
+**What it does.** Edits a drawing.
+
+**Request that worked:**
+
+```json
+{"ProjectID":4,"DrawingID":"12277","Description":"wiki test drawing 2"}
+```
+
+**Reply** (trimmed; [samples/Drawing_Update.json](samples/Drawing_Update.json)):
+
+```json
+{
+  "Drawing": {
+    "DrawingID": "12277",
+    "ProjectID": "4",
+    "DrawingLogID": "24",
+    "DrawingNumberDisplay": "WIKI-1",
+    "Description": "wiki test drawing 2",
+    "DetailingHours": "0",
+    "ReSubmit": "0"
+  }
+}
+```
+
+**Attempts:**
+
+- `{}` → 422: ProjectID - Value is required
+- `{"ProjectID":4,"DrawingID":"12277","Description":"wiki test drawing 2"}` → 200: accepted
+
+**Gotchas:**
+
+- Needs `ProjectID` and `DrawingID`; `Description` changed.
+
+### `Drawing_Delete`
+
+**Status:** ✅ worked
+
+**What it does.** Deletes a drawing.
+
+**Request that worked:**
+
+```json
+{"DrawingID":"12277"}
+```
+
+**Reply** (trimmed; [samples/Drawing_Delete.json](samples/Drawing_Delete.json)):
+
+```json
+{
+  "Drawing": {
+    "DrawingID": "12277",
+    "ProjectID": "4",
+    "DrawingLogID": "24",
+    "DrawingNumberDisplay": "WIKI-1",
+    "Description": "wiki test drawing 2",
+    "DetailingHours": "0",
+    "ReSubmit": "0"
+  }
+}
+```
+
+**Attempts:**
+
+- `{}` → 422: DrawingID - Value is required
+- `{"DrawingID":"12277"}` → 200: accepted
+
+**Gotchas:**
+
+- Needs `DrawingID`. Returns the deleted drawing.
+
+### `DrawingRevision_Insert`
+
+**Status:** ✅ worked
+
+**What it does.** Adds a revision to a drawing.
+
+**Request that worked:**
+
+```json
+{"DrawingID":"12277"}
+```
+
+**Reply** (trimmed; [samples/DrawingRevision_Insert.json](samples/DrawingRevision_Insert.json)):
+
+```json
+{
+  "DrawingRevision": {
+    "DrawingRevisionID": "2146",
+    "DrawingID": "12277",
+    "Revision": "1",
+    "DateRevised": "2026-10-20",
+    "Latest": "1"
+  }
+}
+```
+
+**Attempts:**
+
+- `{"DrawingID":2916}` → 200: accepted
+- `{"DrawingID":"12277"}` → 200: accepted
+
+**Gotchas:**
+
+- Needs `DrawingID`. The new revision is numbered by PowerFab (`Revision` "1", `Latest` "1", dated today).
+
+### `DrawingRevision_Update`
+
+**Status:** ✅ worked
+
+**What it does.** Edits a revision.
+
+**Request that worked:**
+
+```json
+{"DrawingRevisionID":"2146","Revision":"A"}
+```
+
+**Reply** (trimmed; [samples/DrawingRevision_Update.json](samples/DrawingRevision_Update.json)):
+
+```json
+{
+  "DrawingRevision": {
+    "DrawingRevisionID": "2146",
+    "DrawingID": "12277",
+    "Revision": "A",
+    "DateRevised": "2026-10-20",
+    "Latest": "1"
+  }
+}
+```
+
+**Attempts:**
+
+- `{}` → 422: DrawingRevisionID - Value is required
+- `{"DrawingRevisionID":"2146","Revision":"A"}` → 200: accepted
+
+**Gotchas:**
+
+- Needs `DrawingRevisionID`; `Revision` changed to "A".
+
+### `DrawingRevision_Delete`
+
+**Status:** ✅ worked
+
+**What it does.** Deletes a revision.
+
+**Request that worked:**
+
+```json
+{"DrawingRevisionID":"2146"}
+```
+
+**Reply** (trimmed; [samples/DrawingRevision_Delete.json](samples/DrawingRevision_Delete.json)):
+
+```json
+{
+  "DrawingRevision": {
+    "DrawingRevisionID": "2146",
+    "DrawingID": "12277",
+    "Revision": "A",
+    "DateRevised": "2026-10-20",
+    "Latest": "1"
+  }
+}
+```
+
+**Attempts:**
+
+- `{}` → 422: DrawingRevisionID - Value is required
+- `{"DrawingRevisionID":"2146"}` → 200: accepted
+
+**Gotchas:**
+
+- Needs `DrawingRevisionID`. Returns the deleted revision.
+
+### `DrawingLog_Insert`
+
+**Status:** ⚠️ refused
+
+**What it does.** Creates a drawing log.
+
+**Attempts:**
+
+- `{"ProjectID":4}` → 422: DrawingType - Value is required
+- `{"ProjectID":4,"DrawingType":"Detail","DrawingLogName":"WIKI test log"}` → 422: PDCLink - Value is required
+- `{"ProjectID":4,"DrawingType":"Detail","DrawingLogName":"WIKI test log","PDCLink":0}` → 422: SubdirectoryPath - Value is required
+- `{"ProjectID":4,"DrawingType":"Detail","DrawingLogName":"WIKI test log","PDCLink":0,"SubdirectoryPath":"WIKI test log"}` → 422: Permission denied.
+
+**Gotchas:**
+
+- Asked for, one at a time: `DrawingType`, `PDCLink`, `SubdirectoryPath`. With all of them the next attempt answered `Permission denied.`
+
+### `DrawingLog_Update`
+
+**Status:** ⚠️ refused
+
+**What it does.** Edits a DrawingLog record (from the name).
+
+**Attempts:**
+
+- `{}` → 422: DrawingLog - Element is required
+
+### `DrawingLog_Delete`
+
+**Status:** ⚠️ refused
+
+**What it does.** Deletes a DrawingLog record (from the name).
+
+**Attempts:**
+
+- `{}` → 422: DrawingLogID - Value is required
+
+### `ProductionControlFinish_Insert`
+
+**Status:** ⏸ not run
+
+**What it does.** Creates a ProductionControlFinish record (from the name).
+
+### `ProductionControlFinish_Update`
+
+**Status:** ⏸ not run
+
+**What it does.** Edits a ProductionControlFinish record (from the name).
+
+### `ProductionControlFinish_Delete`
+
+**Status:** ⏸ not run
+
+**What it does.** Deletes a ProductionControlFinish record (from the name).

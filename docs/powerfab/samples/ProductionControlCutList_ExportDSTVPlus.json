@@ -1,0 +1,15 @@
+{
+  "command": "ProductionControlCutList_ExportDSTVPlus",
+  "request": {
+    "CutListID": 1
+  },
+  "status": 200,
+  "note": "Trimmed: lists keep their first 3 items. Names, phones and street addresses are masked.",
+  "response": {
+    "Successful": "1",
+    "ResultData": {
+      "FileName": "EPM-001_Seq 1 WF_20261020.zip",
+      "FileDataBase64": "UEsDBBQAAAAIAJlDVF0iCcCvwgAAAMwFAAAHAAAAMUIxLm5jMbVSywrCMBC8B/IPORdcdmvaJscKPYgogoIf4F0Povj5NrZpCkrT…"
+    }
+  }
+}

@@ -21,9 +21,9 @@
             "Name": "Tekla EPM - Client",
             "Address1": "<redacted>",
             "Address2": "<redacted>",
-            "City": "Kennesaw",
+            "City": "<redacted>",
             "State": "GA",
-            "Zip": "30144",
+            "Zip": "<redacted>",
             "Phone": "<redacted>",
             "Attn": "<redacted>"
           },
@@ -53,7 +53,7 @@
           "Recipient": {
             "Name": "Detailer",
             "Address1": "<redacted>",
-            "City": "Kennesaw",
+            "City": "<redacted>",
             "State": "GA",
             "Attn": "<redacted>"
           },
@@ -84,9 +84,9 @@
             "Name": "Tekla EPM - Client",
             "Address1": "<redacted>",
             "Address2": "<redacted>",
-            "City": "Kennesaw",
+            "City": "<redacted>",
             "State": "GA",
-            "Zip": "30144",
+            "Zip": "<redacted>",
             "Phone": "<redacted>",
             "Attn": "<redacted>"
           },

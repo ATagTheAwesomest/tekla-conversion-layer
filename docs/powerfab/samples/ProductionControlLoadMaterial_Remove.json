@@ -1,0 +1,42 @@
+{
+  "command": "ProductionControlLoadMaterial_Remove",
+  "request": {
+    "ProductionControlLoadID": "404",
+    "RemoveItem": [
+      {
+        "ProductionControlItemTruckID": "586",
+        "Quantity": 1
+      },
+      {
+        "ProductionControlItemTruckID": "587",
+        "Quantity": 1
+      },
+      {
+        "ProductionControlItemTruckID": "588",
+        "Quantity": 1
+      }
+    ]
+  },
+  "status": 200,
+  "note": "Trimmed: lists keep their first 3 items. Names, phones and street addresses are masked.",
+  "response": {
+    "Successful": "1",
+    "ResultData": {
+      "ProductionControlLoad": {
+        "ProductionControlLoadID": "404",
+        "ProductionControlID": "90",
+        "LoadNumber": "WIKI-T1",
+        "TrailerNumber": "WIKI-TRAILER",
+        "Carrier": "WIKI TEST 2",
+        "Capacity": "19958.06428",
+        "ShippingDestinationGroupID": "",
+        "ShippedFromFirmID": "",
+        "ShippedToFirmID": "",
+        "Shipped": "0",
+        "TopText": "wiki test load",
+        "QuantityAssigned": "0",
+        "QuantityLoaded": "0"
+      }
+    }
+  }
+}

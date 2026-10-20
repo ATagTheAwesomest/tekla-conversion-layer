@@ -1,0 +1,68 @@
+// Hand-written facts for the write commands, merged into `commands` by meta.mjs. Only what a reply showed.
+export const writeCommands = {
+  ProductionControlLoad_Insert: {
+    purpose: 'Creates a load (truck) and returns it with its `ProductionControlLoadID`.',
+    gotchas: [
+      'Required: `ProductionControlID`, `LoadNumber`, `Capacity` (kg) and `ShippingDestinationGroupID`. An empty string means the jobsite; `1` (Galvanizer) also needs `ShippedToFirmID` 6 and `ShippedToFirmAddressID` 10, otherwise `Invalid ship to firm.`',
+      '`TrailerNumber`, `Carrier` and `TopText` were accepted and echoed back.',
+      '`LoadNumber` is free text: `WIKI-T1` was accepted.',
+    ],
+  },
+  ProductionControlLoad_Update: { purpose: 'Edits a load.', gotchas: ['Needs `ProductionControlLoadID`; changing only `Carrier` worked.'] },
+  ProductionControlLoad_Delete: { purpose: 'Deletes a load.', gotchas: ['Refused while the load has assigned pieces or extra items (see [shipping rules](shipping-rules.md)). Empty loads and loads emptied beforehand deleted fine.'] },
+  ProductionControlLoad_Ship: { purpose: 'Ships a load.', gotchas: ['Fields: `ProductionControlLoadID`, `ShippedDate`.', 'Refused when something assigned is not loaded, and when nothing is assigned.', 'The reply is the load with `Shipped` "1" and `ShippedDate`.'] },
+  ProductionControlLoad_Unship: { purpose: 'Reverses shipping a load.', gotchas: ['Needs only `ProductionControlLoadID`. Worked on loads shipped with `ProductionControlLoad_Ship` and with the older `Ship`.'] },
+  ProductionControlLoad_AddAttachedFile: { purpose: 'Attaches a file to a load.', gotchas: ['Not tried past its first error (`ProductionControlLoadID - Value is required`).'] },
+  ProductionControlLoadMaterial_Add: {
+    purpose: 'Assigns pieces to a load.',
+    gotchas: ['Fields: `ProductionControlLoadID`, `LoadItemsOnAssign` (0 or 1, required) and `AddItem` rows of `ProductionControlItemID`, `SequenceID`, `Quantity`.', 'Answered `Invalid quantity (1).  0 Max.` for pieces already on another load and for any piece on a galvanizer load.', 'The reply is the load with updated totals. Use `ProductionControlLoad_Get` with `IncludeMaterial` to read each row\'s `ProductionControlItemTruckID`.'],
+  },
+  ProductionControlLoadMaterial_Remove: { purpose: 'Takes assigned pieces off a load.', gotchas: ['`RemoveItem` rows of `ProductionControlItemTruckID` and `Quantity` worked on unloaded pieces.'] },
+  ProductionControlLoadMaterial_Load: {
+    purpose: 'Marks assigned pieces as loaded on the truck.',
+    gotchas: ['Fields: `ProductionControlLoadID`, `DateLoaded` and `LoadItem` rows of `ProductionControlItemTruckID` and `Quantity`.', 'Each call adds a `Loaded` entry (`ID`, `Date`, `Quantity`) to the piece in `ProductionControlLoad_Get`.'],
+  },
+  ProductionControlLoadMaterial_Unload: {
+    purpose: 'Reverses a load action on a piece.',
+    gotchas: ['`UnloadItem` rows of `ProductionControlItemTrucksLoadID` (the `Loaded.ID` from `ProductionControlLoad_Get`) and `Quantity`. `ProductionControlItemTruckID` is not accepted.', 'Refused on a shipped load: `The load has already been shipped.`'],
+  },
+  ProductionControlLoadMaterial_Return: {
+    purpose: 'Returns pieces from a shipped load.',
+    gotchas: ['Needs `DateReturned`.', 'Refused for jobsite loads: `Unable to return items from the jobsite.` No destination that accepts pieces also allows returns in these tests, so no return has been recorded.'],
+  },
+  ProductionControlLoadMaterial_Unreturn: { purpose: 'Reverses a return.', gotchas: ['Asks for `ProductionControlItemTrucksReturnID`. No return exists to reverse, so it was never accepted.'] },
+  ProductionControlLoadAdditional_Insert: {
+    purpose: 'Adds an extra (non-model) item to a load.',
+    gotchas: ['Fields: `ProductionControlLoadID`, `Description`, `Quantity`, `WeightEach`.', 'The reply carries `Additional` with `ProductionControlTrucksAdditionalID`.', 'The item counts in the load\'s `QuantityAssigned` and `QuantityLoaded`.'],
+  },
+  ProductionControlLoadAdditional_Update: { purpose: 'Edits an extra item.', gotchas: ['Needs `ProductionControlLoadID`, `ProductionControlTrucksAdditionalID` and `Quantity`; `Description` and `WeightEach` were accepted.'] },
+  ProductionControlLoadAdditional_Delete: { purpose: 'Deletes an extra item.', gotchas: ['Needs `ProductionControlLoadID` and `ProductionControlTrucksAdditionalID`. `ProductionControlLoadAdditionalID` is answered `ProductionControlTrucksAdditionalID - Value is required`.'] },
+  Load: {
+    purpose: 'Older command: puts a piece on a truck (`CommitType` `Save`) or takes it off (`Delete`).',
+    gotchas: ['Fields: `CommitType`, `JobNumber`, `TruckNumber`, `MainMark`, `Sequence`, `Quantity`.', 'On TESTTEST, `Save` assigned and loaded the piece in one step.', 'Refused for a piece already on another load (`Invalid quantity (1).  0 Max.`) and `Delete` is refused on a shipped truck.'],
+  },
+  Ship: { purpose: 'Older command: ships a truck.', gotchas: ['`CommitType` `Ship` worked with `JobNumber`, `TruckNumber`, `Date`. `Save`, `Delete` and `UnShip` were all answered `CommitType is invalid`; use `ProductionControlLoad_Unship`.'] },
+  Return: { purpose: 'Older command: returns pieces from a truck.', gotchas: ['Needs `CommitType`. Refused: `Cannot return a load shipped to the jobsite.` and `The load \'WIKI-2\' has not been shipped.`'] },
+  ValTruck: {
+    purpose: 'Checks that a load exists; with `ActionIfNotExist` `Add` it creates it.',
+    gotchas: ['Fields: `JobNumber`, `TruckNumber`, `ActionIfNotExist` (`Nothing` or `Add`), and for a new load `Destination` ("Jobsite" worked) and `Carrier`.', 'Reply `TruckAdded` "1" when created, "0" when it already existed. A missing load with `Nothing` is HTTP 422 `The load \'X\' does not exist in job \'Y\'.`'],
+  },
+  Drawing_Insert: { purpose: 'Creates a drawing.', gotchas: ['Required: `ProjectID`, `DrawingLogID`, `DrawingNumberDisplay`. `DrawingNumber` is not accepted. Worked in drawing log 24 of EPM-001.'] },
+  Drawing_Update: { purpose: 'Edits a drawing.', gotchas: ['Needs `ProjectID` and `DrawingID`; `Description` changed.'] },
+  Drawing_Delete: { purpose: 'Deletes a drawing.', gotchas: ['Needs `DrawingID`. Returns the deleted drawing.'] },
+  DrawingRevision_Insert: { purpose: 'Adds a revision to a drawing.', gotchas: ['Needs `DrawingID`. The new revision is numbered by PowerFab (`Revision` "1", `Latest` "1", dated today).'] },
+  DrawingRevision_Update: { purpose: 'Edits a revision.', gotchas: ['Needs `DrawingRevisionID`; `Revision` changed to "A".'] },
+  DrawingRevision_Delete: { purpose: 'Deletes a revision.', gotchas: ['Needs `DrawingRevisionID`. Returns the deleted revision.'] },
+  DrawingLog_Insert: { purpose: 'Creates a drawing log.', gotchas: ['Asked for, one at a time: `DrawingType`, `PDCLink`, `SubdirectoryPath`. With all of them the next attempt answered `Permission denied.`'] },
+  WorkPackage_Insert: { purpose: 'Creates a work package.', gotchas: ['Asked for `WorkPackageNumber`; the attempt with `ProductionControlID`, `WorkPackageNumber`, `WorkshopID` and `Description` answered `Permission denied.`'] },
+  ExportJob: { purpose: 'Exports a job to a KISS file on the server.', gotchas: ['Needs `JobNumber` and `Filename`. The reply is only `Successful`; `ExportJobStatus` then names `EPM-001.xml`.'] },
+  ExportJobStatus: { purpose: 'Reports the export file of a job.', gotchas: ['Reply: `ExportFile` with `FileName`, `FileExtension`, `ContentType` and `BinaryDataIndex`. Without a job it answers `ProductionControlID or JobNumber is required` in `ErrorMessage` with `Successful` "1".'] },
+  ProductionControlCutList_ExportDSTVPlus: { purpose: 'Exports a cut list as DSTV+ NC files.', gotchas: ['Needs `CutListID`. The reply holds `FileName` and a zip as base64 in `FileDataBase64` (the first entry is `1B1.nc1`).'] },
+  SetInstanceLocation: { purpose: 'Sets the location of a piece instance.', gotchas: ['Needs `JobNumber`, `MainMark`, `Sequence`, `InstanceLocation` and either `InstanceNumbers` or `SerialNumber` with `Quantity`. `InstanceLocation` "A" and then "" were both accepted.'] },
+  ShopFloorSave: { purpose: 'Records (`Save`) or removes (`Delete`) production work at a station.', gotchas: ['Needs `CommitType`, `Employee`, `Station`, `MainMark`, `Sequence`, `Quantity`, `Date`. Both `Save` and `Delete` were accepted for the Quality Control station.'] },
+  MakeReport: { purpose: 'Renders a report.', gotchas: ['Every layout of `ReportOptions` tried was answered `ProductionControlID report option is required.` The layout of the options is not worked out.', 'Fields that were asked for: `ReportGroup`, `ReportTypeID`, `ExportFormat`; Tekla names `ReportGUID` (the old `ReportID` is deprecated), `ReportInstanceGUID` and `ReportOptions`.'] },
+  PrepareReportData: { purpose: 'Prepares report data for a later `MakeReport`.', gotchas: ['Same refusal as `MakeReport`: `ProductionControlID report option is required.`'] },
+  Version: { purpose: 'Returns the PowerFab version.', gotchas: ['Reply: `MajorVersion` "2026", `MinorVersion` "SP3", `PatchNumber` "0", `InterfaceVersionNumber` "2026.0.0".'] },
+  Lang: { purpose: 'Returns the language code.', gotchas: ['Reply is the plain string `"en"`.'] },
+  SaveNest: { purpose: 'Saves a nest.', gotchas: ['Answered `Permission denied.`'] },
+};

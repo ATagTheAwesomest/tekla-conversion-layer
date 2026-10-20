@@ -89,7 +89,7 @@ departments and tasks) has been readable since the 2026-10-20 permission change,
 
 **Gotchas:**
 
-- Empty for 25-351 but four stations on EPM-001.
+- Four stations on EPM-001 and TESTTEST.
 
 ### `ValStation`
 
@@ -100,15 +100,17 @@ departments and tasks) has been readable since the 2026-10-20 permission change,
 **Request that worked:**
 
 ```json
-{"JobNumber":"EPM-001","Station":"Quality Control"}
+{"JobNumber":"TESTTEST","Station":"Quality Control"}
 ```
 
 **Attempts:**
 
+- `{"JobNumber":"TESTTEST","Station":"Quality Control"}` → 200, 87 bytes
+- `{"JobNumber":"TESTTEST"}` → 422: Station is required
 - `{"JobNumber":"EPM-001"}` → 422: Station is required
 - `{"JobNumber":"EPM-001","Station":"Quality Control"}` → 200, 87 bytes
 
-**Result:** HTTP 200, 87 bytes, 112 ms.
+**Result:** HTTP 200, 87 bytes, 45 ms.
 
 **Response fields:**
 
@@ -144,6 +146,8 @@ departments and tasks) has been readable since the 2026-10-20 permission change,
 
 - `{"RouteID":1}` → 200, 514 bytes
 - `{"JobNumber":"EPM-001"}` → 422: Route or RouteID are required
+- `{"RouteID":1}` → 200, 514 bytes
+- `{"JobNumber":"TESTTEST"}` → 422: Route or RouteID are required
 
 **Result:** HTTP 200, 514 bytes, 118 ms.
 
@@ -280,6 +284,8 @@ departments and tasks) has been readable since the 2026-10-20 permission change,
 
 - `{"CutListID":1}` → 200, 157802 bytes
 - `{"JobNumber":"EPM-001"}` → 422: CutListID is required
+- `{"CutListID":1}` → 200, 157802 bytes
+- `{"JobNumber":"TESTTEST"}` → 422: CutListID is required
 
 **Result:** HTTP 200, 157,802 bytes, 298 ms.
 
@@ -407,6 +413,9 @@ departments and tasks) has been readable since the 2026-10-20 permission change,
 - `{"ProductionControlCutListID":1}` → 422: The cut list does not exist.
 - `{"CutListID":1}` → 200, 30855 bytes
 - `{"JobNumber":"EPM-001"}` → 422: The cut list does not exist.
+- `{"ProductionControlCutListID":1}` → 422: The cut list does not exist.
+- `{"CutListID":1}` → 200, 30855 bytes
+- `{"JobNumber":"TESTTEST"}` → 422: The cut list does not exist.
 
 **Result:** HTTP 200, 30,855 bytes, 172 ms.
 
@@ -489,11 +498,13 @@ departments and tasks) has been readable since the 2026-10-20 permission change,
 **Best attempt:**
 
 ```json
-{"JobNumber":"EPM-001"}
+{"JobNumber":"TESTTEST"}
 ```
 
 **Attempts:**
 
+- `{"CutListItemID":37}` → 422: Cut list item material is not in stock.
+- `{"JobNumber":"TESTTEST"}` → 422: CutListItemID/CutListSerialNumber/ExternalNestID/NestID is required
 - `{"CutListItemID":37}` → 422: Cut list item material is not in stock.
 - `{"JobNumber":"EPM-001"}` → 422: CutListItemID/CutListSerialNumber/ExternalNestID/NestID is required
 
@@ -517,6 +528,8 @@ departments and tasks) has been readable since the 2026-10-20 permission change,
 
 - `{"ProductionControlCutListItemID":37}` → 422: Permission denied.
 - `{"JobNumber":"EPM-001"}` → 422: ProductionControlCutListItemID - Value is required
+- `{"ProductionControlCutListItemID":37}` → 422: Permission denied.
+- `{"JobNumber":"TESTTEST"}` → 422: ProductionControlCutListItemID - Value is required
 
 **Gotchas:**
 
@@ -531,13 +544,15 @@ departments and tasks) has been readable since the 2026-10-20 permission change,
 **Best attempt:**
 
 ```json
-{"JobNumber":"EPM-001"}
+{"JobNumber":"TESTTEST"}
 ```
 
 **Attempts:**
 
 - `{"CutListItemID":37}` → 422: No nest results available.
 - `{"JobNumber":"EPM-001"}` → 422: CutListItemID is required
+- `{"CutListItemID":37}` → 422: No nest results available.
+- `{"JobNumber":"TESTTEST"}` → 422: CutListItemID is required
 
 **Gotchas:**
 
@@ -559,6 +574,8 @@ departments and tasks) has been readable since the 2026-10-20 permission change,
 
 - `{"ProductionControlCutListItemID":37}` → 200, empty
 - `{"JobNumber":"EPM-001"}` → 422: ProductionControlCutListItemID or ProductionControlCutListBarcodeID is required
+- `{"ProductionControlCutListItemID":37}` → 200, empty
+- `{"JobNumber":"TESTTEST"}` → 422: ProductionControlCutListItemID or ProductionControlCutListBarcodeID is required
 
 **Result:** HTTP 200, 71 bytes, 96 ms. **Came back empty**: no data beyond the reply envelope.
 
@@ -575,12 +592,13 @@ departments and tasks) has been readable since the 2026-10-20 permission change,
 **Best attempt:**
 
 ```json
-{"JobNumber":"EPM-001"}
+{"JobNumber":"TESTTEST"}
 ```
 
 **Attempts:**
 
 - `{"JobNumber":"EPM-001"}` → 422: NestID is required.
+- `{"JobNumber":"TESTTEST"}` → 422: NestID is required.
 
 **Gotchas:**
 
@@ -667,10 +685,10 @@ departments and tasks) has been readable since the 2026-10-20 permission change,
 **Request that worked:**
 
 ```json
-{"JobNumber":"EPM-001"}
+{"JobNumber":"TESTTEST"}
 ```
 
-**Result:** HTTP 200, 132 bytes, 922 ms.
+**Result:** HTTP 200, 132 bytes, 43 ms.
 
 **Response fields:**
 
@@ -704,10 +722,10 @@ departments and tasks) has been readable since the 2026-10-20 permission change,
 **Request that worked:**
 
 ```json
-{"JobNumber":"EPM-001"}
+{"JobNumber":"TESTTEST"}
 ```
 
-**Result:** HTTP 200, 131 bytes, 95 ms.
+**Result:** HTTP 200, 131 bytes, 45 ms.
 
 **Response fields:**
 
@@ -743,17 +761,17 @@ departments and tasks) has been readable since the 2026-10-20 permission change,
 **Request that worked:**
 
 ```json
-{"JobNumber":"EPM-001"}
+{"JobNumber":"TESTTEST"}
 ```
 
-**Result:** HTTP 200, 152 bytes, 90 ms.
+**Result:** HTTP 200, 152 bytes, 48 ms.
 
 **Response fields:**
 
 | Field | Type | Times seen | Example |
 |---|---|---|---|
 | `ResultData` | object | 1 |  |
-| `ResultData.LastLogID` | number (as text) | 1 | `0` |
+| `ResultData.LastLogID` | number (as text) | 1 | `8` |
 | `ResultData.WorkAreaDepartment` | object | 1 |  |
 | `ResultData.WorkAreaDepartment.WorkAreaDepartmentID` | number (as text) | 1 | `1` |
 | `ResultData.WorkAreaDepartment.WorkshopID` | number (as text) | 1 | `1` |
@@ -784,10 +802,10 @@ departments and tasks) has been readable since the 2026-10-20 permission change,
 **Request that worked:**
 
 ```json
-{"JobNumber":"EPM-001"}
+{"JobNumber":"TESTTEST"}
 ```
 
-**Result:** HTTP 200, 4,054 bytes, 150 ms.
+**Result:** HTTP 200, 4,054 bytes, 56 ms.
 
 **Response fields:**
 
@@ -864,10 +882,10 @@ departments and tasks) has been readable since the 2026-10-20 permission change,
 **Request that worked:**
 
 ```json
-{"JobNumber":"EPM-001"}
+{"JobNumber":"TESTTEST"}
 ```
 
-**Result:** HTTP 200, 1,366 bytes, 218 ms.
+**Result:** HTTP 200, 1,366 bytes, 43 ms.
 
 **Response fields:**
 
@@ -912,10 +930,10 @@ departments and tasks) has been readable since the 2026-10-20 permission change,
 **Request that worked:**
 
 ```json
-{"JobNumber":"EPM-001"}
+{"JobNumber":"TESTTEST"}
 ```
 
-**Result:** HTTP 200, 49 bytes, 107 ms. **Came back empty**: no data beyond the reply envelope.
+**Result:** HTTP 200, 49 bytes, 44 ms. **Came back empty**: no data beyond the reply envelope.
 
 **Gotchas:**
 
@@ -1045,10 +1063,10 @@ departments and tasks) has been readable since the 2026-10-20 permission change,
 **Request that worked:**
 
 ```json
-{"JobNumber":"EPM-001"}
+{"ProductionControlID":90}
 ```
 
-**Result:** HTTP 200, 88 bytes, 115 ms. **Came back empty**: no data beyond the reply envelope.
+**Result:** HTTP 200, 88 bytes, 46 ms. **Came back empty**: no data beyond the reply envelope.
 
 **Gotchas:**
 
@@ -1063,10 +1081,10 @@ departments and tasks) has been readable since the 2026-10-20 permission change,
 **Request that worked:**
 
 ```json
-{"JobNumber":"EPM-001"}
+{"JobNumber":"TESTTEST"}
 ```
 
-**Result:** HTTP 200, 1,993 bytes, 91 ms.
+**Result:** HTTP 200, 1,993 bytes, 44 ms.
 
 **Response fields:**
 
@@ -1141,7 +1159,7 @@ departments and tasks) has been readable since the 2026-10-20 permission change,
 {"GetOptions":{"IncludeDepartmentTaskCompletions":1}}
 ```
 
-**Result:** HTTP 200, 1,279 bytes, 57 ms.
+**Result:** HTTP 200, 1,279 bytes, 47 ms.
 
 **Response fields:**
 
@@ -1201,6 +1219,8 @@ departments and tasks) has been readable since the 2026-10-20 permission change,
 
 **Attempts:**
 
+- `{"WorkPackageDepartmentTaskCompletion":{"WorkPackageDepartmentTaskID":1}}` → 422: WorkPackageDepartmentTaskCompletion - Element is required
+- `{"JobNumber":"TESTTEST"}` → 422: WorkPackageDepartmentTaskCompletion - Element is required
 - `{"JobNumber":"EPM-001"}` → 422: WorkPackageDepartmentTaskCompletion - Element is required
 - `{"WorkPackageDepartmentTaskCompletion":{"WorkPackageDepartmentTaskID":1}}` → 422: WorkPackageDepartmentTaskCompletion - Element is required
 
@@ -1217,10 +1237,10 @@ departments and tasks) has been readable since the 2026-10-20 permission change,
 **Request that worked:**
 
 ```json
-{"JobNumber":"EPM-001"}
+{"JobNumber":"TESTTEST"}
 ```
 
-**Result:** HTTP 200, 34 bytes, 106 ms. **Came back empty**: no data beyond the reply envelope.
+**Result:** HTTP 200, 34 bytes, 133 ms. **Came back empty**: no data beyond the reply envelope.
 
 **Gotchas:**
 
@@ -1235,10 +1255,10 @@ departments and tasks) has been readable since the 2026-10-20 permission change,
 **Request that worked:**
 
 ```json
-{"JobNumber":"EPM-001"}
+{"JobNumber":"TESTTEST"}
 ```
 
-**Result:** HTTP 200, 34 bytes, 383 ms. **Came back empty**: no data beyond the reply envelope.
+**Result:** HTTP 200, 34 bytes, 504 ms. **Came back empty**: no data beyond the reply envelope.
 
 **Gotchas:**
 
@@ -1305,6 +1325,10 @@ departments and tasks) has been readable since the 2026-10-20 permission change,
 - `{"JobNumber":"EPM-001"}` → 422: Type - Value is required
 - `{"Type":"WorkPackage","ID":3}` → 200, empty
 - `{"Type":"WorkPackage"}` → 422: ID - Value is required
+- `{"Type":"WorkPackage","ID":1}` → 200, empty
+- `{"JobNumber":"TESTTEST"}` → 422: Type - Value is required
+- `{"Type":"WorkPackage","ID":3}` → 200, empty
+- `{"Type":"WorkPackage"}` → 422: ID - Value is required
 
 **Result:** HTTP 200, 213 bytes, 188 ms. **Came back empty**: no data beyond the reply envelope.
 
@@ -1321,63 +1345,511 @@ departments and tasks) has been readable since the 2026-10-20 permission change,
 **Best attempt:**
 
 ```json
-{"JobNumber":"EPM-001"}
+{"JobNumber":"TESTTEST"}
 ```
 
 **Attempts:**
 
 - `{"JobNumber":"EPM-001"}` → 422: Permission denied.
+- `{"JobNumber":"TESTTEST"}` → 422: Permission denied.
 
 **Gotchas:**
 
 - PowerFab answered "Permission denied." for the API user (the PowerFab External User the service logs in as).
 
-## Write commands (not run)
+## Write commands
 
-These change PowerFab data, so they were not called. The service refuses them while `POWERFAB_ALLOW_WRITES` is off. Purposes come from the command name and Tekla's reference, not from a call.
+Run on the test jobs only (EPM-001, TESTTEST), each change undone afterwards. "Not run" means no request was sent; those purposes come from the command name and Tekla's reference.
 
-| Command | What it does |
-|---|---|
-| `TFSCut` | Records a cut in production tracking (from the name). |
-| `TFSManual` | Records production tracking manually (from the name). |
-| `ShopFloorSave` | Saves shop floor progress (from the name). |
-| `SaveTimeTrackingRecord` | Changes data (from the name). |
-| `SetAssemblyAssociation` | Changes data (from the name). |
-| `SetInstanceLocation` | Sets where a piece instance is (from the name). |
-| `SplicePackage_TFS` | Changes data (from the name). |
-| `SplitPackage_TFS` | Changes data (from the name). |
-| `SaveCNCFile` | Changes data (from the name). |
-| `SaveNest` | Changes data (from the name). |
-| `SetCutListItemNestID` | Changes data (from the name). |
-| `ProductionControlCutListItem_Swap` | Changes data (from the name). |
-| `ProductionControlCutList_ExportDSTVPlus` | Changes data (from the name). |
-| `Department_Upsert` | Creates or edits a Department record (from the name). |
-| `Department_Delete` | Deletes a Department record (from the name). |
-| `DepartmentShift_Upsert` | Creates or edits a DepartmentShift record (from the name). |
-| `DepartmentShift_Delete` | Deletes a DepartmentShift record (from the name). |
-| `WorkAreaDepartmentSchedule_Upsert` | Creates or edits a WorkAreaDepartmentSchedule record (from the name). |
-| `WorkAreaDepartmentSchedule_Delete` | Deletes a WorkAreaDepartmentSchedule record (from the name). |
-| `WorkAreaDepartmentSchedule_Move_Start_And_End_Dates` | Changes data (from the name). |
-| `WorkAreaDepartmentScheduleShift_Upsert` | Creates or edits a WorkAreaDepartmentScheduleShift record (from the name). |
-| `WorkAreaDepartmentScheduleShift_Delete` | Deletes a WorkAreaDepartmentScheduleShift record (from the name). |
-| `WorkAreaDepartmentFutureTask_Upsert` | Creates or edits a WorkAreaDepartmentFutureTask record (from the name). |
-| `WorkAreaDepartmentFutureTask_Delete` | Deletes a WorkAreaDepartmentFutureTask record (from the name). |
-| `WorkPackage_Insert` | Creates a WorkPackage record (from the name). |
-| `WorkPackage_Update` | Edits a WorkPackage record (from the name). |
-| `WorkPackage_Delete` | Deletes a WorkPackage record (from the name). |
-| `WorkPackage_ScheduleToWorkshop` | Changes data (from the name). |
-| `WorkPackage_Unschedule` | Changes data (from the name). |
-| `WorkPackage_OffsetFutureWorkPackage` | Changes data (from the name). |
-| `WorkPackageDepartment_Insert` | Creates a WorkPackageDepartment record (from the name). |
-| `WorkPackageDepartment_Update` | Edits a WorkPackageDepartment record (from the name). |
-| `WorkPackageDepartment_Delete` | Deletes a WorkPackageDepartment record (from the name). |
-| `WorkPackageDepartmentTask_Insert` | Creates a WorkPackageDepartmentTask record (from the name). |
-| `WorkPackageDepartmentTask_Update` | Edits a WorkPackageDepartmentTask record (from the name). |
-| `WorkPackageDepartmentTask_Delete` | Deletes a WorkPackageDepartmentTask record (from the name). |
-| `WorkPackageDepartmentTask_Schedule` | Changes data (from the name). |
-| `WorkPackageDepartmentTask_Unschedule` | Changes data (from the name). |
-| `WorkPackageDepartmentTask_Split` | Changes data (from the name). |
-| `WorkPackageDepartmentTask_OffsetFutureWorkPackage` | Changes data (from the name). |
-| `WorkPackageDepartmentTaskCompletion_Insert` | Creates a WorkPackageDepartmentTaskCompletion record (from the name). |
-| `WorkPackageDepartmentTaskCompletion_Update` | Edits a WorkPackageDepartmentTaskCompletion record (from the name). |
-| `WorkPackageDepartmentTaskCompletion_Delete` | Deletes a WorkPackageDepartmentTaskCompletion record (from the name). |
+| Command | Status | What it does |
+|---|---|---|
+| [`TFSCut`](#tfscut) | ⚠️ refused | Records a cut in production tracking (from the name). |
+| [`TFSManual`](#tfsmanual) | ⚠️ refused | Records production tracking manually (from the name). |
+| [`ShopFloorSave`](#shopfloorsave) | ✅ data | Saves shop floor progress (from the name). |
+| [`SaveTimeTrackingRecord`](#savetimetrackingrecord) | ⚠️ refused | Changes data (from the name). |
+| [`SetAssemblyAssociation`](#setassemblyassociation) | ⚠️ refused | Changes data (from the name). |
+| [`SetInstanceLocation`](#setinstancelocation) | ✅ data | Sets where a piece instance is (from the name). |
+| [`SplicePackage_TFS`](#splicepackage_tfs) | ⚠️ refused | Changes data (from the name). |
+| [`SplitPackage_TFS`](#splitpackage_tfs) | ⚠️ refused | Changes data (from the name). |
+| [`SaveCNCFile`](#savecncfile) | ⚠️ refused | Changes data (from the name). |
+| [`SaveNest`](#savenest) | ⛔ permission denied | Changes data (from the name). |
+| [`SetCutListItemNestID`](#setcutlistitemnestid) | ⚠️ refused | Changes data (from the name). |
+| [`ProductionControlCutListItem_Swap`](#productioncontrolcutlistitem_swap) | ⚠️ refused | Changes data (from the name). |
+| [`ProductionControlCutList_ExportDSTVPlus`](#productioncontrolcutlist_exportdstvplus) | ✅ data | Changes data (from the name). |
+| [`Department_Upsert`](#department_upsert) | ⏸ not run | Creates or edits a Department record (from the name). |
+| [`Department_Delete`](#department_delete) | ⏸ not run | Deletes a Department record (from the name). |
+| [`DepartmentShift_Upsert`](#departmentshift_upsert) | ⏸ not run | Creates or edits a DepartmentShift record (from the name). |
+| [`DepartmentShift_Delete`](#departmentshift_delete) | ⏸ not run | Deletes a DepartmentShift record (from the name). |
+| [`WorkAreaDepartmentSchedule_Upsert`](#workareadepartmentschedule_upsert) | ⏸ not run | Creates or edits a WorkAreaDepartmentSchedule record (from the name). |
+| [`WorkAreaDepartmentSchedule_Delete`](#workareadepartmentschedule_delete) | ⏸ not run | Deletes a WorkAreaDepartmentSchedule record (from the name). |
+| [`WorkAreaDepartmentSchedule_Move_Start_And_End_Dates`](#workareadepartmentschedule_move_start_and_end_dates) | ⏸ not run | Changes data (from the name). |
+| [`WorkAreaDepartmentScheduleShift_Upsert`](#workareadepartmentscheduleshift_upsert) | ⏸ not run | Creates or edits a WorkAreaDepartmentScheduleShift record (from the name). |
+| [`WorkAreaDepartmentScheduleShift_Delete`](#workareadepartmentscheduleshift_delete) | ⏸ not run | Deletes a WorkAreaDepartmentScheduleShift record (from the name). |
+| [`WorkAreaDepartmentFutureTask_Upsert`](#workareadepartmentfuturetask_upsert) | ⏸ not run | Creates or edits a WorkAreaDepartmentFutureTask record (from the name). |
+| [`WorkAreaDepartmentFutureTask_Delete`](#workareadepartmentfuturetask_delete) | ⏸ not run | Deletes a WorkAreaDepartmentFutureTask record (from the name). |
+| [`WorkPackage_Insert`](#workpackage_insert) | ⚠️ refused | Creates a WorkPackage record (from the name). |
+| [`WorkPackage_Update`](#workpackage_update) | ⚠️ refused | Edits a WorkPackage record (from the name). |
+| [`WorkPackage_Delete`](#workpackage_delete) | ⚠️ refused | Deletes a WorkPackage record (from the name). |
+| [`WorkPackage_ScheduleToWorkshop`](#workpackage_scheduletoworkshop) | ⚠️ refused | Changes data (from the name). |
+| [`WorkPackage_Unschedule`](#workpackage_unschedule) | ⚠️ refused | Changes data (from the name). |
+| [`WorkPackage_OffsetFutureWorkPackage`](#workpackage_offsetfutureworkpackage) | ⚠️ refused | Changes data (from the name). |
+| [`WorkPackageDepartment_Insert`](#workpackagedepartment_insert) | ⚠️ refused | Creates a WorkPackageDepartment record (from the name). |
+| [`WorkPackageDepartment_Update`](#workpackagedepartment_update) | ⚠️ refused | Edits a WorkPackageDepartment record (from the name). |
+| [`WorkPackageDepartment_Delete`](#workpackagedepartment_delete) | ⚠️ refused | Deletes a WorkPackageDepartment record (from the name). |
+| [`WorkPackageDepartmentTask_Insert`](#workpackagedepartmenttask_insert) | ⚠️ refused | Creates a WorkPackageDepartmentTask record (from the name). |
+| [`WorkPackageDepartmentTask_Update`](#workpackagedepartmenttask_update) | ⚠️ refused | Edits a WorkPackageDepartmentTask record (from the name). |
+| [`WorkPackageDepartmentTask_Delete`](#workpackagedepartmenttask_delete) | ⚠️ refused | Deletes a WorkPackageDepartmentTask record (from the name). |
+| [`WorkPackageDepartmentTask_Schedule`](#workpackagedepartmenttask_schedule) | ⚠️ refused | Changes data (from the name). |
+| [`WorkPackageDepartmentTask_Unschedule`](#workpackagedepartmenttask_unschedule) | ⚠️ refused | Changes data (from the name). |
+| [`WorkPackageDepartmentTask_Split`](#workpackagedepartmenttask_split) | ⚠️ refused | Changes data (from the name). |
+| [`WorkPackageDepartmentTask_OffsetFutureWorkPackage`](#workpackagedepartmenttask_offsetfutureworkpackage) | ⚠️ refused | Changes data (from the name). |
+| [`WorkPackageDepartmentTaskCompletion_Insert`](#workpackagedepartmenttaskcompletion_insert) | ⚠️ refused | Creates a WorkPackageDepartmentTaskCompletion record (from the name). |
+| [`WorkPackageDepartmentTaskCompletion_Update`](#workpackagedepartmenttaskcompletion_update) | ⚠️ refused | Edits a WorkPackageDepartmentTaskCompletion record (from the name). |
+| [`WorkPackageDepartmentTaskCompletion_Delete`](#workpackagedepartmenttaskcompletion_delete) | ⚠️ refused | Deletes a WorkPackageDepartmentTaskCompletion record (from the name). |
+
+### `TFSCut`
+
+**Status:** ⚠️ refused
+
+**What it does.** Records a cut in production tracking (from the name).
+
+**Attempts:**
+
+- `{}` → 422: CutListItemID/CutListSerialNumber/ExternalNestID/NestID is required
+
+### `TFSManual`
+
+**Status:** ⚠️ refused
+
+**What it does.** Records production tracking manually (from the name).
+
+**Attempts:**
+
+- `{}` → 422: Quantity is required
+
+### `ShopFloorSave`
+
+**Status:** ✅ worked
+
+**What it does.** Records (`Save`) or removes (`Delete`) production work at a station.
+
+**Request that worked:**
+
+```json
+{"CommitType":"Delete","JobNumber":"EPM-001","MainMark":"A32","Sequence":"3","Station":"Quality Control","Quantity":1,"Employee":"admin","Date":"2026-10-20"}
+```
+
+**Reply:** only `Successful` and a `CommandGUID`.
+
+**Attempts:**
+
+- `{}` → 422: CommitType is required
+- `{"CommitType":"Save","JobNumber":"EPM-001","MainMark":"3B1","Sequence":"1","Station":"Quality Control","Quantity":1}` → 422: Employee is required
+- `{"CommitType":"Delete","JobNumber":"EPM-001","MainMark":"3B1","Sequence":"1","Station":"Quality Control","Quantity":1}` → 422: Employee is required
+- `{"CommitType":"Save","JobNumber":"EPM-001","MainMark":"A32","Sequence":"3","Station":"Quality Control","Quantity":1,"Employee":"admin","Date":"2026-10-20"}` → 200: accepted
+- `{"CommitType":"Delete","JobNumber":"EPM-001","MainMark":"A32","Sequence":"3","Station":"Quality Control","Quantity":1,"Employee":"admin","Date":"2026-10-20"}` → 200: accepted
+
+**Gotchas:**
+
+- Needs `CommitType`, `Employee`, `Station`, `MainMark`, `Sequence`, `Quantity`, `Date`. Both `Save` and `Delete` were accepted for the Quality Control station.
+
+### `SaveTimeTrackingRecord`
+
+**Status:** ⚠️ refused
+
+**What it does.** Changes data (from the name).
+
+**Attempts:**
+
+- `{}` → 422: StartDate is required
+
+### `SetAssemblyAssociation`
+
+**Status:** ⚠️ refused
+
+**What it does.** Changes data (from the name).
+
+**Attempts:**
+
+- `{}` → 422: MainMark is required
+
+### `SetInstanceLocation`
+
+**Status:** ✅ worked
+
+**What it does.** Sets the location of a piece instance.
+
+**Request that worked:**
+
+```json
+{"JobNumber":"EPM-001","MainMark":"A32","Sequence":"3","InstanceNumbers":"1","InstanceLocation":""}
+```
+
+**Reply:** only `Successful` and a `CommandGUID`.
+
+**Attempts:**
+
+- `{}` → 422: MainMark is required
+- `{"JobNumber":"EPM-001","MainMark":"3B1","Sequence":"1","Location":"A"}` → 422: The instance numbers or serial number must be specified.
+- `{"JobNumber":"EPM-001","MainMark":"3B1","Sequence":"1","Location":""}` → 422: The instance numbers or serial number must be specified.
+- `{"JobNumber":"EPM-001","MainMark":"A32","Sequence":"3","InstanceNumbers":"1","InstanceLocation":"A"}` → 200: accepted
+- `{"JobNumber":"EPM-001","MainMark":"A32","Sequence":"3","InstanceNumbers":"1","InstanceLocation":""}` → 200: accepted
+
+**Gotchas:**
+
+- Needs `JobNumber`, `MainMark`, `Sequence`, `InstanceLocation` and either `InstanceNumbers` or `SerialNumber` with `Quantity`. `InstanceLocation` "A" and then "" were both accepted.
+
+### `SplicePackage_TFS`
+
+**Status:** ⚠️ refused
+
+**What it does.** Changes data (from the name).
+
+**Attempts:**
+
+- `{}` → 422: NestSolutionID - Value is required
+
+### `SplitPackage_TFS`
+
+**Status:** ⚠️ refused
+
+**What it does.** Changes data (from the name).
+
+**Attempts:**
+
+- `{}` → 422: NestSolutionID - Value is required
+
+### `SaveCNCFile`
+
+**Status:** ⚠️ refused
+
+**What it does.** Changes data (from the name).
+
+**Attempts:**
+
+- `{}` → 422: CNCFileID is required
+
+### `SaveNest`
+
+**Status:** ⛔ permission denied
+
+**What it does.** Saves a nest.
+
+**Attempts:**
+
+- `{}` → 422: Permission denied.
+
+**Gotchas:**
+
+- Answered `Permission denied.`
+
+### `SetCutListItemNestID`
+
+**Status:** ⚠️ refused
+
+**What it does.** Changes data (from the name).
+
+**Attempts:**
+
+- `{}` → 422: CutListItem is required.
+
+### `ProductionControlCutListItem_Swap`
+
+**Status:** ⚠️ refused
+
+**What it does.** Changes data (from the name).
+
+**Attempts:**
+
+- `{}` → 422: ProductionControlCutListItemID - Value is required
+
+### `ProductionControlCutList_ExportDSTVPlus`
+
+**Status:** ✅ worked
+
+**What it does.** Exports a cut list as DSTV+ NC files.
+
+**Request that worked:**
+
+```json
+{"CutListID":1}
+```
+
+**Reply** (trimmed; [samples/ProductionControlCutList_ExportDSTVPlus.json](samples/ProductionControlCutList_ExportDSTVPlus.json)):
+
+```json
+{
+  "FileName": "EPM-001_Seq 1 WF_20261020.zip",
+  "FileDataBase64": "UEsDBBQAAAAIAJlDVF0iCcCvwgAAAMwFAAAHAAAAMUIxLm5jMbVSywrCMBC8…"
+}
+```
+
+**Attempts:**
+
+- `{}` → 422: CutListID - Value is required
+- `{"CutListID":1}` → 200: accepted
+
+**Gotchas:**
+
+- Needs `CutListID`. The reply holds `FileName` and a zip as base64 in `FileDataBase64` (the first entry is `1B1.nc1`).
+
+### `Department_Upsert`
+
+**Status:** ⏸ not run
+
+**What it does.** Creates or edits a Department record (from the name).
+
+### `Department_Delete`
+
+**Status:** ⏸ not run
+
+**What it does.** Deletes a Department record (from the name).
+
+### `DepartmentShift_Upsert`
+
+**Status:** ⏸ not run
+
+**What it does.** Creates or edits a DepartmentShift record (from the name).
+
+### `DepartmentShift_Delete`
+
+**Status:** ⏸ not run
+
+**What it does.** Deletes a DepartmentShift record (from the name).
+
+### `WorkAreaDepartmentSchedule_Upsert`
+
+**Status:** ⏸ not run
+
+**What it does.** Creates or edits a WorkAreaDepartmentSchedule record (from the name).
+
+### `WorkAreaDepartmentSchedule_Delete`
+
+**Status:** ⏸ not run
+
+**What it does.** Deletes a WorkAreaDepartmentSchedule record (from the name).
+
+### `WorkAreaDepartmentSchedule_Move_Start_And_End_Dates`
+
+**Status:** ⏸ not run
+
+**What it does.** Changes data (from the name).
+
+### `WorkAreaDepartmentScheduleShift_Upsert`
+
+**Status:** ⏸ not run
+
+**What it does.** Creates or edits a WorkAreaDepartmentScheduleShift record (from the name).
+
+### `WorkAreaDepartmentScheduleShift_Delete`
+
+**Status:** ⏸ not run
+
+**What it does.** Deletes a WorkAreaDepartmentScheduleShift record (from the name).
+
+### `WorkAreaDepartmentFutureTask_Upsert`
+
+**Status:** ⏸ not run
+
+**What it does.** Creates or edits a WorkAreaDepartmentFutureTask record (from the name).
+
+### `WorkAreaDepartmentFutureTask_Delete`
+
+**Status:** ⏸ not run
+
+**What it does.** Deletes a WorkAreaDepartmentFutureTask record (from the name).
+
+### `WorkPackage_Insert`
+
+**Status:** ⚠️ refused
+
+**What it does.** Creates a work package.
+
+**Attempts:**
+
+- `{"ProductionControlID":13}` → 422: WorkPackageNumber - Value is required
+- `{"ProductionControlID":13,"WorkPackageNumber":"WIKI-WP","WorkshopID":1,"Description":"wiki test work package"}` → 422: Permission denied.
+
+**Gotchas:**
+
+- Asked for `WorkPackageNumber`; the attempt with `ProductionControlID`, `WorkPackageNumber`, `WorkshopID` and `Description` answered `Permission denied.`
+
+### `WorkPackage_Update`
+
+**Status:** ⚠️ refused
+
+**What it does.** Edits a WorkPackage record (from the name).
+
+**Attempts:**
+
+- `{}` → 422: WorkPackageID - Value is required
+
+### `WorkPackage_Delete`
+
+**Status:** ⚠️ refused
+
+**What it does.** Deletes a WorkPackage record (from the name).
+
+**Attempts:**
+
+- `{}` → 422: WorkPackageID - Value is required
+
+### `WorkPackage_ScheduleToWorkshop`
+
+**Status:** ⚠️ refused
+
+**What it does.** Changes data (from the name).
+
+**Attempts:**
+
+- `{}` → 422: WorkshopID - Value is required
+
+### `WorkPackage_Unschedule`
+
+**Status:** ⚠️ refused
+
+**What it does.** Changes data (from the name).
+
+**Attempts:**
+
+- `{}` → 422: WorkPackageID - Value is required
+
+### `WorkPackage_OffsetFutureWorkPackage`
+
+**Status:** ⚠️ refused
+
+**What it does.** Changes data (from the name).
+
+**Attempts:**
+
+- `{}` → 422: WorkPackageID - Value is required
+
+### `WorkPackageDepartment_Insert`
+
+**Status:** ⚠️ refused
+
+**What it does.** Creates a WorkPackageDepartment record (from the name).
+
+**Attempts:**
+
+- `{}` → 422: WorkPackageID - Value is required
+
+### `WorkPackageDepartment_Update`
+
+**Status:** ⚠️ refused
+
+**What it does.** Edits a WorkPackageDepartment record (from the name).
+
+**Attempts:**
+
+- `{}` → 422: WorkPackageDepartmentID - Value is required
+
+### `WorkPackageDepartment_Delete`
+
+**Status:** ⚠️ refused
+
+**What it does.** Deletes a WorkPackageDepartment record (from the name).
+
+**Attempts:**
+
+- `{}` → 422: WorkPackageDepartmentID - Value is required
+
+### `WorkPackageDepartmentTask_Insert`
+
+**Status:** ⚠️ refused
+
+**What it does.** Creates a WorkPackageDepartmentTask record (from the name).
+
+**Attempts:**
+
+- `{}` → 422: WorkPackageDepartmentID - Value is required
+
+### `WorkPackageDepartmentTask_Update`
+
+**Status:** ⚠️ refused
+
+**What it does.** Edits a WorkPackageDepartmentTask record (from the name).
+
+**Attempts:**
+
+- `{}` → 422: WorkPackageDepartmentTaskID - Value is required
+
+### `WorkPackageDepartmentTask_Delete`
+
+**Status:** ⚠️ refused
+
+**What it does.** Deletes a WorkPackageDepartmentTask record (from the name).
+
+**Attempts:**
+
+- `{}` → 422: WorkPackageDepartmentTaskID - Value is required
+
+### `WorkPackageDepartmentTask_Schedule`
+
+**Status:** ⚠️ refused
+
+**What it does.** Changes data (from the name).
+
+**Attempts:**
+
+- `{}` → 422: WorkPackageDepartmentTaskID - Value is required
+
+### `WorkPackageDepartmentTask_Unschedule`
+
+**Status:** ⚠️ refused
+
+**What it does.** Changes data (from the name).
+
+**Attempts:**
+
+- `{}` → 422: WorkPackageDepartmentTaskID - Value is required
+
+### `WorkPackageDepartmentTask_Split`
+
+**Status:** ⚠️ refused
+
+**What it does.** Changes data (from the name).
+
+**Attempts:**
+
+- `{}` → 422: WorkPackageDepartmentTaskID - Value is required
+
+### `WorkPackageDepartmentTask_OffsetFutureWorkPackage`
+
+**Status:** ⚠️ refused
+
+**What it does.** Changes data (from the name).
+
+**Attempts:**
+
+- `{}` → 422: WorkPackageDepartmentTaskID - Value is required
+
+### `WorkPackageDepartmentTaskCompletion_Insert`
+
+**Status:** ⚠️ refused
+
+**What it does.** Creates a WorkPackageDepartmentTaskCompletion record (from the name).
+
+**Attempts:**
+
+- `{}` → 502: HTTP 502 from the tunnel
+
+### `WorkPackageDepartmentTaskCompletion_Update`
+
+**Status:** ⚠️ refused
+
+**What it does.** Edits a WorkPackageDepartmentTaskCompletion record (from the name).
+
+**Attempts:**
+
+- `{}` → 502: HTTP 502 from the tunnel
+
+### `WorkPackageDepartmentTaskCompletion_Delete`
+
+**Status:** ⚠️ refused
+
+**What it does.** Deletes a WorkPackageDepartmentTaskCompletion record (from the name).
+
+**Attempts:**
+
+- `{}` → 502: HTTP 502 from the tunnel

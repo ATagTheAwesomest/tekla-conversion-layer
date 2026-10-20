@@ -1,7 +1,7 @@
 {
   "command": "WorkPackage_Get",
   "request": {
-    "JobNumber": "EPM-001"
+    "ProductionControlID": 90
   },
   "status": 200,
   "bytes": 88,
@@ -9,7 +9,7 @@
   "response": {
     "Successful": "1",
     "ResultData": {
-      "LastLogID": "25,783,4,4",
+      "LastLogID": "25,807,4,4",
       "GetOptions": {
         "FilterSet": ""
       }

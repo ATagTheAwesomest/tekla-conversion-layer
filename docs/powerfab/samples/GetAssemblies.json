@@ -1,16 +1,16 @@
 {
   "command": "GetAssemblies",
   "request": {
-    "JobNumber": "EPM-001"
+    "JobNumber": "TESTTEST"
   },
   "status": 200,
-  "bytes": 130606,
+  "bytes": 136337,
   "note": "Trimmed: lists keep their first 3 items. Names, phones and street addresses are masked.",
   "response": {
     "Successful": "1",
-    "CommandGUID": "68F2F00E-6637-44D8-9EB0-43C24883A16B",
-    "ProductionControlID": "13",
-    "JobNumber": "EPM-001",
+    "CommandGUID": "05DE3F4B-81C1-44FD-B741-50DF81B0B48E",
+    "ProductionControlID": "90",
+    "JobNumber": "TESTTEST",
     "InputDisplayUnits": {
       "SizeUOM": "Imperial",
       "LengthUOM": "Imperial",
@@ -21,54 +21,51 @@
     },
     "Assembly": [
       {
-        "MainMark": "1B1",
-        "DrawingNumber": "1",
-        "ApprovalStatus": "IFF",
-        "ApprovalStatusPurpose": "Approved",
+        "MainMark": "55311000",
+        "DrawingNumber": "55311000",
+        "ApprovalStatus": "",
         "AssemblyQuantity": "1",
-        "TotalQuantity": "59",
+        "TotalQuantity": "6",
         "Weight": {
           "@UOM": "kg",
-          "#text": "797.251695464567266"
+          "#text": "263.709695670973021"
         },
         "AssemblySequence": {
-          "Sequence": "1",
+          "Sequence": "5531",
           "Quantity": "1"
         }
       },
       {
-        "MainMark": "1B2",
-        "DrawingNumber": "1",
-        "ApprovalStatus": "IFF",
-        "ApprovalStatusPurpose": "Approved",
+        "MainMark": "55311001",
+        "DrawingNumber": "55311001",
+        "ApprovalStatus": "",
         "AssemblyQuantity": "1",
-        "TotalQuantity": "70",
+        "TotalQuantity": "6",
         "Weight": {
           "@UOM": "kg",
-          "#text": "1094.098916718450877"
+          "#text": "263.709695670973021"
         },
         "AssemblySequence": {
-          "Sequence": "1",
+          "Sequence": "5531",
           "Quantity": "1"
         }
       },
       {
-        "MainMark": "2B1",
-        "DrawingNumber": "2",
-        "ApprovalStatus": "IFF",
-        "ApprovalStatusPurpose": "Approved",
-        "AssemblyQuantity": "1",
-        "TotalQuantity": "33",
+        "MainMark": "55311002",
+        "DrawingNumber": "55311002",
+        "ApprovalStatus": "",
+        "AssemblyQuantity": "11",
+        "TotalQuantity": "66",
         "Weight": {
           "@UOM": "kg",
-          "#text": "807.049454408057777"
+          "#text": "3102.48305759762704"
         },
         "AssemblySequence": {
-          "Sequence": "1",
-          "Quantity": "1"
+          "Sequence": "5531",
+          "Quantity": "11"
         }
       },
-      "… 589 more"
+      "… 610 more"
     ],
     "FilterSet": {
       "Filter": {
@@ -76,9 +73,9 @@
         "DisplayName": "Job #",
         "FilterItems": {
           "FilterItem": {
-            "@Field1": "13",
-            "@Field2": "EPM-001",
-            "#text": "EPM-001"
+            "@Field1": "90",
+            "@Field2": "TESTTEST",
+            "#text": "TESTTEST"
           }
         }
       }
