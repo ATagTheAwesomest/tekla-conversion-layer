@@ -1,0 +1,25 @@
+{
+  "command": "PlanningRuleWarning_Get",
+  "request": {
+    "Type": "WorkPackage",
+    "ID": 1
+  },
+  "status": 200,
+  "bytes": 213,
+  "note": "Trimmed: lists keep their first 3 items. Names, phones and street addresses are masked.",
+  "response": {
+    "Successful": "1",
+    "ResultData": {
+      "GetOptions": {
+        "InputDisplayUnits": {
+          "SizeUOM": "Imperial",
+          "LengthUOM": "Imperial",
+          "LengthTypeIDMetric": "101",
+          "LengthTypeIDImperial": "1",
+          "WeightUOM": "Imperial",
+          "PriceUOM": "Imperial"
+        }
+      }
+    }
+  }
+}

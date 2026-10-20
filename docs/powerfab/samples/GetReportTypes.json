@@ -1,0 +1,38 @@
+{
+  "command": "GetReportTypes",
+  "request": {
+    "ReportGroup": "Inspection"
+  },
+  "status": 200,
+  "bytes": 3823,
+  "note": "Trimmed: lists keep their first 3 items. Names, phones and street addresses are masked.",
+  "response": {
+    "Successful": "1",
+    "CommandGUID": "6F82415E-2758-4744-834E-3213332D90B6",
+    "ReportType": {
+      "ReportTypeID": "32",
+      "Description": "All",
+      "Report": [
+        {
+          "ReportID": "664",
+          "ReportGUID": "62994a40-a564-43c1-8576-fcf710c8eb85",
+          "Description": "Inspection Test Records",
+          "Title": "Inspection Test Records"
+        },
+        {
+          "ReportID": "665",
+          "ReportGUID": "a06f6067-5741-42f1-b178-a8485f0c4a4d",
+          "Description": "Inspection Test Records with Notes",
+          "Title": "Inspection Test Records with Notes"
+        },
+        {
+          "ReportID": "666",
+          "ReportGUID": "1a8330f4-c135-4183-ace3-6af2fff16c75",
+          "Description": "Summary by Inspector",
+          "Title": "Summary by Inspector"
+        },
+        "… 23 more"
+      ]
+    }
+  }
+}

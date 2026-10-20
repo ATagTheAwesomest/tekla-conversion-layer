@@ -1,0 +1,15 @@
+{
+  "command": "ValStation",
+  "request": {
+    "JobNumber": "TESTTEST",
+    "Station": "Quality Control"
+  },
+  "status": 200,
+  "bytes": 87,
+  "note": "Trimmed: lists keep their first 3 items. Names, phones and street addresses are masked.",
+  "response": {
+    "Successful": "1",
+    "CommandGUID": "1A489522-45E8-4E80-B804-1D4202ED08DA",
+    "StationID": "4"
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "command": "DrawingRevision_Update",
+  "request": {
+    "DrawingRevisionID": "2146",
+    "Revision": "A"
+  },
+  "status": 200,
+  "note": "Trimmed: lists keep their first 3 items. Names, phones and street addresses are masked.",
+  "response": {
+    "Successful": "1",
+    "ResultData": {
+      "DrawingRevision": {
+        "DrawingRevisionID": "2146",
+        "DrawingID": "12277",
+        "Revision": "A",
+        "DateRevised": "2026-10-20",
+        "Latest": "1"
+      }
+    }
+  }
+}

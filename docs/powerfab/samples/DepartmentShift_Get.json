@@ -1,0 +1,30 @@
+{
+  "command": "DepartmentShift_Get",
+  "request": {
+    "JobNumber": "EPM-001"
+  },
+  "status": 200,
+  "bytes": 305,
+  "note": "Trimmed: lists keep their first 3 items. Names, phones and street addresses are masked.",
+  "response": {
+    "Successful": "1",
+    "ResultData": {
+      "LastLogID": "0",
+      "DepartmentShift": {
+        "DepartmentShiftID": "1",
+        "WorkAreaDepartmentID": "1",
+        "DepartmentID": "1",
+        "WorkshopID": "1",
+        "WorkAreaID": "1",
+        "Name": "Standard",
+        "WeightPerWeek": "100000",
+        "HoursPerWeek": "1000",
+        "IsActive": "1",
+        "IsDeleted": "0"
+      },
+      "GetOptions": {
+        "IncludeDeleted": "0"
+      }
+    }
+  }
+}

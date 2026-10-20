@@ -1,0 +1,30 @@
+{
+  "command": "GetProductionControlJobs",
+  "request": {
+    "JobStatus": "Closed"
+  },
+  "status": 200,
+  "bytes": 325,
+  "note": "Trimmed: lists keep their first 3 items. Names, phones and street addresses are masked.",
+  "response": {
+    "Successful": "1",
+    "CommandGUID": "E91A4DCB-9516-4A2E-AF0F-2C3D871C1418",
+    "ProductionControlJob": {
+      "ProductionControlID": "90",
+      "JobNumber": "TESTTEST",
+      "JobDescription": "TESTTEST",
+      "JobLocation": "TESTTEST",
+      "GroupName": "<redacted>",
+      "GroupName2": "",
+      "JobStatus": "Open",
+      "ProjectID": "29"
+    },
+    "JobGroups": {
+      "GroupName": [
+        "",
+        "<redacted>"
+      ],
+      "GroupName2": ""
+    }
+  }
+}

@@ -1,0 +1,114 @@
+{
+  "command": "GetTransmittalDetails",
+  "request": {
+    "JobNumber": "EPM-001"
+  },
+  "status": 200,
+  "bytes": 3313,
+  "note": "Trimmed: lists keep their first 3 items. Names, phones and street addresses are masked.",
+  "response": {
+    "Successful": "1",
+    "CommandGUID": "4637E650-5F49-495F-8D25-7FE5C5FD22BD",
+    "JobNumber": "EPM-001",
+    "Transmittals": {
+      "Transmittal": [
+        {
+          "TransmittalID": "1",
+          "TransmittalNumber": "10001",
+          "TransmittalDate": "2020-08-05",
+          "JobNumber": "EPM-001",
+          "Recipient": {
+            "Name": "Tekla EPM - Client",
+            "Address1": "<redacted>",
+            "Address2": "<redacted>",
+            "City": "<redacted>",
+            "State": "GA",
+            "Zip": "<redacted>",
+            "Phone": "<redacted>",
+            "Attn": "<redacted>"
+          },
+          "Title": "Sequence 1",
+          "Sending": "Enclosed",
+          "Type": "To Be Returned",
+          "TransmittalItem": [
+            "Erection Drawings",
+            "Shop Drawings",
+            "Stair Drawings"
+          ],
+          "TransmittalPurpose": "For Approval",
+          "NumberOfPrints": "147",
+          "PrintsToReturn": "147",
+          "NumberOfSets": "0",
+          "ReturnDate": "2020-08-19",
+          "SentVia": "E-mail",
+          "NumberOfDrawings": "147",
+          "NumberOfOutstandingDrawings": "0",
+          "LastDateReceived": "2020-08-21"
+        },
+        {
+          "TransmittalID": "3",
+          "TransmittalNumber": "10002",
+          "TransmittalDate": "2020-08-21",
+          "JobNumber": "EPM-001",
+          "Recipient": {
+            "Name": "Detailer",
+            "Address1": "<redacted>",
+            "City": "<redacted>",
+            "State": "GA",
+            "Attn": "<redacted>"
+          },
+          "Title": "Sequence 1",
+          "Sending": "Enclosed",
+          "Type": "To Be Returned",
+          "TransmittalItem": [
+            "Erection Drawings",
+            "Shop Drawings",
+            "Stair Drawings"
+          ],
+          "TransmittalPurpose": "Scrub & Release For Production",
+          "NumberOfPrints": "147",
+          "PrintsToReturn": "147",
+          "NumberOfSets": "0",
+          "ReturnDate": "2020-08-26",
+          "SentVia": "E-mail",
+          "NumberOfDrawings": "147",
+          "NumberOfOutstandingDrawings": "0",
+          "LastDateReceived": "2020-08-28"
+        },
+        {
+          "TransmittalID": "2",
+          "TransmittalNumber": "20001",
+          "TransmittalDate": "2020-08-14",
+          "JobNumber": "EPM-001",
+          "Recipient": {
+            "Name": "Tekla EPM - Client",
+            "Address1": "<redacted>",
+            "Address2": "<redacted>",
+            "City": "<redacted>",
+            "State": "GA",
+            "Zip": "<redacted>",
+            "Phone": "<redacted>",
+            "Attn": "<redacted>"
+          },
+          "Title": "Sequence 2",
+          "Sending": "Enclosed",
+          "Type": "To Be Returned",
+          "TransmittalItem": [
+            "Erection Drawings",
+            "Shop Drawings"
+          ],
+          "TransmittalPurpose": "For Approval",
+          "NumberOfPrints": "134",
+          "PrintsToReturn": "134",
+          "NumberOfSets": "0",
+          "ReturnDate": "2020-08-28",
+          "SentVia": "E-mail",
+          "NumberOfDrawings": "134",
+          "NumberOfOutstandingDrawings": "0",
+          "LastDateReceived": "2020-09-01"
+        },
+        "… 2 more"
+      ]
+    }
+  }
+}

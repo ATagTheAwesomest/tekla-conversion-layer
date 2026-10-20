@@ -1,0 +1,551 @@
+{
+  "command": "ProductionControlLoad_Get",
+  "request": {
+    "ProductionControlID": 90,
+    "GetOptions": {
+      "IncludeJobDetails": 1,
+      "IncludeFirmDetails": 1,
+      "IncludeMaterial": 1,
+      "IncludeAttachedFiles": 1
+    }
+  },
+  "status": 200,
+  "bytes": 32760,
+  "note": "Trimmed: lists keep their first 3 items. Names, phones and street addresses are masked.",
+  "response": {
+    "Successful": "1",
+    "ResultData": {
+      "LastLogID": "714,803",
+      "GetOptions": {
+        "IncludeJobDetails": "1",
+        "IncludeFirmDetails": "1",
+        "IncludeMaterial": "1",
+        "IncludeAttachedFiles": "1"
+      },
+      "ProductionControlLoad": [
+        {
+          "ProductionControlLoadID": "382",
+          "ProductionControlID": "90",
+          "LoadNumber": "1",
+          "Capacity": "19958.06428",
+          "ShippingDestinationGroupID": "",
+          "ShippedFromFirmID": "",
+          "ShippedToFirmID": "",
+          "Shipped": "0",
+          "QuantityAssigned": "20",
+          "AssignedLength": "42264.09703",
+          "AssignedSquareMeters": "0.5534587682",
+          "AssignedWeight": "1331.200855",
+          "AssignedGrossWeight": "1331.200855",
+          "AssignedModelWeight": "1331.200855",
+          "AssignedSurfaceArea": "39.57404608",
+          "QuantityLoaded": "20",
+          "LoadedLength": "42264.09703",
+          "LoadedSquareMeters": "0.5534587682",
+          "LoadedWeight": "1331.200855",
+          "LoadedGrossWeight": "1331.200855",
+          "LoadedModelWeight": "1331.200855",
+          "LoadedSurfaceArea": "39.57404608",
+          "Material": [
+            {
+              "ProductionControlItemTruckID": "347",
+              "ProductionControlItemID": "45019",
+              "ProductionControlID": "90",
+              "DrawingNumberDisplay": "55314000",
+              "MainMarkDisplay": "55314000",
+              "PieceMarkDisplay": "55314000",
+              "MainPiece": "1",
+              "SequenceDisplay": "5531",
+              "LotNumberDisplay": "",
+              "DrawingID": "11207",
+              "AssemblyDrawingID": "11207",
+              "PartDrawingID": "11207",
+              "ShippingLength": "1295.402591",
+              "ShippingWeightEach": "28.91651359",
+              "ShippingGrossWeightEach": "28.91651359",
+              "ShippingModelWeightEach": "28.91651359",
+              "ShippingSurfaceAreaEach": "1.046653706",
+              "ShippingSquareMetersEach": "0",
+              "ApprovalStatus": "",
+              "Quantity": "14",
+              "QuantityLoaded": "14",
+              "Loaded": {
+                "ID": "347",
+                "Date": "2026-10-02",
+                "Quantity": "14"
+              },
+              "Shape": {
+                "@ID": "9",
+                "#text": "W"
+              },
+              "Grade": {
+                "@ID": "8",
+                "#text": "A992"
+              },
+              "Dimensions": {
+                "@AlternateDisplay": "200 x 22.5",
+                "@Metric": "0",
+                "@SizeID": "255",
+                "#text": "8 x 15"
+              },
+              "Length": "1295.402591",
+              "Finish": {
+                "@ID": "13",
+                "#text": "3-1"
+              },
+              "ReferenceNumber": "553103-02",
+              "Remark": "BEAM(B8)",
+              "PayCategory": "2",
+              "InstanceTracking": "0"
+            },
+            {
+              "ProductionControlItemTruckID": "348",
+              "ProductionControlItemID": "45020",
+              "ProductionControlID": "90",
+              "DrawingNumberDisplay": "55314001",
+              "MainMarkDisplay": "55314001",
+              "PieceMarkDisplay": "55314001",
+              "MainPiece": "1",
+              "SequenceDisplay": "5531",
+              "LotNumberDisplay": "",
+              "DrawingID": "11208",
+              "AssemblyDrawingID": "11208",
+              "PartDrawingID": "11208",
+              "ShippingLength": "2416.179832",
+              "ShippingWeightEach": "53.93496775",
+              "ShippingGrossWeightEach": "53.93496775",
+              "ShippingModelWeightEach": "53.93496775",
+              "ShippingSurfaceAreaEach": "1.952214388",
+              "ShippingSquareMetersEach": "0",
+              "ApprovalStatus": "",
+              "Quantity": "1",
+              "QuantityLoaded": "1",
+              "Loaded": {
+                "ID": "348",
+                "Date": "2026-10-02",
+                "Quantity": "1"
+              },
+              "Shape": {
+                "@ID": "9",
+                "#text": "W"
+              },
+              "Grade": {
+                "@ID": "8",
+                "#text": "A992"
+              },
+              "Dimensions": {
+                "@AlternateDisplay": "200 x 22.5",
+                "@Metric": "0",
+                "@SizeID": "255",
+                "#text": "8 x 15"
+              },
+              "Length": "2416.179832",
+              "Finish": {
+                "@ID": "13",
+                "#text": "3-1"
+              },
+              "ReferenceNumber": "553102-21",
+              "Remark": "BEAM(B8)",
+              "PayCategory": "2",
+              "InstanceTracking": "0"
+            },
+            {
+              "ProductionControlItemTruckID": "349",
+              "ProductionControlItemID": "45021",
+              "ProductionControlID": "90",
+              "DrawingNumberDisplay": "55314002",
+              "MainMarkDisplay": "55314002",
+              "PieceMarkDisplay": "55314002",
+              "MainPiece": "1",
+              "SequenceDisplay": "5531",
+              "LotNumberDisplay": "",
+              "DrawingID": "11209",
+              "AssemblyDrawingID": "11209",
+              "PartDrawingID": "11209",
+              "ShippingLength": "2844.80569",
+              "ShippingWeightEach": "78.22939398",
+              "ShippingGrossWeightEach": "78.22939398",
+              "ShippingModelWeightEach": "78.22939398",
+              "ShippingSurfaceAreaEach": "2.721031249",
+              "ShippingSquareMetersEach": "0.0270968284",
+              "ApprovalStatus": "",
+              "Quantity": "1",
+              "QuantityLoaded": "1",
+              "Loaded": {
+                "ID": "349",
+                "Date": "2026-10-02",
+                "Quantity": "1"
+              },
+              "Shape": {
+                "@ID": "9",
+                "#text": "W"
+              },
+              "Grade": {
+                "@ID": "8",
+                "#text": "A992"
+              },
+              "Dimensions": {
+                "@AlternateDisplay": "200 x 26.6",
+                "@Metric": "0",
+                "@SizeID": "254",
+                "#text": "8 x 18"
+              },
+              "Length": "2844.80569",
+              "Finish": {
+                "@ID": "13",
+                "#text": "3-1"
+              },
+              "ReferenceNumber": "553102-13",
+              "Remark": "BEAM(B8)",
+              "PayCategory": "2",
+              "InstanceTracking": "0"
+            },
+            "… 4 more"
+          ]
+        },
+        {
+          "ProductionControlLoadID": "383",
+          "ProductionControlID": "90",
+          "LoadNumber": "2",
+          "Capacity": "19958.06428",
+          "ShippingDestinationGroupID": "",
+          "ShippedFromFirmID": "",
+          "ShippedToFirmID": "",
+          "Shipped": "1",
+          "ShippedDate": "2026-10-20",
+          "QuantityAssigned": "53",
+          "AssignedLength": "427678.1179",
+          "AssignedSquareMeters": "13.99216508",
+          "AssignedWeight": "19714.5548",
+          "AssignedGrossWeight": "19714.5548",
+          "AssignedModelWeight": "19714.5548",
+          "AssignedSurfaceArea": "505.5667898",
+          "QuantityLoaded": "53",
+          "LoadedLength": "427678.1179",
+          "LoadedSquareMeters": "13.99216508",
+          "LoadedWeight": "19714.5548",
+          "LoadedGrossWeight": "19714.5548",
+          "LoadedModelWeight": "19714.5548",
+          "LoadedSurfaceArea": "505.5667898",
+          "Material": [
+            {
+              "ProductionControlItemTruckID": "249",
+              "ProductionControlItemID": "44692",
+              "ProductionControlID": "90",
+              "DrawingNumberDisplay": "55311000",
+              "MainMarkDisplay": "55311000",
+              "PieceMarkDisplay": "55311000",
+              "MainPiece": "1",
+              "SequenceDisplay": "5531",
+              "LotNumberDisplay": "",
+              "DrawingID": "11123",
+              "AssemblyDrawingID": "11123",
+              "PartDrawingID": "11123",
+              "ShippingLength": "4241.808484",
+              "ShippingWeightEach": "263.7096957",
+              "ShippingGrossWeightEach": "263.7096957",
+              "ShippingModelWeightEach": "263.7096957",
+              "ShippingSurfaceAreaEach": "6.006227738",
+              "ShippingSquareMetersEach": "0.397863699",
+              "ApprovalStatus": "",
+              "Quantity": "1",
+              "QuantityLoaded": "1",
+              "Loaded": {
+                "ID": "249",
+                "Date": "2026-09-10",
+                "Quantity": "1"
+              },
+              "QuantityAtLocation": "1",
+              "Shape": {
+                "@ID": "9",
+                "#text": "W"
+              },
+              "Grade": {
+                "@ID": "8",
+                "#text": "A992"
+              },
+              "Dimensions": {
+                "@AlternateDisplay": "200 x 52",
+                "@Metric": "0",
+                "@SizeID": "249",
+                "#text": "8 x 35"
+              },
+              "Length": "4241.808484",
+              "Finish": {
+                "@ID": "13",
+                "#text": "3-1"
+              },
+              "ReferenceNumber": "553102-05",
+              "Remark": "COLUMN(C8)",
+              "PayCategory": "8",
+              "InstanceTracking": "0"
+            },
+            {
+              "ProductionControlItemTruckID": "250",
+              "ProductionControlItemID": "44718",
+              "ProductionControlID": "90",
+              "DrawingNumberDisplay": "55311006",
+              "MainMarkDisplay": "55311006",
+              "PieceMarkDisplay": "55311006",
+              "MainPiece": "1",
+              "SequenceDisplay": "5531",
+              "LotNumberDisplay": "",
+              "DrawingID": "11129",
+              "AssemblyDrawingID": "11129",
+              "PartDrawingID": "11129",
+              "ShippingLength": "4241.808484",
+              "ShippingWeightEach": "267.9926449",
+              "ShippingGrossWeightEach": "267.9926449",
+              "ShippingModelWeightEach": "267.9926449",
+              "ShippingSurfaceAreaEach": "6.052729847",
+              "ShippingSquareMetersEach": "0.4182165622",
+              "ApprovalStatus": "",
+              "Quantity": "3",
+              "QuantityLoaded": "3",
+              "Loaded": {
+                "ID": "250",
+                "Date": "2026-09-10",
+                "Quantity": "3"
+              },
+              "QuantityAtLocation": "3",
+              "Shape": {
+                "@ID": "9",
+                "#text": "W"
+              },
+              "Grade": {
+                "@ID": "8",
+                "#text": "A992"
+              },
+              "Dimensions": {
+                "@AlternateDisplay": "200 x 52",
+                "@Metric": "0",
+                "@SizeID": "249",
+                "#text": "8 x 35"
+              },
+              "Length": "4241.808484",
+              "Finish": {
+                "@ID": "13",
+                "#text": "3-1"
+              },
+              "ReferenceNumber": "553102-05",
+              "Remark": "COLUMN(C8)",
+              "PayCategory": "8",
+              "InstanceTracking": "0"
+            },
+            {
+              "ProductionControlItemTruckID": "251",
+              "ProductionControlItemID": "44852",
+              "ProductionControlID": "90",
+              "DrawingNumberDisplay": "55313006",
+              "MainMarkDisplay": "55313006",
+              "PieceMarkDisplay": "55313006",
+              "MainPiece": "1",
+              "SequenceDisplay": "5531",
+              "LotNumberDisplay": "",
+              "DrawingID": "11159",
+              "AssemblyDrawingID": "11159",
+              "PartDrawingID": "11159",
+              "ShippingLength": "7581.915164",
+              "ShippingWeightEach": "400.8462022",
+              "ShippingGrossWeightEach": "400.8462022",
+              "ShippingModelWeightEach": "400.8462022",
+              "ShippingSurfaceAreaEach": "10.42150149",
+              "ShippingSquareMetersEach": "0.3020268137",
+              "ApprovalStatus": "",
+              "Quantity": "9",
+              "QuantityLoaded": "9",
+              "Loaded": {
+                "ID": "251",
+                "Date": "2026-09-11",
+                "Quantity": "9"
+              },
+              "QuantityAtLocation": "9",
+              "Shape": {
+                "@ID": "9",
+                "#text": "W"
+              },
+              "Grade": {
+                "@ID": "8",
+                "#text": "A992"
+              },
+              "Dimensions": {
+                "@AlternateDisplay": "250 x 49.1",
+                "@Metric": "0",
+                "@SizeID": "237",
+                "#text": "10 x 33"
+              },
+              "Length": "7581.915164",
+              "Finish": {
+                "@ID": "13",
+                "#text": "3-1"
+              },
+              "ReferenceNumber": "553101-09",
+              "Remark": "GIRDER_BEAM(B10)",
+              "PayCategory": "3",
+              "InstanceTracking": "0"
+            },
+            "… 13 more"
+          ]
+        },
+        {
+          "ProductionControlLoadID": "384",
+          "ProductionControlID": "90",
+          "LoadNumber": "3",
+          "Capacity": "19958.06428",
+          "MaximumLength": "0",
+          "ShippingDestinationGroupID": "",
+          "ShippedFromFirmID": "",
+          "ShippedToFirmID": "",
+          "Shipped": "1",
+          "ShippedDate": "2026-10-20",
+          "QuantityAssigned": "2",
+          "AssignedLength": "12509.52502",
+          "AssignedSquareMeters": "1.118349011",
+          "AssignedWeight": "564.0878287",
+          "AssignedGrossWeight": "564.0878287",
+          "AssignedModelWeight": "564.0878287",
+          "AssignedSurfaceArea": "12.70743671",
+          "QuantityLoaded": "2",
+          "LoadedLength": "12509.52502",
+          "LoadedSquareMeters": "1.118349011",
+          "LoadedWeight": "564.0878287",
+          "LoadedGrossWeight": "564.0878287",
+          "LoadedModelWeight": "564.0878287",
+          "LoadedSurfaceArea": "12.70743671",
+          "Material": {
+            "ProductionControlItemTruckID": "264",
+            "ProductionControlItemID": "44706",
+            "ProductionControlID": "90",
+            "DrawingNumberDisplay": "55311003",
+            "MainMarkDisplay": "55311003",
+            "PieceMarkDisplay": "55311003",
+            "MainPiece": "1",
+            "SequenceDisplay": "5531",
+            "LotNumberDisplay": "",
+            "DrawingID": "11126",
+            "AssemblyDrawingID": "11126",
+            "PartDrawingID": "11126",
+            "ShippingLength": "4241.808484",
+            "ShippingWeightEach": "282.0439143",
+            "ShippingGrossWeightEach": "282.0439143",
+            "ShippingModelWeightEach": "282.0439143",
+            "ShippingSurfaceAreaEach": "6.353718353",
+            "ShippingSquareMetersEach": "0.5591745054",
+            "ApprovalStatus": "",
+            "Quantity": "2",
+            "QuantityLoaded": "2",
+            "Loaded": {
+              "ID": "264",
+              "Date": "2026-09-11",
+              "Quantity": "2"
+            },
+            "QuantityAtLocation": "2",
+            "Shape": {
+              "@ID": "9",
+              "#text": "W"
+            },
+            "Grade": {
+              "@ID": "8",
+              "#text": "A992"
+            },
+            "Dimensions": {
+              "@AlternateDisplay": "200 x 52",
+              "@Metric": "0",
+              "@SizeID": "249",
+              "#text": "8 x 35"
+            },
+            "Length": "4241.808484",
+            "Finish": {
+              "@ID": "13",
+              "#text": "3-1"
+            },
+            "ReferenceNumber": "553102-05",
+            "Remark": "COLUMN(C8)",
+            "PayCategory": "8",
+            "InstanceTracking": "0"
+          }
+        },
+        "… 3 more"
+      ],
+      "ProductionControlJob": {
+        "ProductionControlID": "90",
+        "JobNumber": "TESTTEST",
+        "JobDescription": "TESTTEST",
+        "JobLocation": "TESTTEST",
+        "DistanceToJob": "0",
+        "JobStatus": {
+          "JobStatusID": "1",
+          "Description": "Open",
+          "Purpose": "0",
+          "IsDefault": "1",
+          "Active": "1"
+        },
+        "JobDate": "2026-08-06",
+        "ShipToName": "<redacted>",
+        "ShipToAttn": "<redacted>",
+        "ShipToAddress1": "<redacted>",
+        "ShipToAddress2": "<redacted>",
+        "ShipToCity": "<redacted>",
+        "ShipToState": "<redacted>",
+        "ShipToZip": "<redacted>",
+        "ShipToCountry": "<redacted>",
+        "ShipToPhone": "<redacted>",
+        "Comment1": "TESTTEST",
+        "GroupName": "<redacted>",
+        "TFSDropOption": "1000",
+        "InputDisplayUnits": {
+          "SizeUOM": "Imperial",
+          "LengthUOM": "Imperial",
+          "LengthTypeIDMetric": "101",
+          "LengthTypeIDImperial": "1",
+          "WeightUOM": "Imperial",
+          "PriceUOM": "Imperial"
+        }
+      },
+      "FieldSettings": {
+        "TrailerNumber": {
+          "Show": "1",
+          "Required": "0",
+          "RestrictToList": "0"
+        },
+        "Carrier": {
+          "Show": "1",
+          "Required": "0",
+          "RestrictToList": "0"
+        },
+        "LoadCategory1": {
+          "Show": "1",
+          "Required": "0",
+          "RestrictToList": "0"
+        },
+        "LoadCategory2": {
+          "Show": "1",
+          "Required": "0",
+          "RestrictToList": "0"
+        },
+        "LoadCategory3": {
+          "Show": "1",
+          "Required": "0",
+          "RestrictToList": "0"
+        },
+        "LoadShippedFrom": {
+          "Show": "0",
+          "Required": "0",
+          "RestrictToList": "0"
+        },
+        "DateReceived": {
+          "Show": "1",
+          "Required": "0"
+        }
+      },
+      "HoldSettings": {
+        "Purchasing": "Prompt",
+        "Production": "Prompt",
+        "Inspections": "Prompt",
+        "ShippingAssign": "Prompt",
+        "ShippingLoad": "Prompt",
+        "ShippingShip": "Prevent"
+      }
+    }
+  }
+}

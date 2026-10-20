@@ -1,0 +1,46 @@
+{
+  "command": "ProductionControlLoadAdditional_Insert",
+  "request": {
+    "ProductionControlLoadID": "407",
+    "Description": "WIKI test bolts",
+    "Quantity": 2,
+    "WeightEach": 5
+  },
+  "status": 200,
+  "note": "Trimmed: lists keep their first 3 items. Names, phones and street addresses are masked.",
+  "response": {
+    "Successful": "1",
+    "ResultData": {
+      "ProductionControlLoad": {
+        "ProductionControlLoadID": "407",
+        "ProductionControlID": "90",
+        "LoadNumber": "WIKI-T4",
+        "Capacity": "19958.06428",
+        "ShippingDestinationGroupID": "",
+        "ShippedFromFirmID": "",
+        "ShippedToFirmID": "",
+        "Shipped": "0",
+        "QuantityAssigned": "2",
+        "AssignedLength": "0",
+        "AssignedSquareMeters": "0",
+        "AssignedWeight": "10",
+        "AssignedGrossWeight": "10",
+        "AssignedModelWeight": "10",
+        "AssignedSurfaceArea": "0",
+        "QuantityLoaded": "2",
+        "LoadedLength": "0",
+        "LoadedSquareMeters": "0",
+        "LoadedWeight": "10",
+        "LoadedGrossWeight": "10",
+        "LoadedModelWeight": "10",
+        "LoadedSurfaceArea": "0",
+        "Additional": {
+          "ProductionControlTrucksAdditionalID": "3",
+          "Quantity": "2",
+          "Description": "WIKI test bolts",
+          "WeightEach": "5"
+        }
+      }
+    }
+  }
+}

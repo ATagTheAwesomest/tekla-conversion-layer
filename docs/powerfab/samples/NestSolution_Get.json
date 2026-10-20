@@ -1,0 +1,29 @@
+{
+  "command": "NestSolution_Get",
+  "request": {
+    "JobNumber": "EPM-001"
+  },
+  "status": 200,
+  "bytes": 331,
+  "note": "Trimmed: lists keep their first 3 items. Names, phones and street addresses are masked.",
+  "response": {
+    "Successful": "1",
+    "ResultData": {
+      "LastLogID": "0,0,0,0",
+      "GetOptions": {
+        "IncludeRequired": "0",
+        "IncludeResult": "0",
+        "IncludeResultParts": "0",
+        "IncludeResultPartLinks": "0",
+        "InputDisplayUnits": {
+          "SizeUOM": "Imperial",
+          "LengthUOM": "Imperial",
+          "LengthTypeIDMetric": "101",
+          "LengthTypeIDImperial": "1",
+          "WeightUOM": "Imperial",
+          "PriceUOM": "Imperial"
+        }
+      }
+    }
+  }
+}

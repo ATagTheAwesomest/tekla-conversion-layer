@@ -1,0 +1,306 @@
+{
+  "command": "GetCutList",
+  "request": {
+    "CutListID": 1
+  },
+  "status": 200,
+  "bytes": 157802,
+  "note": "Trimmed: lists keep their first 3 items. Names, phones and street addresses are masked.",
+  "response": {
+    "Successful": "1",
+    "CommandGUID": "62F0069F-0823-4D6D-8AC6-00BD430331CA",
+    "ProductionControlID": "13",
+    "JobNumber": "EPM-001",
+    "CutListID": "1",
+    "CutListName": "Seq 1 WF",
+    "DateCreated": "2020-09-01",
+    "DateRequired": "2020-09-25",
+    "CuttingDetails": "125",
+    "TotalCut": "0",
+    "TotalInvalidated": "16",
+    "TotalValidationRequired": "0",
+    "InputDisplayUnits": {
+      "SizeUOM": "Imperial",
+      "LengthUOM": "Imperial",
+      "LengthTypeIDMetric": "101",
+      "LengthTypeIDImperial": "1",
+      "WeightUOM": "Imperial",
+      "PriceUOM": "Imperial"
+    },
+    "CutListItem": [
+      {
+        "CutListItemID": "37",
+        "CutListSerialNumber": "441",
+        "PlannedInventoryItemID": "784",
+        "OnOrder": "1",
+        "Status": "On Order",
+        "Shape": "W",
+        "Grade": "A992",
+        "Dimensions": {
+          "@Metric": "0",
+          "#text": "18 x 40"
+        },
+        "Length": {
+          "@UOM": "in",
+          "#text": "720"
+        },
+        "Weight": {
+          "@UOM": "kg",
+          "#text": "1088.621688000001742524015527860962"
+        },
+        "ExpectedDrop": {
+          "@UOM": "in",
+          "#text": "75.9375"
+        },
+        "ExpectedPercentDrop": "10.5469",
+        "HasTFSStation": "1",
+        "HasCNCData": "1",
+        "NestID": "",
+        "NestExtra1": "",
+        "NestExtra2": "",
+        "DateTimeUpdated": "2020-09-01T08:37:59",
+        "PlannedInventoryItem": {
+          "PONumber": "EPM-0001"
+        },
+        "CutListItemPart": [
+          {
+            "ProductionControlID": "13",
+            "JobNumber": "EPM-001",
+            "DrawingNumber": "B130",
+            "MainMark": "B130",
+            "MainPiece": "1",
+            "PieceMark": "B130",
+            "Sequence": "2",
+            "LotNumber": "",
+            "Quantity": "1",
+            "Length": {
+              "@UOM": "in",
+              "#text": "425.625"
+            },
+            "ApprovalStatusCode": "P",
+            "Category": "BEAM",
+            "SubCategory": "Phase 2",
+            "Route": "SP",
+            "TFSStation": "Cut/Saw/Beamline/BurnTable",
+            "NextStation": "Layout/Weld",
+            "CNCFileID": "1030",
+            "CNCFormat": "DSTV"
+          },
+          {
+            "ProductionControlID": "13",
+            "JobNumber": "EPM-001",
+            "DrawingNumber": "B116",
+            "MainMark": "B116",
+            "MainPiece": "1",
+            "PieceMark": "B116",
+            "Sequence": "2",
+            "LotNumber": "",
+            "Quantity": "1",
+            "Length": {
+              "@UOM": "mm",
+              "#text": "5548.323597"
+            },
+            "ApprovalStatusCode": "P",
+            "Category": "BEAM",
+            "SubCategory": "Phase 2",
+            "Route": "SP",
+            "TFSStation": "Cut/Saw/Beamline/BurnTable",
+            "NextStation": "Layout/Weld",
+            "CNCFileID": "1014",
+            "CNCFormat": "DSTV"
+          }
+        ]
+      },
+      {
+        "CutListItemID": "89",
+        "CutListSerialNumber": "483",
+        "PlannedInventoryItemID": "830",
+        "OnOrder": "1",
+        "Status": "On Order",
+        "Shape": "W",
+        "Grade": "A992",
+        "Dimensions": {
+          "@Metric": "0",
+          "#text": "18 x 40"
+        },
+        "Length": {
+          "@UOM": "in",
+          "#text": "480"
+        },
+        "Weight": {
+          "@UOM": "kg",
+          "#text": "725.747792000001161682677018573974"
+        },
+        "ExpectedDrop": {
+          "@UOM": "in",
+          "#text": "132.4375"
+        },
+        "ExpectedPercentDrop": "27.5911",
+        "HasCNCData": "1",
+        "NestID": "",
+        "NestExtra1": "",
+        "NestExtra2": "",
+        "DateTimeUpdated": "2020-09-01T08:37:59",
+        "PlannedInventoryItem": {
+          "PONumber": "EPM-0001"
+        },
+        "CutListItemPart": [
+          {
+            "ProductionControlID": "13",
+            "JobNumber": "EPM-001",
+            "DrawingNumber": "3",
+            "MainMark": "3B2",
+            "PieceMark": "w294",
+            "Sequence": "1",
+            "LotNumber": "",
+            "Quantity": "1",
+            "Length": {
+              "@UOM": "mm",
+              "#text": "4430.721361"
+            },
+            "ApprovalStatusCode": "IFF",
+            "ApprovalStatusPurpose": "Approved",
+            "SubCategory": "Phase 1",
+            "Route": "SU",
+            "NextStation": "Cut/Saw/Beamline/BurnTable",
+            "CNCFileID": "1559",
+            "CNCFormat": "DSTV",
+            "CNCFileMiterCut": "1"
+          },
+          {
+            "ProductionControlID": "13",
+            "JobNumber": "EPM-001",
+            "DrawingNumber": "3",
+            "MainMark": "3B2",
+            "MainPiece": "1",
+            "PieceMark": "3B2",
+            "Sequence": "1",
+            "LotNumber": "",
+            "Quantity": "1",
+            "Length": {
+              "@UOM": "in",
+              "#text": "173.125"
+            },
+            "ApprovalStatusCode": "IFF",
+            "ApprovalStatusPurpose": "Approved",
+            "Category": "BEAM",
+            "SubCategory": "Phase 1",
+            "Route": "SU",
+            "NextStation": "Cut/Saw/Beamline/BurnTable",
+            "CNCFileID": "936",
+            "CNCFormat": "DSTV",
+            "CNCFileMiterCut": "1"
+          }
+        ]
+      },
+      {
+        "CutListItemID": "105",
+        "CutListSerialNumber": "497",
+        "PlannedInventoryItemID": "846",
+        "OnOrder": "1",
+        "Status": "On Order",
+        "Shape": "W",
+        "Grade": "A992",
+        "Dimensions": {
+          "@Metric": "0",
+          "#text": "18 x 35"
+        },
+        "Length": {
+          "@UOM": "in",
+          "#text": "720"
+        },
+        "Weight": {
+          "@UOM": "kg",
+          "#text": "952.543977000001524699369568590305"
+        },
+        "ExpectedDrop": {
+          "@UOM": "in",
+          "#text": "2.0625"
+        },
+        "ExpectedPercentDrop": "0.2865",
+        "HasTFSStation": "1",
+        "HasCNCData": "1",
+        "NestID": "",
+        "NestExtra1": "",
+        "NestExtra2": "",
+        "DateTimeUpdated": "2020-09-01T08:37:59",
+        "PlannedInventoryItem": {
+          "PONumber": "EPM-0001",
+          "Location": "0"
+        },
+        "CutListItemPart": [
+          {
+            "ProductionControlID": "13",
+            "JobNumber": "EPM-001",
+            "DrawingNumber": "B34",
+            "MainMark": "B34",
+            "MainPiece": "1",
+            "PieceMark": "B34",
+            "Sequence": "1",
+            "LotNumber": "",
+            "Quantity": "1",
+            "Length": {
+              "@UOM": "in",
+              "#text": "359.25"
+            },
+            "ApprovalStatusCode": "IFF",
+            "ApprovalStatusPurpose": "Approved",
+            "Category": "BEAM",
+            "SubCategory": "Phase 1",
+            "Route": "SP",
+            "TFSStation": "Cut/Saw/Beamline/BurnTable",
+            "NextStation": "Layout/Weld",
+            "CNCFileID": "1258",
+            "CNCFormat": "DSTV"
+          },
+          {
+            "ProductionControlID": "13",
+            "JobNumber": "EPM-001",
+            "DrawingNumber": "B22",
+            "MainMark": "B22",
+            "MainPiece": "1",
+            "PieceMark": "B22",
+            "Sequence": "1",
+            "LotNumber": "",
+            "Quantity": "1",
+            "Length": {
+              "@UOM": "mm",
+              "#text": "9110.680721"
+            },
+            "ApprovalStatusCode": "IFF",
+            "ApprovalStatusPurpose": "Approved",
+            "Category": "BEAM",
+            "SubCategory": "Phase 1",
+            "Route": "SP",
+            "TFSStation": "Cut/Saw/Beamline/BurnTable",
+            "NextStation": "Layout/Weld",
+            "CNCFileID": "1126",
+            "CNCFormat": "DSTV"
+          }
+        ]
+      },
+      "… 122 more"
+    ],
+    "FilterSet": {
+      "Filter": {
+        "Name": "Job #",
+        "DisplayName": "Job #",
+        "FilterItems": {
+          "FilterItem": {
+            "@Field1": "13",
+            "@Field2": "EPM-001",
+            "#text": "EPM-001"
+          }
+        }
+      }
+    },
+    "HoldSettings": {
+      "Purchasing": "Prompt",
+      "Production": "Prompt",
+      "Inspections": "Prompt",
+      "ShippingAssign": "Prompt",
+      "ShippingLoad": "Prompt",
+      "ShippingShip": "Prevent"
+    }
+  }
+}

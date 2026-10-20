@@ -1,0 +1,21 @@
+{
+  "command": "WorkArea_Get",
+  "request": {
+    "JobNumber": "TESTTEST"
+  },
+  "status": 200,
+  "bytes": 131,
+  "note": "Trimmed: lists keep their first 3 items. Names, phones and street addresses are masked.",
+  "response": {
+    "Successful": "1",
+    "ResultData": {
+      "LastLogID": "0",
+      "WorkArea": {
+        "WorkAreaID": "1",
+        "Name": "Main",
+        "Description": "Main",
+        "WorkshopID": "1"
+      }
+    }
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "command": "ValJob",
+  "request": {
+    "JobNumber": "TESTTEST"
+  },
+  "status": 200,
+  "bytes": 71,
+  "note": "Trimmed: lists keep their first 3 items. Names, phones and street addresses are masked.",
+  "response": {
+    "Successful": "1",
+    "CommandGUID": "C5FF57D5-5E89-463F-9DF1-983E29B0F234"
+  }
+}

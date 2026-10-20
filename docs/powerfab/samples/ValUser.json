@@ -1,0 +1,14 @@
+{
+  "command": "ValUser",
+  "request": {
+    "Username": "admin"
+  },
+  "status": 200,
+  "bytes": 84,
+  "note": "Trimmed: lists keep their first 3 items. Names, phones and street addresses are masked.",
+  "response": {
+    "Successful": "1",
+    "CommandGUID": "1FE4C6FC-3991-4D0F-9CF0-4EE8C4EAEC4B",
+    "UserID": "1"
+  }
+}

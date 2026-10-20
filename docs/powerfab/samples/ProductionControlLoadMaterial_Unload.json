@@ -1,0 +1,197 @@
+{
+  "command": "ProductionControlLoadMaterial_Unload",
+  "request": {
+    "ProductionControlLoadID": "404",
+    "UnloadItem": [
+      {
+        "ProductionControlItemTrucksLoadID": "593",
+        "Quantity": 1
+      },
+      {
+        "ProductionControlItemTrucksLoadID": "591",
+        "Quantity": 1
+      },
+      {
+        "ProductionControlItemTrucksLoadID": "592",
+        "Quantity": 1
+      }
+    ]
+  },
+  "status": 200,
+  "note": "Trimmed: lists keep their first 3 items. Names, phones and street addresses are masked.",
+  "response": {
+    "Successful": "1",
+    "ResultData": {
+      "ProductionControlLoad": {
+        "ProductionControlLoadID": "404",
+        "ProductionControlID": "90",
+        "LoadNumber": "WIKI-T1",
+        "TrailerNumber": "WIKI-TRAILER",
+        "Carrier": "WIKI TEST 2",
+        "Capacity": "19958.06428",
+        "ShippingDestinationGroupID": "",
+        "ShippedFromFirmID": "",
+        "ShippedToFirmID": "",
+        "Shipped": "0",
+        "TopText": "wiki test load",
+        "QuantityAssigned": "5",
+        "AssignedLength": "19446.91389",
+        "AssignedSquareMeters": "1.376897915",
+        "AssignedWeight": "850.2681419",
+        "AssignedGrossWeight": "850.2681419",
+        "AssignedModelWeight": "850.2681419",
+        "AssignedSurfaceArea": "16.88317086",
+        "QuantityLoaded": "2",
+        "LoadedLength": "0",
+        "LoadedSquareMeters": "0",
+        "LoadedWeight": "10",
+        "LoadedGrossWeight": "10",
+        "LoadedModelWeight": "10",
+        "LoadedSurfaceArea": "0",
+        "Material": [
+          {
+            "ProductionControlItemTruckID": "586",
+            "ProductionControlItemID": "44702",
+            "ProductionControlID": "90",
+            "DrawingNumberDisplay": "55311002",
+            "MainMarkDisplay": "55311002",
+            "PieceMarkDisplay": "55311002",
+            "MainPiece": "1",
+            "SequenceDisplay": "5531",
+            "LotNumberDisplay": "",
+            "DrawingID": "11125",
+            "AssemblyDrawingID": "11125",
+            "PartDrawingID": "11125",
+            "ShippingLength": "4241.808484",
+            "ShippingWeightEach": "282.0439143",
+            "ShippingGrossWeightEach": "282.0439143",
+            "ShippingModelWeightEach": "282.0439143",
+            "ShippingSurfaceAreaEach": "6.353718353",
+            "ShippingSquareMetersEach": "0.5591745054",
+            "ApprovalStatus": "",
+            "Quantity": "1",
+            "Shape": {
+              "@ID": "9",
+              "#text": "W"
+            },
+            "Grade": {
+              "@ID": "8",
+              "#text": "A992"
+            },
+            "Dimensions": {
+              "@AlternateDisplay": "200 x 52",
+              "@Metric": "0",
+              "@SizeID": "249",
+              "#text": "8 x 35"
+            },
+            "Length": "4241.808484",
+            "Finish": {
+              "@ID": "13",
+              "#text": "3-1"
+            },
+            "ReferenceNumber": "553102-05",
+            "Remark": "COLUMN(C8)",
+            "PayCategory": "8",
+            "InstanceTracking": "0"
+          },
+          {
+            "ProductionControlItemTruckID": "587",
+            "ProductionControlItemID": "44706",
+            "ProductionControlID": "90",
+            "DrawingNumberDisplay": "55311003",
+            "MainMarkDisplay": "55311003",
+            "PieceMarkDisplay": "55311003",
+            "MainPiece": "1",
+            "SequenceDisplay": "5531",
+            "LotNumberDisplay": "",
+            "DrawingID": "11126",
+            "AssemblyDrawingID": "11126",
+            "PartDrawingID": "11126",
+            "ShippingLength": "4241.808484",
+            "ShippingWeightEach": "282.0439143",
+            "ShippingGrossWeightEach": "282.0439143",
+            "ShippingModelWeightEach": "282.0439143",
+            "ShippingSurfaceAreaEach": "6.353718353",
+            "ShippingSquareMetersEach": "0.5591745054",
+            "ApprovalStatus": "",
+            "Quantity": "1",
+            "Shape": {
+              "@ID": "9",
+              "#text": "W"
+            },
+            "Grade": {
+              "@ID": "8",
+              "#text": "A992"
+            },
+            "Dimensions": {
+              "@AlternateDisplay": "200 x 52",
+              "@Metric": "0",
+              "@SizeID": "249",
+              "#text": "8 x 35"
+            },
+            "Length": "4241.808484",
+            "Finish": {
+              "@ID": "13",
+              "#text": "3-1"
+            },
+            "ReferenceNumber": "553102-05",
+            "Remark": "COLUMN(C8)",
+            "PayCategory": "8",
+            "InstanceTracking": "0"
+          },
+          {
+            "ProductionControlItemTruckID": "588",
+            "ProductionControlItemID": "44710",
+            "ProductionControlID": "90",
+            "DrawingNumberDisplay": "55311004",
+            "MainMarkDisplay": "55311004",
+            "PieceMarkDisplay": "55311004",
+            "MainPiece": "1",
+            "SequenceDisplay": "5531",
+            "LotNumberDisplay": "",
+            "DrawingID": "11127",
+            "AssemblyDrawingID": "11127",
+            "PartDrawingID": "11127",
+            "ShippingLength": "5895.986792",
+            "ShippingWeightEach": "276.1803133",
+            "ShippingGrossWeightEach": "276.1803133",
+            "ShippingModelWeightEach": "276.1803133",
+            "ShippingSurfaceAreaEach": "4.175734158",
+            "ShippingSquareMetersEach": "0.2585489042",
+            "ApprovalStatus": "",
+            "Quantity": "1",
+            "Shape": {
+              "@ID": "185",
+              "#text": "HSS"
+            },
+            "Grade": {
+              "@ID": "205",
+              "#text": "A500C"
+            },
+            "Dimensions": {
+              "@AlternateDisplay": "152.4 x 152.4 x 9.5",
+              "@Metric": "0",
+              "@SizeID": "1018",
+              "#text": "6 x 6 x 3/8"
+            },
+            "Length": "5895.986792",
+            "Finish": {
+              "@ID": "13",
+              "#text": "3-1"
+            },
+            "ReferenceNumber": "553105-01",
+            "Remark": "COLUMN(TS-C)",
+            "PayCategory": "8-22",
+            "InstanceTracking": "0"
+          }
+        ],
+        "Additional": {
+          "ProductionControlTrucksAdditionalID": "2",
+          "Quantity": "2",
+          "Description": "WIKI test bolts",
+          "WeightEach": "5"
+        }
+      }
+    }
+  }
+}

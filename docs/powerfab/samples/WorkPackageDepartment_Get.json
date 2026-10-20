@@ -1,0 +1,85 @@
+{
+  "command": "WorkPackageDepartment_Get",
+  "request": {
+    "JobNumber": "TESTTEST"
+  },
+  "status": 200,
+  "bytes": 1993,
+  "note": "Trimmed: lists keep their first 3 items. Names, phones and street addresses are masked.",
+  "response": {
+    "Successful": "1",
+    "ResultData": {
+      "LastLogID": "4,4",
+      "WorkPackageDepartment": [
+        {
+          "WorkPackageDepartmentID": "1",
+          "WorkPackageID": "3",
+          "DepartmentID": "1",
+          "DepartmentNumber": "10",
+          "DepartmentName": "Fabrication",
+          "Quantity": "103",
+          "Weight": "1075.229329",
+          "CalculatedHours": "0",
+          "Hours": "0",
+          "IsCompleted": "0",
+          "CompletedQuantity": "0",
+          "CompletedWeight": "0",
+          "CompletedHours": "0",
+          "PercentCompleted": "0",
+          "RemainingQuantity": "103",
+          "RemainingWeight": "1075.229329",
+          "RemainingHours": "0",
+          "OffsetFutureWorkPackageWeight": "0",
+          "OffsetFutureWorkPackageHours": "0"
+        },
+        {
+          "WorkPackageDepartmentID": "2",
+          "WorkPackageID": "6",
+          "DepartmentID": "1",
+          "DepartmentNumber": "10",
+          "DepartmentName": "Fabrication",
+          "Quantity": "93",
+          "Weight": "33420.89563",
+          "CalculatedHours": "0",
+          "Hours": "0",
+          "IsCompleted": "0",
+          "CompletedQuantity": "0",
+          "CompletedWeight": "0",
+          "CompletedHours": "0",
+          "PercentCompleted": "0",
+          "RemainingQuantity": "93",
+          "RemainingWeight": "33420.89563",
+          "RemainingHours": "0",
+          "OffsetFutureWorkPackageWeight": "0",
+          "OffsetFutureWorkPackageHours": "0"
+        },
+        {
+          "WorkPackageDepartmentID": "3",
+          "WorkPackageID": "9",
+          "DepartmentID": "1",
+          "DepartmentNumber": "10",
+          "DepartmentName": "Fabrication",
+          "Quantity": "280",
+          "Weight": "27085.00202",
+          "CalculatedHours": "0",
+          "Hours": "0",
+          "IsCompleted": "0",
+          "CompletedQuantity": "0",
+          "CompletedWeight": "0",
+          "CompletedHours": "0",
+          "PercentCompleted": "0",
+          "RemainingQuantity": "280",
+          "RemainingWeight": "27085.00202",
+          "RemainingHours": "0",
+          "OffsetFutureWorkPackageWeight": "0",
+          "OffsetFutureWorkPackageHours": "0"
+        },
+        "… 1 more"
+      ],
+      "GetOptions": {
+        "IncludeDepartmentTasks": "0",
+        "IncludeDepartmentTaskCompletions": "0"
+      }
+    }
+  }
+}

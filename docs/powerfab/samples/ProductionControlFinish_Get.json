@@ -1,0 +1,33 @@
+{
+  "command": "ProductionControlFinish_Get",
+  "request": {
+    "JobNumber": "EPM-001"
+  },
+  "status": 200,
+  "bytes": 2078,
+  "note": "Trimmed: lists keep their first 3 items. Names, phones and street addresses are masked.",
+  "response": {
+    "Successful": "1",
+    "ResultData": {
+      "LastLogID": "25",
+      "ProductionControlFinish": [
+        {
+          "ProductionControlFinishID": "1",
+          "Abbreviation": "PNT",
+          "Description": "Painted"
+        },
+        {
+          "ProductionControlFinishID": "2",
+          "Abbreviation": "UNP",
+          "Description": "Unpainted"
+        },
+        {
+          "ProductionControlFinishID": "3",
+          "Abbreviation": "GLV",
+          "Description": "Galvanized"
+        },
+        "… 21 more"
+      ]
+    }
+  }
+}

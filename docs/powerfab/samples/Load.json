@@ -1,0 +1,17 @@
+{
+  "command": "Load",
+  "request": {
+    "CommitType": "Delete",
+    "JobNumber": "TESTTEST",
+    "TruckNumber": "WIKI-T2",
+    "MainMark": "55311005",
+    "Sequence": "5531",
+    "Quantity": 1
+  },
+  "status": 200,
+  "note": "Trimmed: lists keep their first 3 items. Names, phones and street addresses are masked.",
+  "response": {
+    "Successful": "1",
+    "CommandGUID": "EDA6C5ED-E245-491B-B59D-9755AFD0F5C2"
+  }
+}

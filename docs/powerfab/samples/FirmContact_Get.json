@@ -1,0 +1,43 @@
+{
+  "command": "FirmContact_Get",
+  "request": {
+    "JobNumber": "EPM-001"
+  },
+  "status": 200,
+  "bytes": 1556,
+  "note": "Trimmed: lists keep their first 3 items. Names, phones and street addresses are masked.",
+  "response": {
+    "Successful": "1",
+    "ResultData": {
+      "LastLogID": "18",
+      "GetOptions": "",
+      "FirmContact": [
+        {
+          "FirmContactID": "1",
+          "FirmID": "2",
+          "Name": "<redacted>",
+          "Phone": "<redacted>",
+          "Inspector": "0",
+          "Active": "1"
+        },
+        {
+          "FirmContactID": "2",
+          "FirmID": "1",
+          "Name": "<redacted>",
+          "Phone": "<redacted>",
+          "Inspector": "0",
+          "Active": "1"
+        },
+        {
+          "FirmContactID": "3",
+          "FirmID": "3",
+          "Name": "<redacted>",
+          "Phone": "<redacted>",
+          "Inspector": "0",
+          "Active": "1"
+        },
+        "… 12 more"
+      ]
+    }
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "command": "Drawing_Insert",
+  "request": {
+    "ProjectID": 4,
+    "DrawingLogID": 24,
+    "DrawingNumberDisplay": "WIKI-1",
+    "Description": "wiki test drawing"
+  },
+  "status": 200,
+  "note": "Trimmed: lists keep their first 3 items. Names, phones and street addresses are masked.",
+  "response": {
+    "Successful": "1",
+    "ResultData": {
+      "Drawing": {
+        "DrawingID": "12277",
+        "ProjectID": "4",
+        "DrawingLogID": "24",
+        "DrawingNumberDisplay": "WIKI-1",
+        "Description": "wiki test drawing",
+        "DetailingHours": "0",
+        "ReSubmit": "0"
+      }
+    }
+  }
+}

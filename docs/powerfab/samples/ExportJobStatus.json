@@ -1,0 +1,18 @@
+{
+  "command": "ExportJobStatus",
+  "request": {
+    "JobNumber": "EPM-001"
+  },
+  "status": 200,
+  "note": "Trimmed: lists keep their first 3 items. Names, phones and street addresses are masked.",
+  "response": {
+    "Successful": "1",
+    "CommandGUID": "D5DE862E-F650-4835-B559-70B73BFBD370",
+    "ExportFile": {
+      "FileName": "EPM-001.xml",
+      "FileExtension": ".xml",
+      "ContentType": "text/xml",
+      "BinaryDataIndex": "0"
+    }
+  }
+}

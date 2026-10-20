@@ -1,0 +1,63 @@
+{
+  "command": "MaxTruck",
+  "request": {
+    "JobNumber": "TESTTEST"
+  },
+  "status": 200,
+  "bytes": 846,
+  "note": "Trimmed: lists keep their first 3 items. Names, phones and street addresses are masked.",
+  "response": {
+    "Successful": "1",
+    "CommandGUID": "5A61459E-E72C-4000-BB4A-DA814BA35AB9",
+    "ProductionControlID": "90",
+    "JobNumber": "TESTTEST",
+    "MaxTruck": "6",
+    "NextAvailableLoadNumber": "7",
+    "DefaultCapacity": {
+      "@UOM": "kg",
+      "#text": "19958.06428"
+    },
+    "DefaultMaximumLength": {
+      "@UOM": "mm",
+      "#text": "0"
+    },
+    "TrailerNumber": {
+      "ShowField": "1",
+      "Required": "0",
+      "RestrictToList": "0"
+    },
+    "Carrier": {
+      "ShowField": "1",
+      "Required": "0",
+      "RestrictToList": "0"
+    },
+    "LoadCategory1": {
+      "ShowField": "1",
+      "Required": "0",
+      "RestrictToList": "0"
+    },
+    "LoadCategory2": {
+      "ShowField": "1",
+      "Required": "0",
+      "RestrictToList": "0"
+    },
+    "LoadCategory3": {
+      "ShowField": "1",
+      "Required": "0",
+      "RestrictToList": "0"
+    },
+    "ShippedFrom": {
+      "ShowField": "0",
+      "Required": "0",
+      "RestrictToList": "0"
+    },
+    "InputDisplayUnits": {
+      "SizeUOM": "Imperial",
+      "LengthUOM": "Imperial",
+      "LengthTypeIDMetric": "101",
+      "LengthTypeIDImperial": "1",
+      "WeightUOM": "Imperial",
+      "PriceUOM": "Imperial"
+    }
+  }
+}

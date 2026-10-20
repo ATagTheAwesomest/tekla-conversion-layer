@@ -1,0 +1,74 @@
+{
+  "command": "GetSubCategories",
+  "request": {
+    "JobNumber": "EPM-001"
+  },
+  "status": 200,
+  "bytes": 1376,
+  "note": "Trimmed: lists keep their first 3 items. Names, phones and street addresses are masked.",
+  "response": {
+    "Successful": "1",
+    "CommandGUID": "CA1E11A0-9D18-4D35-8689-19811F1C0E7F",
+    "ProductionControlID": "13",
+    "JobNumber": "EPM-001",
+    "InputDisplayUnits": {
+      "SizeUOM": "Imperial",
+      "LengthUOM": "Imperial",
+      "LengthTypeIDMetric": "101",
+      "LengthTypeIDImperial": "1",
+      "WeightUOM": "Imperial",
+      "PriceUOM": "Imperial"
+    },
+    "SubCategory": [
+      {
+        "SubCategory": "",
+        "MainMemberQuantity": "0",
+        "TotalQuantity": "11659",
+        "Weight": {
+          "@UOM": "kg",
+          "#text": "2376.884528022158"
+        }
+      },
+      {
+        "SubCategory": "Phase 1",
+        "MainMemberQuantity": "174",
+        "TotalQuantity": "984",
+        "Weight": {
+          "@UOM": "kg",
+          "#text": "75057.648022458714593"
+        }
+      },
+      {
+        "SubCategory": "Phase 2",
+        "MainMemberQuantity": "226",
+        "TotalQuantity": "834",
+        "Weight": {
+          "@UOM": "kg",
+          "#text": "113458.630324831838491"
+        }
+      },
+      "… 3 more"
+    ],
+    "FilterSet": {
+      "Filter": {
+        "Name": "Job #",
+        "DisplayName": "Job #",
+        "FilterItems": {
+          "FilterItem": {
+            "@Field1": "13",
+            "@Field2": "EPM-001",
+            "#text": "EPM-001"
+          }
+        }
+      }
+    },
+    "HoldSettings": {
+      "Purchasing": "Prompt",
+      "Production": "Prompt",
+      "Inspections": "Prompt",
+      "ShippingAssign": "Prompt",
+      "ShippingLoad": "Prompt",
+      "ShippingShip": "Prevent"
+    }
+  }
+}

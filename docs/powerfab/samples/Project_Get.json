@@ -1,0 +1,248 @@
+{
+  "command": "Project_Get",
+  "request": {
+    "JobNumber": "TESTTEST",
+    "GetOptions": {
+      "IncludeDrawingLogs": 1,
+      "IncludeFirms": 1
+    }
+  },
+  "status": 200,
+  "bytes": 5099,
+  "note": "Trimmed: lists keep their first 3 items. Names, phones and street addresses are masked.",
+  "response": {
+    "Successful": "1",
+    "ResultData": {
+      "LastLogID": "70,0",
+      "GetOptions": {
+        "IncludeDrawingLogs": "1",
+        "IncludeFirms": "1"
+      },
+      "Project": [
+        {
+          "ProjectID": "4",
+          "JobNumber": "EPM-001",
+          "JobDescription": "Tekla EPM Demo",
+          "JobLocation": "Trimble Solutions USA",
+          "JobDate": "2020-08-31",
+          "JobStatus": {
+            "JobStatusID": "2",
+            "Description": "Closed",
+            "Purpose": "10",
+            "IsDefault": "0",
+            "Active": "1"
+          },
+          "DrawingLog": [
+            {
+              "DrawingLogID": "21",
+              "ProjectID": "4",
+              "DrawingType": "Design",
+              "DrawingLogName": "Design",
+              "PDCLink": "0",
+              "SubdirectoryPath": "Design",
+              "DrawingLogMapping": ""
+            },
+            {
+              "DrawingLogID": "22",
+              "ProjectID": "4",
+              "DrawingType": "Detail",
+              "DrawingLogName": "Assembly",
+              "PDCLink": "20",
+              "SubdirectoryPath": "Detail\\Assembly drawings",
+              "DrawingLogMapping": "Details"
+            },
+            {
+              "DrawingLogID": "23",
+              "ProjectID": "4",
+              "DrawingType": "Detail",
+              "DrawingLogName": "GA",
+              "PDCLink": "0",
+              "SubdirectoryPath": "Detail\\GA drawings",
+              "DrawingLogMapping": "General Arrangement\nErection sheets\nGA"
+            },
+            "… 2 more"
+          ],
+          "ProjectFirm": [
+            {
+              "FirmType": "Client",
+              "FirmID": "1",
+              "ShipToFirmAddressID": "11",
+              "BillToFirmAddressID": "6",
+              "FirmContactID": "8",
+              "Description": "Project Manager"
+            },
+            {
+              "FirmType": "Detailer",
+              "FirmID": "7",
+              "ShipToFirmAddressID": "12",
+              "BillToFirmAddressID": "12",
+              "FirmContactID": "11",
+              "Description": "Detailer"
+            },
+            {
+              "FirmType": "Client",
+              "FirmID": "1",
+              "ShipToFirmAddressID": "1",
+              "BillToFirmAddressID": "6",
+              "FirmContactID": "10",
+              "Description": "Billing"
+            },
+            "… 2 more"
+          ],
+          "InputDisplayUnits": {
+            "SizeUOM": "Imperial",
+            "LengthUOM": "Imperial",
+            "LengthTypeIDMetric": "101",
+            "LengthTypeIDImperial": "1",
+            "WeightUOM": "Imperial",
+            "PriceUOM": "Imperial"
+          }
+        },
+        {
+          "ProjectID": "29",
+          "JobNumber": "<source job> Test",
+          "JobDate": "2026-08-10",
+          "JobStatus": {
+            "JobStatusID": "2",
+            "Description": "Closed",
+            "Purpose": "10",
+            "IsDefault": "0",
+            "Active": "1"
+          },
+          "DrawingLog": [
+            {
+              "DrawingLogID": "146",
+              "ProjectID": "29",
+              "DrawingType": "Design",
+              "DrawingLogName": "Design",
+              "PDCLink": "0",
+              "SubdirectoryPath": "Design",
+              "DrawingLogMapping": ""
+            },
+            {
+              "DrawingLogID": "147",
+              "ProjectID": "29",
+              "DrawingType": "Detail",
+              "DrawingLogName": "Assembly",
+              "PDCLink": "20",
+              "SubdirectoryPath": "Detail\\Assembly drawings",
+              "DrawingLogMapping": "Details"
+            },
+            {
+              "DrawingLogID": "148",
+              "ProjectID": "29",
+              "DrawingType": "Detail",
+              "DrawingLogName": "GA",
+              "PDCLink": "0",
+              "SubdirectoryPath": "Detail\\GA drawings",
+              "DrawingLogMapping": "General Arrangement\nErection sheets\nGA"
+            },
+            "… 2 more"
+          ],
+          "InputDisplayUnits": {
+            "SizeUOM": "Imperial",
+            "LengthUOM": "Imperial",
+            "LengthTypeIDMetric": "101",
+            "LengthTypeIDImperial": "1",
+            "WeightUOM": "Imperial",
+            "PriceUOM": "Imperial"
+          }
+        }
+      ],
+      "Firm": [
+        {
+          "FirmID": "1",
+          "FirmType": "Client",
+          "Name": "Tekla EPM - Client",
+          "Code": "EPM - Client",
+          "PrimaryCurrency": {
+            "@ID": "1",
+            "#text": "USD"
+          }
+        },
+        {
+          "FirmID": "7",
+          "FirmType": "Detailer",
+          "Name": "Detailer",
+          "Code": "Detailer",
+          "PrimaryCurrency": {
+            "@ID": "1",
+            "#text": "USD"
+          },
+          "InfoSharing": "0"
+        }
+      ],
+      "FirmAddress": [
+        {
+          "FirmAddressID": "1",
+          "FirmID": "1",
+          "Description": "Default - Shipping",
+          "Attn": "<redacted>",
+          "Address1": "<redacted>",
+          "Address2": "<redacted>",
+          "City": "<redacted>",
+          "State": "GA",
+          "Zip": "<redacted>",
+          "Phone": "<redacted>",
+          "IsShipTo": "1",
+          "Active": "1"
+        },
+        {
+          "FirmAddressID": "6",
+          "FirmID": "1",
+          "Description": "Default - Mailing",
+          "Attn": "<redacted>",
+          "Address1": "<redacted>",
+          "Address2": "<redacted>",
+          "City": "<redacted>",
+          "State": "GA",
+          "Zip": "<redacted>",
+          "Phone": "<redacted>",
+          "IsBillTo": "1",
+          "Active": "1"
+        },
+        {
+          "FirmAddressID": "11",
+          "FirmID": "1",
+          "Description": "EPM-001",
+          "Attn": "<redacted>",
+          "Address1": "<redacted>",
+          "City": "<redacted>",
+          "State": "GA",
+          "Zip": "<redacted>",
+          "Phone": "<redacted>",
+          "IsShipTo": "1",
+          "Active": "1"
+        },
+        "… 1 more"
+      ],
+      "FirmContact": [
+        {
+          "FirmContactID": "2",
+          "FirmID": "1",
+          "Name": "<redacted>",
+          "Phone": "<redacted>",
+          "Inspector": "0",
+          "Active": "1"
+        },
+        {
+          "FirmContactID": "8",
+          "FirmID": "1",
+          "Name": "<redacted>",
+          "Phone": "<redacted>",
+          "Inspector": "0",
+          "Active": "1"
+        },
+        {
+          "FirmContactID": "9",
+          "FirmID": "1",
+          "Name": "<redacted>",
+          "Phone": "<redacted>",
+          "Inspector": "0",
+          "Active": "1"
+        },
+        "… 2 more"
+      ]
+    }
+  }
+}

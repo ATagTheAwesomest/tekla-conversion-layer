@@ -1,0 +1,2835 @@
+[
+ {
+  "id": "CNCData__EPM-001",
+  "command": "CNCData",
+  "body": {
+   "JobNumber": "EPM-001"
+  }
+ },
+ {
+  "id": "CostCode_Get__EPM-001",
+  "command": "CostCode_Get",
+  "body": {
+   "JobNumber": "EPM-001"
+  }
+ },
+ {
+  "id": "CostType_Get__EPM-001",
+  "command": "CostType_Get",
+  "body": {
+   "JobNumber": "EPM-001"
+  }
+ },
+ {
+  "id": "Department_Get__EPM-001",
+  "command": "Department_Get",
+  "body": {
+   "JobNumber": "EPM-001"
+  }
+ },
+ {
+  "id": "Department_Get__shifts",
+  "command": "Department_Get",
+  "body": {
+   "GetOptions": {
+    "IncludeDepartmentShifts": 1
+   }
+  }
+ },
+ {
+  "id": "DepartmentShift_Get__EPM-001",
+  "command": "DepartmentShift_Get",
+  "body": {
+   "JobNumber": "EPM-001"
+  }
+ },
+ {
+  "id": "Drawing_Get__2916_revs",
+  "command": "Drawing_Get",
+  "body": {
+   "DrawingID": 2916,
+   "GetOptions": {
+    "IncludeDrawingLogDetails": 1,
+    "Revisions": "all",
+    "Transmittals": "all"
+   }
+  }
+ },
+ {
+  "id": "Drawing_Get__EPM-001",
+  "command": "Drawing_Get",
+  "body": {
+   "JobNumber": "EPM-001"
+  }
+ },
+ {
+  "id": "Drawing_Get__p4",
+  "command": "Drawing_Get",
+  "body": {
+   "ProjectID": 4
+  }
+ },
+ {
+  "id": "DrawingFile_Get__2916",
+  "command": "DrawingFile_Get",
+  "body": {
+   "DrawingID": 2916
+  }
+ },
+ {
+  "id": "DrawingFile_Get__EPM-001",
+  "command": "DrawingFile_Get",
+  "body": {
+   "JobNumber": "EPM-001"
+  }
+ },
+ {
+  "id": "DrawingInputOptions_Get__EPM-001",
+  "command": "DrawingInputOptions_Get",
+  "body": {
+   "JobNumber": "EPM-001"
+  }
+ },
+ {
+  "id": "DrawingInputOptions_Get__p4",
+  "command": "DrawingInputOptions_Get",
+  "body": {
+   "ProjectID": 4
+  }
+ },
+ {
+  "id": "DrawingLog_Get__EPM-001",
+  "command": "DrawingLog_Get",
+  "body": {
+   "JobNumber": "EPM-001"
+  }
+ },
+ {
+  "id": "DrawingRevision_Get__EPM-001",
+  "command": "DrawingRevision_Get",
+  "body": {
+   "JobNumber": "EPM-001"
+  }
+ },
+ {
+  "id": "DrawingRevision_Get__p4",
+  "command": "DrawingRevision_Get",
+  "body": {
+   "ProjectID": 4
+  }
+ },
+ {
+  "id": "EstimateJobCostGroupSummary_Get__1",
+  "command": "EstimateJobCostGroupSummary_Get",
+  "body": {
+   "EstimateID": 1,
+   "SummaryBy": "CostCode"
+  }
+ },
+ {
+  "id": "EstimateJobCostGroupSummary_Get__EPM-001",
+  "command": "EstimateJobCostGroupSummary_Get",
+  "body": {
+   "JobNumber": "EPM-001"
+  }
+ },
+ {
+  "id": "EstimateJobCostSummary_Get__1",
+  "command": "EstimateJobCostSummary_Get",
+  "body": {
+   "EstimateID": 1,
+   "SummaryBy": "CostCode"
+  }
+ },
+ {
+  "id": "EstimateJobCostSummary_Get__EPM-001",
+  "command": "EstimateJobCostSummary_Get",
+  "body": {
+   "JobNumber": "EPM-001"
+  }
+ },
+ {
+  "id": "EstimateJobCostSummary_Get__nested",
+  "command": "EstimateJobCostSummary_Get",
+  "body": {
+   "EstimateJobCostSummary": {
+    "EstimateID": 1,
+    "SummaryBy": "CostCode"
+   }
+  }
+ },
+ {
+  "id": "EstimateJobCostSummary_Get__v3",
+  "command": "EstimateJobCostSummary_Get",
+  "body": {
+   "SummaryBy": "CostCode",
+   "EstimateJobCostSummary": {
+    "EstimateID": 1
+   }
+  }
+ },
+ {
+  "id": "EstimateSummary_Get__1",
+  "command": "EstimateSummary_Get",
+  "body": {
+   "EstimateID": 1
+  }
+ },
+ {
+  "id": "EstimateSummary_Get__EPM-001",
+  "command": "EstimateSummary_Get",
+  "body": {
+   "JobNumber": "EPM-001"
+  }
+ },
+ {
+  "id": "FilterSelections_PDC_Get__EPM-001",
+  "command": "FilterSelections_PDC_Get",
+  "body": {
+   "JobNumber": "EPM-001"
+  }
+ },
+ {
+  "id": "FilterSelections_PDC_Get__job",
+  "command": "FilterSelections_PDC_Get",
+  "body": {
+   "FilterName": "Job #"
+  }
+ },
+ {
+  "id": "FilterSelections_PRJ_Get__EPM-001",
+  "command": "FilterSelections_PRJ_Get",
+  "body": {
+   "JobNumber": "EPM-001"
+  }
+ },
+ {
+  "id": "FilterSelections_PRJ_Get__job",
+  "command": "FilterSelections_PRJ_Get",
+  "body": {
+   "ProjectID": 4,
+   "FilterName": "Job #"
+  }
+ },
+ {
+  "id": "FilterSelections_PRJ_Get__p4",
+  "command": "FilterSelections_PRJ_Get",
+  "body": {
+   "ProjectID": 4
+  }
+ },
+ {
+  "id": "FilterSetDetails_Get__EPM-001",
+  "command": "FilterSetDetails_Get",
+  "body": {
+   "JobNumber": "EPM-001"
+  }
+ },
+ {
+  "id": "FilterSetDetails_Get__pdc",
+  "command": "FilterSetDetails_Get",
+  "body": {
+   "Type": "PDC"
+  }
+ },
+ {
+  "id": "Firm_Get__EPM-001",
+  "command": "Firm_Get",
+  "body": {
+   "JobNumber": "EPM-001"
+  }
+ },
+ {
+  "id": "Firm_Get__full",
+  "command": "Firm_Get",
+  "body": {
+   "GetOptions": {
+    "IncludeAddresses": 1,
+    "IncludeContacts": 1,
+    "IncludeInactive": 1
+   }
+  }
+ },
+ {
+  "id": "FirmAddress_Get__EPM-001",
+  "command": "FirmAddress_Get",
+  "body": {
+   "JobNumber": "EPM-001"
+  }
+ },
+ {
+  "id": "FirmAddresses_Get__EPM-001",
+  "command": "FirmAddresses_Get",
+  "body": {
+   "JobNumber": "EPM-001"
+  }
+ },
+ {
+  "id": "FirmContact_Get__EPM-001",
+  "command": "FirmContact_Get",
+  "body": {
+   "JobNumber": "EPM-001"
+  }
+ },
+ {
+  "id": "GetAssemblies__EPM-001",
+  "command": "GetAssemblies",
+  "body": {
+   "JobNumber": "EPM-001"
+  }
+ },
+ {
+  "id": "GetBillOfMaterials__EPM-001",
+  "command": "GetBillOfMaterials",
+  "body": {
+   "JobNumber": "EPM-001"
+  }
+ },
+ {
+  "id": "GetCategories__EPM-001",
+  "command": "GetCategories",
+  "body": {
+   "JobNumber": "EPM-001"
+  }
+ },
+ {
+  "id": "GetChangeOrderDetails__EPM-001",
+  "command": "GetChangeOrderDetails",
+  "body": {
+   "JobNumber": "EPM-001"
+  }
+ },
+ {
+  "id": "GetCountries__EPM-001",
+  "command": "GetCountries",
+  "body": {
+   "JobNumber": "EPM-001"
+  }
+ },
+ {
+  "id": "GetCurrencies__EPM-001",
+  "command": "GetCurrencies",
+  "body": {
+   "JobNumber": "EPM-001"
+  }
+ },
+ {
+  "id": "GetCutList__1",
+  "command": "GetCutList",
+  "body": {
+   "CutListID": 1
+  }
+ },
+ {
+  "id": "GetCutList__EPM-001",
+  "command": "GetCutList",
+  "body": {
+   "JobNumber": "EPM-001"
+  }
+ },
+ {
+  "id": "GetDocument__EPM-001",
+  "command": "GetDocument",
+  "body": {
+   "JobNumber": "EPM-001"
+  }
+ },
+ {
+  "id": "GetDrawings__EPM-001",
+  "command": "GetDrawings",
+  "body": {
+   "JobNumber": "EPM-001"
+  }
+ },
+ {
+  "id": "GetFilterSelections__EPM-001",
+  "command": "GetFilterSelections",
+  "body": {
+   "JobNumber": "EPM-001"
+  }
+ },
+ {
+  "id": "GetFilterSetDetails__EPM-001",
+  "command": "GetFilterSetDetails",
+  "body": {
+   "JobNumber": "EPM-001"
+  }
+ },
+ {
+  "id": "GetInspectionTestRecords__EPM-001",
+  "command": "GetInspectionTestRecords",
+  "body": {
+   "JobNumber": "EPM-001"
+  }
+ },
+ {
+  "id": "GetInspectionTestRecordsCondensed__EPM-001",
+  "command": "GetInspectionTestRecordsCondensed",
+  "body": {
+   "JobNumber": "EPM-001"
+  }
+ },
+ {
+  "id": "GetInspectionTestRecordSummary__EPM-001",
+  "command": "GetInspectionTestRecordSummary",
+  "body": {
+   "JobNumber": "EPM-001"
+  }
+ },
+ {
+  "id": "GetInspectionTests__EPM-001",
+  "command": "GetInspectionTests",
+  "body": {
+   "JobNumber": "EPM-001"
+  }
+ },
+ {
+  "id": "GetInspectionTestSubjects__1",
+  "command": "GetInspectionTestSubjects",
+  "body": {
+   "InspectionTestVersionID": 1
+  }
+ },
+ {
+  "id": "GetInspectionTestSubjects__EPM-001",
+  "command": "GetInspectionTestSubjects",
+  "body": {
+   "JobNumber": "EPM-001"
+  }
+ },
+ {
+  "id": "GetInspectionTestTypes__EPM-001",
+  "command": "GetInspectionTestTypes",
+  "body": {
+   "JobNumber": "EPM-001"
+  }
+ },
+ {
+  "id": "GetInventory__EPM-001",
+  "command": "GetInventory",
+  "body": {
+   "JobNumber": "EPM-001"
+  }
+ },
+ {
+  "id": "GetInventoryLocations__EPM-001",
+  "command": "GetInventoryLocations",
+  "body": {
+   "JobNumber": "EPM-001"
+  }
+ },
+ {
+  "id": "GetInventoryLocationSweeps__EPM-001",
+  "command": "GetInventoryLocationSweeps",
+  "body": {
+   "JobNumber": "EPM-001"
+  }
+ },
+ {
+  "id": "GetInventorySummary__EPM-001",
+  "command": "GetInventorySummary",
+  "body": {
+   "JobNumber": "EPM-001"
+  }
+ },
+ {
+  "id": "GetInventorySummary__shape",
+  "command": "GetInventorySummary",
+  "body": {
+   "SummaryField": "Shape"
+  }
+ },
+ {
+  "id": "GetInventoryTransactions__0",
+  "command": "GetInventoryTransactions",
+  "body": {
+   "LastTransactionID": 0
+  }
+ },
+ {
+  "id": "GetInventoryTransactions__EPM-001",
+  "command": "GetInventoryTransactions",
+  "body": {
+   "JobNumber": "EPM-001"
+  }
+ },
+ {
+  "id": "GetLoads__EPM-001",
+  "command": "GetLoads",
+  "body": {
+   "JobNumber": "EPM-001"
+  }
+ },
+ {
+  "id": "GetLoads__EPM-001_full_r2",
+  "command": "GetLoads",
+  "body": {
+   "JobNumber": "EPM-001",
+   "IncludeLoads": true,
+   "IncludeUnshippedLoads": true,
+   "IncludeCompletedMaterial": true,
+   "IncludeRemainingMaterial": true
+  }
+ },
+ {
+  "id": "GetLoads__full",
+  "command": "GetLoads",
+  "body": {
+   "JobNumber": "EPM-001",
+   "IncludeLoads": true,
+   "IncludeUnshippedLoads": true,
+   "IncludeCompletedMaterial": true,
+   "IncludeRemainingMaterial": true
+  }
+ },
+ {
+  "id": "GetLots__EPM-001",
+  "command": "GetLots",
+  "body": {
+   "JobNumber": "EPM-001"
+  }
+ },
+ {
+  "id": "GetModelObjectIDs__EPM-001",
+  "command": "GetModelObjectIDs",
+  "body": {
+   "JobNumber": "EPM-001"
+  }
+ },
+ {
+  "id": "GetNestData__37",
+  "command": "GetNestData",
+  "body": {
+   "CutListItemID": 37
+  }
+ },
+ {
+  "id": "GetNestData__EPM-001",
+  "command": "GetNestData",
+  "body": {
+   "JobNumber": "EPM-001"
+  }
+ },
+ {
+  "id": "GetNestImage__37",
+  "command": "GetNestImage",
+  "body": {
+   "ProductionControlCutListItemID": 37
+  }
+ },
+ {
+  "id": "GetNestImage__EPM-001",
+  "command": "GetNestImage",
+  "body": {
+   "JobNumber": "EPM-001"
+  }
+ },
+ {
+  "id": "GetNestStatus__EPM-001",
+  "command": "GetNestStatus",
+  "body": {
+   "JobNumber": "EPM-001"
+  }
+ },
+ {
+  "id": "GetPricingInformation__EPM-001",
+  "command": "GetPricingInformation",
+  "body": {
+   "JobNumber": "EPM-001"
+  }
+ },
+ {
+  "id": "GetProductionControlJobInformation__EPM-001",
+  "command": "GetProductionControlJobInformation",
+  "body": {
+   "JobNumber": "EPM-001"
+  }
+ },
+ {
+  "id": "GetProductionControlJobInformationTransactions__EPM-001",
+  "command": "GetProductionControlJobInformationTransactions",
+  "body": {
+   "JobNumber": "EPM-001"
+  }
+ },
+ {
+  "id": "GetProductionControlJobs__closed",
+  "command": "GetProductionControlJobs",
+  "body": {
+   "JobStatus": "Closed"
+  }
+ },
+ {
+  "id": "GetProductionControlJobs__EPM-001",
+  "command": "GetProductionControlJobs",
+  "body": {
+   "JobNumber": "EPM-001"
+  }
+ },
+ {
+  "id": "GetProductionShippingStatus__EPM-001",
+  "command": "GetProductionShippingStatus",
+  "body": {
+   "JobNumber": "EPM-001"
+  }
+ },
+ {
+  "id": "GetProjectSchedule__0",
+  "command": "GetProjectSchedule",
+  "body": {
+   "JobNumber": "EPM-001",
+   "ScheduleBaselineID": 0
+  }
+ },
+ {
+  "id": "GetProjectSchedule__1",
+  "command": "GetProjectSchedule",
+  "body": {
+   "JobNumber": "EPM-001",
+   "ScheduleBaselineID": 1
+  }
+ },
+ {
+  "id": "GetProjectSchedule__EPM-001",
+  "command": "GetProjectSchedule",
+  "body": {
+   "JobNumber": "EPM-001"
+  }
+ },
+ {
+  "id": "GetProjectScheduleBaselinePlans__EPM-001",
+  "command": "GetProjectScheduleBaselinePlans",
+  "body": {
+   "JobNumber": "EPM-001"
+  }
+ },
+ {
+  "id": "GetProjectScheduleSnapshots__1",
+  "command": "GetProjectScheduleSnapshots",
+  "body": {
+   "JobNumber": "EPM-001",
+   "ScheduleBaselineID": 1
+  }
+ },
+ {
+  "id": "GetProjectScheduleSnapshots__EPM-001",
+  "command": "GetProjectScheduleSnapshots",
+  "body": {
+   "JobNumber": "EPM-001"
+  }
+ },
+ {
+  "id": "GetProjectStatus__EPM-001",
+  "command": "GetProjectStatus",
+  "body": {
+   "JobNumber": "EPM-001"
+  }
+ },
+ {
+  "id": "GetPurchaseOrderInformation__EPM-001",
+  "command": "GetPurchaseOrderInformation",
+  "body": {
+   "JobNumber": "EPM-001"
+  }
+ },
+ {
+  "id": "GetPurchaseOrderInformationTransactions__EPM-001",
+  "command": "GetPurchaseOrderInformationTransactions",
+  "body": {
+   "JobNumber": "EPM-001"
+  }
+ },
+ {
+  "id": "GetReportTypes__EPM-001",
+  "command": "GetReportTypes",
+  "body": {
+   "JobNumber": "EPM-001"
+  }
+ },
+ {
+  "id": "GetReportTypes__insp",
+  "command": "GetReportTypes",
+  "body": {
+   "ReportGroup": "Inspection"
+  }
+ },
+ {
+  "id": "GetReportTypes__ship",
+  "command": "GetReportTypes",
+  "body": {
+   "ReportGroup": "ProductionControlShippingTicket"
+  }
+ },
+ {
+  "id": "GetRFIDetails__EPM-001",
+  "command": "GetRFIDetails",
+  "body": {
+   "JobNumber": "EPM-001"
+  }
+ },
+ {
+  "id": "GetRouteDetails__1",
+  "command": "GetRouteDetails",
+  "body": {
+   "RouteID": 1
+  }
+ },
+ {
+  "id": "GetRouteDetails__EPM-001",
+  "command": "GetRouteDetails",
+  "body": {
+   "JobNumber": "EPM-001"
+  }
+ },
+ {
+  "id": "GetSequences__EPM-001",
+  "command": "GetSequences",
+  "body": {
+   "JobNumber": "EPM-001"
+  }
+ },
+ {
+  "id": "GetStations__EPM-001",
+  "command": "GetStations",
+  "body": {
+   "JobNumber": "EPM-001"
+  }
+ },
+ {
+  "id": "GetSubCategories__EPM-001",
+  "command": "GetSubCategories",
+  "body": {
+   "JobNumber": "EPM-001"
+  }
+ },
+ {
+  "id": "GetTFSDetails__EPM-001",
+  "command": "GetTFSDetails",
+  "body": {
+   "JobNumber": "EPM-001"
+  }
+ },
+ {
+  "id": "GetTFSDetails__station",
+  "command": "GetTFSDetails",
+  "body": {
+   "JobNumber": "EPM-001",
+   "Station": "Cut/Saw/Beamline/BurnTable"
+  }
+ },
+ {
+  "id": "GetTimeTrackingSubjects__EPM-001",
+  "command": "GetTimeTrackingSubjects",
+  "body": {
+   "JobNumber": "EPM-001"
+  }
+ },
+ {
+  "id": "GetTransmittalDetails__EPM-001",
+  "command": "GetTransmittalDetails",
+  "body": {
+   "JobNumber": "EPM-001"
+  }
+ },
+ {
+  "id": "HoldSettings_Get__EPM-001",
+  "command": "HoldSettings_Get",
+  "body": {
+   "JobNumber": "EPM-001"
+  }
+ },
+ {
+  "id": "InventoryJobCostingTransaction_Get__0",
+  "command": "InventoryJobCostingTransaction_Get",
+  "body": {
+   "Workflow": "Inventory",
+   "SinceInventoryTransactionID": 0
+  }
+ },
+ {
+  "id": "InventoryJobCostingTransaction_Get__consumed",
+  "command": "InventoryJobCostingTransaction_Get",
+  "body": {
+   "Workflow": "consumed",
+   "SinceInventoryTransactionID": 0
+  }
+ },
+ {
+  "id": "InventoryJobCostingTransaction_Get__EPM-001",
+  "command": "InventoryJobCostingTransaction_Get",
+  "body": {
+   "JobNumber": "EPM-001"
+  }
+ },
+ {
+  "id": "InventoryJobCostingTransaction_Get__x",
+  "command": "InventoryJobCostingTransaction_Get",
+  "body": {
+   "Workflow": "Inventory"
+  }
+ },
+ {
+  "id": "InventoryLocationRestriction_Get__EPM-001",
+  "command": "InventoryLocationRestriction_Get",
+  "body": {
+   "JobNumber": "EPM-001"
+  }
+ },
+ {
+  "id": "InventoryTransaction_GetLastTransactionID__EPM-001",
+  "command": "InventoryTransaction_GetLastTransactionID",
+  "body": {
+   "JobNumber": "EPM-001"
+  }
+ },
+ {
+  "id": "LaborRate_Get__EPM-001",
+  "command": "LaborRate_Get",
+  "body": {
+   "JobNumber": "EPM-001"
+  }
+ },
+ {
+  "id": "Machine_Get__EPM-001",
+  "command": "Machine_Get",
+  "body": {
+   "JobNumber": "EPM-001"
+  }
+ },
+ {
+  "id": "MachineGroup_Get__EPM-001",
+  "command": "MachineGroup_Get",
+  "body": {
+   "JobNumber": "EPM-001"
+  }
+ },
+ {
+  "id": "MaxTruck__EPM-001",
+  "command": "MaxTruck",
+  "body": {
+   "JobNumber": "EPM-001"
+  }
+ },
+ {
+  "id": "NestSolution_Get__EPM-001",
+  "command": "NestSolution_Get",
+  "body": {
+   "JobNumber": "EPM-001"
+  }
+ },
+ {
+  "id": "NestSolution_Get__full",
+  "command": "NestSolution_Get",
+  "body": {
+   "ProductionControlID": 13,
+   "GetOptions": {
+    "IncludeRequired": 1,
+    "IncludeResult": 1,
+    "IncludeResultParts": 1,
+    "IncludeResultPartLinks": 1
+   }
+  }
+ },
+ {
+  "id": "PickList_Get__1",
+  "command": "PickList_Get",
+  "body": {
+   "ProductionControlCutListID": 1
+  }
+ },
+ {
+  "id": "PickList_Get__cl1",
+  "command": "PickList_Get",
+  "body": {
+   "CutListID": 1
+  }
+ },
+ {
+  "id": "PickList_Get__EPM-001",
+  "command": "PickList_Get",
+  "body": {
+   "JobNumber": "EPM-001"
+  }
+ },
+ {
+  "id": "Ping__EPM-001",
+  "command": "Ping",
+  "body": {
+   "JobNumber": "EPM-001"
+  }
+ },
+ {
+  "id": "PlanningRuleWarning_Get__1",
+  "command": "PlanningRuleWarning_Get",
+  "body": {
+   "Type": "WorkPackage",
+   "ID": 1
+  }
+ },
+ {
+  "id": "PlanningRuleWarning_Get__EPM-001",
+  "command": "PlanningRuleWarning_Get",
+  "body": {
+   "JobNumber": "EPM-001"
+  }
+ },
+ {
+  "id": "PlanningRuleWarning_Get__wp3",
+  "command": "PlanningRuleWarning_Get",
+  "body": {
+   "Type": "WorkPackage",
+   "ID": 3
+  }
+ },
+ {
+  "id": "PlanningRuleWarning_Get__x",
+  "command": "PlanningRuleWarning_Get",
+  "body": {
+   "Type": "WorkPackage"
+  }
+ },
+ {
+  "id": "ProductionControlCutList_Get__EPM-001",
+  "command": "ProductionControlCutList_Get",
+  "body": {
+   "JobNumber": "EPM-001"
+  }
+ },
+ {
+  "id": "ProductionControlCutList_Get__pc13",
+  "command": "ProductionControlCutList_Get",
+  "body": {
+   "ProductionControlID": 13
+  }
+ },
+ {
+  "id": "ProductionControlCutListItem_Swap_GetAvailable__37",
+  "command": "ProductionControlCutListItem_Swap_GetAvailable",
+  "body": {
+   "ProductionControlCutListItemID": 37
+  }
+ },
+ {
+  "id": "ProductionControlCutListItem_Swap_GetAvailable__EPM-001",
+  "command": "ProductionControlCutListItem_Swap_GetAvailable",
+  "body": {
+   "JobNumber": "EPM-001"
+  }
+ },
+ {
+  "id": "ProductionControlFinish_Get__EPM-001",
+  "command": "ProductionControlFinish_Get",
+  "body": {
+   "JobNumber": "EPM-001"
+  }
+ },
+ {
+  "id": "ProductionControlJob_Get__EPM-001",
+  "command": "ProductionControlJob_Get",
+  "body": {
+   "JobNumber": "EPM-001"
+  }
+ },
+ {
+  "id": "ProductionControlJob_Get__pc13",
+  "command": "ProductionControlJob_Get",
+  "body": {
+   "ProductionControlID": 13
+  }
+ },
+ {
+  "id": "ProductionControlLoad_Get__EPM-001",
+  "command": "ProductionControlLoad_Get",
+  "body": {
+   "JobNumber": "EPM-001"
+  }
+ },
+ {
+  "id": "ProductionControlLoad_Get__pc13",
+  "command": "ProductionControlLoad_Get",
+  "body": {
+   "ProductionControlID": 13,
+   "GetOptions": {
+    "IncludeJobDetails": 1,
+    "IncludeFirmDetails": 1,
+    "IncludeMaterial": 1,
+    "IncludeAttachedFiles": 1
+   }
+  }
+ },
+ {
+  "id": "ProductionControlLoad_InputOptions_Get__EPM-001",
+  "command": "ProductionControlLoad_InputOptions_Get",
+  "body": {
+   "JobNumber": "EPM-001"
+  }
+ },
+ {
+  "id": "ProductionControlLoad_InputOptions_Get__pc13",
+  "command": "ProductionControlLoad_InputOptions_Get",
+  "body": {
+   "ProductionControlID": 13
+  }
+ },
+ {
+  "id": "ProductionControlLoad_IsDuplicateLoadNumber__EPM-001",
+  "command": "ProductionControlLoad_IsDuplicateLoadNumber",
+  "body": {
+   "JobNumber": "EPM-001"
+  }
+ },
+ {
+  "id": "ProductionControlLoad_IsDuplicateLoadNumber__pc13",
+  "command": "ProductionControlLoad_IsDuplicateLoadNumber",
+  "body": {
+   "ProductionControlID": 13,
+   "LoadNumber": "1"
+  }
+ },
+ {
+  "id": "ProductionControlLoadRemaining_Get__EPM-001",
+  "command": "ProductionControlLoadRemaining_Get",
+  "body": {
+   "JobNumber": "EPM-001"
+  }
+ },
+ {
+  "id": "ProductionControlLoadRemaining_Get__pc13",
+  "command": "ProductionControlLoadRemaining_Get",
+  "body": {
+   "ProductionControlID": 13
+  }
+ },
+ {
+  "id": "ProductionPlanningSettings_Get__EPM-001",
+  "command": "ProductionPlanningSettings_Get",
+  "body": {
+   "JobNumber": "EPM-001"
+  }
+ },
+ {
+  "id": "ProductionShippingProductivity_Get__dates",
+  "command": "ProductionShippingProductivity_Get",
+  "body": {
+   "GetOptions": {
+    "StatusType": "Shipping",
+    "StartDate": "2017-01-01",
+    "EndDate": "2026-12-31"
+   }
+  }
+ },
+ {
+  "id": "ProductionShippingProductivity_Get__EPM-001",
+  "command": "ProductionShippingProductivity_Get",
+  "body": {
+   "JobNumber": "EPM-001"
+  }
+ },
+ {
+  "id": "ProductionShippingProductivity_Get__int",
+  "command": "ProductionShippingProductivity_Get",
+  "body": {
+   "GetOptions": {
+    "StatusType": "4",
+    "StartDate": "2017-01-01",
+    "EndDate": "2026-12-31"
+   }
+  }
+ },
+ {
+  "id": "ProductionShippingProductivity_Get__opts",
+  "command": "ProductionShippingProductivity_Get",
+  "body": {
+   "GetOptions": {
+    "ProductionControlID": 13
+   }
+  }
+ },
+ {
+  "id": "ProductionShippingProductivity_Get__Pascal",
+  "command": "ProductionShippingProductivity_Get",
+  "body": {
+   "GetOptions": {
+    "StatusType": "ShippingDestination",
+    "StartDate": "2017-01-01",
+    "EndDate": "2026-12-31"
+   }
+  }
+ },
+ {
+  "id": "ProductionShippingProductivity_Get__ship",
+  "command": "ProductionShippingProductivity_Get",
+  "body": {
+   "GetOptions": {
+    "StatusType": "Shipping",
+    "ProductionControlID": 13
+   }
+  }
+ },
+ {
+  "id": "ProductionShippingProductivity_Get__shipdest",
+  "command": "ProductionShippingProductivity_Get",
+  "body": {
+   "GetOptions": {
+    "StatusType": "shippingdestination",
+    "StartDate": "2017-01-01",
+    "EndDate": "2026-12-31"
+   }
+  }
+ },
+ {
+  "id": "ProductionShippingProductivity_Get__station",
+  "command": "ProductionShippingProductivity_Get",
+  "body": {
+   "GetOptions": {
+    "StatusType": "productionstation",
+    "StartDate": "2017-01-01",
+    "EndDate": "2026-12-31"
+   }
+  }
+ },
+ {
+  "id": "Project_Get__EPM-001",
+  "command": "Project_Get",
+  "body": {
+   "JobNumber": "EPM-001"
+  }
+ },
+ {
+  "id": "Project_Get__firms",
+  "command": "Project_Get",
+  "body": {
+   "JobNumber": "EPM-001",
+   "GetOptions": {
+    "IncludeDrawingLogs": 1,
+    "IncludeFirms": 1
+   }
+  }
+ },
+ {
+  "id": "PurchaseOrder_Get__EPM-001",
+  "command": "PurchaseOrder_Get",
+  "body": {
+   "JobNumber": "EPM-001"
+  }
+ },
+ {
+  "id": "PurchaseOrderFOB_Get__EPM-001",
+  "command": "PurchaseOrderFOB_Get",
+  "body": {
+   "JobNumber": "EPM-001"
+  }
+ },
+ {
+  "id": "PurchaseOrderItem_Get__EPM-001",
+  "command": "PurchaseOrderItem_Get",
+  "body": {
+   "JobNumber": "EPM-001"
+  }
+ },
+ {
+  "id": "PurchaseOrderItemReceiveTransaction_Get__0",
+  "command": "PurchaseOrderItemReceiveTransaction_Get",
+  "body": {
+   "ExportedSinceUnixTime": 0
+  }
+ },
+ {
+  "id": "PurchaseOrderItemReceiveTransaction_Get__EPM-001",
+  "command": "PurchaseOrderItemReceiveTransaction_Get",
+  "body": {
+   "JobNumber": "EPM-001"
+  }
+ },
+ {
+  "id": "PurchaseOrderPaymentTerm_Get__EPM-001",
+  "command": "PurchaseOrderPaymentTerm_Get",
+  "body": {
+   "JobNumber": "EPM-001"
+  }
+ },
+ {
+  "id": "PurchaseOrderPOType_Get__EPM-001",
+  "command": "PurchaseOrderPOType_Get",
+  "body": {
+   "JobNumber": "EPM-001"
+  }
+ },
+ {
+  "id": "PurchaseOrderShippingMethod_Get__EPM-001",
+  "command": "PurchaseOrderShippingMethod_Get",
+  "body": {
+   "JobNumber": "EPM-001"
+  }
+ },
+ {
+  "id": "PurchaseOrderSubcontractItem_Get__EPM-001",
+  "command": "PurchaseOrderSubcontractItem_Get",
+  "body": {
+   "JobNumber": "EPM-001"
+  }
+ },
+ {
+  "id": "PurchaseOrderSummary_Get__dates",
+  "command": "PurchaseOrderSummary_Get",
+  "body": {
+   "GetOptions": {
+    "SummaryType": "Job",
+    "StartDate": "2017-01-01",
+    "EndDate": "2026-12-31"
+   }
+  }
+ },
+ {
+  "id": "PurchaseOrderSummary_Get__EPM-001",
+  "command": "PurchaseOrderSummary_Get",
+  "body": {
+   "JobNumber": "EPM-001"
+  }
+ },
+ {
+  "id": "PurchaseOrderSummary_Get__job",
+  "command": "PurchaseOrderSummary_Get",
+  "body": {
+   "GetOptions": {
+    "SummaryType": "Job"
+   }
+  }
+ },
+ {
+  "id": "PurchaseOrderSummary_Get__opts",
+  "command": "PurchaseOrderSummary_Get",
+  "body": {
+   "GetOptions": {
+    "ProductionControlID": 13
+   }
+  }
+ },
+ {
+  "id": "Remnant_Get__EPM-001",
+  "command": "Remnant_Get",
+  "body": {
+   "JobNumber": "EPM-001"
+  }
+ },
+ {
+  "id": "Transmittal_Get__EPM-001",
+  "command": "Transmittal_Get",
+  "body": {
+   "JobNumber": "EPM-001"
+  }
+ },
+ {
+  "id": "TrimbleViewpointSettings_Get__EPM-001",
+  "command": "TrimbleViewpointSettings_Get",
+  "body": {
+   "JobNumber": "EPM-001"
+  }
+ },
+ {
+  "id": "TT_CNCData__TESTTEST",
+  "command": "CNCData",
+  "body": {
+   "JobNumber": "TESTTEST"
+  }
+ },
+ {
+  "id": "TT_CostCode_Get__TESTTEST",
+  "command": "CostCode_Get",
+  "body": {
+   "JobNumber": "TESTTEST"
+  }
+ },
+ {
+  "id": "TT_CostType_Get__TESTTEST",
+  "command": "CostType_Get",
+  "body": {
+   "JobNumber": "TESTTEST"
+  }
+ },
+ {
+  "id": "TT_Department_Get__shifts",
+  "command": "Department_Get",
+  "body": {
+   "GetOptions": {
+    "IncludeDepartmentShifts": 1
+   }
+  }
+ },
+ {
+  "id": "TT_Department_Get__TESTTEST",
+  "command": "Department_Get",
+  "body": {
+   "JobNumber": "TESTTEST"
+  }
+ },
+ {
+  "id": "TT_DepartmentShift_Get__TESTTEST",
+  "command": "DepartmentShift_Get",
+  "body": {
+   "JobNumber": "TESTTEST"
+  }
+ },
+ {
+  "id": "TT_Drawing_Get__2916_revs",
+  "command": "Drawing_Get",
+  "body": {
+   "DrawingID": 2916,
+   "GetOptions": {
+    "IncludeDrawingLogDetails": 1,
+    "Revisions": "all",
+    "Transmittals": "all"
+   }
+  }
+ },
+ {
+  "id": "TT_Drawing_Get__p4",
+  "command": "Drawing_Get",
+  "body": {
+   "ProjectID": 29
+  }
+ },
+ {
+  "id": "TT_Drawing_Get__TESTTEST",
+  "command": "Drawing_Get",
+  "body": {
+   "JobNumber": "TESTTEST"
+  }
+ },
+ {
+  "id": "TT_DrawingFile_Get__2916",
+  "command": "DrawingFile_Get",
+  "body": {
+   "DrawingID": 2916
+  }
+ },
+ {
+  "id": "TT_DrawingFile_Get__TESTTEST",
+  "command": "DrawingFile_Get",
+  "body": {
+   "JobNumber": "TESTTEST"
+  }
+ },
+ {
+  "id": "TT_DrawingInputOptions_Get__p4",
+  "command": "DrawingInputOptions_Get",
+  "body": {
+   "ProjectID": 29
+  }
+ },
+ {
+  "id": "TT_DrawingInputOptions_Get__TESTTEST",
+  "command": "DrawingInputOptions_Get",
+  "body": {
+   "JobNumber": "TESTTEST"
+  }
+ },
+ {
+  "id": "TT_DrawingLog_Get__TESTTEST",
+  "command": "DrawingLog_Get",
+  "body": {
+   "JobNumber": "TESTTEST"
+  }
+ },
+ {
+  "id": "TT_DrawingRevision_Get__p4",
+  "command": "DrawingRevision_Get",
+  "body": {
+   "ProjectID": 29
+  }
+ },
+ {
+  "id": "TT_DrawingRevision_Get__TESTTEST",
+  "command": "DrawingRevision_Get",
+  "body": {
+   "JobNumber": "TESTTEST"
+  }
+ },
+ {
+  "id": "TT_EstimateJobCostGroupSummary_Get__1",
+  "command": "EstimateJobCostGroupSummary_Get",
+  "body": {
+   "EstimateID": 1,
+   "SummaryBy": "CostCode"
+  }
+ },
+ {
+  "id": "TT_EstimateJobCostGroupSummary_Get__TESTTEST",
+  "command": "EstimateJobCostGroupSummary_Get",
+  "body": {
+   "JobNumber": "TESTTEST"
+  }
+ },
+ {
+  "id": "TT_EstimateJobCostSummary_Get__1",
+  "command": "EstimateJobCostSummary_Get",
+  "body": {
+   "EstimateID": 1,
+   "SummaryBy": "CostCode"
+  }
+ },
+ {
+  "id": "TT_EstimateJobCostSummary_Get__nested",
+  "command": "EstimateJobCostSummary_Get",
+  "body": {
+   "EstimateJobCostSummary": {
+    "EstimateID": 1,
+    "SummaryBy": "CostCode"
+   }
+  }
+ },
+ {
+  "id": "TT_EstimateJobCostSummary_Get__TESTTEST",
+  "command": "EstimateJobCostSummary_Get",
+  "body": {
+   "JobNumber": "TESTTEST"
+  }
+ },
+ {
+  "id": "TT_EstimateJobCostSummary_Get__v3",
+  "command": "EstimateJobCostSummary_Get",
+  "body": {
+   "SummaryBy": "CostCode",
+   "EstimateJobCostSummary": {
+    "EstimateID": 1
+   }
+  }
+ },
+ {
+  "id": "TT_EstimateSummary_Get__1",
+  "command": "EstimateSummary_Get",
+  "body": {
+   "EstimateID": 1
+  }
+ },
+ {
+  "id": "TT_EstimateSummary_Get__TESTTEST",
+  "command": "EstimateSummary_Get",
+  "body": {
+   "JobNumber": "TESTTEST"
+  }
+ },
+ {
+  "id": "TT_FilterSelections_PDC_Get__job",
+  "command": "FilterSelections_PDC_Get",
+  "body": {
+   "FilterName": "Job #"
+  }
+ },
+ {
+  "id": "TT_FilterSelections_PDC_Get__TESTTEST",
+  "command": "FilterSelections_PDC_Get",
+  "body": {
+   "JobNumber": "TESTTEST"
+  }
+ },
+ {
+  "id": "TT_FilterSelections_PRJ_Get__job",
+  "command": "FilterSelections_PRJ_Get",
+  "body": {
+   "ProjectID": 29,
+   "FilterName": "Job #"
+  }
+ },
+ {
+  "id": "TT_FilterSelections_PRJ_Get__p4",
+  "command": "FilterSelections_PRJ_Get",
+  "body": {
+   "ProjectID": 29
+  }
+ },
+ {
+  "id": "TT_FilterSelections_PRJ_Get__TESTTEST",
+  "command": "FilterSelections_PRJ_Get",
+  "body": {
+   "JobNumber": "TESTTEST"
+  }
+ },
+ {
+  "id": "TT_FilterSetDetails_Get__pdc",
+  "command": "FilterSetDetails_Get",
+  "body": {
+   "Type": "PDC"
+  }
+ },
+ {
+  "id": "TT_FilterSetDetails_Get__TESTTEST",
+  "command": "FilterSetDetails_Get",
+  "body": {
+   "JobNumber": "TESTTEST"
+  }
+ },
+ {
+  "id": "TT_Firm_Get__full",
+  "command": "Firm_Get",
+  "body": {
+   "GetOptions": {
+    "IncludeAddresses": 1,
+    "IncludeContacts": 1,
+    "IncludeInactive": 1
+   }
+  }
+ },
+ {
+  "id": "TT_Firm_Get__TESTTEST",
+  "command": "Firm_Get",
+  "body": {
+   "JobNumber": "TESTTEST"
+  }
+ },
+ {
+  "id": "TT_FirmAddress_Get__TESTTEST",
+  "command": "FirmAddress_Get",
+  "body": {
+   "JobNumber": "TESTTEST"
+  }
+ },
+ {
+  "id": "TT_FirmAddresses_Get__TESTTEST",
+  "command": "FirmAddresses_Get",
+  "body": {
+   "JobNumber": "TESTTEST"
+  }
+ },
+ {
+  "id": "TT_FirmContact_Get__TESTTEST",
+  "command": "FirmContact_Get",
+  "body": {
+   "JobNumber": "TESTTEST"
+  }
+ },
+ {
+  "id": "TT_GetAssemblies__TESTTEST",
+  "command": "GetAssemblies",
+  "body": {
+   "JobNumber": "TESTTEST"
+  }
+ },
+ {
+  "id": "TT_GetBillOfMaterials__TESTTEST",
+  "command": "GetBillOfMaterials",
+  "body": {
+   "JobNumber": "TESTTEST"
+  }
+ },
+ {
+  "id": "TT_GetCategories__TESTTEST",
+  "command": "GetCategories",
+  "body": {
+   "JobNumber": "TESTTEST"
+  }
+ },
+ {
+  "id": "TT_GetChangeOrderDetails__TESTTEST",
+  "command": "GetChangeOrderDetails",
+  "body": {
+   "JobNumber": "TESTTEST"
+  }
+ },
+ {
+  "id": "TT_GetCountries__TESTTEST",
+  "command": "GetCountries",
+  "body": {
+   "JobNumber": "TESTTEST"
+  }
+ },
+ {
+  "id": "TT_GetCurrencies__TESTTEST",
+  "command": "GetCurrencies",
+  "body": {
+   "JobNumber": "TESTTEST"
+  }
+ },
+ {
+  "id": "TT_GetCutList__1",
+  "command": "GetCutList",
+  "body": {
+   "CutListID": 1
+  }
+ },
+ {
+  "id": "TT_GetCutList__TESTTEST",
+  "command": "GetCutList",
+  "body": {
+   "JobNumber": "TESTTEST"
+  }
+ },
+ {
+  "id": "TT_GetDocument__TESTTEST",
+  "command": "GetDocument",
+  "body": {
+   "JobNumber": "TESTTEST"
+  }
+ },
+ {
+  "id": "TT_GetDrawings__TESTTEST",
+  "command": "GetDrawings",
+  "body": {
+   "JobNumber": "TESTTEST"
+  }
+ },
+ {
+  "id": "TT_GetFilterSelections__TESTTEST",
+  "command": "GetFilterSelections",
+  "body": {
+   "JobNumber": "TESTTEST"
+  }
+ },
+ {
+  "id": "TT_GetFilterSetDetails__TESTTEST",
+  "command": "GetFilterSetDetails",
+  "body": {
+   "JobNumber": "TESTTEST"
+  }
+ },
+ {
+  "id": "TT_GetInspectionTestRecords__TESTTEST",
+  "command": "GetInspectionTestRecords",
+  "body": {
+   "JobNumber": "TESTTEST"
+  }
+ },
+ {
+  "id": "TT_GetInspectionTestRecordsCondensed__TESTTEST",
+  "command": "GetInspectionTestRecordsCondensed",
+  "body": {
+   "JobNumber": "TESTTEST"
+  }
+ },
+ {
+  "id": "TT_GetInspectionTestRecordSummary__TESTTEST",
+  "command": "GetInspectionTestRecordSummary",
+  "body": {
+   "JobNumber": "TESTTEST"
+  }
+ },
+ {
+  "id": "TT_GetInspectionTests__TESTTEST",
+  "command": "GetInspectionTests",
+  "body": {
+   "JobNumber": "TESTTEST"
+  }
+ },
+ {
+  "id": "TT_GetInspectionTestSubjects__1",
+  "command": "GetInspectionTestSubjects",
+  "body": {
+   "InspectionTestVersionID": 1
+  }
+ },
+ {
+  "id": "TT_GetInspectionTestSubjects__TESTTEST",
+  "command": "GetInspectionTestSubjects",
+  "body": {
+   "JobNumber": "TESTTEST"
+  }
+ },
+ {
+  "id": "TT_GetInspectionTestTypes__TESTTEST",
+  "command": "GetInspectionTestTypes",
+  "body": {
+   "JobNumber": "TESTTEST"
+  }
+ },
+ {
+  "id": "TT_GetInventory__TESTTEST",
+  "command": "GetInventory",
+  "body": {
+   "JobNumber": "TESTTEST"
+  }
+ },
+ {
+  "id": "TT_GetInventoryLocations__TESTTEST",
+  "command": "GetInventoryLocations",
+  "body": {
+   "JobNumber": "TESTTEST"
+  }
+ },
+ {
+  "id": "TT_GetInventoryLocationSweeps__TESTTEST",
+  "command": "GetInventoryLocationSweeps",
+  "body": {
+   "JobNumber": "TESTTEST"
+  }
+ },
+ {
+  "id": "TT_GetInventorySummary__shape",
+  "command": "GetInventorySummary",
+  "body": {
+   "SummaryField": "Shape"
+  }
+ },
+ {
+  "id": "TT_GetInventorySummary__TESTTEST",
+  "command": "GetInventorySummary",
+  "body": {
+   "JobNumber": "TESTTEST"
+  }
+ },
+ {
+  "id": "TT_GetInventoryTransactions__0",
+  "command": "GetInventoryTransactions",
+  "body": {
+   "LastTransactionID": 0
+  }
+ },
+ {
+  "id": "TT_GetInventoryTransactions__TESTTEST",
+  "command": "GetInventoryTransactions",
+  "body": {
+   "JobNumber": "TESTTEST"
+  }
+ },
+ {
+  "id": "TT_GetLoads__TESTTEST",
+  "command": "GetLoads",
+  "body": {
+   "JobNumber": "TESTTEST"
+  }
+ },
+ {
+  "id": "TT_GetLoads__TESTTEST_full_r2",
+  "command": "GetLoads",
+  "body": {
+   "JobNumber": "TESTTEST",
+   "IncludeLoads": true,
+   "IncludeUnshippedLoads": true,
+   "IncludeCompletedMaterial": true,
+   "IncludeRemainingMaterial": true
+  }
+ },
+ {
+  "id": "TT_GetLots__TESTTEST",
+  "command": "GetLots",
+  "body": {
+   "JobNumber": "TESTTEST"
+  }
+ },
+ {
+  "id": "TT_GetModelObjectIDs__TESTTEST",
+  "command": "GetModelObjectIDs",
+  "body": {
+   "JobNumber": "TESTTEST"
+  }
+ },
+ {
+  "id": "TT_GetNestData__37",
+  "command": "GetNestData",
+  "body": {
+   "CutListItemID": 37
+  }
+ },
+ {
+  "id": "TT_GetNestData__TESTTEST",
+  "command": "GetNestData",
+  "body": {
+   "JobNumber": "TESTTEST"
+  }
+ },
+ {
+  "id": "TT_GetNestImage__37",
+  "command": "GetNestImage",
+  "body": {
+   "ProductionControlCutListItemID": 37
+  }
+ },
+ {
+  "id": "TT_GetNestImage__TESTTEST",
+  "command": "GetNestImage",
+  "body": {
+   "JobNumber": "TESTTEST"
+  }
+ },
+ {
+  "id": "TT_GetNestStatus__TESTTEST",
+  "command": "GetNestStatus",
+  "body": {
+   "JobNumber": "TESTTEST"
+  }
+ },
+ {
+  "id": "TT_GetPricingInformation__TESTTEST",
+  "command": "GetPricingInformation",
+  "body": {
+   "JobNumber": "TESTTEST"
+  }
+ },
+ {
+  "id": "TT_GetProductionControlJobInformation__TESTTEST",
+  "command": "GetProductionControlJobInformation",
+  "body": {
+   "JobNumber": "TESTTEST"
+  }
+ },
+ {
+  "id": "TT_GetProductionControlJobInformationTransactions__TESTTEST",
+  "command": "GetProductionControlJobInformationTransactions",
+  "body": {
+   "JobNumber": "TESTTEST"
+  }
+ },
+ {
+  "id": "TT_GetProductionControlJobs__closed",
+  "command": "GetProductionControlJobs",
+  "body": {
+   "JobStatus": "Closed"
+  }
+ },
+ {
+  "id": "TT_GetProductionControlJobs__TESTTEST",
+  "command": "GetProductionControlJobs",
+  "body": {
+   "JobNumber": "TESTTEST"
+  }
+ },
+ {
+  "id": "TT_GetProductionShippingStatus__TESTTEST",
+  "command": "GetProductionShippingStatus",
+  "body": {
+   "JobNumber": "TESTTEST"
+  }
+ },
+ {
+  "id": "TT_GetProjectSchedule__0",
+  "command": "GetProjectSchedule",
+  "body": {
+   "JobNumber": "TESTTEST",
+   "ScheduleBaselineID": 0
+  }
+ },
+ {
+  "id": "TT_GetProjectSchedule__1",
+  "command": "GetProjectSchedule",
+  "body": {
+   "JobNumber": "TESTTEST",
+   "ScheduleBaselineID": 1
+  }
+ },
+ {
+  "id": "TT_GetProjectSchedule__TESTTEST",
+  "command": "GetProjectSchedule",
+  "body": {
+   "JobNumber": "TESTTEST"
+  }
+ },
+ {
+  "id": "TT_GetProjectScheduleBaselinePlans__TESTTEST",
+  "command": "GetProjectScheduleBaselinePlans",
+  "body": {
+   "JobNumber": "TESTTEST"
+  }
+ },
+ {
+  "id": "TT_GetProjectScheduleSnapshots__1",
+  "command": "GetProjectScheduleSnapshots",
+  "body": {
+   "JobNumber": "TESTTEST",
+   "ScheduleBaselineID": 1
+  }
+ },
+ {
+  "id": "TT_GetProjectScheduleSnapshots__TESTTEST",
+  "command": "GetProjectScheduleSnapshots",
+  "body": {
+   "JobNumber": "TESTTEST"
+  }
+ },
+ {
+  "id": "TT_GetProjectStatus__TESTTEST",
+  "command": "GetProjectStatus",
+  "body": {
+   "JobNumber": "TESTTEST"
+  }
+ },
+ {
+  "id": "TT_GetPurchaseOrderInformation__TESTTEST",
+  "command": "GetPurchaseOrderInformation",
+  "body": {
+   "JobNumber": "TESTTEST"
+  }
+ },
+ {
+  "id": "TT_GetPurchaseOrderInformationTransactions__TESTTEST",
+  "command": "GetPurchaseOrderInformationTransactions",
+  "body": {
+   "JobNumber": "TESTTEST"
+  }
+ },
+ {
+  "id": "TT_GetReportTypes__insp",
+  "command": "GetReportTypes",
+  "body": {
+   "ReportGroup": "Inspection"
+  }
+ },
+ {
+  "id": "TT_GetReportTypes__ship",
+  "command": "GetReportTypes",
+  "body": {
+   "ReportGroup": "ProductionControlShippingTicket"
+  }
+ },
+ {
+  "id": "TT_GetReportTypes__TESTTEST",
+  "command": "GetReportTypes",
+  "body": {
+   "JobNumber": "TESTTEST"
+  }
+ },
+ {
+  "id": "TT_GetRFIDetails__TESTTEST",
+  "command": "GetRFIDetails",
+  "body": {
+   "JobNumber": "TESTTEST"
+  }
+ },
+ {
+  "id": "TT_GetRouteDetails__1",
+  "command": "GetRouteDetails",
+  "body": {
+   "RouteID": 1
+  }
+ },
+ {
+  "id": "TT_GetRouteDetails__TESTTEST",
+  "command": "GetRouteDetails",
+  "body": {
+   "JobNumber": "TESTTEST"
+  }
+ },
+ {
+  "id": "TT_GetSequences__TESTTEST",
+  "command": "GetSequences",
+  "body": {
+   "JobNumber": "TESTTEST"
+  }
+ },
+ {
+  "id": "TT_GetStations__TESTTEST",
+  "command": "GetStations",
+  "body": {
+   "JobNumber": "TESTTEST"
+  }
+ },
+ {
+  "id": "TT_GetSubCategories__TESTTEST",
+  "command": "GetSubCategories",
+  "body": {
+   "JobNumber": "TESTTEST"
+  }
+ },
+ {
+  "id": "TT_GetTFSDetails__station",
+  "command": "GetTFSDetails",
+  "body": {
+   "JobNumber": "TESTTEST",
+   "Station": "Cut/Saw/Beamline/BurnTable"
+  }
+ },
+ {
+  "id": "TT_GetTFSDetails__TESTTEST",
+  "command": "GetTFSDetails",
+  "body": {
+   "JobNumber": "TESTTEST"
+  }
+ },
+ {
+  "id": "TT_GetTimeTrackingSubjects__TESTTEST",
+  "command": "GetTimeTrackingSubjects",
+  "body": {
+   "JobNumber": "TESTTEST"
+  }
+ },
+ {
+  "id": "TT_GetTransmittalDetails__TESTTEST",
+  "command": "GetTransmittalDetails",
+  "body": {
+   "JobNumber": "TESTTEST"
+  }
+ },
+ {
+  "id": "TT_HoldSettings_Get__TESTTEST",
+  "command": "HoldSettings_Get",
+  "body": {
+   "JobNumber": "TESTTEST"
+  }
+ },
+ {
+  "id": "TT_InventoryJobCostingTransaction_Get__0",
+  "command": "InventoryJobCostingTransaction_Get",
+  "body": {
+   "Workflow": "Inventory",
+   "SinceInventoryTransactionID": 0
+  }
+ },
+ {
+  "id": "TT_InventoryJobCostingTransaction_Get__consumed",
+  "command": "InventoryJobCostingTransaction_Get",
+  "body": {
+   "Workflow": "consumed",
+   "SinceInventoryTransactionID": 0
+  }
+ },
+ {
+  "id": "TT_InventoryJobCostingTransaction_Get__TESTTEST",
+  "command": "InventoryJobCostingTransaction_Get",
+  "body": {
+   "JobNumber": "TESTTEST"
+  }
+ },
+ {
+  "id": "TT_InventoryJobCostingTransaction_Get__x",
+  "command": "InventoryJobCostingTransaction_Get",
+  "body": {
+   "Workflow": "Inventory"
+  }
+ },
+ {
+  "id": "TT_InventoryLocationRestriction_Get__TESTTEST",
+  "command": "InventoryLocationRestriction_Get",
+  "body": {
+   "JobNumber": "TESTTEST"
+  }
+ },
+ {
+  "id": "TT_InventoryTransaction_GetLastTransactionID__TESTTEST",
+  "command": "InventoryTransaction_GetLastTransactionID",
+  "body": {
+   "JobNumber": "TESTTEST"
+  }
+ },
+ {
+  "id": "TT_LaborRate_Get__TESTTEST",
+  "command": "LaborRate_Get",
+  "body": {
+   "JobNumber": "TESTTEST"
+  }
+ },
+ {
+  "id": "TT_Machine_Get__TESTTEST",
+  "command": "Machine_Get",
+  "body": {
+   "JobNumber": "TESTTEST"
+  }
+ },
+ {
+  "id": "TT_MachineGroup_Get__TESTTEST",
+  "command": "MachineGroup_Get",
+  "body": {
+   "JobNumber": "TESTTEST"
+  }
+ },
+ {
+  "id": "TT_MaxTruck__TESTTEST",
+  "command": "MaxTruck",
+  "body": {
+   "JobNumber": "TESTTEST"
+  }
+ },
+ {
+  "id": "TT_NestSolution_Get__full",
+  "command": "NestSolution_Get",
+  "body": {
+   "ProductionControlID": 90,
+   "GetOptions": {
+    "IncludeRequired": 1,
+    "IncludeResult": 1,
+    "IncludeResultParts": 1,
+    "IncludeResultPartLinks": 1
+   }
+  }
+ },
+ {
+  "id": "TT_NestSolution_Get__TESTTEST",
+  "command": "NestSolution_Get",
+  "body": {
+   "JobNumber": "TESTTEST"
+  }
+ },
+ {
+  "id": "TT_PickList_Get__1",
+  "command": "PickList_Get",
+  "body": {
+   "ProductionControlCutListID": 1
+  }
+ },
+ {
+  "id": "TT_PickList_Get__cl1",
+  "command": "PickList_Get",
+  "body": {
+   "CutListID": 1
+  }
+ },
+ {
+  "id": "TT_PickList_Get__TESTTEST",
+  "command": "PickList_Get",
+  "body": {
+   "JobNumber": "TESTTEST"
+  }
+ },
+ {
+  "id": "TT_Ping__TESTTEST",
+  "command": "Ping",
+  "body": {
+   "JobNumber": "TESTTEST"
+  }
+ },
+ {
+  "id": "TT_PlanningRuleWarning_Get__1",
+  "command": "PlanningRuleWarning_Get",
+  "body": {
+   "Type": "WorkPackage",
+   "ID": 1
+  }
+ },
+ {
+  "id": "TT_PlanningRuleWarning_Get__TESTTEST",
+  "command": "PlanningRuleWarning_Get",
+  "body": {
+   "JobNumber": "TESTTEST"
+  }
+ },
+ {
+  "id": "TT_PlanningRuleWarning_Get__wp3",
+  "command": "PlanningRuleWarning_Get",
+  "body": {
+   "Type": "WorkPackage",
+   "ID": 3
+  }
+ },
+ {
+  "id": "TT_PlanningRuleWarning_Get__x",
+  "command": "PlanningRuleWarning_Get",
+  "body": {
+   "Type": "WorkPackage"
+  }
+ },
+ {
+  "id": "TT_ProductionControlCutList_Get__pc13",
+  "command": "ProductionControlCutList_Get",
+  "body": {
+   "ProductionControlID": 90
+  }
+ },
+ {
+  "id": "TT_ProductionControlCutList_Get__TESTTEST",
+  "command": "ProductionControlCutList_Get",
+  "body": {
+   "JobNumber": "TESTTEST"
+  }
+ },
+ {
+  "id": "TT_ProductionControlCutListItem_Swap_GetAvailable__37",
+  "command": "ProductionControlCutListItem_Swap_GetAvailable",
+  "body": {
+   "ProductionControlCutListItemID": 37
+  }
+ },
+ {
+  "id": "TT_ProductionControlCutListItem_Swap_GetAvailable__TESTTEST",
+  "command": "ProductionControlCutListItem_Swap_GetAvailable",
+  "body": {
+   "JobNumber": "TESTTEST"
+  }
+ },
+ {
+  "id": "TT_ProductionControlFinish_Get__TESTTEST",
+  "command": "ProductionControlFinish_Get",
+  "body": {
+   "JobNumber": "TESTTEST"
+  }
+ },
+ {
+  "id": "TT_ProductionControlJob_Get__pc13",
+  "command": "ProductionControlJob_Get",
+  "body": {
+   "ProductionControlID": 90
+  }
+ },
+ {
+  "id": "TT_ProductionControlJob_Get__TESTTEST",
+  "command": "ProductionControlJob_Get",
+  "body": {
+   "JobNumber": "TESTTEST"
+  }
+ },
+ {
+  "id": "TT_ProductionControlLoad_Get__pc13",
+  "command": "ProductionControlLoad_Get",
+  "body": {
+   "ProductionControlID": 90,
+   "GetOptions": {
+    "IncludeJobDetails": 1,
+    "IncludeFirmDetails": 1,
+    "IncludeMaterial": 1,
+    "IncludeAttachedFiles": 1
+   }
+  }
+ },
+ {
+  "id": "TT_ProductionControlLoad_Get__TESTTEST",
+  "command": "ProductionControlLoad_Get",
+  "body": {
+   "JobNumber": "TESTTEST"
+  }
+ },
+ {
+  "id": "TT_ProductionControlLoad_InputOptions_Get__pc13",
+  "command": "ProductionControlLoad_InputOptions_Get",
+  "body": {
+   "ProductionControlID": 90
+  }
+ },
+ {
+  "id": "TT_ProductionControlLoad_InputOptions_Get__TESTTEST",
+  "command": "ProductionControlLoad_InputOptions_Get",
+  "body": {
+   "JobNumber": "TESTTEST"
+  }
+ },
+ {
+  "id": "TT_ProductionControlLoad_IsDuplicateLoadNumber__pc13",
+  "command": "ProductionControlLoad_IsDuplicateLoadNumber",
+  "body": {
+   "ProductionControlID": 90,
+   "LoadNumber": "1"
+  }
+ },
+ {
+  "id": "TT_ProductionControlLoad_IsDuplicateLoadNumber__TESTTEST",
+  "command": "ProductionControlLoad_IsDuplicateLoadNumber",
+  "body": {
+   "JobNumber": "TESTTEST"
+  }
+ },
+ {
+  "id": "TT_ProductionControlLoadRemaining_Get__pc13",
+  "command": "ProductionControlLoadRemaining_Get",
+  "body": {
+   "ProductionControlID": 90
+  }
+ },
+ {
+  "id": "TT_ProductionControlLoadRemaining_Get__TESTTEST",
+  "command": "ProductionControlLoadRemaining_Get",
+  "body": {
+   "JobNumber": "TESTTEST"
+  }
+ },
+ {
+  "id": "TT_ProductionPlanningSettings_Get__TESTTEST",
+  "command": "ProductionPlanningSettings_Get",
+  "body": {
+   "JobNumber": "TESTTEST"
+  }
+ },
+ {
+  "id": "TT_ProductionShippingProductivity_Get__dates",
+  "command": "ProductionShippingProductivity_Get",
+  "body": {
+   "GetOptions": {
+    "StatusType": "Shipping",
+    "StartDate": "2017-01-01",
+    "EndDate": "2026-12-31"
+   }
+  }
+ },
+ {
+  "id": "TT_ProductionShippingProductivity_Get__int",
+  "command": "ProductionShippingProductivity_Get",
+  "body": {
+   "GetOptions": {
+    "StatusType": "4",
+    "StartDate": "2017-01-01",
+    "EndDate": "2026-12-31"
+   }
+  }
+ },
+ {
+  "id": "TT_ProductionShippingProductivity_Get__opts",
+  "command": "ProductionShippingProductivity_Get",
+  "body": {
+   "GetOptions": {
+    "ProductionControlID": 90
+   }
+  }
+ },
+ {
+  "id": "TT_ProductionShippingProductivity_Get__Pascal",
+  "command": "ProductionShippingProductivity_Get",
+  "body": {
+   "GetOptions": {
+    "StatusType": "ShippingDestination",
+    "StartDate": "2017-01-01",
+    "EndDate": "2026-12-31"
+   }
+  }
+ },
+ {
+  "id": "TT_ProductionShippingProductivity_Get__ship",
+  "command": "ProductionShippingProductivity_Get",
+  "body": {
+   "GetOptions": {
+    "StatusType": "Shipping",
+    "ProductionControlID": 90
+   }
+  }
+ },
+ {
+  "id": "TT_ProductionShippingProductivity_Get__shipdest",
+  "command": "ProductionShippingProductivity_Get",
+  "body": {
+   "GetOptions": {
+    "StatusType": "shippingdestination",
+    "StartDate": "2017-01-01",
+    "EndDate": "2026-12-31"
+   }
+  }
+ },
+ {
+  "id": "TT_ProductionShippingProductivity_Get__station",
+  "command": "ProductionShippingProductivity_Get",
+  "body": {
+   "GetOptions": {
+    "StatusType": "productionstation",
+    "StartDate": "2017-01-01",
+    "EndDate": "2026-12-31"
+   }
+  }
+ },
+ {
+  "id": "TT_ProductionShippingProductivity_Get__TESTTEST",
+  "command": "ProductionShippingProductivity_Get",
+  "body": {
+   "JobNumber": "TESTTEST"
+  }
+ },
+ {
+  "id": "TT_Project_Get__firms",
+  "command": "Project_Get",
+  "body": {
+   "JobNumber": "TESTTEST",
+   "GetOptions": {
+    "IncludeDrawingLogs": 1,
+    "IncludeFirms": 1
+   }
+  }
+ },
+ {
+  "id": "TT_Project_Get__TESTTEST",
+  "command": "Project_Get",
+  "body": {
+   "JobNumber": "TESTTEST"
+  }
+ },
+ {
+  "id": "TT_PurchaseOrder_Get__TESTTEST",
+  "command": "PurchaseOrder_Get",
+  "body": {
+   "JobNumber": "TESTTEST"
+  }
+ },
+ {
+  "id": "TT_PurchaseOrderFOB_Get__TESTTEST",
+  "command": "PurchaseOrderFOB_Get",
+  "body": {
+   "JobNumber": "TESTTEST"
+  }
+ },
+ {
+  "id": "TT_PurchaseOrderItem_Get__TESTTEST",
+  "command": "PurchaseOrderItem_Get",
+  "body": {
+   "JobNumber": "TESTTEST"
+  }
+ },
+ {
+  "id": "TT_PurchaseOrderItemReceiveTransaction_Get__0",
+  "command": "PurchaseOrderItemReceiveTransaction_Get",
+  "body": {
+   "ExportedSinceUnixTime": 0
+  }
+ },
+ {
+  "id": "TT_PurchaseOrderItemReceiveTransaction_Get__TESTTEST",
+  "command": "PurchaseOrderItemReceiveTransaction_Get",
+  "body": {
+   "JobNumber": "TESTTEST"
+  }
+ },
+ {
+  "id": "TT_PurchaseOrderPaymentTerm_Get__TESTTEST",
+  "command": "PurchaseOrderPaymentTerm_Get",
+  "body": {
+   "JobNumber": "TESTTEST"
+  }
+ },
+ {
+  "id": "TT_PurchaseOrderPOType_Get__TESTTEST",
+  "command": "PurchaseOrderPOType_Get",
+  "body": {
+   "JobNumber": "TESTTEST"
+  }
+ },
+ {
+  "id": "TT_PurchaseOrderShippingMethod_Get__TESTTEST",
+  "command": "PurchaseOrderShippingMethod_Get",
+  "body": {
+   "JobNumber": "TESTTEST"
+  }
+ },
+ {
+  "id": "TT_PurchaseOrderSubcontractItem_Get__TESTTEST",
+  "command": "PurchaseOrderSubcontractItem_Get",
+  "body": {
+   "JobNumber": "TESTTEST"
+  }
+ },
+ {
+  "id": "TT_PurchaseOrderSummary_Get__dates",
+  "command": "PurchaseOrderSummary_Get",
+  "body": {
+   "GetOptions": {
+    "SummaryType": "Job",
+    "StartDate": "2017-01-01",
+    "EndDate": "2026-12-31"
+   }
+  }
+ },
+ {
+  "id": "TT_PurchaseOrderSummary_Get__job",
+  "command": "PurchaseOrderSummary_Get",
+  "body": {
+   "GetOptions": {
+    "SummaryType": "Job"
+   }
+  }
+ },
+ {
+  "id": "TT_PurchaseOrderSummary_Get__opts",
+  "command": "PurchaseOrderSummary_Get",
+  "body": {
+   "GetOptions": {
+    "ProductionControlID": 90
+   }
+  }
+ },
+ {
+  "id": "TT_PurchaseOrderSummary_Get__TESTTEST",
+  "command": "PurchaseOrderSummary_Get",
+  "body": {
+   "JobNumber": "TESTTEST"
+  }
+ },
+ {
+  "id": "TT_Remnant_Get__TESTTEST",
+  "command": "Remnant_Get",
+  "body": {
+   "JobNumber": "TESTTEST"
+  }
+ },
+ {
+  "id": "TT_Transmittal_Get__TESTTEST",
+  "command": "Transmittal_Get",
+  "body": {
+   "JobNumber": "TESTTEST"
+  }
+ },
+ {
+  "id": "TT_TrimbleViewpointSettings_Get__TESTTEST",
+  "command": "TrimbleViewpointSettings_Get",
+  "body": {
+   "JobNumber": "TESTTEST"
+  }
+ },
+ {
+  "id": "TT_UserPartial_Get__TESTTEST",
+  "command": "UserPartial_Get",
+  "body": {
+   "JobNumber": "TESTTEST"
+  }
+ },
+ {
+  "id": "TT_ValCutListItem__37",
+  "command": "ValCutListItem",
+  "body": {
+   "CutListItemID": 37
+  }
+ },
+ {
+  "id": "TT_ValCutListItem__TESTTEST",
+  "command": "ValCutListItem",
+  "body": {
+   "JobNumber": "TESTTEST"
+  }
+ },
+ {
+  "id": "TT_ValInventory__TESTTEST",
+  "command": "ValInventory",
+  "body": {
+   "JobNumber": "TESTTEST"
+  }
+ },
+ {
+  "id": "TT_ValJob__TESTTEST",
+  "command": "ValJob",
+  "body": {
+   "JobNumber": "TESTTEST"
+  }
+ },
+ {
+  "id": "TT_ValStation__qc",
+  "command": "ValStation",
+  "body": {
+   "JobNumber": "TESTTEST",
+   "Station": "Quality Control"
+  }
+ },
+ {
+  "id": "TT_ValStation__TESTTEST",
+  "command": "ValStation",
+  "body": {
+   "JobNumber": "TESTTEST"
+  }
+ },
+ {
+  "id": "TT_ValTruck__1",
+  "command": "ValTruck",
+  "body": {
+   "JobNumber": "TESTTEST",
+   "TruckNumber": "1"
+  }
+ },
+ {
+  "id": "TT_ValTruck__TESTTEST",
+  "command": "ValTruck",
+  "body": {
+   "JobNumber": "TESTTEST"
+  }
+ },
+ {
+  "id": "TT_ValUser__admin",
+  "command": "ValUser",
+  "body": {
+   "Username": "admin"
+  }
+ },
+ {
+  "id": "TT_ValUser__TESTTEST",
+  "command": "ValUser",
+  "body": {
+   "JobNumber": "TESTTEST"
+  }
+ },
+ {
+  "id": "TT_WorkArea_Get__TESTTEST",
+  "command": "WorkArea_Get",
+  "body": {
+   "JobNumber": "TESTTEST"
+  }
+ },
+ {
+  "id": "TT_WorkAreaDepartment_Get__TESTTEST",
+  "command": "WorkAreaDepartment_Get",
+  "body": {
+   "JobNumber": "TESTTEST"
+  }
+ },
+ {
+  "id": "TT_WorkAreaDepartmentFutureTask_Get__TESTTEST",
+  "command": "WorkAreaDepartmentFutureTask_Get",
+  "body": {
+   "JobNumber": "TESTTEST"
+  }
+ },
+ {
+  "id": "TT_WorkAreaDepartmentSchedule_Get__TESTTEST",
+  "command": "WorkAreaDepartmentSchedule_Get",
+  "body": {
+   "JobNumber": "TESTTEST"
+  }
+ },
+ {
+  "id": "TT_WorkAreaDepartmentScheduleShift_Get__TESTTEST",
+  "command": "WorkAreaDepartmentScheduleShift_Get",
+  "body": {
+   "JobNumber": "TESTTEST"
+  }
+ },
+ {
+  "id": "TT_WorkPackage_Get__pc13",
+  "command": "WorkPackage_Get",
+  "body": {
+   "ProductionControlID": 90
+  }
+ },
+ {
+  "id": "TT_WorkPackage_Get__TESTTEST",
+  "command": "WorkPackage_Get",
+  "body": {
+   "JobNumber": "TESTTEST"
+  }
+ },
+ {
+  "id": "TT_WorkPackage_Get__wp3",
+  "command": "WorkPackage_Get",
+  "body": {
+   "WorkPackageID": 3
+  }
+ },
+ {
+  "id": "TT_WorkPackageDepartment_Get__TESTTEST",
+  "command": "WorkPackageDepartment_Get",
+  "body": {
+   "JobNumber": "TESTTEST"
+  }
+ },
+ {
+  "id": "TT_WorkPackageDepartmentTask_Get__completions",
+  "command": "WorkPackageDepartmentTask_Get",
+  "body": {
+   "GetOptions": {
+    "IncludeDepartmentTaskCompletions": 1
+   }
+  }
+ },
+ {
+  "id": "TT_WorkPackageDepartmentTask_Get__TESTTEST",
+  "command": "WorkPackageDepartmentTask_Get",
+  "body": {
+   "JobNumber": "TESTTEST"
+  }
+ },
+ {
+  "id": "TT_WorkPackageDepartmentTaskCompletion_Get__nested",
+  "command": "WorkPackageDepartmentTaskCompletion_Get",
+  "body": {
+   "WorkPackageDepartmentTaskCompletion": {
+    "WorkPackageDepartmentTaskID": 1
+   }
+  }
+ },
+ {
+  "id": "TT_WorkPackageDepartmentTaskCompletion_Get__TESTTEST",
+  "command": "WorkPackageDepartmentTaskCompletion_Get",
+  "body": {
+   "JobNumber": "TESTTEST"
+  }
+ },
+ {
+  "id": "TT_WorkPackageGroup1List_Get__TESTTEST",
+  "command": "WorkPackageGroup1List_Get",
+  "body": {
+   "JobNumber": "TESTTEST"
+  }
+ },
+ {
+  "id": "TT_WorkPackageGroup2List_Get__TESTTEST",
+  "command": "WorkPackageGroup2List_Get",
+  "body": {
+   "JobNumber": "TESTTEST"
+  }
+ },
+ {
+  "id": "TT_Workshop_Get__TESTTEST",
+  "command": "Workshop_Get",
+  "body": {
+   "JobNumber": "TESTTEST"
+  }
+ },
+ {
+  "id": "UserPartial_Get__EPM-001",
+  "command": "UserPartial_Get",
+  "body": {
+   "JobNumber": "EPM-001"
+  }
+ },
+ {
+  "id": "ValCutListItem__37",
+  "command": "ValCutListItem",
+  "body": {
+   "CutListItemID": 37
+  }
+ },
+ {
+  "id": "ValCutListItem__EPM-001",
+  "command": "ValCutListItem",
+  "body": {
+   "JobNumber": "EPM-001"
+  }
+ },
+ {
+  "id": "ValInventory__EPM-001",
+  "command": "ValInventory",
+  "body": {
+   "JobNumber": "EPM-001"
+  }
+ },
+ {
+  "id": "ValJob__EPM-001",
+  "command": "ValJob",
+  "body": {
+   "JobNumber": "EPM-001"
+  }
+ },
+ {
+  "id": "ValStation__EPM-001",
+  "command": "ValStation",
+  "body": {
+   "JobNumber": "EPM-001"
+  }
+ },
+ {
+  "id": "ValStation__qc",
+  "command": "ValStation",
+  "body": {
+   "JobNumber": "EPM-001",
+   "Station": "Quality Control"
+  }
+ },
+ {
+  "id": "ValTruck__1",
+  "command": "ValTruck",
+  "body": {
+   "JobNumber": "EPM-001",
+   "TruckNumber": "1"
+  }
+ },
+ {
+  "id": "ValTruck__EPM-001",
+  "command": "ValTruck",
+  "body": {
+   "JobNumber": "EPM-001"
+  }
+ },
+ {
+  "id": "ValUser__admin",
+  "command": "ValUser",
+  "body": {
+   "Username": "admin"
+  }
+ },
+ {
+  "id": "ValUser__EPM-001",
+  "command": "ValUser",
+  "body": {
+   "JobNumber": "EPM-001"
+  }
+ },
+ {
+  "id": "WorkArea_Get__EPM-001",
+  "command": "WorkArea_Get",
+  "body": {
+   "JobNumber": "EPM-001"
+  }
+ },
+ {
+  "id": "WorkAreaDepartment_Get__EPM-001",
+  "command": "WorkAreaDepartment_Get",
+  "body": {
+   "JobNumber": "EPM-001"
+  }
+ },
+ {
+  "id": "WorkAreaDepartmentFutureTask_Get__EPM-001",
+  "command": "WorkAreaDepartmentFutureTask_Get",
+  "body": {
+   "JobNumber": "EPM-001"
+  }
+ },
+ {
+  "id": "WorkAreaDepartmentSchedule_Get__EPM-001",
+  "command": "WorkAreaDepartmentSchedule_Get",
+  "body": {
+   "JobNumber": "EPM-001"
+  }
+ },
+ {
+  "id": "WorkAreaDepartmentScheduleShift_Get__EPM-001",
+  "command": "WorkAreaDepartmentScheduleShift_Get",
+  "body": {
+   "JobNumber": "EPM-001"
+  }
+ },
+ {
+  "id": "WorkPackage_Get__EPM-001",
+  "command": "WorkPackage_Get",
+  "body": {
+   "JobNumber": "EPM-001"
+  }
+ },
+ {
+  "id": "WorkPackage_Get__pc13",
+  "command": "WorkPackage_Get",
+  "body": {
+   "ProductionControlID": 13
+  }
+ },
+ {
+  "id": "WorkPackage_Get__wp3",
+  "command": "WorkPackage_Get",
+  "body": {
+   "WorkPackageID": 3
+  }
+ },
+ {
+  "id": "WorkPackageDepartment_Get__EPM-001",
+  "command": "WorkPackageDepartment_Get",
+  "body": {
+   "JobNumber": "EPM-001"
+  }
+ },
+ {
+  "id": "WorkPackageDepartmentTask_Get__completions",
+  "command": "WorkPackageDepartmentTask_Get",
+  "body": {
+   "GetOptions": {
+    "IncludeDepartmentTaskCompletions": 1
+   }
+  }
+ },
+ {
+  "id": "WorkPackageDepartmentTask_Get__EPM-001",
+  "command": "WorkPackageDepartmentTask_Get",
+  "body": {
+   "JobNumber": "EPM-001"
+  }
+ },
+ {
+  "id": "WorkPackageDepartmentTaskCompletion_Get__EPM-001",
+  "command": "WorkPackageDepartmentTaskCompletion_Get",
+  "body": {
+   "JobNumber": "EPM-001"
+  }
+ },
+ {
+  "id": "WorkPackageDepartmentTaskCompletion_Get__nested",
+  "command": "WorkPackageDepartmentTaskCompletion_Get",
+  "body": {
+   "WorkPackageDepartmentTaskCompletion": {
+    "WorkPackageDepartmentTaskID": 1
+   }
+  }
+ },
+ {
+  "id": "WorkPackageGroup1List_Get__EPM-001",
+  "command": "WorkPackageGroup1List_Get",
+  "body": {
+   "JobNumber": "EPM-001"
+  }
+ },
+ {
+  "id": "WorkPackageGroup2List_Get__EPM-001",
+  "command": "WorkPackageGroup2List_Get",
+  "body": {
+   "JobNumber": "EPM-001"
+  }
+ },
+ {
+  "id": "Workshop_Get__EPM-001",
+  "command": "Workshop_Get",
+  "body": {
+   "JobNumber": "EPM-001"
+  }
+ }
+]

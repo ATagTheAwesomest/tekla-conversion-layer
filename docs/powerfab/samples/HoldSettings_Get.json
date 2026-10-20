@@ -1,0 +1,22 @@
+{
+  "command": "HoldSettings_Get",
+  "request": {
+    "JobNumber": "EPM-001"
+  },
+  "status": 200,
+  "bytes": 192,
+  "note": "Trimmed: lists keep their first 3 items. Names, phones and street addresses are masked.",
+  "response": {
+    "Successful": "1",
+    "ResultData": {
+      "HoldSettings": {
+        "Purchasing": "Prompt",
+        "Production": "Prompt",
+        "Inspections": "Prompt",
+        "ShippingAssign": "Prompt",
+        "ShippingLoad": "Prompt",
+        "ShippingShip": "Prevent"
+      }
+    }
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "command": "UserPartial_Get",
+  "request": {
+    "JobNumber": "TESTTEST"
+  },
+  "status": 200,
+  "bytes": 398,
+  "note": "Trimmed: lists keep their first 3 items. Names, phones and street addresses are masked.",
+  "response": {
+    "Successful": "1",
+    "ResultData": {
+      "User": [
+        {
+          "UserID": "1",
+          "ProductionUser": "1",
+          "Username": "<redacted>",
+          "LastName": "<redacted>"
+        },
+        {
+          "UserID": "8",
+          "ProductionUser": "1",
+          "Username": "<redacted>",
+          "LastName": "<redacted>",
+          "FirstName": "<redacted>"
+        },
+        {
+          "UserID": "7",
+          "ProductionUser": "1",
+          "Username": "<redacted>",
+          "LastName": "<redacted>",
+          "FirstName": "<redacted>"
+        },
+        "… 1 more"
+      ]
+    }
+  }
+}

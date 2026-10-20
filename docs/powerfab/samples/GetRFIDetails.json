@@ -1,0 +1,41 @@
+{
+  "command": "GetRFIDetails",
+  "request": {
+    "JobNumber": "EPM-001"
+  },
+  "status": 200,
+  "bytes": 641,
+  "note": "Trimmed: lists keep their first 3 items. Names, phones and street addresses are masked.",
+  "response": {
+    "Successful": "1",
+    "CommandGUID": "11580170-64C9-46D9-816E-E1BBB95BD1A8",
+    "JobNumber": "EPM-001",
+    "RFIs": {
+      "RFI": {
+        "RequestForInformationID": "1",
+        "RFINumber": "1",
+        "RFIDate": "2020-08-13",
+        "JobNumber": "EPM-001",
+        "Subject": "Material Not Called Out",
+        "Body": "Please define material required between J & K and 1 & 2 at the first level..",
+        "ResponseRequestedBy": "2020-08-17",
+        "Outstanding": "1",
+        "Overdue": "1",
+        "Status": "Open",
+        "Originator": {
+          "FirmType": "My Company",
+          "Firm": "My Company",
+          "Contact": "Administrator"
+        },
+        "Recipient": {
+          "FirmType": "Client",
+          "Firm": "Tekla EPM - Client",
+          "Contact": "Project Manager",
+          "RFINumber": "27",
+          "DateSent": "2020-08-13",
+          "SentVia": "E-mail"
+        }
+      }
+    }
+  }
+}

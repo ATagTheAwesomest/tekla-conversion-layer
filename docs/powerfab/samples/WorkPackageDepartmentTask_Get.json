@@ -1,0 +1,62 @@
+{
+  "command": "WorkPackageDepartmentTask_Get",
+  "request": {
+    "GetOptions": {
+      "IncludeDepartmentTaskCompletions": 1
+    }
+  },
+  "status": 200,
+  "bytes": 1279,
+  "note": "Trimmed: lists keep their first 3 items. Names, phones and street addresses are masked.",
+  "response": {
+    "Successful": "1",
+    "ResultData": {
+      "LastLogID": "4,0",
+      "GetOptions": {
+        "IncludeDepartmentTaskCompletions": "1"
+      },
+      "WorkPackageDepartmentTask": [
+        {
+          "WorkPackageDepartmentTaskID": "1",
+          "WorkPackageDepartmentID": "1",
+          "Weight": "1075.229329",
+          "Hours": "0",
+          "IsCompleted": "0",
+          "CompletedWeight": "0",
+          "CompletedHours": "0",
+          "RemainingWeight": "1075.229329",
+          "RemainingHours": "0",
+          "OffsetFutureWorkPackageWeight": "0",
+          "OffsetFutureWorkPackageHours": "0"
+        },
+        {
+          "WorkPackageDepartmentTaskID": "2",
+          "WorkPackageDepartmentID": "2",
+          "Weight": "33420.89563",
+          "Hours": "0",
+          "IsCompleted": "0",
+          "CompletedWeight": "0",
+          "CompletedHours": "0",
+          "RemainingWeight": "33420.89563",
+          "RemainingHours": "0",
+          "OffsetFutureWorkPackageWeight": "0",
+          "OffsetFutureWorkPackageHours": "0"
+        },
+        {
+          "WorkPackageDepartmentTaskID": "3",
+          "WorkPackageDepartmentID": "3",
+          "Weight": "27085.00202",
+          "Hours": "0",
+          "IsCompleted": "0",
+          "CompletedWeight": "0",
+          "CompletedHours": "0",
+          "RemainingWeight": "27085.00202",
+          "RemainingHours": "0",
+          "OffsetFutureWorkPackageWeight": "0",
+          "OffsetFutureWorkPackageHours": "0"
+        },
+        "… 1 more"
+      ]
+    }
+  }
+}

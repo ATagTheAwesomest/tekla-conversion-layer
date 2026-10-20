@@ -1,0 +1,14 @@
+{
+  "command": "Version",
+  "request": {},
+  "status": 200,
+  "note": "Trimmed: lists keep their first 3 items. Names, phones and street addresses are masked.",
+  "response": {
+    "Successful": "1",
+    "CommandGUID": "97797180-C527-4984-A322-B51C8987CE2D",
+    "MajorVersion": "2026",
+    "MinorVersion": "SP3",
+    "PatchNumber": "0",
+    "InterfaceVersionNumber": "2026.0.0"
+  }
+}

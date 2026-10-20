@@ -1,0 +1,86 @@
+{
+  "command": "PickList_Get",
+  "request": {
+    "CutListID": 1
+  },
+  "status": 200,
+  "bytes": 30855,
+  "note": "Trimmed: lists keep their first 3 items. Names, phones and street addresses are masked.",
+  "response": {
+    "Successful": "1",
+    "ResultData": {
+      "GetOptions": {
+        "InputDisplayUnits": {
+          "SizeUOM": "Imperial",
+          "LengthUOM": "Imperial",
+          "LengthTypeIDMetric": "101",
+          "LengthTypeIDImperial": "1",
+          "WeightUOM": "Imperial",
+          "PriceUOM": "Imperial"
+        }
+      },
+      "PickList": {
+        "ProductionControlID": "13",
+        "JobNumber": "EPM-001",
+        "CutListID": "1",
+        "CutListName": "Seq 1 WF",
+        "DateCreated": "2020-09-01",
+        "DateRequired": "2020-09-25",
+        "PickListItem": [
+          {
+            "CutListItemID": "37",
+            "Quantity": "1",
+            "Shape": "W",
+            "Grade": "A992",
+            "Dimensions": {
+              "@AlternateDisplay": "460 x 60",
+              "@Metric": "0",
+              "@SizeID": "148",
+              "#text": "18 x 40"
+            },
+            "Length": "18288.03658",
+            "WeightEach": "1088.621688",
+            "PONumber": "EPM-0001",
+            "Supplier": "Tekla EPM - Supplier",
+            "OnOrder": "1"
+          },
+          {
+            "CutListItemID": "89",
+            "Quantity": "1",
+            "Shape": "W",
+            "Grade": "A992",
+            "Dimensions": {
+              "@AlternateDisplay": "460 x 60",
+              "@Metric": "0",
+              "@SizeID": "148",
+              "#text": "18 x 40"
+            },
+            "Length": "12192.02438",
+            "WeightEach": "725.747792",
+            "PONumber": "EPM-0001",
+            "Supplier": "Tekla EPM - Supplier",
+            "OnOrder": "1"
+          },
+          {
+            "CutListItemID": "93",
+            "Quantity": "1",
+            "Shape": "W",
+            "Grade": "A992",
+            "Dimensions": {
+              "@AlternateDisplay": "460 x 52",
+              "@Metric": "0",
+              "@SizeID": "149",
+              "#text": "18 x 35"
+            },
+            "Length": "18288.03658",
+            "WeightEach": "952.543977",
+            "PONumber": "EPM-0001",
+            "Supplier": "Tekla EPM - Supplier",
+            "OnOrder": "1"
+          },
+          "… 106 more"
+        ]
+      }
+    }
+  }
+}

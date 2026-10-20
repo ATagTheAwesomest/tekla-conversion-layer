@@ -1,0 +1,74 @@
+{
+  "command": "GetCategories",
+  "request": {
+    "JobNumber": "EPM-001"
+  },
+  "status": 200,
+  "bytes": 2138,
+  "note": "Trimmed: lists keep their first 3 items. Names, phones and street addresses are masked.",
+  "response": {
+    "Successful": "1",
+    "CommandGUID": "1818DD50-3FF8-4570-8C20-CD46298D1831",
+    "ProductionControlID": "13",
+    "JobNumber": "EPM-001",
+    "InputDisplayUnits": {
+      "SizeUOM": "Imperial",
+      "LengthUOM": "Imperial",
+      "LengthTypeIDMetric": "101",
+      "LengthTypeIDImperial": "1",
+      "WeightUOM": "Imperial",
+      "PriceUOM": "Imperial"
+    },
+    "Category": [
+      {
+        "Category": "",
+        "MainMemberQuantity": "0",
+        "TotalQuantity": "15628",
+        "Weight": {
+          "@UOM": "kg",
+          "#text": "16998.840712460117137"
+        }
+      },
+      {
+        "Category": "ANCHOR_ROD",
+        "MainMemberQuantity": "256",
+        "TotalQuantity": "256",
+        "Weight": {
+          "@UOM": "kg",
+          "#text": "0"
+        }
+      },
+      {
+        "Category": "Backer Bar",
+        "MainMemberQuantity": "2",
+        "TotalQuantity": "2",
+        "Weight": {
+          "@UOM": "kg",
+          "#text": "0.257035676333333"
+        }
+      },
+      "… 10 more"
+    ],
+    "FilterSet": {
+      "Filter": {
+        "Name": "Job #",
+        "DisplayName": "Job #",
+        "FilterItems": {
+          "FilterItem": {
+            "@Field1": "13",
+            "@Field2": "EPM-001",
+            "#text": "EPM-001"
+          }
+        }
+      }
+    },
+    "HoldSettings": {
+      "Purchasing": "Prompt",
+      "Production": "Prompt",
+      "Inspections": "Prompt",
+      "ShippingAssign": "Prompt",
+      "ShippingLoad": "Prompt",
+      "ShippingShip": "Prevent"
+    }
+  }
+}

@@ -1,0 +1,349 @@
+[
+ [
+  {
+   "id": "A00_Remaining",
+   "command": "ProductionControlLoadRemaining_Get",
+   "required": true,
+   "body": {
+    "ProductionControlID": 13
+   },
+   "save": {
+    "ITEM1": {
+     "key": "ProductionControlItemID",
+     "where": {
+      "QuantityRemaining": ">0"
+     },
+     "nth": 0
+    },
+    "SEQ1": {
+     "key": "SequenceID",
+     "where": {
+      "QuantityRemaining": ">0"
+     },
+     "nth": 0
+    },
+    "ITEM2": {
+     "key": "ProductionControlItemID",
+     "where": {
+      "QuantityRemaining": ">0"
+     },
+     "nth": 1
+    },
+    "SEQ2": {
+     "key": "SequenceID",
+     "where": {
+      "QuantityRemaining": ">0"
+     },
+     "nth": 1
+    }
+   }
+  },
+  {
+   "id": "A02_Load_Insert",
+   "command": "ProductionControlLoad_Insert",
+   "required": true,
+   "body": {
+    "ProductionControlID": 13,
+    "LoadNumber": "WIKI-3",
+    "Capacity": 19958.06428,
+    "ShippingDestinationGroupID": "",
+    "TrailerNumber": "WIKI-TRAILER",
+    "Carrier": "WIKI TEST"
+   },
+   "save": {
+    "LOAD": {
+     "key": "ProductionControlLoadID"
+    }
+   }
+  },
+  {
+   "id": "A04_Material_Add",
+   "command": "ProductionControlLoadMaterial_Add",
+   "required": true,
+   "body": {
+    "ProductionControlLoadID": "{{LOAD}}",
+    "LoadItemsOnAssign": 0,
+    "AddItem": [
+     {
+      "ProductionControlItemID": "{{ITEM1}}",
+      "SequenceID": "{{SEQ1}}",
+      "Quantity": 1
+     },
+     {
+      "ProductionControlItemID": "{{ITEM2}}",
+      "SequenceID": "{{SEQ2}}",
+      "Quantity": 1
+     }
+    ]
+   }
+  },
+  {
+   "id": "A05_Get_Assigned",
+   "command": "ProductionControlLoad_Get",
+   "body": {
+    "ProductionControlID": 13,
+    "ProductionControlLoadID": "{{LOAD}}",
+    "GetOptions": {
+     "IncludeMaterial": 1
+    }
+   },
+   "save": {
+    "TRUCKITEM": {
+     "key": "ProductionControlItemTruckID",
+     "where": {
+      "ProductionControlItemID": "{{ITEM1}}"
+     }
+    },
+    "TRUCKITEM2": {
+     "key": "ProductionControlItemTruckID",
+     "where": {
+      "ProductionControlItemID": "{{ITEM2}}"
+     }
+    }
+   }
+  },
+  {
+   "id": "A06_Material_Load",
+   "command": "ProductionControlLoadMaterial_Load",
+   "body": {
+    "ProductionControlLoadID": "{{LOAD}}",
+    "DateLoaded": "2026-10-20",
+    "LoadItem": [
+     {
+      "ProductionControlItemTruckID": "{{TRUCKITEM}}",
+      "Quantity": 1
+     }
+    ]
+   }
+  },
+  {
+   "id": "A07_Get_Loaded",
+   "command": "ProductionControlLoad_Get",
+   "body": {
+    "ProductionControlID": 13,
+    "ProductionControlLoadID": "{{LOAD}}",
+    "GetOptions": {
+     "IncludeMaterial": 1
+    }
+   }
+  },
+  {
+   "id": "A08_GetLoads_Loaded",
+   "command": "GetLoads",
+   "body": {
+    "JobNumber": "EPM-001",
+    "LoadNumber": "WIKI-3",
+    "IncludeLoads": true,
+    "IncludeUnshippedLoads": true,
+    "IncludeCompletedMaterial": true,
+    "IncludeRemainingMaterial": false
+   }
+  },
+  {
+   "id": "A09_MakeReport",
+   "command": "MakeReport",
+   "timeout": 90000,
+   "body": {
+    "ReportGroup": "ProductionControlShippingTicket",
+    "ReportTypeID": 21,
+    "ReportID": 1020,
+    "ProductionControlID": 13,
+    "ProductionControlLoadID": "{{LOAD}}"
+   }
+  },
+  {
+   "id": "A10_PrepareReportData",
+   "command": "PrepareReportData",
+   "timeout": 90000,
+   "body": {
+    "ReportGroup": "ProductionControlShippingTicket",
+    "ReportTypeID": 21,
+    "ReportID": 1020,
+    "ProductionControlID": 13,
+    "ProductionControlLoadID": "{{LOAD}}"
+   }
+  },
+  {
+   "id": "A11_Load_Ship",
+   "command": "ProductionControlLoad_Ship",
+   "body": {
+    "ProductionControlLoadID": "{{LOAD}}",
+    "ShippedDate": "2026-10-20"
+   }
+  },
+  {
+   "id": "A12_Status_Shipped",
+   "command": "GetProductionShippingStatus",
+   "body": {
+    "JobNumber": "EPM-001"
+   }
+  },
+  {
+   "id": "A13_Material_Return",
+   "command": "ProductionControlLoadMaterial_Return",
+   "body": {
+    "ProductionControlLoadID": "{{LOAD}}",
+    "ReturnItem": [
+     {
+      "ProductionControlItemTruckID": "{{TRUCKITEM}}",
+      "Quantity": 1
+     }
+    ]
+   }
+  },
+  {
+   "id": "A14_Material_Unreturn",
+   "command": "ProductionControlLoadMaterial_Unreturn",
+   "body": {
+    "ProductionControlLoadID": "{{LOAD}}",
+    "UnreturnItem": [
+     {
+      "ProductionControlItemTruckID": "{{TRUCKITEM}}",
+      "Quantity": 1
+     }
+    ]
+   }
+  },
+  {
+   "id": "A15_Load_Unship",
+   "command": "ProductionControlLoad_Unship",
+   "always": true,
+   "body": {
+    "ProductionControlLoadID": "{{LOAD}}"
+   }
+  },
+  {
+   "id": "A16_Material_Unload",
+   "command": "ProductionControlLoadMaterial_Unload",
+   "always": true,
+   "body": {
+    "ProductionControlLoadID": "{{LOAD}}",
+    "UnloadItem": [
+     {
+      "ProductionControlItemTruckID": "{{TRUCKITEM}}",
+      "Quantity": 1
+     }
+    ]
+   }
+  },
+  {
+   "id": "A17_Material_Remove",
+   "command": "ProductionControlLoadMaterial_Remove",
+   "always": true,
+   "body": {
+    "ProductionControlLoadID": "{{LOAD}}",
+    "RemoveItem": [
+     {
+      "ProductionControlItemTruckID": "{{TRUCKITEM}}",
+      "Quantity": 1
+     },
+     {
+      "ProductionControlItemTruckID": "{{TRUCKITEM2}}",
+      "Quantity": 1
+     }
+    ]
+   }
+  },
+  {
+   "id": "A18_Load_Delete",
+   "command": "ProductionControlLoad_Delete",
+   "always": true,
+   "body": {
+    "ProductionControlLoadID": "{{LOAD}}"
+   }
+  },
+  {
+   "id": "A19_Check_Left",
+   "command": "ProductionControlLoad_Get",
+   "always": true,
+   "body": {
+    "ProductionControlID": 13
+   }
+  }
+ ],
+ [
+  {
+   "id": "C01_Drawing_Insert",
+   "command": "Drawing_Insert",
+   "required": true,
+   "body": {
+    "ProjectID": 4,
+    "DrawingLogID": 24,
+    "DrawingNumberDisplay": "WIKI-1",
+    "Description": "wiki test drawing"
+   },
+   "save": {
+    "DRAW": {
+     "key": "DrawingID"
+    }
+   }
+  },
+  {
+   "id": "C02_Drawing_Update",
+   "command": "Drawing_Update",
+   "body": {
+    "ProjectID": 4,
+    "DrawingID": "{{DRAW}}",
+    "Description": "wiki test drawing 2"
+   }
+  },
+  {
+   "id": "C03_Revision_Insert",
+   "command": "DrawingRevision_Insert",
+   "body": {
+    "DrawingID": "{{DRAW}}"
+   },
+   "save": {
+    "REV": {
+     "key": "DrawingRevisionID"
+    }
+   }
+  },
+  {
+   "id": "C04_Revision_Update",
+   "command": "DrawingRevision_Update",
+   "body": {
+    "DrawingRevisionID": "{{REV}}",
+    "Revision": "A"
+   }
+  },
+  {
+   "id": "C05_Drawing_Get",
+   "command": "Drawing_Get",
+   "body": {
+    "DrawingID": "{{DRAW}}",
+    "GetOptions": {
+     "Revisions": "all",
+     "Transmittals": "all"
+    }
+   }
+  },
+  {
+   "id": "C06_Revision_Delete",
+   "command": "DrawingRevision_Delete",
+   "always": true,
+   "body": {
+    "DrawingRevisionID": "{{REV}}"
+   }
+  },
+  {
+   "id": "C07_Drawing_Delete",
+   "command": "Drawing_Delete",
+   "always": true,
+   "body": {
+    "DrawingID": "{{DRAW}}"
+   }
+  },
+  {
+   "id": "C08_Check_Left",
+   "command": "Drawing_Get",
+   "always": true,
+   "body": {
+    "ProjectID": 4,
+    "GetOptions": {
+     "Revisions": "none"
+    }
+   }
+  }
+ ]
+]

@@ -1,0 +1,186 @@
+{
+  "command": "ProductionControlLoadRemaining_Get",
+  "request": {
+    "ProductionControlID": 13
+  },
+  "status": 200,
+  "bytes": 571875,
+  "note": "Trimmed: lists keep their first 3 items. Names, phones and street addresses are masked.",
+  "response": {
+    "Successful": "1",
+    "ResultData": {
+      "LastLogID": "146424,38902",
+      "GetOptions": "",
+      "ProductionControlLoadRemaining": [
+        {
+          "ProductionControlItemID": "8696",
+          "ProductionControlID": "13",
+          "DrawingNumberDisplay": "1",
+          "MainMarkDisplay": "1B1",
+          "PieceMarkDisplay": "1B1",
+          "MainPiece": "1",
+          "SequenceID": "25",
+          "SequenceDisplay": "1",
+          "DrawingID": "2916",
+          "ShippingLength": "8788.417577",
+          "ShippingLengthEach": "11263.33503",
+          "ShippingWeightEach": "797.2516955",
+          "ShippingGrossWeightEach": "798.6380359",
+          "ShippingModelWeightEach": "797.2516955",
+          "ShippingSurfaceAreaEach": "14.64677448",
+          "ShippingSquareMetersEach": "0.2378034695",
+          "HoursEach": "4.908988784",
+          "ApprovalStatus": {
+            "@ID": "6",
+            "#text": "IFF"
+          },
+          "TotalQuantity": "1",
+          "QuantityAtShippedFromAddress": "1",
+          "QuantityRemaining": "1",
+          "Shape": {
+            "@ID": "9",
+            "#text": "W"
+          },
+          "Grade": {
+            "@ID": "8",
+            "#text": "A992"
+          },
+          "Dimensions": {
+            "@Metric": "0",
+            "@SizeID": "154",
+            "#text": "16 x 57"
+          },
+          "Length": "8788.417577",
+          "Finish": {
+            "@ID": "1",
+            "#text": "PNT"
+          },
+          "ReferenceNumber": "1B1",
+          "Route": {
+            "@ID": "1",
+            "#text": "SP"
+          },
+          "Category": "BEAM",
+          "SubCategory": "Phase 1",
+          "InstanceTracking": "0",
+          "ProductionCode": "BFB"
+        },
+        {
+          "ProductionControlItemID": "8704",
+          "ProductionControlID": "13",
+          "DrawingNumberDisplay": "1",
+          "MainMarkDisplay": "1B2",
+          "PieceMarkDisplay": "1B2",
+          "MainPiece": "1",
+          "SequenceID": "25",
+          "SequenceDisplay": "1",
+          "DrawingID": "2916",
+          "ShippingLength": "8794.76759",
+          "ShippingLengthEach": "13201.6764",
+          "ShippingWeightEach": "1094.098917",
+          "ShippingGrossWeightEach": "1096.655422",
+          "ShippingModelWeightEach": "1094.098917",
+          "ShippingSurfaceAreaEach": "18.3173616",
+          "ShippingSquareMetersEach": "0.5455165476",
+          "HoursEach": "6.636232492",
+          "ApprovalStatus": {
+            "@ID": "6",
+            "#text": "IFF"
+          },
+          "TotalQuantity": "1",
+          "QuantityAtShippedFromAddress": "1",
+          "QuantityRemaining": "1",
+          "Shape": {
+            "@ID": "9",
+            "#text": "W"
+          },
+          "Grade": {
+            "@ID": "8",
+            "#text": "A992"
+          },
+          "Dimensions": {
+            "@Metric": "0",
+            "@SizeID": "152",
+            "#text": "16 x 77"
+          },
+          "Length": "8794.76759",
+          "Finish": {
+            "@ID": "3",
+            "#text": "GLV"
+          },
+          "ReferenceNumber": "1B2",
+          "Route": {
+            "@ID": "2",
+            "#text": "SU"
+          },
+          "Category": "BEAM",
+          "SubCategory": "Phase 1",
+          "InstanceTracking": "0",
+          "ProductionCode": "BFB"
+        },
+        {
+          "ProductionControlItemID": "8714",
+          "ProductionControlID": "13",
+          "DrawingNumberDisplay": "2",
+          "MainMarkDisplay": "2B1",
+          "PieceMarkDisplay": "2B1",
+          "MainPiece": "1",
+          "SequenceID": "25",
+          "SequenceDisplay": "1",
+          "DrawingID": "2917",
+          "ShippingLength": "8794.76759",
+          "ShippingLengthEach": "12309.49962",
+          "ShippingWeightEach": "807.0494544",
+          "ShippingGrossWeightEach": "809.5290336",
+          "ShippingModelWeightEach": "807.0494544",
+          "ShippingSurfaceAreaEach": "14.97549689",
+          "ShippingSquareMetersEach": "0.5371737332",
+          "HoursEach": "4.912535741",
+          "ApprovalStatus": {
+            "@ID": "6",
+            "#text": "IFF"
+          },
+          "TotalQuantity": "1",
+          "QuantityAtShippedFromAddress": "1",
+          "QuantityRemaining": "1",
+          "Shape": {
+            "@ID": "9",
+            "#text": "W"
+          },
+          "Grade": {
+            "@ID": "8",
+            "#text": "A992"
+          },
+          "Dimensions": {
+            "@Metric": "0",
+            "@SizeID": "154",
+            "#text": "16 x 57"
+          },
+          "Length": "8794.76759",
+          "Finish": {
+            "@ID": "3",
+            "#text": "GLV"
+          },
+          "ReferenceNumber": "2B1",
+          "Route": {
+            "@ID": "2",
+            "#text": "SU"
+          },
+          "Category": "BEAM",
+          "SubCategory": "Phase 1",
+          "InstanceTracking": "0",
+          "ProductionCode": "BFB"
+        },
+        "… 614 more"
+      ],
+      "HoldSettings": {
+        "Purchasing": "Prompt",
+        "Production": "Prompt",
+        "Inspections": "Prompt",
+        "ShippingAssign": "Prompt",
+        "ShippingLoad": "Prompt",
+        "ShippingShip": "Prevent"
+      }
+    }
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "command": "ValTruck",
+  "request": {
+    "JobNumber": "EPM-001",
+    "TruckNumber": "WIKI-2",
+    "ActionIfNotExist": "Add",
+    "Destination": "Jobsite",
+    "Carrier": "WIKI TEST"
+  },
+  "status": 200,
+  "bytes": 137,
+  "note": "Trimmed: lists keep their first 3 items. Names, phones and street addresses are masked.",
+  "response": {
+    "Successful": "1",
+    "CommandGUID": "AE4847D2-A1B5-4237-AC39-5D09D1E6EED6",
+    "ProductionControlID": "13",
+    "JobNumber": "EPM-001",
+    "TruckAdded": "1"
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "command": "ProductionControlLoadAdditional_Delete",
+  "request": {
+    "ProductionControlLoadID": "407",
+    "ProductionControlTrucksAdditionalID": "3"
+  },
+  "status": 200,
+  "note": "Trimmed: lists keep their first 3 items. Names, phones and street addresses are masked.",
+  "response": {
+    "Successful": "1",
+    "ResultData": {
+      "ProductionControlLoad": {
+        "ProductionControlLoadID": "407",
+        "ProductionControlID": "90",
+        "LoadNumber": "WIKI-T4",
+        "Capacity": "19958.06428",
+        "ShippingDestinationGroupID": "",
+        "ShippedFromFirmID": "",
+        "ShippedToFirmID": "",
+        "Shipped": "0",
+        "QuantityAssigned": "0",
+        "QuantityLoaded": "0"
+      }
+    }
+  }
+}

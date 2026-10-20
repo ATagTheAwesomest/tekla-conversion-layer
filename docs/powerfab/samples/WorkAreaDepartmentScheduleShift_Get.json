@@ -1,0 +1,45 @@
+{
+  "command": "WorkAreaDepartmentScheduleShift_Get",
+  "request": {
+    "JobNumber": "TESTTEST"
+  },
+  "status": 200,
+  "bytes": 1366,
+  "note": "Trimmed: lists keep their first 3 items. Names, phones and street addresses are masked.",
+  "response": {
+    "Successful": "1",
+    "ResultData": {
+      "LastLogID": "7",
+      "WorkAreaDepartmentScheduleShift": [
+        {
+          "WorkAreaDepartmentScheduleShiftID": "1",
+          "WorkAreaDepartmentScheduleID": "1",
+          "DepartmentShiftID": "1",
+          "Name": "Standard",
+          "CapacityWeight": "100000",
+          "CapacityHours": "1000",
+          "IsActive": "1"
+        },
+        {
+          "WorkAreaDepartmentScheduleShiftID": "2",
+          "WorkAreaDepartmentScheduleID": "2",
+          "DepartmentShiftID": "1",
+          "Name": "Standard",
+          "CapacityWeight": "100000",
+          "CapacityHours": "1000",
+          "IsActive": "1"
+        },
+        {
+          "WorkAreaDepartmentScheduleShiftID": "3",
+          "WorkAreaDepartmentScheduleID": "3",
+          "DepartmentShiftID": "1",
+          "Name": "Standard",
+          "CapacityWeight": "100000",
+          "CapacityHours": "1000",
+          "IsActive": "1"
+        },
+        "… 4 more"
+      ]
+    }
+  }
+}

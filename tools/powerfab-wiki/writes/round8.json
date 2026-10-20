@@ -1,0 +1,43 @@
+[
+ [
+  {"id":"X01_Load_Delete_T2","command":"Load","body":{"CommitType":"Delete","JobNumber":"TESTTEST","TruckNumber":"WIKI-T2","MainMark":"55311005","Sequence":"5531","Quantity":1}},
+  {"id":"X02_Find_T2","command":"ProductionControlLoad_Get","body":{"ProductionControlID":90},"save":{"LOAD2":{"key":"ProductionControlLoadID","where":{"LoadNumber":"WIKI-T2"}}}},
+  {"id":"X03_Truck_Delete","command":"ProductionControlLoad_Delete","body":{"ProductionControlLoadID":"{{LOAD2}}"}},
+  {"id":"X04_Check_Left","command":"ProductionControlLoad_Get","body":{"ProductionControlID":90}}
+ ],
+ [
+  {"id":"A00_Remaining","command":"ProductionControlLoadRemaining_Get","required":true,"body":{"ProductionControlID":90},"save":{
+    "I1":{"key":"ProductionControlItemID","where":{"QuantityRemaining":">0"},"nth":5},
+    "S1":{"key":"SequenceID","where":{"QuantityRemaining":">0"},"nth":5},
+    "I2":{"key":"ProductionControlItemID","where":{"QuantityRemaining":">1"},"nth":0},
+    "S2":{"key":"SequenceID","where":{"QuantityRemaining":">1"},"nth":0}}},
+  {"id":"A01_Load_Insert_Galv","command":"ProductionControlLoad_Insert","required":true,"body":{"ProductionControlID":90,"LoadNumber":"WIKI-T3","Capacity":19958.06428,"ShippingDestinationGroupID":1,"ShippedToFirmID":6,"ShippedToFirmAddressID":10,"Carrier":"WIKI TEST"},"save":{"LOAD":{"key":"ProductionControlLoadID"}}},
+  {"id":"A02_Material_Add","command":"ProductionControlLoadMaterial_Add","body":{"ProductionControlLoadID":"{{LOAD}}","LoadItemsOnAssign":1,"AddItem":[{"ProductionControlItemID":"{{I1}}","SequenceID":"{{S1}}","Quantity":1}]}},
+  {"id":"A03_Get","command":"ProductionControlLoad_Get","body":{"ProductionControlID":90,"ProductionControlLoadID":"{{LOAD}}","GetOptions":{"IncludeMaterial":1}},"save":{"T1":{"key":"ProductionControlItemTruckID"},"LD1":{"key":"ID","nth":0}}},
+  {"id":"A04_Ship_Galv","command":"ProductionControlLoad_Ship","body":{"ProductionControlLoadID":"{{LOAD}}","ShippedDate":"2026-10-20"}},
+  {"id":"A05_Get_Shipped","command":"ProductionControlLoad_Get","body":{"ProductionControlID":90,"ProductionControlLoadID":"{{LOAD}}","GetOptions":{"IncludeMaterial":1}}},
+  {"id":"A06_Return","command":"ProductionControlLoadMaterial_Return","body":{"ProductionControlLoadID":"{{LOAD}}","DateReturned":"2026-10-20","ReturnItem":[{"ProductionControlItemTruckID":"{{T1}}","Quantity":1}]}},
+  {"id":"A07_Get_Returned","command":"ProductionControlLoad_Get","body":{"ProductionControlID":90,"ProductionControlLoadID":"{{LOAD}}","GetOptions":{"IncludeMaterial":1}},"save":{"RET":{"key":"ID","nth":1}}},
+  {"id":"A08_Unreturn","command":"ProductionControlLoadMaterial_Unreturn","body":{"ProductionControlLoadID":"{{LOAD}}","UnreturnItem":[{"ProductionControlItemTrucksReturnID":"{{RET}}","Quantity":1}]}},
+  {"id":"A09_Unship","command":"ProductionControlLoad_Unship","always":true,"body":{"ProductionControlLoadID":"{{LOAD}}"}},
+  {"id":"A10_Get_Final","command":"ProductionControlLoad_Get","always":true,"body":{"ProductionControlID":90,"ProductionControlLoadID":"{{LOAD}}","GetOptions":{"IncludeMaterial":1}},"save":{"LD1":{"key":"ID","nth":0}}},
+  {"id":"A11_Unload","command":"ProductionControlLoadMaterial_Unload","always":true,"body":{"ProductionControlLoadID":"{{LOAD}}","UnloadItem":[{"ProductionControlItemTrucksLoadID":"{{LD1}}","Quantity":1}]}},
+  {"id":"A12_Remove","command":"ProductionControlLoadMaterial_Remove","always":true,"body":{"ProductionControlLoadID":"{{LOAD}}","RemoveItem":[{"ProductionControlItemTruckID":"{{T1}}","Quantity":1}]}},
+  {"id":"A13_Delete","command":"ProductionControlLoad_Delete","always":true,"body":{"ProductionControlLoadID":"{{LOAD}}"}},
+  {"id":"A14_Check_Left","command":"ProductionControlLoad_Get","always":true,"body":{"ProductionControlID":90}}
+ ],
+ [
+  {"id":"B01_Load_Insert","command":"ProductionControlLoad_Insert","required":true,"body":{"ProductionControlID":90,"LoadNumber":"WIKI-T4","Capacity":19958.06428,"ShippingDestinationGroupID":""},"save":{"LOAD":{"key":"ProductionControlLoadID"}}},
+  {"id":"B02_Additional_Insert","command":"ProductionControlLoadAdditional_Insert","required":true,"body":{"ProductionControlLoadID":"{{LOAD}}","Description":"WIKI test bolts","Quantity":2,"WeightEach":5},"save":{"ADD":{"key":"ProductionControlTrucksAdditionalID"}}},
+  {"id":"B03_Additional_Update","command":"ProductionControlLoadAdditional_Update","body":{"ProductionControlLoadID":"{{LOAD}}","ProductionControlTrucksAdditionalID":"{{ADD}}","Description":"WIKI test bolts 2","Quantity":3,"WeightEach":6}},
+  {"id":"B04_Get","command":"ProductionControlLoad_Get","body":{"ProductionControlID":90,"ProductionControlLoadID":"{{LOAD}}","GetOptions":{"IncludeMaterial":1}}},
+  {"id":"B05_Ship_AdditionalOnly","command":"ProductionControlLoad_Ship","body":{"ProductionControlLoadID":"{{LOAD}}","ShippedDate":"2026-10-20"}},
+  {"id":"B06_MakeReport_a","command":"MakeReport","body":{"ReportGroup":"ProductionControlShippingTicket","ReportTypeID":21,"ReportID":1020,"ExportFormat":"PDF","ReportOptions":{"ProductionControlID":90,"ProductionControlLoadID":"{{LOAD}}"}}},
+  {"id":"B07_MakeReport_b","command":"MakeReport","body":{"ReportGroup":"ProductionControlShippingTicket","ReportTypeID":21,"ReportID":1020,"ExportFormat":"PDF","ReportOption":[{"OptionName":"ProductionControlID","OptionValue":90},{"OptionName":"ProductionControlLoadID","OptionValue":"{{LOAD}}"}]}},
+  {"id":"B08_PrepareReportData","command":"PrepareReportData","body":{"ReportGroup":"ProductionControlShippingTicket","ReportTypeID":21,"ReportID":1020,"ReportOption":[{"OptionName":"ProductionControlID","OptionValue":90},{"OptionName":"ProductionControlLoadID","OptionValue":"{{LOAD}}"}]}},
+  {"id":"B09_Unship","command":"ProductionControlLoad_Unship","always":true,"body":{"ProductionControlLoadID":"{{LOAD}}"}},
+  {"id":"B10_Additional_Delete","command":"ProductionControlLoadAdditional_Delete","always":true,"body":{"ProductionControlLoadID":"{{LOAD}}","ProductionControlTrucksAdditionalID":"{{ADD}}"}},
+  {"id":"B11_Delete","command":"ProductionControlLoad_Delete","always":true,"body":{"ProductionControlLoadID":"{{LOAD}}"}},
+  {"id":"B12_Check_Left","command":"ProductionControlLoad_Get","always":true,"body":{"ProductionControlID":90}}
+ ]
+]

@@ -1,0 +1,45 @@
+{
+  "command": "DrawingLog_Get",
+  "request": {
+    "JobNumber": "EPM-001"
+  },
+  "status": 200,
+  "bytes": 28984,
+  "note": "Trimmed: lists keep their first 3 items. Names, phones and street addresses are masked.",
+  "response": {
+    "Successful": "1",
+    "ResultData": {
+      "LastLogID": "151",
+      "DrawingLog": [
+        {
+          "DrawingLogID": "5",
+          "ProjectID": "1",
+          "DrawingType": "Design",
+          "DrawingLogName": "Design",
+          "PDCLink": "0",
+          "SubdirectoryPath": "",
+          "DrawingLogMapping": ""
+        },
+        {
+          "DrawingLogID": "6",
+          "ProjectID": "1",
+          "DrawingType": "Detail",
+          "DrawingLogName": "Detail",
+          "PDCLink": "10",
+          "SubdirectoryPath": "",
+          "DrawingLogMapping": ""
+        },
+        {
+          "DrawingLogID": "7",
+          "ProjectID": "2",
+          "DrawingType": "Design",
+          "DrawingLogName": "Design",
+          "PDCLink": "0",
+          "SubdirectoryPath": "",
+          "DrawingLogMapping": ""
+        },
+        "… 152 more"
+      ]
+    }
+  }
+}

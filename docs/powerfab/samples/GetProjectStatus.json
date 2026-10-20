@@ -1,0 +1,80 @@
+{
+  "command": "GetProjectStatus",
+  "request": {
+    "JobNumber": "TESTTEST"
+  },
+  "status": 200,
+  "bytes": 1076,
+  "note": "Trimmed: lists keep their first 3 items. Names, phones and street addresses are masked.",
+  "response": {
+    "Successful": "1",
+    "CommandGUID": "F8CD4FDA-72FD-4EDD-9F69-793CF68AF368",
+    "ProductionControlID": "90",
+    "JobNumber": "TESTTEST",
+    "JobDescription": "TESTTEST",
+    "JobLocation": "TESTTEST",
+    "GroupName": "<redacted>",
+    "GroupName2": "",
+    "ProjectID": "29",
+    "HasProjectSchedule": "0",
+    "InputDisplayUnits": {
+      "SizeUOM": "Imperial",
+      "LengthUOM": "Imperial",
+      "LengthTypeIDMetric": "101",
+      "LengthTypeIDImperial": "1",
+      "WeightUOM": "Imperial",
+      "PriceUOM": "Imperial"
+    },
+    "Assemblies": {
+      "Quantity": "4254"
+    },
+    "Drawings": {
+      "Total": "613",
+      "TotalApproved": "0"
+    },
+    "Sequences": {
+      "Total": "4"
+    },
+    "Lots": {
+      "Total": "1"
+    },
+    "TrimbleConnect": {
+      "ProjectID": "E37TTMSsQhw",
+      "Region": "northAmerica"
+    },
+    "FilterSet": {
+      "Filter": {
+        "Name": "Job #",
+        "DisplayName": "Job #",
+        "FilterItems": {
+          "FilterItem": {
+            "@Field1": "90",
+            "@Field2": "TESTTEST",
+            "#text": "TESTTEST"
+          }
+        }
+      }
+    },
+    "PRJFilterSet": {
+      "Filter": {
+        "Name": "Job #",
+        "DisplayName": "Job #",
+        "FilterItems": {
+          "FilterItem": {
+            "@Field1": "29",
+            "@Field2": "<source job> Test",
+            "#text": "<source job> Test"
+          }
+        }
+      }
+    },
+    "HoldSettings": {
+      "Purchasing": "Prompt",
+      "Production": "Prompt",
+      "Inspections": "Prompt",
+      "ShippingAssign": "Prompt",
+      "ShippingLoad": "Prompt",
+      "ShippingShip": "Prevent"
+    }
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "command": "InventoryLocationRestriction_Get",
+  "request": {
+    "JobNumber": "EPM-001"
+  },
+  "status": 200,
+  "bytes": 201,
+  "note": "Trimmed: lists keep their first 3 items. Names, phones and street addresses are masked.",
+  "response": {
+    "Successful": "1",
+    "ResultData": {
+      "LastLogID": "0",
+      "InventoryLocationRestriction": {
+        "InventoryLocationRestrictionID": "1",
+        "AnyLocation": "1",
+        "Location": "",
+        "AnySecondaryLocation": "1",
+        "SecondaryLocation": ""
+      }
+    }
+  }
+}

@@ -1,0 +1,138 @@
+{
+  "command": "Drawing_Get",
+  "request": {
+    "ProjectID": 4
+  },
+  "status": 200,
+  "bytes": 484750,
+  "note": "Trimmed: lists keep their first 3 items. Names, phones and street addresses are masked.",
+  "response": {
+    "Successful": "1",
+    "ResultData": {
+      "LastLogID": "17018,2257,27528,2150,17",
+      "GetOptions": {
+        "IncludeDrawingLogDetails": "0",
+        "Revisions": "none",
+        "Transmittals": "none"
+      },
+      "Drawing": [
+        {
+          "DrawingID": "2916",
+          "ProjectID": "4",
+          "DrawingLogID": "24",
+          "DrawingNumberDisplay": "1",
+          "Description": "1",
+          "ApprovalStatusID": "6",
+          "DateDetailed": "2020-08-31",
+          "DetailingHours": "0",
+          "ReleaseNumber": "1",
+          "Category": "Multi-Drawing",
+          "ShopIssueDate": "2020-08-28",
+          "ReSubmit": "0",
+          "DrawingProduction": {
+            "TotalQuantity": "129",
+            "AssemblyQuantity": "2",
+            "Weight": "1891.350612",
+            "Hours": "13.24181505",
+            "Category": [
+              "",
+              "BEAM"
+            ],
+            "SubCategory": [
+              "",
+              "Phase 1"
+            ],
+            "PayCategory": "",
+            "Sequence": "1",
+            "LotNumber": "",
+            "WorkPackageNumber": ""
+          }
+        },
+        {
+          "DrawingID": "2917",
+          "ProjectID": "4",
+          "DrawingLogID": "24",
+          "DrawingNumberDisplay": "2",
+          "Description": "2",
+          "ApprovalStatusID": "6",
+          "DateDetailed": "2020-08-31",
+          "DetailingHours": "0",
+          "ReleaseNumber": "1",
+          "Category": "Multi-Drawing",
+          "ShopIssueDate": "2020-08-28",
+          "ReSubmit": "0",
+          "DrawingProduction": {
+            "TotalQuantity": "48",
+            "AssemblyQuantity": "2",
+            "Weight": "918.5968711",
+            "Hours": "6.469812229",
+            "Category": [
+              "",
+              "BEAM"
+            ],
+            "SubCategory": [
+              "",
+              "Phase 1"
+            ],
+            "PayCategory": "",
+            "Sequence": "1",
+            "LotNumber": "",
+            "WorkPackageNumber": ""
+          }
+        },
+        {
+          "DrawingID": "2918",
+          "ProjectID": "4",
+          "DrawingLogID": "24",
+          "DrawingNumberDisplay": "3",
+          "Description": "3",
+          "ApprovalStatusID": "6",
+          "DateDetailed": "2020-08-31",
+          "DetailingHours": "0",
+          "ReleaseNumber": "1",
+          "Category": "Multi-Drawing",
+          "ShopIssueDate": "2020-08-28",
+          "ReSubmit": "0",
+          "DrawingProduction": {
+            "TotalQuantity": "43",
+            "AssemblyQuantity": "2",
+            "Weight": "650.0179377",
+            "Hours": "5.0244244",
+            "Category": [
+              "",
+              "BEAM"
+            ],
+            "SubCategory": [
+              "",
+              "Phase 1"
+            ],
+            "PayCategory": "",
+            "Sequence": "1",
+            "LotNumber": "",
+            "WorkPackageNumber": ""
+          }
+        },
+        "… 1128 more"
+      ],
+      "ApprovalStatus": [
+        {
+          "ApprovalStatusID": "2",
+          "ApprovalStatus": "A",
+          "Description": "Approved",
+          "Purpose": "Approved"
+        },
+        {
+          "ApprovalStatusID": "4",
+          "ApprovalStatus": "P",
+          "Description": "Approved As Noted"
+        },
+        {
+          "ApprovalStatusID": "6",
+          "ApprovalStatus": "IFF",
+          "Description": "In For Fabrication",
+          "Purpose": "Approved"
+        }
+      ]
+    }
+  }
+}

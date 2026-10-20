@@ -1,0 +1,36 @@
+{
+  "command": "FilterSetDetails_Get",
+  "request": {
+    "Type": "PDC"
+  },
+  "status": 200,
+  "bytes": 8686,
+  "note": "Trimmed: lists keep their first 3 items. Names, phones and street addresses are masked.",
+  "response": {
+    "Successful": "1",
+    "ResultData": {
+      "FilterSetDetails": {
+        "Type": "PDC",
+        "Filter": [
+          {
+            "Name": "Approval Status",
+            "DisplayName": "Approval Status",
+            "FilterType": "Selection"
+          },
+          {
+            "Name": "Main/Accessory Pieces",
+            "DisplayName": "Main/Accessory Pieces",
+            "FilterType": "Selection"
+          },
+          {
+            "Name": "Drawing #",
+            "DisplayName": "Drawing #",
+            "FilterType": "Selection",
+            "HasTextSearch": "1"
+          },
+          "… 89 more"
+        ]
+      }
+    }
+  }
+}

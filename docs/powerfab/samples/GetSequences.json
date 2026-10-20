@@ -1,0 +1,74 @@
+{
+  "command": "GetSequences",
+  "request": {
+    "JobNumber": "EPM-001"
+  },
+  "status": 200,
+  "bytes": 1215,
+  "note": "Trimmed: lists keep their first 3 items. Names, phones and street addresses are masked.",
+  "response": {
+    "Successful": "1",
+    "CommandGUID": "DCF349FB-034E-4922-AAF5-28F03E05D1D4",
+    "ProductionControlID": "13",
+    "JobNumber": "EPM-001",
+    "InputDisplayUnits": {
+      "SizeUOM": "Imperial",
+      "LengthUOM": "Imperial",
+      "LengthTypeIDMetric": "101",
+      "LengthTypeIDImperial": "1",
+      "WeightUOM": "Imperial",
+      "PriceUOM": "Imperial"
+    },
+    "Sequence": [
+      {
+        "Sequence": "1",
+        "AssemblyQuantity": "259",
+        "TotalQuantity": "4407",
+        "Weight": {
+          "@UOM": "kg",
+          "#text": "77814.4595928264141752436"
+        }
+      },
+      {
+        "Sequence": "2",
+        "AssemblyQuantity": "282",
+        "TotalQuantity": "4674",
+        "Weight": {
+          "@UOM": "kg",
+          "#text": "117638.5964952696400156678"
+        }
+      },
+      {
+        "Sequence": "3",
+        "AssemblyQuantity": "246",
+        "TotalQuantity": "2705",
+        "Weight": {
+          "@UOM": "kg",
+          "#text": "74416.7575793269309065"
+        }
+      },
+      "… 2 more"
+    ],
+    "FilterSet": {
+      "Filter": {
+        "Name": "Job #",
+        "DisplayName": "Job #",
+        "FilterItems": {
+          "FilterItem": {
+            "@Field1": "13",
+            "@Field2": "EPM-001",
+            "#text": "EPM-001"
+          }
+        }
+      }
+    },
+    "HoldSettings": {
+      "Purchasing": "Prompt",
+      "Production": "Prompt",
+      "Inspections": "Prompt",
+      "ShippingAssign": "Prompt",
+      "ShippingLoad": "Prompt",
+      "ShippingShip": "Prevent"
+    }
+  }
+}

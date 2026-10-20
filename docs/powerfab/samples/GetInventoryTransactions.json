@@ -1,0 +1,14 @@
+{
+  "command": "GetInventoryTransactions",
+  "request": {
+    "LastTransactionID": 0
+  },
+  "status": 200,
+  "bytes": 97,
+  "note": "Trimmed: lists keep their first 3 items. Names, phones and street addresses are masked.",
+  "response": {
+    "Successful": "1",
+    "CommandGUID": "05FB1BB3-5F29-40E8-BF2D-DFBDC58D3F88",
+    "LastTransactionID": "651"
+  }
+}

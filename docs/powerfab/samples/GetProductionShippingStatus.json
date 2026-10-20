@@ -1,0 +1,125 @@
+{
+  "command": "GetProductionShippingStatus",
+  "request": {
+    "JobNumber": "EPM-001"
+  },
+  "status": 200,
+  "bytes": 1852,
+  "note": "Trimmed: lists keep their first 3 items. Names, phones and street addresses are masked.",
+  "response": {
+    "Successful": "1",
+    "CommandGUID": "B6320A08-0107-4A2F-9641-7AD4AAC84D05",
+    "ProductionControlID": "13",
+    "JobNumber": "EPM-001",
+    "ExcludeAccessoriesWithoutPieceLoadTracking": "1",
+    "StatusOfOnlyMainMembers": "0",
+    "ProductionStation": [
+      {
+        "@Index": "0",
+        "#text": "Cut/Saw/Beamline/BurnTable"
+      },
+      {
+        "@Index": "1",
+        "#text": "Layout/Weld"
+      },
+      {
+        "@Index": "2",
+        "#text": "Quality Control"
+      },
+      "… 1 more"
+    ],
+    "ShippingDestination": {
+      "@Index": "0",
+      "#text": "Jobsite"
+    },
+    "InputDisplayUnits": {
+      "SizeUOM": "Imperial",
+      "LengthUOM": "Imperial",
+      "LengthTypeIDMetric": "101",
+      "LengthTypeIDImperial": "1",
+      "WeightUOM": "Imperial",
+      "PriceUOM": "Imperial"
+    },
+    "Item": {
+      "AssemblyQuantity": "1230",
+      "Quantity": "1230",
+      "Weight": {
+        "@UOM": "kg",
+        "#text": "418813.2677"
+      },
+      "GrossWeight": {
+        "@UOM": "kg",
+        "#text": "418860.5342"
+      },
+      "ModelWeight": {
+        "@UOM": "kg",
+        "#text": "418813.2677"
+      },
+      "TFSStatus": {
+        "@Completed": "0",
+        "@TGWt": "418860.5342",
+        "@TMWt": "418813.2677",
+        "@TWt": "418813.2677",
+        "@Total": "1230"
+      },
+      "ProductionStation": [
+        {
+          "@Completed": "0",
+          "@Index": "0",
+          "@TGWt": "418860.5342",
+          "@TMWt": "418813.2677",
+          "@TWt": "418813.2677",
+          "@Total": "1230"
+        },
+        {
+          "@Completed": "0",
+          "@Index": "1",
+          "@TGWt": "418860.5342",
+          "@TMWt": "418813.2677",
+          "@TWt": "418813.2677",
+          "@Total": "1230"
+        },
+        {
+          "@Completed": "0",
+          "@Index": "2",
+          "@TGWt": "418860.5342",
+          "@TMWt": "418813.2677",
+          "@TWt": "418813.2677",
+          "@Total": "1230"
+        },
+        "… 1 more"
+      ],
+      "ShippingDestination": {
+        "ShipStatus": {
+          "@Completed": "0",
+          "@Index": "0",
+          "@TGWt": "418860.5342",
+          "@TMWt": "418813.2677",
+          "@TWt": "418813.2677",
+          "@Total": "1230"
+        }
+      }
+    },
+    "FilterSet": {
+      "Filter": {
+        "Name": "Job #",
+        "DisplayName": "Job #",
+        "FilterItems": {
+          "FilterItem": {
+            "@Field1": "13",
+            "@Field2": "EPM-001",
+            "#text": "EPM-001"
+          }
+        }
+      }
+    },
+    "HoldSettings": {
+      "Purchasing": "Prompt",
+      "Production": "Prompt",
+      "Inspections": "Prompt",
+      "ShippingAssign": "Prompt",
+      "ShippingLoad": "Prompt",
+      "ShippingShip": "Prevent"
+    }
+  }
+}

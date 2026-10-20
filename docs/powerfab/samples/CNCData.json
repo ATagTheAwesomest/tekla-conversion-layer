@@ -1,0 +1,13 @@
+{
+  "command": "CNCData",
+  "request": {
+    "JobNumber": "EPM-001"
+  },
+  "status": 200,
+  "bytes": 71,
+  "note": "Trimmed: lists keep their first 3 items. Names, phones and street addresses are masked.",
+  "response": {
+    "Successful": "1",
+    "CommandGUID": "5F12E27F-0D4A-4458-9AAE-7B2A0A08318D"
+  }
+}
