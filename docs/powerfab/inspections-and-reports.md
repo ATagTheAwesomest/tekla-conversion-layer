@@ -38,7 +38,7 @@ files or jobs on the server, so they were not run.
 - `{"ReportGroup":"Inspection"}` → 200, 3823 bytes
 - `{"ReportGroup":"ProductionControlShippingTicket"}` → 200, 2143 bytes
 
-**Result:** HTTP 200, 3,823 bytes, 126 ms.
+**Result:** HTTP 200, 3,823 bytes, 409 ms.
 
 **Response fields:**
 
@@ -78,10 +78,6 @@ files or jobs on the server, so they were not run.
 - Needs `ReportGroup`.
 - Generating a report (`MakeReport`) is a write and was not run.
 
-**Feature ideas:**
-
-- Let the shipping app print PowerFab's own shipping ticket once report writes are allowed.
-
 ### `GetInspectionTests`
 
 **Status:** ⛔ permission denied
@@ -100,7 +96,7 @@ files or jobs on the server, so they were not run.
 
 **Gotchas:**
 
-- Refused with "Permission denied" for the API user. Grant the matching permission to the PowerFab External User and rerun.
+- PowerFab answered "Permission denied." for the API user (the PowerFab External User the service logs in as).
 
 ### `GetInspectionTestTypes`
 
@@ -120,7 +116,7 @@ files or jobs on the server, so they were not run.
 
 **Gotchas:**
 
-- Refused with "Permission denied" for the API user. Grant the matching permission to the PowerFab External User and rerun.
+- PowerFab answered "Permission denied." for the API user (the PowerFab External User the service logs in as).
 
 ### `GetInspectionTestSubjects`
 
@@ -141,6 +137,7 @@ files or jobs on the server, so they were not run.
 
 **Gotchas:**
 
+- PowerFab answered "Permission denied." for the API user (the PowerFab External User the service logs in as).
 - Needs `InspectionTestVersionID`, then refused: "Permission denied".
 
 ### `GetInspectionTestRecords`
@@ -161,7 +158,7 @@ files or jobs on the server, so they were not run.
 
 **Gotchas:**
 
-- Refused with "Permission denied" for the API user. Grant the matching permission to the PowerFab External User and rerun.
+- PowerFab answered "Permission denied." for the API user (the PowerFab External User the service logs in as).
 
 ### `GetInspectionTestRecordsCondensed`
 
@@ -181,7 +178,7 @@ files or jobs on the server, so they were not run.
 
 **Gotchas:**
 
-- Refused with "Permission denied" for the API user. Grant the matching permission to the PowerFab External User and rerun.
+- PowerFab answered "Permission denied." for the API user (the PowerFab External User the service logs in as).
 
 ### `GetInspectionTestRecordSummary`
 
@@ -201,7 +198,7 @@ files or jobs on the server, so they were not run.
 
 **Gotchas:**
 
-- Refused with "Permission denied" for the API user. Grant the matching permission to the PowerFab External User and rerun.
+- PowerFab answered "Permission denied." for the API user (the PowerFab External User the service logs in as).
 
 ## Write commands (not run)
 

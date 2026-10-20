@@ -4,7 +4,7 @@
     "FilterName": "Job #"
   },
   "status": 200,
-  "bytes": 285,
+  "bytes": 214,
   "note": "Trimmed: lists keep their first 3 items. Names, phones and street addresses are masked.",
   "response": {
     "Successful": "1",
@@ -13,21 +13,13 @@
         "Name": "Job #",
         "DisplayName": "Job #",
         "FilterItems": {
-          "TotalCount": "2",
-          "FilterItem": [
-            {
-              "@Field1": "80",
-              "@Field2": "25-351",
-              "@Included": "1",
-              "#text": "25-351"
-            },
-            {
-              "@Field1": "13",
-              "@Field2": "EPM-001",
-              "@Included": "1",
-              "#text": "EPM-001"
-            }
-          ]
+          "TotalCount": "1",
+          "FilterItem": {
+            "@Field1": "13",
+            "@Field2": "EPM-001",
+            "@Included": "1",
+            "#text": "EPM-001"
+          }
         }
       },
       "GetOptions": ""

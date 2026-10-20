@@ -36,7 +36,9 @@ There are two ways to read loads: the older `GetLoads` (by JobNumber, units on e
 {"JobNumber":"25-351","IncludeLoads":true,"IncludeUnshippedLoads":true,"IncludeCompletedMaterial":true,"IncludeRemainingMaterial":true}
 ```
 
-**Result:** HTTP 200, 418,887 bytes, 692 ms.
+**Result:** HTTP 200, 418,887 bytes.
+
+_This reply is from an earlier run. The API user can no longer read this job, so the field table is built from the trimmed sample (first 3 items of each list)._
 
 **Response fields:**
 
@@ -47,61 +49,61 @@ There are two ways to read loads: the older `GetLoads` (by JobNumber, units on e
 | `InputDisplayUnits` | object | 1 | common block, see README |
 | `Destination` | object | 1 |  |
 | `Destination.DestinationName` | text | 1 | `Jobsite` |
-| `Destination.Load` | list (5–5) | 1 |  |
-| `Destination.Load[].LoadNumber` | number (as text) | 5 | `1`, `2` |
-| `Destination.Load[].ShippedFromFirm` | text | 5 |  |
-| `Destination.Load[].ShippedFromFirmAddress` | text | 5 |  |
-| `Destination.Load[].DestinationGroup` | text | 5 |  |
-| `Destination.Load[].ShippedToFirmAddress` | text | 5 |  |
-| `Destination.Load[].TrailerNumber` | text | 5 |  |
-| `Destination.Load[].Carrier` | text | 5 |  |
-| `Destination.Load[].Capacity` | object | 5 |  |
-| `Destination.Load[].Capacity.@UOM` | text | 5 | `kg` |
-| `Destination.Load[].Capacity.#text` | number (as text) | 5 | `19958.06428` |
+| `Destination.Load` | list (3–3) | 1 |  |
+| `Destination.Load[].LoadNumber` | number (as text) | 3 | `1`, `2` |
+| `Destination.Load[].ShippedFromFirm` | text | 3 |  |
+| `Destination.Load[].ShippedFromFirmAddress` | text | 3 |  |
+| `Destination.Load[].DestinationGroup` | text | 3 |  |
+| `Destination.Load[].ShippedToFirmAddress` | text | 3 |  |
+| `Destination.Load[].TrailerNumber` | text | 3 |  |
+| `Destination.Load[].Carrier` | text | 3 |  |
+| `Destination.Load[].Capacity` | object | 3 |  |
+| `Destination.Load[].Capacity.@UOM` | text | 3 | `kg` |
+| `Destination.Load[].Capacity.#text` | number (as text) | 3 | `19958.06428` |
 | `Destination.Load[].DateShipped` | text | 2 | `2026-09-30`, `2026-10-13` |
-| `Destination.Load[].AssignedQuantity` | number (as text) | 5 | `48`, `49` |
-| `Destination.Load[].AssignedWeight` | object | 5 |  |
-| `Destination.Load[].AssignedWeight.@UOM` | text | 5 | `kg` |
-| `Destination.Load[].AssignedWeight.#text` | number (as text) | 5 | `16225.8763078766`, `13719.6527571285` |
-| `Destination.Load[].LoadedQuantity` | number (as text) | 5 | `48`, `49` |
-| `Destination.Load[].LoadedWeight` | object | 5 |  |
-| `Destination.Load[].LoadedWeight.@UOM` | text | 5 | `kg` |
-| `Destination.Load[].LoadedWeight.#text` | number (as text) | 5 | `16225.8763078766`, `13719.6527571285` |
-| `Destination.Load[].Material` | list (22–33) | 5 |  |
-| `Destination.Load[].Material[].MainMark` | number (as text) | 143 | `52312005`, `52312007` |
-| `Destination.Load[].Material[].PieceMark` | number (as text) | 143 | `52312005`, `52312007` |
-| `Destination.Load[].Material[].Sequence` | number (as text) | 143 | `5231`, `5232` |
-| `Destination.Load[].Material[].LotNumber` | text | 143 |  |
-| `Destination.Load[].Material[].AssignedQuantity` | number (as text) | 143 | `1`, `5` |
-| `Destination.Load[].Material[].AssignedWeight` | object | 143 |  |
-| `Destination.Load[].Material[].AssignedWeight.@UOM` | text | 143 | `kg` |
-| `Destination.Load[].Material[].AssignedWeight.#text` | number (as text) | 143 | `273.318602441639`, `307.621525422889` |
-| `Destination.Load[].Material[].LoadedQuantity` | number (as text) | 143 | `1`, `5` |
-| `Destination.Load[].Material[].LoadedWeight` | object | 143 |  |
-| `Destination.Load[].Material[].LoadedWeight.@UOM` | text | 143 | `kg` |
-| `Destination.Load[].Material[].LoadedWeight.#text` | number (as text) | 143 | `273.318602441639`, `307.621525422889` |
-| `Destination.Load[].Material[].QuantityAtLocation` | number (as text) | 143 | `1`, `6` |
-| `Destination.Load[].Material[].DrawingNumber` | number (as text) | 143 | `52312005`, `52312007` |
-| `Destination.Load[].Material[].DrawingRevision` | number (as text) | 143 | `0` |
-| `Destination.Load[].Material[].Shape` | text | 143 | `W`, `HSS` |
-| `Destination.Load[].Material[].Dimensions` | object | 143 |  |
-| `Destination.Load[].Material[].Dimensions.@Metric` | number (as text) | 143 | `0` |
-| `Destination.Load[].Material[].Dimensions.#text` | text | 143 | `10 x 33`, `8 x 35` |
-| `Destination.Load[].Material[].Length` | object | 143 |  |
-| `Destination.Load[].Material[].Length.@UOM` | text | 143 | `in` |
-| `Destination.Load[].Material[].Length.#text` | number (as text) | 143 | `208.25`, `235.75` |
-| `Destination.Load[].Material[].ShippingLength` | object | 143 |  |
-| `Destination.Load[].Material[].ShippingLength.@UOM` | text | 143 | `in` |
-| `Destination.Load[].Material[].ShippingLength.#text` | number (as text) | 143 | `208.25`, `235.75` |
-| `Destination.Load[].Material[].Grade` | text | 143 | `A992`, `A500C` |
-| `Destination.Load[].Material[].Finish` | text | 143 | `3-1` |
+| `Destination.Load[].AssignedQuantity` | number (as text) | 3 | `48`, `49` |
+| `Destination.Load[].AssignedWeight` | object | 3 |  |
+| `Destination.Load[].AssignedWeight.@UOM` | text | 3 | `kg` |
+| `Destination.Load[].AssignedWeight.#text` | number (as text) | 3 | `16225.8763078766`, `13719.6527571285` |
+| `Destination.Load[].LoadedQuantity` | number (as text) | 3 | `48`, `49` |
+| `Destination.Load[].LoadedWeight` | object | 3 |  |
+| `Destination.Load[].LoadedWeight.@UOM` | text | 3 | `kg` |
+| `Destination.Load[].LoadedWeight.#text` | number (as text) | 3 | `16225.8763078766`, `13719.6527571285` |
+| `Destination.Load[].Material` | list (3–3) | 3 |  |
+| `Destination.Load[].Material[].MainMark` | number (as text) | 9 | `52312005`, `52312007` |
+| `Destination.Load[].Material[].PieceMark` | number (as text) | 9 | `52312005`, `52312007` |
+| `Destination.Load[].Material[].Sequence` | number (as text) | 9 | `5231`, `5232` |
+| `Destination.Load[].Material[].LotNumber` | text | 9 |  |
+| `Destination.Load[].Material[].AssignedQuantity` | number (as text) | 9 | `1`, `7` |
+| `Destination.Load[].Material[].AssignedWeight` | object | 9 |  |
+| `Destination.Load[].Material[].AssignedWeight.@UOM` | text | 9 | `kg` |
+| `Destination.Load[].Material[].AssignedWeight.#text` | number (as text) | 9 | `273.318602441639`, `307.621525422889` |
+| `Destination.Load[].Material[].LoadedQuantity` | number (as text) | 9 | `1`, `7` |
+| `Destination.Load[].Material[].LoadedWeight` | object | 9 |  |
+| `Destination.Load[].Material[].LoadedWeight.@UOM` | text | 9 | `kg` |
+| `Destination.Load[].Material[].LoadedWeight.#text` | number (as text) | 9 | `273.318602441639`, `307.621525422889` |
+| `Destination.Load[].Material[].QuantityAtLocation` | number (as text) | 9 | `1`, `7` |
+| `Destination.Load[].Material[].DrawingNumber` | number (as text) | 9 | `52312005`, `52312007` |
+| `Destination.Load[].Material[].DrawingRevision` | number (as text) | 9 | `0` |
+| `Destination.Load[].Material[].Shape` | text | 9 | `W` |
+| `Destination.Load[].Material[].Dimensions` | object | 9 |  |
+| `Destination.Load[].Material[].Dimensions.@Metric` | number (as text) | 9 | `0` |
+| `Destination.Load[].Material[].Dimensions.#text` | text | 9 | `10 x 33`, `8 x 35` |
+| `Destination.Load[].Material[].Length` | object | 9 |  |
+| `Destination.Load[].Material[].Length.@UOM` | text | 9 | `in` |
+| `Destination.Load[].Material[].Length.#text` | number (as text) | 9 | `208.25`, `235.75` |
+| `Destination.Load[].Material[].ShippingLength` | object | 9 |  |
+| `Destination.Load[].Material[].ShippingLength.@UOM` | text | 9 | `in` |
+| `Destination.Load[].Material[].ShippingLength.#text` | number (as text) | 9 | `208.25`, `235.75` |
+| `Destination.Load[].Material[].Grade` | text | 9 | `A992` |
+| `Destination.Load[].Material[].Finish` | text | 9 | `3-1` |
 | `Destination.Remaining` | object | 1 |  |
-| `Destination.Remaining.MaterialRemaining` | list (943–943) | 1 |  |
-| `Destination.Remaining.MaterialRemaining[].MainMark` | number (as text) | 943 | `52311004`, `52311005` |
-| `Destination.Remaining.MaterialRemaining[].PieceMark` | number (as text) | 943 | `52311004`, `52311005` |
-| `Destination.Remaining.MaterialRemaining[].Sequence` | number (as text) | 943 | `5231`, `5232` |
-| `Destination.Remaining.MaterialRemaining[].LotNumber` | number (as text) | 943 | `1` |
-| `Destination.Remaining.MaterialRemaining[].TotalQuantity` | number (as text) | 943 | `1`, `10` |
+| `Destination.Remaining.MaterialRemaining` | list (3–3) | 1 |  |
+| `Destination.Remaining.MaterialRemaining[].MainMark` | number (as text) | 3 | `52311004`, `52311005` |
+| `Destination.Remaining.MaterialRemaining[].PieceMark` | number (as text) | 3 | `52311004`, `52311005` |
+| `Destination.Remaining.MaterialRemaining[].Sequence` | number (as text) | 3 | `5231` |
+| `Destination.Remaining.MaterialRemaining[].LotNumber` | text | 3 |  |
+| `Destination.Remaining.MaterialRemaining[].TotalQuantity` | number (as text) | 3 | `1`, `10` |
 | … | | | 18 more fields in the sample file |
 
 **Sample** (trimmed; full trimmed sample in [samples/GetLoads.json](samples/GetLoads.json)):
@@ -149,12 +151,6 @@ There are two ways to read loads: the older `GetLoads` (by JobNumber, units on e
 - Weights, lengths and capacity are `{"@UOM":"kg","#text":"…"}` / `{"@UOM":"in",…}`. Weight is kg, length is inches, regardless of `InputDisplayUnits`. Read `#text`.
 - Each `Material` row is one mark on one truck with a quantity, not one row per piece. A mark with quantity 5 is one row.
 
-**Feature ideas:**
-
-- Truck view in terra-loads-web: assigned vs loaded per truck, with weight totals against `Capacity`.
-- "What is left" list from `MaterialRemaining`, filterable by sequence.
-- Shipped history from `DateShipped`.
-
 ### `ProductionControlLoad_Get`
 
 **Status:** ✅ data
@@ -169,7 +165,9 @@ There are two ways to read loads: the older `GetLoads` (by JobNumber, units on e
 {"ProductionControlID":80,"GetOptions":{"IncludeJobDetails":1,"IncludeMaterial":1}}
 ```
 
-**Result:** HTTP 200, 147,506 bytes, 470 ms.
+**Result:** HTTP 200, 147,506 bytes.
+
+_This reply is from an earlier run. The API user can no longer read this job, so the field table is built from the trimmed sample (first 3 items of each list)._
 
 **Response fields:**
 
@@ -182,59 +180,59 @@ There are two ways to read loads: the older `GetLoads` (by JobNumber, units on e
 | `ResultData.GetOptions.IncludeFirmDetails` | number (as text) | 1 | `0` |
 | `ResultData.GetOptions.IncludeMaterial` | number (as text) | 1 | `1` |
 | `ResultData.GetOptions.IncludeAttachedFiles` | number (as text) | 1 | `0` |
-| `ResultData.ProductionControlLoad` | list (5–5) | 1 |  |
-| `ResultData.ProductionControlLoad[].ProductionControlLoadID` | number (as text) | 5 | `388`, `389` |
-| `ResultData.ProductionControlLoad[].ProductionControlID` | number (as text) | 5 | `80` |
-| `ResultData.ProductionControlLoad[].LoadNumber` | number (as text) | 5 | `1`, `2` |
-| `ResultData.ProductionControlLoad[].Capacity` | number (as text) | 5 | `19958.06428` |
-| `ResultData.ProductionControlLoad[].LoadCategory1` | number (as text) | 4 | `5231`, `5232` |
-| `ResultData.ProductionControlLoad[].ShippingDestinationGroupID` | text | 5 |  |
-| `ResultData.ProductionControlLoad[].ShippedFromFirmID` | text | 5 |  |
-| `ResultData.ProductionControlLoad[].ShippedToFirmID` | text | 5 |  |
-| `ResultData.ProductionControlLoad[].Shipped` | number (as text) | 5 | `1`, `0` |
+| `ResultData.ProductionControlLoad` | list (3–3) | 1 |  |
+| `ResultData.ProductionControlLoad[].ProductionControlLoadID` | number (as text) | 3 | `388`, `389` |
+| `ResultData.ProductionControlLoad[].ProductionControlID` | number (as text) | 3 | `80` |
+| `ResultData.ProductionControlLoad[].LoadNumber` | number (as text) | 3 | `1`, `2` |
+| `ResultData.ProductionControlLoad[].Capacity` | number (as text) | 3 | `19958.06428` |
+| `ResultData.ProductionControlLoad[].LoadCategory1` | number (as text) | 3 | `5231`, `5232` |
+| `ResultData.ProductionControlLoad[].ShippingDestinationGroupID` | text | 3 |  |
+| `ResultData.ProductionControlLoad[].ShippedFromFirmID` | text | 3 |  |
+| `ResultData.ProductionControlLoad[].ShippedToFirmID` | text | 3 |  |
+| `ResultData.ProductionControlLoad[].Shipped` | number (as text) | 3 | `1`, `0` |
 | `ResultData.ProductionControlLoad[].ShippedDate` | text | 2 | `2026-09-30`, `2026-10-13` |
-| `ResultData.ProductionControlLoad[].QuantityAssigned` | number (as text) | 5 | `48`, `49` |
-| `ResultData.ProductionControlLoad[].AssignedLength` | number (as text) | 5 | `377368.5547`, `315501.9685` |
-| `ResultData.ProductionControlLoad[].AssignedSquareMeters` | number (as text) | 5 | `12.33121418`, `19.4049002` |
-| `ResultData.ProductionControlLoad[].AssignedWeight` | number (as text) | 5 | `16225.87631`, `13719.65276` |
-| `ResultData.ProductionControlLoad[].AssignedGrossWeight` | number (as text) | 5 | `16225.87631`, `13719.65276` |
-| `ResultData.ProductionControlLoad[].AssignedModelWeight` | number (as text) | 5 | `16225.87631`, `13719.65276` |
-| `ResultData.ProductionControlLoad[].AssignedSurfaceArea` | number (as text) | 5 | `422.7846649`, `330.1788763` |
-| `ResultData.ProductionControlLoad[].QuantityLoaded` | number (as text) | 5 | `48`, `49` |
-| `ResultData.ProductionControlLoad[].LoadedLength` | number (as text) | 5 | `377368.5547`, `315501.9685` |
-| `ResultData.ProductionControlLoad[].LoadedSquareMeters` | number (as text) | 5 | `12.33121418`, `19.4049002` |
-| `ResultData.ProductionControlLoad[].LoadedWeight` | number (as text) | 5 | `16225.87631`, `13719.65276` |
-| `ResultData.ProductionControlLoad[].LoadedGrossWeight` | number (as text) | 5 | `16225.87631`, `13719.65276` |
-| `ResultData.ProductionControlLoad[].LoadedModelWeight` | number (as text) | 5 | `16225.87631`, `13719.65276` |
-| `ResultData.ProductionControlLoad[].LoadedSurfaceArea` | number (as text) | 5 | `422.7846649`, `330.1788763` |
-| `ResultData.ProductionControlLoad[].Material` | list (22–33) | 5 |  |
-| `ResultData.ProductionControlLoad[].Material[].ProductionControlItemTruckID` | number (as text) | 143 | `306`, `325` |
-| `ResultData.ProductionControlLoad[].Material[].ProductionControlItemID` | number (as text) | 143 | `50728`, `50734` |
-| `ResultData.ProductionControlLoad[].Material[].ProductionControlID` | number (as text) | 143 | `80` |
-| `ResultData.ProductionControlLoad[].Material[].DrawingNumberDisplay` | number (as text) | 143 | `52312005`, `52312007` |
-| `ResultData.ProductionControlLoad[].Material[].MainMarkDisplay` | number (as text) | 143 | `52312005`, `52312007` |
-| `ResultData.ProductionControlLoad[].Material[].PieceMarkDisplay` | number (as text) | 143 | `52312005`, `52312007` |
-| `ResultData.ProductionControlLoad[].Material[].MainPiece` | number (as text) | 143 | `1` |
-| `ResultData.ProductionControlLoad[].Material[].SequenceDisplay` | number (as text) | 143 | `5231`, `5232` |
-| `ResultData.ProductionControlLoad[].Material[].LotNumberDisplay` | text | 143 |  |
-| `ResultData.ProductionControlLoad[].Material[].DrawingID` | number (as text) | 143 | `11765`, `11767` |
-| `ResultData.ProductionControlLoad[].Material[].AssemblyDrawingID` | number (as text) | 143 | `11765`, `11767` |
-| `ResultData.ProductionControlLoad[].Material[].PartDrawingID` | number (as text) | 143 | `11765`, `11767` |
-| `ResultData.ProductionControlLoad[].Material[].ShippingLength` | number (as text) | 143 | `5289.560579`, `5988.061976` |
-| `ResultData.ProductionControlLoad[].Material[].ShippingWeightEach` | number (as text) | 143 | `273.3186024`, `307.6215254` |
-| `ResultData.ProductionControlLoad[].Material[].ShippingGrossWeightEach` | number (as text) | 143 | `273.3186024`, `307.6215254` |
-| `ResultData.ProductionControlLoad[].Material[].ShippingModelWeightEach` | number (as text) | 143 | `273.3186024`, `307.6215254` |
-| `ResultData.ProductionControlLoad[].Material[].ShippingSurfaceAreaEach` | number (as text) | 143 | `7.165459492`, `8.06533226` |
-| `ResultData.ProductionControlLoad[].Material[].ShippingSquareMetersEach` | number (as text) | 143 | `0.1521575624`, `0.3757971226` |
-| `ResultData.ProductionControlLoad[].Material[].ApprovalStatus` | text | 143 |  |
-| `ResultData.ProductionControlLoad[].Material[].Quantity` | number (as text) | 143 | `1`, `5` |
-| `ResultData.ProductionControlLoad[].Material[].QuantityLoaded` | number (as text) | 142 | `1`, `5` |
-| `ResultData.ProductionControlLoad[].Material[].Loaded` | object or list | 142 |  |
-| `ResultData.ProductionControlLoad[].Material[].Loaded.ID` | number (as text) | 137 | `306`, `325` |
-| `ResultData.ProductionControlLoad[].Material[].Loaded.Date` | text | 137 | `2026-10-01`, `2026-10-09` |
-| `ResultData.ProductionControlLoad[].Material[].Loaded.Quantity` | number (as text) | 137 | `1`, `5` |
-| `ResultData.ProductionControlLoad[].Material[].QuantityAtLocation` | number (as text) | 67 | `1`, `5` |
-| `ResultData.ProductionControlLoad[].Material[].Shape` | object | 143 |  |
+| `ResultData.ProductionControlLoad[].QuantityAssigned` | number (as text) | 3 | `48`, `49` |
+| `ResultData.ProductionControlLoad[].AssignedLength` | number (as text) | 3 | `377368.5547`, `315501.9685` |
+| `ResultData.ProductionControlLoad[].AssignedSquareMeters` | number (as text) | 3 | `12.33121418`, `19.4049002` |
+| `ResultData.ProductionControlLoad[].AssignedWeight` | number (as text) | 3 | `16225.87631`, `13719.65276` |
+| `ResultData.ProductionControlLoad[].AssignedGrossWeight` | number (as text) | 3 | `16225.87631`, `13719.65276` |
+| `ResultData.ProductionControlLoad[].AssignedModelWeight` | number (as text) | 3 | `16225.87631`, `13719.65276` |
+| `ResultData.ProductionControlLoad[].AssignedSurfaceArea` | number (as text) | 3 | `422.7846649`, `330.1788763` |
+| `ResultData.ProductionControlLoad[].QuantityLoaded` | number (as text) | 3 | `48`, `49` |
+| `ResultData.ProductionControlLoad[].LoadedLength` | number (as text) | 3 | `377368.5547`, `315501.9685` |
+| `ResultData.ProductionControlLoad[].LoadedSquareMeters` | number (as text) | 3 | `12.33121418`, `19.4049002` |
+| `ResultData.ProductionControlLoad[].LoadedWeight` | number (as text) | 3 | `16225.87631`, `13719.65276` |
+| `ResultData.ProductionControlLoad[].LoadedGrossWeight` | number (as text) | 3 | `16225.87631`, `13719.65276` |
+| `ResultData.ProductionControlLoad[].LoadedModelWeight` | number (as text) | 3 | `16225.87631`, `13719.65276` |
+| `ResultData.ProductionControlLoad[].LoadedSurfaceArea` | number (as text) | 3 | `422.7846649`, `330.1788763` |
+| `ResultData.ProductionControlLoad[].Material` | list (3–3) | 3 |  |
+| `ResultData.ProductionControlLoad[].Material[].ProductionControlItemTruckID` | number (as text) | 9 | `306`, `325` |
+| `ResultData.ProductionControlLoad[].Material[].ProductionControlItemID` | number (as text) | 9 | `50728`, `50734` |
+| `ResultData.ProductionControlLoad[].Material[].ProductionControlID` | number (as text) | 9 | `80` |
+| `ResultData.ProductionControlLoad[].Material[].DrawingNumberDisplay` | number (as text) | 9 | `52312005`, `52312007` |
+| `ResultData.ProductionControlLoad[].Material[].MainMarkDisplay` | number (as text) | 9 | `52312005`, `52312007` |
+| `ResultData.ProductionControlLoad[].Material[].PieceMarkDisplay` | number (as text) | 9 | `52312005`, `52312007` |
+| `ResultData.ProductionControlLoad[].Material[].MainPiece` | number (as text) | 9 | `1` |
+| `ResultData.ProductionControlLoad[].Material[].SequenceDisplay` | number (as text) | 9 | `5231`, `5232` |
+| `ResultData.ProductionControlLoad[].Material[].LotNumberDisplay` | text | 9 |  |
+| `ResultData.ProductionControlLoad[].Material[].DrawingID` | number (as text) | 9 | `11765`, `11767` |
+| `ResultData.ProductionControlLoad[].Material[].AssemblyDrawingID` | number (as text) | 9 | `11765`, `11767` |
+| `ResultData.ProductionControlLoad[].Material[].PartDrawingID` | number (as text) | 9 | `11765`, `11767` |
+| `ResultData.ProductionControlLoad[].Material[].ShippingLength` | number (as text) | 9 | `5289.560579`, `5988.061976` |
+| `ResultData.ProductionControlLoad[].Material[].ShippingWeightEach` | number (as text) | 9 | `273.3186024`, `307.6215254` |
+| `ResultData.ProductionControlLoad[].Material[].ShippingGrossWeightEach` | number (as text) | 9 | `273.3186024`, `307.6215254` |
+| `ResultData.ProductionControlLoad[].Material[].ShippingModelWeightEach` | number (as text) | 9 | `273.3186024`, `307.6215254` |
+| `ResultData.ProductionControlLoad[].Material[].ShippingSurfaceAreaEach` | number (as text) | 9 | `7.165459492`, `8.06533226` |
+| `ResultData.ProductionControlLoad[].Material[].ShippingSquareMetersEach` | number (as text) | 9 | `0.1521575624`, `0.3757971226` |
+| `ResultData.ProductionControlLoad[].Material[].ApprovalStatus` | text | 9 |  |
+| `ResultData.ProductionControlLoad[].Material[].Quantity` | number (as text) | 9 | `1`, `7` |
+| `ResultData.ProductionControlLoad[].Material[].QuantityLoaded` | number (as text) | 9 | `1`, `7` |
+| `ResultData.ProductionControlLoad[].Material[].Loaded` | object or list | 9 |  |
+| `ResultData.ProductionControlLoad[].Material[].Loaded.ID` | number (as text) | 7 | `306`, `325` |
+| `ResultData.ProductionControlLoad[].Material[].Loaded.Date` | text | 7 | `2026-10-01`, `2026-10-09` |
+| `ResultData.ProductionControlLoad[].Material[].Loaded.Quantity` | number (as text) | 7 | `1`, `3` |
+| `ResultData.ProductionControlLoad[].Material[].QuantityAtLocation` | number (as text) | 6 | `1`, `7` |
+| `ResultData.ProductionControlLoad[].Material[].Shape` | object | 9 |  |
 | … | | | 38 more fields in the sample file |
 
 **Sample** (trimmed; full trimmed sample in [samples/ProductionControlLoad_Get.json](samples/ProductionControlLoad_Get.json)):
@@ -282,12 +280,6 @@ There are two ways to read loads: the older `GetLoads` (by JobNumber, units on e
 - EPM-001 (ProductionControlID 13) has no loads; the sample is 25-351 (ProductionControlID 80).
 - One or many: `ResultData.ProductionControlLoad.Material.Loaded` came back as an object in one place and a list in another. Always normalise to a list.
 
-**Feature ideas:**
-
-- Load ticket print: per-truck totals already summed by PowerFab.
-- Loaded-by/date audit per piece.
-- Use `ProductionControlItemID` as the key when the app writes loads back.
-
 ### `ProductionControlLoadRemaining_Get`
 
 **Status:** ✅ data
@@ -307,7 +299,7 @@ There are two ways to read loads: the older `GetLoads` (by JobNumber, units on e
 - `{"JobNumber":"EPM-001"}` → 422: ProductionControlID - Value is required
 - `{"ProductionControlID":13}` → 200, 571875 bytes
 
-**Result:** HTTP 200, 571,875 bytes, 1170 ms.
+**Result:** HTTP 200, 571,875 bytes, 862 ms.
 
 **Response fields:**
 
@@ -413,12 +405,6 @@ There are two ways to read loads: the older `GetLoads` (by JobNumber, units on e
 - Numbers are metric with no unit (kg, mm, m²). `Shape`, `Grade`, `Finish`, `Route` and `ApprovalStatus` are `{"@ID":…,"#text":…}`.
 - Uses `MainMarkDisplay` / `SequenceDisplay`, not `MainMark` / `Sequence` as in GetLoads.
 
-**Feature ideas:**
-
-- Best single source for the piece lookup app: scan a mark, show size, grade, finish, weight and drawing.
-- Laydown: group remaining pieces by sequence and finish.
-- Weight per piece (`ShippingWeightEach`) for planning truck weights before loading.
-
 ### `MaxTruck`
 
 **Status:** ✅ data
@@ -433,7 +419,7 @@ There are two ways to read loads: the older `GetLoads` (by JobNumber, units on e
 {"JobNumber":"EPM-001"}
 ```
 
-**Result:** HTTP 200, 844 bytes, 124 ms.
+**Result:** HTTP 200, 844 bytes, 97 ms.
 
 **Response fields:**
 
@@ -516,11 +502,6 @@ There are two ways to read loads: the older `GetLoads` (by JobNumber, units on e
 - On EPM-001 `MaxTruck` is an empty string (no loads); on 25-351 it was "5" with next 6.
 - Show/Required/RestrictToList flags are "1"/"0" strings.
 
-**Feature ideas:**
-
-- Suggest the next truck number when creating a load.
-- Build the new-load form from the Show/Required flags.
-
 ### `ProductionControlLoad_InputOptions_Get`
 
 **Status:** ✅ data
@@ -538,7 +519,7 @@ There are two ways to read loads: the older `GetLoads` (by JobNumber, units on e
 - `{"JobNumber":"EPM-001"}` → 422: ProductionControlID - Value is required
 - `{"ProductionControlID":13}` → 200, 2150 bytes
 
-**Result:** HTTP 200, 2,150 bytes, 171 ms.
+**Result:** HTTP 200, 2,150 bytes, 131 ms.
 
 **Response fields:**
 
@@ -646,10 +627,6 @@ There are two ways to read loads: the older `GetLoads` (by JobNumber, units on e
 
 - Needs `ProductionControlID`.
 
-**Feature ideas:**
-
-- Destination picker on the load form (e.g. galvanizer vs jobsite).
-
 ### `ProductionControlLoad_IsDuplicateLoadNumber`
 
 **Status:** ✅ data
@@ -669,7 +646,7 @@ There are two ways to read loads: the older `GetLoads` (by JobNumber, units on e
 - `{"JobNumber":"EPM-001"}` → 422: ProductionControlID - Value is required
 - `{"ProductionControlID":13,"LoadNumber":"1"}` → 200, 51 bytes
 
-**Result:** HTTP 200, 51 bytes, 148 ms.
+**Result:** HTTP 200, 51 bytes, 95 ms.
 
 **Response fields:**
 
@@ -689,10 +666,6 @@ There are two ways to read loads: the older `GetLoads` (by JobNumber, units on e
 **Gotchas:**
 
 - Needs `ProductionControlID` and `LoadNumber`. Reply `IsDuplicate` "0"/"1".
-
-**Feature ideas:**
-
-- Live check while typing a truck number.
 
 ### `ValTruck`
 
@@ -729,7 +702,7 @@ There are two ways to read loads: the older `GetLoads` (by JobNumber, units on e
 {"JobNumber":"EPM-001"}
 ```
 
-**Result:** HTTP 200, 1,852 bytes, 664 ms.
+**Result:** HTTP 200, 1,852 bytes, 433 ms.
 
 **Response fields:**
 
@@ -822,11 +795,6 @@ There are two ways to read loads: the older `GetLoads` (by JobNumber, units on e
 
 - Progress is in attributes: `@Total`, `@Completed`, `@TWt` (total weight), `@CWt` (completed weight), gross and model variants. Weights in kg.
 - EPM-001: 1230 pieces, 0 completed at every station and 0 shipped.
-
-**Feature ideas:**
-
-- Progress dashboard: % shipped by weight and count.
-- Station progress strip for the laydown view.
 
 ### `ProductionShippingProductivity_Get`
 

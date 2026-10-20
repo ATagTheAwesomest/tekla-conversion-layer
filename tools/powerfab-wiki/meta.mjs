@@ -50,8 +50,8 @@ back empty; drawing weights in \`GetDrawings\` and \`Drawing_Get\` are filled.`,
     title: 'Production, cutting and planning',
     blurb: 'Stations, routes, cut lists, pick lists, nests, CNC, work areas and work packages.',
     intro: `Shop-floor data. EPM-001 has four stations, routes, and one cut list ("Seq 1 WF", ID 1) with 125 cutting
-details. Nests, machines and CNC data are empty, and the planning side (work packages, departments, schedules) is
-refused for this API user.`,
+details. Nests, machines and CNC data are empty. Planning (departments, shifts, work-area schedules, work package
+departments and tasks) has been readable since the 2026-10-20 permission change, but \`WorkPackage_Get\` lists nothing.`,
     reads: w(`GetStations ValStation GetRouteDetails GetTFSDetails ProductionControlCutList_Get GetCutList PickList_Get
       ValCutListItem ProductionControlCutListItem_Swap_GetAvailable GetNestData GetNestImage GetNestStatus NestSolution_Get
       CNCData Machine_Get MachineGroup_Get Workshop_Get WorkArea_Get WorkAreaDepartment_Get WorkAreaDepartmentSchedule_Get
@@ -74,9 +74,8 @@ refused for this API user.`,
   'inventory-purchasing-costs.md': {
     title: 'Inventory, purchasing and costs',
     blurb: 'Stock, locations, price lists, purchase orders, receiving, estimates and cost codes.',
-    intro: `Almost all of this area is **refused for the API user** ("Permission denied"). What does work: the inventory
-location list, the location restriction, the last inventory transaction ID, currencies and the 4 MB price list.
-Turning on Inventory and Purchasing permissions for the PowerFab External User would open the rest.`,
+    intro: `Most of this area answers "Permission denied." for the API user. Readable: the inventory location list,
+the location restriction, the last inventory transaction ID, currencies and the 4 MB price list.`,
     reads: w(`GetInventoryLocations InventoryLocationRestriction_Get GetInventoryTransactions GetPricingInformation GetCurrencies
       GetInventory GetInventorySummary GetInventoryLocationSweeps InventoryTransaction_GetLastTransactionID
       InventoryJobCostingTransaction_Get ValInventory Remnant_Get GetPurchaseOrderInformation
@@ -116,7 +115,6 @@ samples, people's names, usernames, phone numbers and street addresses are maske
   },
 };
 
-const DENIED = 'Refused with "Permission denied" for the API user. Grant the matching permission to the PowerFab External User and rerun.';
 
 export const commands = {
   // ---- jobs and projects ----
@@ -124,19 +122,16 @@ export const commands = {
     purpose: 'One-call job summary: both internal IDs, description, assembly/drawing/sequence/lot counts, whether a schedule exists, and the linked Trimble Connect project.',
     ask: 'What are a job\'s ProductionControlID and ProjectID, and how big is it?',
     gotchas: ['Call this first: most `*_Get` commands need `ProductionControlID` or `ProjectID`, not `JobNumber`.'],
-    ideas: ['Job header in every app: description, piece count, drawing approval progress (386 of 1131 approved on EPM-001).', '`TrimbleConnect.ProjectID` could open the 3D model in Trimble Connect from the laydown or lookup app.'],
   },
   ValJob: {
     purpose: 'Checks that a job number exists. Reply is just `Successful`.',
     ask: 'Does this job number exist?',
     gotchas: ['Unknown jobs come back as HTTP 422 "The job \'X\' does not exist." (seen for EMP-001 and 26123).'],
-    ideas: ['Validate the job field before starting a load in terra-loads-web.'],
   },
   GetProductionControlJobs: {
     purpose: 'Lists production-control jobs.',
     ask: 'Which open jobs are there?',
     gotchas: ['Lists **open jobs only**. EPM-001 is Closed and never appears, even with `JobStatus: "Closed"` (that field was ignored). Sending `JobNumber: "EPM-001"` returned no job at all.', 'With one job the `ProductionControlJob` is an object, not a list.'],
-    ideas: ['Job picker for the apps (open jobs only); let users type a closed job and check it with `ValJob`.'],
   },
   ProductionControlJob_Get: {
     purpose: 'Newer-style job read. Returned no job for any input tried.',
@@ -146,21 +141,17 @@ export const commands = {
     purpose: 'Project records: job number, description, location, date, status, drawing logs and, with `IncludeFirms`, the firms on the project (client, detailer, billing).',
     ask: 'Who is the client and detailer on a job, and is it open or closed?',
     gotchas: ['`JobNumber` does **not** filter: the reply held both EPM-001 and 25-351. Filter the `Project` list yourself.', '`JobStatus` is an object (`Description`: "Open"/"Closed").'],
-    ideas: ['Show the client and ship-to firm on shipping paperwork.'],
   },
   GetProductionControlJobInformation: {
     purpose: 'Job information block: ProductionControlID, job number, description, date, notes.',
-    ideas: ['Show job notes to the yard crew.'],
   },
   GetProductionControlJobInformationTransactions: {
     purpose: 'Change history of the job information (old and new values per edit).',
-    ideas: ['Audit trail: who changed job info and when (needs a sync loop using `LastLogID`).'],
   },
   GetSequences: {
     purpose: 'Every sequence on the job with assembly count, piece count and total weight.',
     ask: 'What sequences does a job have and how much does each weigh?',
     gotchas: ['Weight is `{"@UOM":"kg","#text":"77814.45…"}`: kilograms with long decimals, even though `InputDisplayUnits` says Imperial. Multiply by 2.20462 for lb.', 'EPM-001 sequences are `1`–`5`; 25-351 sequences are 4 digits (`5231`). Do not assume the sequence is the first 4 characters of a mark: EPM-001 marks look like `1B1`.'],
-    ideas: ['Sequence filter and per-sequence progress bars in the shipping and laydown apps.'],
   },
   GetLots: {
     purpose: 'Lots on the job with assembly count, piece count and weight. EPM-001 has one unnamed lot.',
@@ -179,13 +170,12 @@ export const commands = {
     purpose: 'Definitions of the filters PowerFab offers for a filter type (names and how they are selected).',
     unverified: true,
     gotchas: ['`Type: "PDC"` worked; other types were not tried.'],
-    ideas: ['Discover which filters can be passed in `GetOptions.FilterSet` to the newer `*_Get` commands.'],
   },
   GetProjectSchedule: {
     purpose: 'The project schedule for a baseline plan.',
     gotchas: ['Needs `ScheduleBaselineID`. 0 and 1 gave "Baseline plan not found", and the command that lists baselines (`GetProjectScheduleBaselinePlans`) is refused, so the real ID is unknown. EPM-001 does have a schedule (`HasProjectSchedule` = 1).'],
   },
-  GetProjectScheduleBaselinePlans: { purpose: 'Lists schedule baseline plans.', gotchas: [DENIED] },
+  GetProjectScheduleBaselinePlans: { purpose: 'Lists schedule baseline plans.' },
   GetProjectScheduleSnapshots: { purpose: 'Schedule snapshots for a baseline plan.', gotchas: ['Needs a `ScheduleBaselineID`; see `GetProjectSchedule`.'] },
 
   // ---- loads and shipping ----
@@ -201,7 +191,6 @@ export const commands = {
       'Weights, lengths and capacity are `{"@UOM":"kg","#text":"…"}` / `{"@UOM":"in",…}`. Weight is kg, length is inches, regardless of `InputDisplayUnits`. Read `#text`.',
       'Each `Material` row is one mark on one truck with a quantity, not one row per piece. A mark with quantity 5 is one row.',
     ],
-    ideas: ['Truck view in terra-loads-web: assigned vs loaded per truck, with weight totals against `Capacity`.', '"What is left" list from `MaterialRemaining`, filterable by sequence.', 'Shipped history from `DateShipped`.'],
   },
   ProductionControlLoad_Get: {
     purpose: 'Newer load read: every load on a job with totals (quantity, length, weight, gross/model weight, surface area), ship status and, with `IncludeMaterial`, each piece with its item IDs, drawing IDs and load history.',
@@ -214,30 +203,25 @@ export const commands = {
       'Material carries `ProductionControlItemID`, the stable piece ID, and `Loaded` entries with date and quantity: good for history, but `Loaded` is an object for one entry and a list for several.',
       'EPM-001 (ProductionControlID 13) has no loads; the sample is 25-351 (ProductionControlID 80).',
     ],
-    ideas: ['Load ticket print: per-truck totals already summed by PowerFab.', 'Loaded-by/date audit per piece.', 'Use `ProductionControlItemID` as the key when the app writes loads back.'],
   },
   ProductionControlLoadRemaining_Get: {
     purpose: 'Every piece on the job that is not yet shipped, with mark, drawing, sequence, quantity remaining, shape, size, grade, finish, route, category, weight, length and surface area.',
     ask: 'What still has to ship, with full piece details?',
     gotchas: ['Needs `ProductionControlID`.', 'Large: 572 KB for EPM-001 (617 rows). Cache it, do not call per scan.', 'Numbers are metric with no unit (kg, mm, m²). `Shape`, `Grade`, `Finish`, `Route` and `ApprovalStatus` are `{"@ID":…,"#text":…}`.', 'Uses `MainMarkDisplay` / `SequenceDisplay`, not `MainMark` / `Sequence` as in GetLoads.'],
-    ideas: ['Best single source for the piece lookup app: scan a mark, show size, grade, finish, weight and drawing.', 'Laydown: group remaining pieces by sequence and finish.', 'Weight per piece (`ShippingWeightEach`) for planning truck weights before loading.'],
   },
   MaxTruck: {
     purpose: 'Highest load number on the job, the next free load number, default capacity and which load fields (trailer, carrier, categories) are shown or required.',
     ask: 'What is the next load number, and which load fields are required?',
     gotchas: ['On EPM-001 `MaxTruck` is an empty string (no loads); on 25-351 it was "5" with next 6.', 'Show/Required/RestrictToList flags are "1"/"0" strings.'],
-    ideas: ['Suggest the next truck number when creating a load.', 'Build the new-load form from the Show/Required flags.'],
   },
   ProductionControlLoad_InputOptions_Get: {
     purpose: 'Choices for a new load: next load number, default capacity and length, shipped-from firm/address and shipping destination groups.',
     gotchas: ['Needs `ProductionControlID`.'],
-    ideas: ['Destination picker on the load form (e.g. galvanizer vs jobsite).'],
   },
   ProductionControlLoad_IsDuplicateLoadNumber: {
     purpose: 'Checks whether a load number is already used on a job.',
     ask: 'Is this truck number already taken?',
     gotchas: ['Needs `ProductionControlID` and `LoadNumber`. Reply `IsDuplicate` "0"/"1".'],
-    ideas: ['Live check while typing a truck number.'],
   },
   ValTruck: {
     purpose: 'Validates a truck (load) number.',
@@ -248,7 +232,6 @@ export const commands = {
     purpose: 'Job-wide progress: total pieces and weight, completion per production station and per shipping destination, plus the list of load numbers.',
     ask: 'How far along is a job in production and shipping?',
     gotchas: ['Progress is in attributes: `@Total`, `@Completed`, `@TWt` (total weight), `@CWt` (completed weight), gross and model variants. Weights in kg.', 'EPM-001: 1230 pieces, 0 completed at every station and 0 shipped.'],
-    ideas: ['Progress dashboard: % shipped by weight and count.', 'Station progress strip for the laydown view.'],
   },
   ProductionShippingProductivity_Get: {
     purpose: 'Shipping and production productivity over a date range.',
@@ -260,7 +243,6 @@ export const commands = {
     purpose: 'Every assembly (main mark) with drawing number, approval status, quantity per assembly, total quantity, weight and per-sequence quantities.',
     ask: 'What main marks are on a job and in which sequences?',
     gotchas: ['On EPM-001 every `Weight` was `{"@UOM":"kg"}` with no value (all 592). Weights were not tried with other options. Get weight from `GetDrawings` or `ProductionControlLoadRemaining_Get`.', '`AssemblySequence` is an object for one sequence and a list when a mark is in several.'],
-    ideas: ['Mark master list for scan validation: an unknown mark gets flagged at once.'],
   },
   GetBillOfMaterials: {
     purpose: 'Same as GetAssemblies plus a `BillOfMaterials` entry per part.',
@@ -268,29 +250,24 @@ export const commands = {
   },
   GetCategories: {
     purpose: 'Totals by category (BEAM, COLUMN, BRACE…): main member count, piece count, weight.',
-    ideas: ['Category breakdown on the shipping dashboard.'],
   },
   GetSubCategories: { purpose: 'Totals by sub-category (on EPM-001 these are phases: "Phase 1"…).' },
   GetModelObjectIDs: {
     purpose: 'Tekla model GUIDs for every assembly and its parts, by main mark and sequence.',
     ask: 'Which Tekla model objects belong to a mark?',
     gotchas: ['Slow-ish (about 1 s) and 338 KB on EPM-001.', '`Part.ModelObjectID` can itself be a list.'],
-    ideas: ['Highlight a scanned piece in the Trimble Connect 3D model (project ID from `GetProjectStatus`).', 'Colour the model by shipped/loaded status for a yard or erection view.'],
   },
   ProductionControlFinish_Get: {
     purpose: 'Finish codes (PNT Painted, UNP Unpainted, GLV Galvanized…) with descriptions and import mappings.',
-    ideas: ['Show the finish name next to the code on piece cards; group laydown by finish.'],
   },
   GetDrawings: {
     purpose: 'Every drawing with description, approval status, revision, quantities and weight.',
     ask: 'Which drawings are on a job and are they approved?',
     gotchas: ['`Revision` was empty on EPM-001 drawings.', 'Weight here is filled (unlike GetAssemblies).'],
-    ideas: ['Show drawing approval status on the piece lookup; warn when a piece is not approved for fabrication.'],
   },
   Drawing_Get: {
     purpose: 'Full drawing records: DrawingID, drawing log, category, dates (detailed, shop issue), release number, approval status, and production totals per drawing. With `Revisions`/`Transmittals` set to "all" it adds transmittal history.',
     gotchas: ['Needs `ProjectID`, `ProductionControlID` or `DrawingID`. 485 KB for all 1131 drawings on EPM-001; pass `DrawingID` for one.', 'Approval is an `ApprovalStatusID`; the lookup table (A, P, IFF…) comes back in `ResultData.ApprovalStatus`.'],
-    ideas: ['Drawing detail screen behind a scanned piece.'],
   },
   DrawingRevision_Get: { purpose: 'Drawing revisions.', gotchas: ['Empty for `ProjectID: 4`: EPM-001 has no revision records.'] },
   DrawingLog_Get: {
@@ -301,17 +278,15 @@ export const commands = {
   DrawingFile_Get: {
     purpose: 'Fetches a drawing file.',
     gotchas: ['Needs `DrawingID` and `FileName`. No reply showed file names, so it was not completed. It returns file content, so expect a large reply.'],
-    ideas: ['Open the shop drawing PDF from a scanned piece, once file names are known.'],
   },
   GetDocument: { purpose: 'Fetches a document from PowerFab\'s document index.', gotchas: ['Server says "Document index base directory has not been set." A PowerFab setting, not an API problem.'] },
   GetTransmittalDetails: {
     purpose: 'Drawing transmittals: number, date, recipient, title, items, purpose, print counts, return date.',
     gotchas: ['Recipient address and phone are in the reply; masked in the sample.'],
   },
-  Transmittal_Get: { purpose: 'Newer transmittal read.', gotchas: [DENIED] },
+  Transmittal_Get: { purpose: 'Newer transmittal read.' },
   GetRFIDetails: {
     purpose: 'RFIs on the job: number, date, subject, body, status, overdue flag, originator and recipient.',
-    ideas: ['Flag pieces affected by open RFIs (one piece on EPM-001 has `Remark` "GC RFI 27").'],
   },
   GetChangeOrderDetails: { purpose: 'Change orders: number, date, firm, subject, description, cost and days added, approval.' },
 
@@ -320,7 +295,6 @@ export const commands = {
     purpose: 'Production stations used on the job and their type.',
     ask: 'Which production stations does a job go through?',
     gotchas: ['Empty for 25-351 but four stations on EPM-001.'],
-    ideas: ['Station picker for a future "mark complete at station" feature.'],
   },
   ValStation: { purpose: 'Checks a station name and returns its `StationID`.', gotchas: ['Station names include slashes, e.g. "Cut/Saw/Beamline/BurnTable".'] },
   GetRouteDetails: { purpose: 'A route (e.g. SP "Sample - Painted") and its stations in order.', gotchas: ['Needs `RouteID` or `Route`. Pieces carry their route in `ProductionControlLoadRemaining_Get`.'] },
@@ -332,11 +306,10 @@ export const commands = {
   GetCutList: {
     purpose: 'One cut list with every cutting detail: stock size, length, weight, expected drop, status, PO, and the parts cut from it.',
     gotchas: ['Needs `CutListID` (from `ProductionControlCutList_Get`).'],
-    ideas: ['Show which stock bar a piece is cut from.'],
   },
   PickList_Get: { purpose: 'The pick list for a cut list: stock to pull, quantity, size, length, weight, PO and supplier.', gotchas: ['Takes `CutListID`. `ProductionControlCutListID` gave "The cut list does not exist".'] },
   ValCutListItem: { purpose: 'Validates a cut list item for cutting.', gotchas: ['Item 37 is valid, but PowerFab answered "Cut list item material is not in stock."'] },
-  ProductionControlCutListItem_Swap_GetAvailable: { purpose: 'Stock available to swap in for a cut list item.', gotchas: [DENIED] },
+  ProductionControlCutListItem_Swap_GetAvailable: { purpose: 'Stock available to swap in for a cut list item.' },
   GetNestData: { purpose: 'Nest data for a cut list item.', gotchas: ['"No nest results available." for item 37: nothing is nested on EPM-001.'] },
   GetNestImage: { purpose: 'Nest image for a cut list item.', gotchas: ['Successful but empty: no nests.'] },
   GetNestStatus: { purpose: 'Status of a nest.', gotchas: ['Needs `NestID`; no item on EPM-001 has one.'] },
@@ -346,28 +319,34 @@ export const commands = {
   MachineGroup_Get: { purpose: 'Machine groups.', gotchas: ['None set up.'] },
   Workshop_Get: { purpose: 'Workshops (one: "Main Workshop").' },
   WorkArea_Get: { purpose: 'Work areas (one: "Main").' },
-  WorkAreaDepartment_Get: { purpose: 'Departments in a work area.', gotchas: [DENIED] },
-  WorkAreaDepartmentSchedule_Get: { purpose: 'Department schedules.', gotchas: [DENIED] },
-  WorkAreaDepartmentScheduleShift_Get: { purpose: 'Department schedule shifts.', gotchas: [DENIED] },
-  WorkAreaDepartmentFutureTask_Get: { purpose: 'Future department tasks.', gotchas: [DENIED] },
-  Department_Get: { purpose: 'Departments.', gotchas: [DENIED] },
-  DepartmentShift_Get: { purpose: 'Department shifts.', gotchas: [DENIED] },
-  WorkPackage_Get: { purpose: 'Work packages.', gotchas: [DENIED] },
-  WorkPackageDepartment_Get: { purpose: 'Work package departments.', gotchas: [DENIED] },
-  WorkPackageDepartmentTask_Get: { purpose: 'Work package department tasks.', gotchas: [DENIED] },
-  WorkPackageDepartmentTaskCompletion_Get: { purpose: 'Work package task completions.', gotchas: [DENIED] },
-  WorkPackageGroup1List_Get: { purpose: 'Work package group 1 list.', gotchas: [DENIED] },
-  WorkPackageGroup2List_Get: { purpose: 'Work package group 2 list.', gotchas: [DENIED] },
+  WorkAreaDepartment_Get: { purpose: 'Links between workshop, work area and department (one: workshop 1, work area 1, department 1).' },
+  WorkAreaDepartmentSchedule_Get: {
+    purpose: 'Weekly capacity schedule per department: start and end dates, capacity weight and hours, and what is booked.',
+    ask: 'How much capacity does the shop have each week?',
+    gotchas: ['Server-wide, not per job: `JobNumber` is ignored.'],
+  },
+  WorkAreaDepartmentScheduleShift_Get: { purpose: 'Shifts within each weekly department schedule, with capacity weight and hours.' },
+  WorkAreaDepartmentFutureTask_Get: { purpose: 'Future department tasks.', gotchas: ['Returned only `LastLogID`: none exist.'] },
+  Department_Get: { purpose: 'Departments (one: 10 "Fabrication"). `GetOptions.IncludeDepartmentShifts` adds each department\'s shifts.' },
+  DepartmentShift_Get: { purpose: 'Department shifts with weekly weight and hour capacity (one: "Standard", 100000 weight, 1000 hours per week).' },
+  WorkPackage_Get: {
+    purpose: 'Work packages.',
+    gotchas: ['Returned only `LastLogID` and an empty `FilterSet` for `JobNumber`, `ProductionControlID` and `WorkPackageID: 3`, even though `WorkPackageDepartment_Get` refers to work package 3. That package may belong to a job the API user cannot read; not confirmed.'],
+  },
+  WorkPackageDepartment_Get: { purpose: 'Departments booked on each work package, with quantity, weight, hours and completion.' },
+  WorkPackageDepartmentTask_Get: { purpose: 'Department tasks on work packages with weight, hours, completed and remaining amounts. `GetOptions.IncludeDepartmentTaskCompletions` is echoed but added nothing here.' },
+  WorkPackageDepartmentTaskCompletion_Get: { purpose: 'Completions recorded against work package department tasks.', gotchas: ['Answers "WorkPackageDepartmentTaskCompletion - Element is required" for `JobNumber` and for a nested `WorkPackageDepartmentTaskCompletion` object; the expected layout was not found.'] },
+  WorkPackageGroup1List_Get: { purpose: 'Work package group 1 list.', gotchas: ['`ResultData` is an empty string: no groups.'] },
+  WorkPackageGroup2List_Get: { purpose: 'Work package group 2 list.', gotchas: ['`ResultData` is an empty string: no groups.'] },
   ProductionPlanningSettings_Get: { purpose: 'Production planning settings (week start day, default view).' },
-  PlanningRuleWarning_Get: { purpose: 'Planning rule warnings for an item.', gotchas: ['Needs `Type` and `ID`, then refused: "Permission denied".'] },
-  GetTimeTrackingSubjects: { purpose: 'Time tracking subjects.', gotchas: [DENIED] },
+  PlanningRuleWarning_Get: { purpose: 'Planning rule warnings for an item.', gotchas: ['Needs `Type` and `ID`. `Type: "WorkPackage"` with IDs 1 and 3 returned no warnings.'] },
+  GetTimeTrackingSubjects: { purpose: 'Time tracking subjects.' },
 
   // ---- inventory, purchasing, costs ----
   GetInventoryLocations: {
     purpose: 'Inventory location names and secondary locations.',
     ask: 'What yard/inventory locations exist?',
     gotchas: ['Plain list of strings; the first entry is an empty string.'],
-    ideas: ['Location picker for the laydown app (where a bundle sits in the yard).'],
   },
   InventoryLocationRestriction_Get: { purpose: 'Whether inventory moves are restricted to certain locations (here: any location allowed).' },
   GetInventoryTransactions: {
@@ -379,52 +358,50 @@ export const commands = {
     gotchas: ['Huge: about 4 MB and 5 s (10,322 rows). Not job specific.', 'Price is `{"@Currency":"USD","@Units":"/CWT","#text":"25.6"}`.'],
   },
   GetCurrencies: { purpose: 'Currencies (USD only).' },
-  GetInventory: { purpose: 'Inventory items.', gotchas: [DENIED] },
+  GetInventory: { purpose: 'Inventory items.' },
   GetInventorySummary: { purpose: 'Inventory summary grouped by a field.', gotchas: ['Needs `SummaryField`, then refused: "Permission denied".'] },
   GetInventoryLocationSweeps: { purpose: 'Inventory location sweeps.', gotchas: ['Needs `InventoryLocationSweepSerialNumber`; none known, not tried further.'] },
-  InventoryTransaction_GetLastTransactionID: { purpose: 'Last inventory transaction ID.', gotchas: [DENIED + ' `GetInventoryTransactions` returns the same number.'] },
+  InventoryTransaction_GetLastTransactionID: { purpose: 'Last inventory transaction ID.', gotchas: ['`GetInventoryTransactions` returns the same number.'] },
   InventoryJobCostingTransaction_Get: { purpose: 'Inventory job costing transactions.', gotchas: ['Needs `Workflow` (Tekla: consumed, reserved, Item) and `SinceInventoryTransactionID`, then refused: "Permission denied".'] },
   ValInventory: { purpose: 'Validates an inventory serial number.', gotchas: ['Needs `SerialNumber`; none known, not tried further.'] },
-  Remnant_Get: { purpose: 'Remnants.', gotchas: [DENIED] },
-  GetPurchaseOrderInformation: { purpose: 'Purchase orders.', gotchas: [DENIED] },
-  GetPurchaseOrderInformationTransactions: { purpose: 'Purchase order changes.', gotchas: [DENIED] },
-  PurchaseOrder_Get: { purpose: 'Purchase orders (newer read).', gotchas: [DENIED] },
-  PurchaseOrderItem_Get: { purpose: 'Purchase order items.', gotchas: [DENIED] },
+  Remnant_Get: { purpose: 'Remnants.' },
+  GetPurchaseOrderInformation: { purpose: 'Purchase orders.' },
+  GetPurchaseOrderInformationTransactions: { purpose: 'Purchase order changes.' },
+  PurchaseOrder_Get: { purpose: 'Purchase orders (newer read).' },
+  PurchaseOrderItem_Get: { purpose: 'Purchase order items.' },
   PurchaseOrderSummary_Get: { purpose: 'Purchase order summary over a date range.', gotchas: ['Needs `GetOptions` with `SummaryType`, `StartDate`, `EndDate`; "Job" is not a valid SummaryType and the real values were not looked up.'] },
   PurchaseOrderItemReceiveTransaction_Get: { purpose: 'Receiving transactions on PO items.', gotchas: ['Needs `ExportedSinceUnixTime`, then refused: "Permission denied".'] },
-  PurchaseOrderFOB_Get: { purpose: 'PO FOB terms.', gotchas: [DENIED] },
-  PurchaseOrderPaymentTerm_Get: { purpose: 'PO payment terms.', gotchas: [DENIED] },
-  PurchaseOrderPOType_Get: { purpose: 'PO types.', gotchas: [DENIED] },
-  PurchaseOrderShippingMethod_Get: { purpose: 'PO shipping methods.', gotchas: [DENIED] },
-  PurchaseOrderSubcontractItem_Get: { purpose: 'Subcontract PO items.', gotchas: [DENIED] },
+  PurchaseOrderFOB_Get: { purpose: 'PO FOB terms.' },
+  PurchaseOrderPaymentTerm_Get: { purpose: 'PO payment terms.' },
+  PurchaseOrderPOType_Get: { purpose: 'PO types.' },
+  PurchaseOrderShippingMethod_Get: { purpose: 'PO shipping methods.' },
+  PurchaseOrderSubcontractItem_Get: { purpose: 'Subcontract PO items.' },
   EstimateSummary_Get: { purpose: 'Estimate summary.', gotchas: ['Needs `EstimateID`, then refused: "Permission denied".'] },
   EstimateJobCostSummary_Get: { purpose: 'Estimate job cost summary by cost code or cost type.', gotchas: ['Asks for `SummaryBy` and `EstimateID` but rejects them both at the top level and nested; the expected layout was not found. Estimates are probably refused anyway (see `EstimateSummary_Get`).'] },
   EstimateJobCostGroupSummary_Get: { purpose: 'Estimate job cost group summary.', gotchas: ['Same layout problem as `EstimateJobCostSummary_Get`.'] },
-  CostCode_Get: { purpose: 'Cost codes.', gotchas: [DENIED] },
-  CostType_Get: { purpose: 'Cost types.', gotchas: [DENIED] },
-  LaborRate_Get: { purpose: 'Labor rates.', gotchas: [DENIED] },
-  GetCountries: { purpose: 'Countries.', gotchas: [DENIED] },
+  CostCode_Get: { purpose: 'Cost codes.' },
+  CostType_Get: { purpose: 'Cost types.' },
+  LaborRate_Get: { purpose: 'Labor rates.' },
+  GetCountries: { purpose: 'Countries.' },
 
   // ---- inspections and reports ----
   GetReportTypes: {
     purpose: 'Report layouts PowerFab offers for a report group (`Inspection` or `ProductionControlShippingTicket`).',
     ask: 'Which shipping ticket layouts does PowerFab have?',
     gotchas: ['Needs `ReportGroup`.', 'Generating a report (`MakeReport`) is a write and was not run.'],
-    ideas: ['Let the shipping app print PowerFab\'s own shipping ticket once report writes are allowed.'],
   },
-  GetInspectionTests: { purpose: 'Inspection tests.', gotchas: [DENIED] },
-  GetInspectionTestTypes: { purpose: 'Inspection test types.', gotchas: [DENIED] },
+  GetInspectionTests: { purpose: 'Inspection tests.' },
+  GetInspectionTestTypes: { purpose: 'Inspection test types.' },
   GetInspectionTestSubjects: { purpose: 'Inspection test subjects.', gotchas: ['Needs `InspectionTestVersionID`, then refused: "Permission denied".'] },
-  GetInspectionTestRecords: { purpose: 'Inspection test records.', gotchas: [DENIED] },
-  GetInspectionTestRecordsCondensed: { purpose: 'Inspection test records, condensed.', gotchas: [DENIED] },
-  GetInspectionTestRecordSummary: { purpose: 'Inspection test record summary.', gotchas: [DENIED] },
+  GetInspectionTestRecords: { purpose: 'Inspection test records.' },
+  GetInspectionTestRecordsCondensed: { purpose: 'Inspection test records, condensed.' },
+  GetInspectionTestRecordSummary: { purpose: 'Inspection test record summary.' },
 
   // ---- firms, users, settings ----
-  Ping: { purpose: 'Keeps the session alive; returns the idle timeout (43200 s = 12 h) and seconds left.', ask: 'Is the PowerFab connection up?', ideas: ['Connection indicator in the apps.'] },
+  Ping: { purpose: 'Keeps the session alive; returns the idle timeout (43200 s = 12 h) and seconds left.', ask: 'Is the PowerFab connection up?' },
   Firm_Get: {
     purpose: 'Firms (clients, detailers, coaters, suppliers…) and, with the Include options, their addresses and contacts.',
     ask: 'Who are the customers and ship-to addresses?',
-    ideas: ['Ship-to address on the shipping ticket.'],
   },
   FirmAddress_Get: { purpose: 'Firms with their ship-to, bill-to and other addresses and main contact.' },
   FirmAddresses_Get: { purpose: 'Flat list of all firm addresses.' },
@@ -433,15 +410,13 @@ export const commands = {
     purpose: 'PowerFab users: ID, username, name, whether they are production users.',
     ask: 'Which PowerFab users exist?',
     gotchas: ['Names and usernames are masked in the sample.'],
-    ideas: ['"Loaded by" picker mapped to PowerFab users.'],
   },
   ValUser: { purpose: 'Checks a username and returns its `UserID`.' },
   HoldSettings_Get: {
     purpose: 'What PowerFab does when a piece is on hold, per step: purchasing, production, inspections, shipping assign/load/ship.',
     gotchas: ['Here `ShippingShip` is "Prevent" and the others "Prompt": a held piece cannot ship. The same block is repeated on many replies as `HoldSettings`.'],
-    ideas: ['Warn on scan when a held piece is loaded, and block shipping it, matching PowerFab.'],
   },
-  TrimbleViewpointSettings_Get: { purpose: 'Trimble viewpoint settings.', gotchas: [DENIED] },
+  TrimbleViewpointSettings_Get: { purpose: 'Trimble viewpoint settings.' },
 };
 
 // Write commands: what each does, from the name and Tekla's reference. None were called.
@@ -498,12 +473,12 @@ export const readme = {
 
 What every Tekla PowerFab command returns through this service, checked against a live PowerFab server on
 2026-10-19/20. Written for people and for AI agents: each command has the same block (status, request that worked,
-response fields, sample, gotchas, feature ideas), and every sample is real data, trimmed.
+response fields, sample, gotchas), and every sample is real data, trimmed.
 
 - **Test job:** \`EPM-001\` ("Tekla EPM Demo", Closed, ProductionControlID 13, ProjectID 4). Data rich in drawings,
-  assemblies, cut lists, RFIs and transmittals, but it has **no loads**. Load samples come from job \`25-351\`, the
-  only job with trucks; those samples carry marks, quantities, weights and dates only.
-- **Read only:** only read commands were called. Writes are refused by the service (\`POWERFAB_ALLOW_WRITES=false\`).
+  assemblies, cut lists, RFIs and transmittals, but it has **no loads**. Load samples come from job \`25-351\`, read on
+  2026-10-19 before the API user was limited to EPM-001; they carry marks, quantities, weights and dates only.
+- **Read only:** only read commands were called.
 - **Masked:** people's names, usernames, phone numbers and street addresses in samples are replaced with \`<redacted>\`.
 - **Not invented:** everything below was observed in a reply unless it says "inferred" or "not worked out".`,
   middle: `## Quick start
@@ -524,8 +499,8 @@ curl -s -X POST "https://terra-api.helpiminthe.icu/api/powerfab/GetProjectStatus
 3. **Units.** \`@UOM\` values were always kg for weight and in or mm for length, even though \`InputDisplayUnits\`
    says Imperial. The \`*_Get\` commands give bare metric numbers (kg, mm, m²) with no unit at all.
 4. **Errors.** PowerFab refusing a command comes back as HTTP 422 with its message in \`detail\`, e.g.
-   \`"ProductionControlID - Value is required"\` or \`"Permission denied."\`. The message names the missing field,
-   which is the fastest way to find a command's parameters.
+   \`"ProductionControlID - Value is required"\` or \`"Permission denied."\`. The message names the first missing
+   field, so a command's parameters can be found one error at a time.
 
 ### Common blocks
 
@@ -550,7 +525,7 @@ The service's mock and README listed guesses about PowerFab's replies. What the 
 | \`Material\` with \`MainMark\`, \`Sequence\`, \`Quantity\` | \`Material\` has \`MainMark\`, \`PieceMark\`, \`Sequence\`, \`AssignedQuantity\` (planned) and \`LoadedQuantity\` (on the truck), plus weight, length, shape, size, grade, finish |
 | \`LoadNumber\` in \`GetLoads\` = \`TruckNumber\` in \`Load\` | Still unconfirmed (no write has been run), but \`LoadNumber\` is the only truck number in the reads |
 | Weights as numbers | Objects \`{"@UOM":"kg","#text":"…"}\`, in kg |
-| The first 4 characters of a mark are the sequence | True on 25-351 (mark \`52312005\`, sequence \`5231\`), **false on EPM-001** (mark \`1B1\`, sequence \`1\`). Use the \`Sequence\` field |
+| The first 4 characters of a mark are the sequence | True on 25-351 (mark \`52312005\`, sequence \`5231\`), **false on EPM-001** (mark \`1B1\`, sequence \`1\`). The \`Sequence\` field holds it |
 | \`GetProductionControlJobs\` lists the jobs | Lists **open** jobs only; closed jobs like EPM-001 are missing |
 
 ## Rerunning this
@@ -566,14 +541,18 @@ node tools/powerfab-wiki/build.mjs ../powerfab-raw
 
 \`calls.json\` holds every request from this run. Edit it to change the job or add attempts, and put prose in
 \`tools/powerfab-wiki/meta.mjs\`.`,
-  bottom: `## Next steps that would fill the gaps
+  bottom: `## Access of the API user
 
-1. **Permissions.** Most refusals are "Permission denied" for the External User: inventory, purchasing, inspections,
-   estimating, cost codes, labor rates, work packages and departments, time tracking, remnants, transmittals and
-   Trimble Viewpoint. Granting those in PowerFab and rerunning would document them.
-2. **A job with loads on it**, or a few test loads on EPM-001, to see load data on the test job itself.
-3. **Parameter values still unknown:** \`ProductionShippingProductivity_Get\` StatusType, \`PurchaseOrderSummary_Get\`
-   SummaryType, the estimate summaries' layout, a \`ScheduleBaselineID\`, a drawing \`FileName\` for \`DrawingFile_Get\`,
-   and options that fill \`GetAssemblies\` weights and \`GetBillOfMaterials\` rows. Tekla's XSD files in the PowerFab
-   Docs folder on the server would settle these.`,
+On 2026-10-20 the PowerFab External User behind the service was changed: it now reads job EPM-001 only (job 25-351
+answers "Permission denied." for reads that worked on 2026-10-19), and it gained departments, shifts, work-area
+schedules and work package departments and tasks. Still refused: inventory, purchasing and PO terms, inspections,
+estimating, cost codes and types, labor rates, time tracking, remnants, the newer transmittal read, schedule
+baselines, countries and Trimble Viewpoint settings.
+
+## Not worked out
+
+Parameter values that no attempt got past: \`ProductionShippingProductivity_Get\` StatusType,
+\`PurchaseOrderSummary_Get\` SummaryType, the layout of the estimate summaries and of
+\`WorkPackageDepartmentTaskCompletion_Get\`, a valid \`ScheduleBaselineID\`, a drawing \`FileName\` for
+\`DrawingFile_Get\`, and any option that fills \`GetAssemblies\` weights or \`GetBillOfMaterials\` rows.`,
 };

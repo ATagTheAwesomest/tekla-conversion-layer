@@ -8,7 +8,7 @@
     }
   },
   "status": 200,
-  "bytes": 5091,
+  "bytes": 3805,
   "note": "Trimmed: lists keep their first 3 items. Names, phones and street addresses are masked.",
   "response": {
     "Successful": "1",
@@ -18,137 +18,85 @@
         "IncludeDrawingLogs": "1",
         "IncludeFirms": "1"
       },
-      "Project": [
-        {
-          "ProjectID": "4",
-          "JobNumber": "EPM-001",
-          "JobDescription": "Tekla EPM Demo",
-          "JobLocation": "Trimble Solutions USA",
-          "JobDate": "2020-08-31",
-          "JobStatus": {
-            "JobStatusID": "2",
-            "Description": "Closed",
-            "Purpose": "10",
-            "IsDefault": "0",
-            "Active": "1"
-          },
-          "DrawingLog": [
-            {
-              "DrawingLogID": "21",
-              "ProjectID": "4",
-              "DrawingType": "Design",
-              "DrawingLogName": "Design",
-              "PDCLink": "0",
-              "SubdirectoryPath": "Design",
-              "DrawingLogMapping": ""
-            },
-            {
-              "DrawingLogID": "22",
-              "ProjectID": "4",
-              "DrawingType": "Detail",
-              "DrawingLogName": "Assembly",
-              "PDCLink": "20",
-              "SubdirectoryPath": "Detail\\Assembly drawings",
-              "DrawingLogMapping": "Details"
-            },
-            {
-              "DrawingLogID": "23",
-              "ProjectID": "4",
-              "DrawingType": "Detail",
-              "DrawingLogName": "GA",
-              "PDCLink": "0",
-              "SubdirectoryPath": "Detail\\GA drawings",
-              "DrawingLogMapping": "General Arrangement\nErection sheets\nGA"
-            },
-            "… 2 more"
-          ],
-          "ProjectFirm": [
-            {
-              "FirmType": "Client",
-              "FirmID": "1",
-              "ShipToFirmAddressID": "11",
-              "BillToFirmAddressID": "6",
-              "FirmContactID": "8",
-              "Description": "Project Manager"
-            },
-            {
-              "FirmType": "Detailer",
-              "FirmID": "7",
-              "ShipToFirmAddressID": "12",
-              "BillToFirmAddressID": "12",
-              "FirmContactID": "11",
-              "Description": "Detailer"
-            },
-            {
-              "FirmType": "Client",
-              "FirmID": "1",
-              "ShipToFirmAddressID": "1",
-              "BillToFirmAddressID": "6",
-              "FirmContactID": "10",
-              "Description": "Billing"
-            },
-            "… 2 more"
-          ],
-          "InputDisplayUnits": {
-            "SizeUOM": "Imperial",
-            "LengthUOM": "Imperial",
-            "LengthTypeIDMetric": "101",
-            "LengthTypeIDImperial": "1",
-            "WeightUOM": "Imperial",
-            "PriceUOM": "Imperial"
-          }
+      "Project": {
+        "ProjectID": "4",
+        "JobNumber": "EPM-001",
+        "JobDescription": "Tekla EPM Demo",
+        "JobLocation": "Trimble Solutions USA",
+        "JobDate": "2020-08-31",
+        "JobStatus": {
+          "JobStatusID": "2",
+          "Description": "Closed",
+          "Purpose": "10",
+          "IsDefault": "0",
+          "Active": "1"
         },
-        {
-          "ProjectID": "28",
-          "JobNumber": "25-351",
-          "JobDate": "2026-07-22",
-          "JobStatus": {
-            "JobStatusID": "1",
-            "Description": "Open",
-            "Purpose": "0",
-            "IsDefault": "1",
-            "Active": "1"
+        "DrawingLog": [
+          {
+            "DrawingLogID": "21",
+            "ProjectID": "4",
+            "DrawingType": "Design",
+            "DrawingLogName": "Design",
+            "PDCLink": "0",
+            "SubdirectoryPath": "Design",
+            "DrawingLogMapping": ""
           },
-          "DrawingLog": [
-            {
-              "DrawingLogID": "141",
-              "ProjectID": "28",
-              "DrawingType": "Design",
-              "DrawingLogName": "Design",
-              "PDCLink": "0",
-              "SubdirectoryPath": "Design",
-              "DrawingLogMapping": ""
-            },
-            {
-              "DrawingLogID": "142",
-              "ProjectID": "28",
-              "DrawingType": "Detail",
-              "DrawingLogName": "Assembly",
-              "PDCLink": "20",
-              "SubdirectoryPath": "Detail\\Assembly drawings",
-              "DrawingLogMapping": "Details"
-            },
-            {
-              "DrawingLogID": "143",
-              "ProjectID": "28",
-              "DrawingType": "Detail",
-              "DrawingLogName": "GA",
-              "PDCLink": "0",
-              "SubdirectoryPath": "Detail\\GA drawings",
-              "DrawingLogMapping": "General Arrangement\nErection sheets\nGA"
-            },
-            "… 2 more"
-          ],
-          "InputDisplayUnits": {
-            "SizeUOM": "Imperial",
-            "LengthUOM": "Imperial",
-            "LengthTypeIDMetric": "101",
-            "LengthTypeIDImperial": "1",
-            "WeightUOM": "Imperial",
-            "PriceUOM": "Imperial"
-          }
+          {
+            "DrawingLogID": "22",
+            "ProjectID": "4",
+            "DrawingType": "Detail",
+            "DrawingLogName": "Assembly",
+            "PDCLink": "20",
+            "SubdirectoryPath": "Detail\\Assembly drawings",
+            "DrawingLogMapping": "Details"
+          },
+          {
+            "DrawingLogID": "23",
+            "ProjectID": "4",
+            "DrawingType": "Detail",
+            "DrawingLogName": "GA",
+            "PDCLink": "0",
+            "SubdirectoryPath": "Detail\\GA drawings",
+            "DrawingLogMapping": "General Arrangement\nErection sheets\nGA"
+          },
+          "… 2 more"
+        ],
+        "ProjectFirm": [
+          {
+            "FirmType": "Client",
+            "FirmID": "1",
+            "ShipToFirmAddressID": "11",
+            "BillToFirmAddressID": "6",
+            "FirmContactID": "8",
+            "Description": "Project Manager"
+          },
+          {
+            "FirmType": "Detailer",
+            "FirmID": "7",
+            "ShipToFirmAddressID": "12",
+            "BillToFirmAddressID": "12",
+            "FirmContactID": "11",
+            "Description": "Detailer"
+          },
+          {
+            "FirmType": "Client",
+            "FirmID": "1",
+            "ShipToFirmAddressID": "1",
+            "BillToFirmAddressID": "6",
+            "FirmContactID": "10",
+            "Description": "Billing"
+          },
+          "… 2 more"
+        ],
+        "InputDisplayUnits": {
+          "SizeUOM": "Imperial",
+          "LengthUOM": "Imperial",
+          "LengthTypeIDMetric": "101",
+          "LengthTypeIDImperial": "1",
+          "WeightUOM": "Imperial",
+          "PriceUOM": "Imperial"
         }
-      ],
+      },
       "Firm": [
         {
           "FirmID": "1",

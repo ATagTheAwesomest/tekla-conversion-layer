@@ -2,20 +2,20 @@
 
 What every Tekla PowerFab command returns through this service, checked against a live PowerFab server on
 2026-10-19/20. Written for people and for AI agents: each command has the same block (status, request that worked,
-response fields, sample, gotchas, feature ideas), and every sample is real data, trimmed.
+response fields, sample, gotchas), and every sample is real data, trimmed.
 
 - **Test job:** `EPM-001` ("Tekla EPM Demo", Closed, ProductionControlID 13, ProjectID 4). Data rich in drawings,
-  assemblies, cut lists, RFIs and transmittals, but it has **no loads**. Load samples come from job `25-351`, the
-  only job with trucks; those samples carry marks, quantities, weights and dates only.
-- **Read only:** only read commands were called. Writes are refused by the service (`POWERFAB_ALLOW_WRITES=false`).
+  assemblies, cut lists, RFIs and transmittals, but it has **no loads**. Load samples come from job `25-351`, read on
+  2026-10-19 before the API user was limited to EPM-001; they carry marks, quantities, weights and dates only.
+- **Read only:** only read commands were called.
 - **Masked:** people's names, usernames, phone numbers and street addresses in samples are replaced with `<redacted>`.
 - **Not invented:** everything below was observed in a reply unless it says "inferred" or "not worked out".
 
 ## Run summary
 
 - Commands in the table: **252** (122 read, 130 write).
-- Read commands called: **122**, 185 requests in all ([calls.json](../../tools/powerfab-wiki/calls.json)).
-- ✅ returned data: **54** · ⚪ empty: **10** · ⛔ permission denied: **44** · ⚠️ refused: **14**.
+- Read commands called: **122**, 192 requests in all ([calls.json](../../tools/powerfab-wiki/calls.json)).
+- ✅ returned data: **61** · ⚪ empty: **15** · ⛔ permission denied: **31** · ⚠️ refused: **15**.
 - Write commands: none called. See "Write commands (not run)" on each page.
 
 ## Pages
@@ -46,8 +46,8 @@ curl -s -X POST "https://terra-api.helpiminthe.icu/api/powerfab/GetProjectStatus
 3. **Units.** `@UOM` values were always kg for weight and in or mm for length, even though `InputDisplayUnits`
    says Imperial. The `*_Get` commands give bare metric numbers (kg, mm, m²) with no unit at all.
 4. **Errors.** PowerFab refusing a command comes back as HTTP 422 with its message in `detail`, e.g.
-   `"ProductionControlID - Value is required"` or `"Permission denied."`. The message names the missing field,
-   which is the fastest way to find a command's parameters.
+   `"ProductionControlID - Value is required"` or `"Permission denied."`. The message names the first missing
+   field, so a command's parameters can be found one error at a time.
 
 ### Common blocks
 
@@ -72,7 +72,7 @@ The service's mock and README listed guesses about PowerFab's replies. What the 
 | `Material` with `MainMark`, `Sequence`, `Quantity` | `Material` has `MainMark`, `PieceMark`, `Sequence`, `AssignedQuantity` (planned) and `LoadedQuantity` (on the truck), plus weight, length, shape, size, grade, finish |
 | `LoadNumber` in `GetLoads` = `TruckNumber` in `Load` | Still unconfirmed (no write has been run), but `LoadNumber` is the only truck number in the reads |
 | Weights as numbers | Objects `{"@UOM":"kg","#text":"…"}`, in kg |
-| The first 4 characters of a mark are the sequence | True on 25-351 (mark `52312005`, sequence `5231`), **false on EPM-001** (mark `1B1`, sequence `1`). Use the `Sequence` field |
+| The first 4 characters of a mark are the sequence | True on 25-351 (mark `52312005`, sequence `5231`), **false on EPM-001** (mark `1B1`, sequence `1`). The `Sequence` field holds it |
 | `GetProductionControlJobs` lists the jobs | Lists **open** jobs only; closed jobs like EPM-001 are missing |
 
 ## Rerunning this
@@ -99,7 +99,6 @@ node tools/powerfab-wiki/build.mjs ../powerfab-raw
 | What yard/inventory locations exist? | [`GetInventoryLocations`](inventory-purchasing-costs.md#getinventorylocations) | ✅ data |
 | What is on each truck, and what is left to ship? | [`GetLoads`](loads-and-shipping.md#getloads) | ✅ data |
 | Which Tekla model objects belong to a mark? | [`GetModelObjectIDs`](assemblies-and-drawings.md#getmodelobjectids) | ✅ data |
-| Which open jobs are there? | [`GetProductionControlJobs`](jobs-and-projects.md#getproductioncontroljobs) | ✅ data |
 | How far along is a job in production and shipping? | [`GetProductionShippingStatus`](loads-and-shipping.md#getproductionshippingstatus) | ✅ data |
 | What are a job's ProductionControlID and ProjectID, and how big is it? | [`GetProjectStatus`](jobs-and-projects.md#getprojectstatus) | ✅ data |
 | Which shipping ticket layouts does PowerFab have? | [`GetReportTypes`](inspections-and-reports.md#getreporttypes) | ✅ data |
@@ -114,6 +113,7 @@ node tools/powerfab-wiki/build.mjs ../powerfab-raw
 | Who is the client and detailer on a job, and is it open or closed? | [`Project_Get`](jobs-and-projects.md#project_get) | ✅ data |
 | Which PowerFab users exist? | [`UserPartial_Get`](firms-users-settings.md#userpartial_get) | ✅ data |
 | Does this job number exist? | [`ValJob`](jobs-and-projects.md#valjob) | ✅ data |
+| How much capacity does the shop have each week? | [`WorkAreaDepartmentSchedule_Get`](production-and-cutting.md#workareadepartmentschedule_get) | ✅ data |
 
 ## Empty, refused or not allowed
 
@@ -124,8 +124,6 @@ Everything below came back with no data. Fix the cause in the last column and re
 | [`CNCData`](production-and-cutting.md#cncdata) | ⚪ empty | Successful, but nothing in the reply |
 | [`CostCode_Get`](inventory-purchasing-costs.md#costcode_get) | ⛔ permission denied | Permission denied. |
 | [`CostType_Get`](inventory-purchasing-costs.md#costtype_get) | ⛔ permission denied | Permission denied. |
-| [`DepartmentShift_Get`](production-and-cutting.md#departmentshift_get) | ⛔ permission denied | Permission denied. |
-| [`Department_Get`](production-and-cutting.md#department_get) | ⛔ permission denied | Permission denied. |
 | [`DrawingFile_Get`](assemblies-and-drawings.md#drawingfile_get) | ⚠️ refused | DrawingID - Value is required |
 | [`DrawingRevision_Get`](assemblies-and-drawings.md#drawingrevision_get) | ⚪ empty | Successful, but nothing in the reply |
 | [`EstimateJobCostGroupSummary_Get`](inventory-purchasing-costs.md#estimatejobcostgroupsummary_get) | ⚠️ refused | EstimateJobCostGroupSummary - Element is required |
@@ -147,6 +145,7 @@ Everything below came back with no data. Fix the cause in the last column and re
 | [`GetNestData`](production-and-cutting.md#getnestdata) | ⚠️ refused | CutListItemID is required |
 | [`GetNestImage`](production-and-cutting.md#getnestimage) | ⚪ empty | Successful, but nothing in the reply |
 | [`GetNestStatus`](production-and-cutting.md#getneststatus) | ⚠️ refused | NestID is required. |
+| [`GetProductionControlJobs`](jobs-and-projects.md#getproductioncontroljobs) | ⚪ empty | Successful, but nothing in the reply |
 | [`GetProjectSchedule`](jobs-and-projects.md#getprojectschedule) | ⚠️ refused | Baseline plan not found. |
 | [`GetProjectScheduleBaselinePlans`](jobs-and-projects.md#getprojectschedulebaselineplans) | ⛔ permission denied | Permission denied. |
 | [`GetProjectScheduleSnapshots`](jobs-and-projects.md#getprojectschedulesnapshots) | ⚠️ refused | Baseline plan not found. |
@@ -160,9 +159,8 @@ Everything below came back with no data. Fix the cause in the last column and re
 | [`MachineGroup_Get`](production-and-cutting.md#machinegroup_get) | ⚪ empty | Successful, but nothing in the reply |
 | [`Machine_Get`](production-and-cutting.md#machine_get) | ⚪ empty | Successful, but nothing in the reply |
 | [`NestSolution_Get`](production-and-cutting.md#nestsolution_get) | ⚪ empty | Successful, but nothing in the reply |
-| [`PlanningRuleWarning_Get`](production-and-cutting.md#planningrulewarning_get) | ⛔ permission denied | Permission denied. |
+| [`PlanningRuleWarning_Get`](production-and-cutting.md#planningrulewarning_get) | ⚪ empty | Successful, but nothing in the reply |
 | [`ProductionControlCutListItem_Swap_GetAvailable`](production-and-cutting.md#productioncontrolcutlistitem_swap_getavailable) | ⛔ permission denied | Permission denied. |
-| [`ProductionControlJob_Get`](jobs-and-projects.md#productioncontroljob_get) | ⚪ empty | Successful, but nothing in the reply |
 | [`ProductionShippingProductivity_Get`](loads-and-shipping.md#productionshippingproductivity_get) | ⚠️ refused | StatusType - Value (ShippingDestination) is not valid. |
 | [`PurchaseOrderFOB_Get`](inventory-purchasing-costs.md#purchaseorderfob_get) | ⛔ permission denied | Permission denied. |
 | [`PurchaseOrderItemReceiveTransaction_Get`](inventory-purchasing-costs.md#purchaseorderitemreceivetransaction_get) | ⛔ permission denied | Permission denied. |
@@ -179,24 +177,23 @@ Everything below came back with no data. Fix the cause in the last column and re
 | [`ValCutListItem`](production-and-cutting.md#valcutlistitem) | ⚠️ refused | CutListItemID/CutListSerialNumber/ExternalNestID/NestID is required |
 | [`ValInventory`](inventory-purchasing-costs.md#valinventory) | ⚠️ refused | SerialNumber is required |
 | [`ValTruck`](loads-and-shipping.md#valtruck) | ⚠️ refused | ActionIfNotExist is required |
-| [`WorkAreaDepartmentFutureTask_Get`](production-and-cutting.md#workareadepartmentfuturetask_get) | ⛔ permission denied | Permission denied. |
-| [`WorkAreaDepartmentScheduleShift_Get`](production-and-cutting.md#workareadepartmentscheduleshift_get) | ⛔ permission denied | Permission denied. |
-| [`WorkAreaDepartmentSchedule_Get`](production-and-cutting.md#workareadepartmentschedule_get) | ⛔ permission denied | Permission denied. |
-| [`WorkAreaDepartment_Get`](production-and-cutting.md#workareadepartment_get) | ⛔ permission denied | Permission denied. |
-| [`WorkPackageDepartmentTaskCompletion_Get`](production-and-cutting.md#workpackagedepartmenttaskcompletion_get) | ⛔ permission denied | Permission denied. |
-| [`WorkPackageDepartmentTask_Get`](production-and-cutting.md#workpackagedepartmenttask_get) | ⛔ permission denied | Permission denied. |
-| [`WorkPackageDepartment_Get`](production-and-cutting.md#workpackagedepartment_get) | ⛔ permission denied | Permission denied. |
-| [`WorkPackageGroup1List_Get`](production-and-cutting.md#workpackagegroup1list_get) | ⛔ permission denied | Permission denied. |
-| [`WorkPackageGroup2List_Get`](production-and-cutting.md#workpackagegroup2list_get) | ⛔ permission denied | Permission denied. |
-| [`WorkPackage_Get`](production-and-cutting.md#workpackage_get) | ⛔ permission denied | Permission denied. |
+| [`WorkAreaDepartmentFutureTask_Get`](production-and-cutting.md#workareadepartmentfuturetask_get) | ⚪ empty | Successful, but nothing in the reply |
+| [`WorkPackageDepartmentTaskCompletion_Get`](production-and-cutting.md#workpackagedepartmenttaskcompletion_get) | ⚠️ refused | WorkPackageDepartmentTaskCompletion - Element is required |
+| [`WorkPackageGroup1List_Get`](production-and-cutting.md#workpackagegroup1list_get) | ⚪ empty | Successful, but nothing in the reply |
+| [`WorkPackageGroup2List_Get`](production-and-cutting.md#workpackagegroup2list_get) | ⚪ empty | Successful, but nothing in the reply |
+| [`WorkPackage_Get`](production-and-cutting.md#workpackage_get) | ⚪ empty | Successful, but nothing in the reply |
 
-## Next steps that would fill the gaps
+## Access of the API user
 
-1. **Permissions.** Most refusals are "Permission denied" for the External User: inventory, purchasing, inspections,
-   estimating, cost codes, labor rates, work packages and departments, time tracking, remnants, transmittals and
-   Trimble Viewpoint. Granting those in PowerFab and rerunning would document them.
-2. **A job with loads on it**, or a few test loads on EPM-001, to see load data on the test job itself.
-3. **Parameter values still unknown:** `ProductionShippingProductivity_Get` StatusType, `PurchaseOrderSummary_Get`
-   SummaryType, the estimate summaries' layout, a `ScheduleBaselineID`, a drawing `FileName` for `DrawingFile_Get`,
-   and options that fill `GetAssemblies` weights and `GetBillOfMaterials` rows. Tekla's XSD files in the PowerFab
-   Docs folder on the server would settle these.
+On 2026-10-20 the PowerFab External User behind the service was changed: it now reads job EPM-001 only (job 25-351
+answers "Permission denied." for reads that worked on 2026-10-19), and it gained departments, shifts, work-area
+schedules and work package departments and tasks. Still refused: inventory, purchasing and PO terms, inspections,
+estimating, cost codes and types, labor rates, time tracking, remnants, the newer transmittal read, schedule
+baselines, countries and Trimble Viewpoint settings.
+
+## Not worked out
+
+Parameter values that no attempt got past: `ProductionShippingProductivity_Get` StatusType,
+`PurchaseOrderSummary_Get` SummaryType, the layout of the estimate summaries and of
+`WorkPackageDepartmentTaskCompletion_Get`, a valid `ScheduleBaselineID`, a drawing `FileName` for
+`DrawingFile_Get`, and any option that fills `GetAssemblies` weights or `GetBillOfMaterials` rows.

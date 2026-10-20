@@ -4,11 +4,11 @@
     "JobNumber": "EPM-001"
   },
   "status": 200,
-  "bytes": 146237,
+  "bytes": 163475,
   "note": "Trimmed: lists keep their first 3 items. Names, phones and street addresses are masked.",
   "response": {
     "Successful": "1",
-    "CommandGUID": "9B5AEB8D-123E-40FC-966D-358144C9CF28",
+    "CommandGUID": "709C442E-C397-481F-B6CA-040197C2C6DB",
     "ProductionControlID": "13",
     "JobNumber": "EPM-001",
     "InputDisplayUnits": {
@@ -29,7 +29,8 @@
         "AssemblyQuantity": "1",
         "TotalQuantity": "59",
         "Weight": {
-          "@UOM": "kg"
+          "@UOM": "kg",
+          "#text": "797.251695464567266"
         },
         "AssemblySequence": {
           "Sequence": "1",
@@ -51,7 +52,8 @@
         "AssemblyQuantity": "1",
         "TotalQuantity": "70",
         "Weight": {
-          "@UOM": "kg"
+          "@UOM": "kg",
+          "#text": "1094.098916718450877"
         },
         "AssemblySequence": {
           "Sequence": "1",
@@ -73,7 +75,8 @@
         "AssemblyQuantity": "1",
         "TotalQuantity": "33",
         "Weight": {
-          "@UOM": "kg"
+          "@UOM": "kg",
+          "#text": "807.049454408057777"
         },
         "AssemblySequence": {
           "Sequence": "1",
@@ -95,7 +98,8 @@
         "FilterItems": {
           "FilterItem": {
             "@Field1": "13",
-            "@Field2": "EPM-001"
+            "@Field2": "EPM-001",
+            "#text": "EPM-001"
           }
         }
       }

@@ -4,7 +4,7 @@
     "JobNumber": "EPM-001"
   },
   "status": 200,
-  "bytes": 9767,
+  "bytes": 9919,
   "note": "Trimmed: lists keep their first 3 items. Names, phones and street addresses are masked.",
   "response": {
     "Successful": "1",
@@ -17,7 +17,8 @@
             "Name": "Detailer",
             "Code": "Detailer",
             "PrimaryCurrency": {
-              "@ID": "1"
+              "@ID": "1",
+              "#text": "USD"
             },
             "ShipToAddress": {
               "FirmAddressID": "12",
@@ -69,7 +70,8 @@
             "Name": "Galvanizer",
             "Code": "Galvanizer",
             "PrimaryCurrency": {
-              "@ID": "1"
+              "@ID": "1",
+              "#text": "USD"
             },
             "ShipToAddress": {
               "FirmAddressID": "10",
@@ -115,7 +117,8 @@
             "Name": "Music Hall of Fame",
             "Code": "Music Hall of Fame",
             "PrimaryCurrency": {
-              "@ID": "1"
+              "@ID": "1",
+              "#text": "USD"
             },
             "ShipToAddress": {
               "FirmAddressID": "14",

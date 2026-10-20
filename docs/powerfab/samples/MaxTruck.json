@@ -8,7 +8,7 @@
   "note": "Trimmed: lists keep their first 3 items. Names, phones and street addresses are masked.",
   "response": {
     "Successful": "1",
-    "CommandGUID": "CC401909-AEF6-4024-95C9-13728659FBA0",
+    "CommandGUID": "0D8DA57F-957F-438E-A146-DF2A84CA9F64",
     "ProductionControlID": "13",
     "JobNumber": "EPM-001",
     "MaxTruck": "",

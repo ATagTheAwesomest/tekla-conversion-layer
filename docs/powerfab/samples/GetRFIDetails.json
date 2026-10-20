@@ -8,7 +8,7 @@
   "note": "Trimmed: lists keep their first 3 items. Names, phones and street addresses are masked.",
   "response": {
     "Successful": "1",
-    "CommandGUID": "AF75215C-1A8A-476A-988D-251B71D47C78",
+    "CommandGUID": "11580170-64C9-46D9-816E-E1BBB95BD1A8",
     "JobNumber": "EPM-001",
     "RFIs": {
       "RFI": {

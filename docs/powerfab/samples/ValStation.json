@@ -9,7 +9,7 @@
   "note": "Trimmed: lists keep their first 3 items. Names, phones and street addresses are masked.",
   "response": {
     "Successful": "1",
-    "CommandGUID": "4DEA34BE-56FE-4145-9B5F-E4254092219C",
+    "CommandGUID": "DE376489-E15A-4C3E-9618-B525E1E2292E",
     "StationID": "4"
   }
 }

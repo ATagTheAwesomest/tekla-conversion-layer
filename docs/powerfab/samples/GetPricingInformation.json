@@ -8,7 +8,7 @@
   "note": "Trimmed: lists keep their first 3 items. Names, phones and street addresses are masked.",
   "response": {
     "Successful": "1",
-    "CommandGUID": "9EDA0CCA-8DED-4B00-A7CD-7A1366CAA45E",
+    "CommandGUID": "4369C891-0908-44CD-8DED-5297544BFD49",
     "AvailableMaterial": [
       {
         "SupplierName": "Warehouse",

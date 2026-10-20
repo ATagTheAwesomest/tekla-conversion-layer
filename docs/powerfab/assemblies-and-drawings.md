@@ -43,7 +43,7 @@ back empty; drawing weights in `GetDrawings` and `Drawing_Get` are filled.
 {"JobNumber":"EPM-001"}
 ```
 
-**Result:** HTTP 200, 113,368 bytes, 174 ms.
+**Result:** HTTP 200, 130,606 bytes, 268 ms.
 
 **Response fields:**
 
@@ -61,6 +61,7 @@ back empty; drawing weights in `GetDrawings` and `Drawing_Get` are filled.
 | `Assembly[].TotalQuantity` | number (as text) | 592 | `59`, `70` |
 | `Assembly[].Weight` | object | 592 |  |
 | `Assembly[].Weight.@UOM` | text | 592 | `kg` |
+| `Assembly[].Weight.#text` | number (as text) | 592 | `797.251695464567266`, `1094.098916718450877` |
 | `Assembly[].AssemblySequence` | object or list | 592 |  |
 | `Assembly[].AssemblySequence.Sequence` | number (as text) | 574 | `1`, `2` |
 | `Assembly[].AssemblySequence.Quantity` | number (as text) | 574 | `1`, `2` |
@@ -82,7 +83,8 @@ back empty; drawing weights in `GetDrawings` and `Drawing_Get` are filled.
       "AssemblyQuantity": "1",
       "TotalQuantity": "59",
       "Weight": {
-        "@UOM": "kg"
+        "@UOM": "kg",
+        "#text": "797.251695464567266"
       },
       "AssemblySequence": {
         "Sequence": "1",
@@ -100,10 +102,6 @@ back empty; drawing weights in `GetDrawings` and `Drawing_Get` are filled.
 - `AssemblySequence` is an object for one sequence and a list when a mark is in several.
 - One or many: `Assembly.AssemblySequence` came back as an object in one place and a list in another. Always normalise to a list.
 
-**Feature ideas:**
-
-- Mark master list for scan validation: an unknown mark gets flagged at once.
-
 ### `GetBillOfMaterials`
 
 **Status:** ✅ data
@@ -116,7 +114,7 @@ back empty; drawing weights in `GetDrawings` and `Drawing_Get` are filled.
 {"JobNumber":"EPM-001"}
 ```
 
-**Result:** HTTP 200, 146,237 bytes, 305 ms.
+**Result:** HTTP 200, 163,475 bytes, 448 ms.
 
 **Response fields:**
 
@@ -135,6 +133,7 @@ back empty; drawing weights in `GetDrawings` and `Drawing_Get` are filled.
 | `Assembly[].TotalQuantity` | number (as text) | 592 | `59`, `70` |
 | `Assembly[].Weight` | object | 592 |  |
 | `Assembly[].Weight.@UOM` | text | 592 | `kg` |
+| `Assembly[].Weight.#text` | number (as text) | 592 | `797.251695464567266`, `1094.098916718450877` |
 | `Assembly[].AssemblySequence` | object or list | 592 |  |
 | `Assembly[].AssemblySequence.Sequence` | number (as text) | 574 | `1`, `2` |
 | `Assembly[].AssemblySequence.Quantity` | number (as text) | 574 | `1`, `2` |
@@ -158,7 +157,8 @@ back empty; drawing weights in `GetDrawings` and `Drawing_Get` are filled.
       "AssemblyQuantity": "1",
       "TotalQuantity": "59",
       "Weight": {
-        "@UOM": "kg"
+        "@UOM": "kg",
+        "#text": "797.251695464567266"
       },
       "AssemblySequence": {
         "Sequence": "1",
@@ -191,7 +191,7 @@ back empty; drawing weights in `GetDrawings` and `Drawing_Get` are filled.
 {"JobNumber":"EPM-001"}
 ```
 
-**Result:** HTTP 200, 1,780 bytes, 67 ms.
+**Result:** HTTP 200, 2,138 bytes, 108 ms.
 
 **Response fields:**
 
@@ -206,6 +206,7 @@ back empty; drawing weights in `GetDrawings` and `Drawing_Get` are filled.
 | `Category[].TotalQuantity` | number (as text) | 13 | `15628`, `256` |
 | `Category[].Weight` | object | 13 |  |
 | `Category[].Weight.@UOM` | text | 13 | `kg` |
+| `Category[].Weight.#text` | number (as text) | 13 | `16998.840712460117137`, `0` |
 | `FilterSet` | object | 1 | common block, see README |
 | `HoldSettings` | object | 1 | common block, see README |
 
@@ -219,17 +220,14 @@ back empty; drawing weights in `GetDrawings` and `Drawing_Get` are filled.
       "MainMemberQuantity": "0",
       "TotalQuantity": "15628",
       "Weight": {
-        "@UOM": "kg"
+        "@UOM": "kg",
+        "#text": "16998.840712460117137"
       }
     },
     "… 12 more"
   ]
 }
 ```
-
-**Feature ideas:**
-
-- Category breakdown on the shipping dashboard.
 
 ### `GetSubCategories`
 
@@ -243,7 +241,7 @@ back empty; drawing weights in `GetDrawings` and `Drawing_Get` are filled.
 {"JobNumber":"EPM-001"}
 ```
 
-**Result:** HTTP 200, 1,376 bytes, 112 ms.
+**Result:** HTTP 200, 1,376 bytes, 114 ms.
 
 **Response fields:**
 
@@ -295,7 +293,7 @@ back empty; drawing weights in `GetDrawings` and `Drawing_Get` are filled.
 {"JobNumber":"EPM-001"}
 ```
 
-**Result:** HTTP 200, 338,204 bytes, 1020 ms.
+**Result:** HTTP 200, 338,204 bytes, 1033 ms.
 
 **Response fields:**
 
@@ -354,11 +352,6 @@ back empty; drawing weights in `GetDrawings` and `Drawing_Get` are filled.
 - `Part.ModelObjectID` can itself be a list.
 - One or many: `Assembly.AssemblyID.Part.ModelObjectID`, `Assembly.AssemblyID`, `Assembly.AssemblyID.Part` came back as an object in one place and a list in another. Always normalise to a list.
 
-**Feature ideas:**
-
-- Highlight a scanned piece in the Trimble Connect 3D model (project ID from `GetProjectStatus`).
-- Colour the model by shipped/loaded status for a yard or erection view.
-
 ### `ProductionControlFinish_Get`
 
 **Status:** ✅ data
@@ -371,7 +364,7 @@ back empty; drawing weights in `GetDrawings` and `Drawing_Get` are filled.
 {"JobNumber":"EPM-001"}
 ```
 
-**Result:** HTTP 200, 2,078 bytes, 90 ms.
+**Result:** HTTP 200, 2,078 bytes, 198 ms.
 
 **Response fields:**
 
@@ -404,10 +397,6 @@ back empty; drawing weights in `GetDrawings` and `Drawing_Get` are filled.
 
 - One or many: `ResultData.ProductionControlFinish.FinishMapping` came back as an object in one place and a list in another. Always normalise to a list.
 
-**Feature ideas:**
-
-- Show the finish name next to the code on piece cards; group laydown by finish.
-
 ### `GetDrawings`
 
 **Status:** ✅ data
@@ -422,7 +411,7 @@ back empty; drawing weights in `GetDrawings` and `Drawing_Get` are filled.
 {"JobNumber":"EPM-001"}
 ```
 
-**Result:** HTTP 200, 190,565 bytes, 391 ms.
+**Result:** HTTP 200, 190,565 bytes, 967 ms.
 
 **Response fields:**
 
@@ -471,10 +460,6 @@ back empty; drawing weights in `GetDrawings` and `Drawing_Get` are filled.
 - `Revision` was empty on EPM-001 drawings.
 - Weight here is filled (unlike GetAssemblies).
 
-**Feature ideas:**
-
-- Show drawing approval status on the piece lookup; warn when a piece is not approved for fabrication.
-
 ### `Drawing_Get`
 
 **Status:** ✅ data
@@ -493,7 +478,7 @@ back empty; drawing weights in `GetDrawings` and `Drawing_Get` are filled.
 - `{"JobNumber":"EPM-001"}` → 422: Either ProjectID, ProductionControlID, or DrawingID must be specified.
 - `{"ProjectID":4}` → 200, 484750 bytes
 
-**Result:** HTTP 200, 484,750 bytes, 1010 ms.
+**Result:** HTTP 200, 484,750 bytes, 801 ms.
 
 **Response fields:**
 
@@ -579,10 +564,6 @@ back empty; drawing weights in `GetDrawings` and `Drawing_Get` are filled.
 - Approval is an `ApprovalStatusID`; the lookup table (A, P, IFF…) comes back in `ResultData.ApprovalStatus`.
 - One or many: `ResultData.Drawing.DrawingProduction.SubCategory`, `ResultData.Drawing.DrawingProduction.Sequence`, `ResultData.Drawing.DrawingProduction.Category` came back as an object in one place and a list in another. Always normalise to a list.
 
-**Feature ideas:**
-
-- Drawing detail screen behind a scanned piece.
-
 ### `DrawingRevision_Get`
 
 **Status:** ⚪ empty
@@ -600,7 +581,7 @@ back empty; drawing weights in `GetDrawings` and `Drawing_Get` are filled.
 - `{"JobNumber":"EPM-001"}` → 422: Either ProjectID, ProductionControlID, DrawingID, or DrawingRevisionID must be specified.
 - `{"ProjectID":4}` → 200, empty
 
-**Result:** HTTP 200, 85 bytes, 158 ms. **Came back empty**: no data beyond the reply envelope.
+**Result:** HTTP 200, 85 bytes, 97 ms. **Came back empty**: no data beyond the reply envelope.
 
 **Gotchas:**
 
@@ -618,7 +599,7 @@ back empty; drawing weights in `GetDrawings` and `Drawing_Get` are filled.
 {"JobNumber":"EPM-001"}
 ```
 
-**Result:** HTTP 200, 28,984 bytes, 55 ms.
+**Result:** HTTP 200, 28,984 bytes, 138 ms.
 
 **Response fields:**
 
@@ -675,7 +656,7 @@ back empty; drawing weights in `GetDrawings` and `Drawing_Get` are filled.
 - `{"JobNumber":"EPM-001"}` → 422: ProjectID - Value is required
 - `{"ProjectID":4}` → 200, 787 bytes
 
-**Result:** HTTP 200, 787 bytes, 128 ms.
+**Result:** HTTP 200, 787 bytes, 87 ms.
 
 **Response fields:**
 
@@ -741,10 +722,6 @@ back empty; drawing weights in `GetDrawings` and `Drawing_Get` are filled.
 
 - Needs `DrawingID` and `FileName`. No reply showed file names, so it was not completed. It returns file content, so expect a large reply.
 
-**Feature ideas:**
-
-- Open the shop drawing PDF from a scanned piece, once file names are known.
-
 ### `GetDocument`
 
 **Status:** ⚠️ refused
@@ -777,7 +754,7 @@ back empty; drawing weights in `GetDrawings` and `Drawing_Get` are filled.
 {"JobNumber":"EPM-001"}
 ```
 
-**Result:** HTTP 200, 3,313 bytes, 144 ms.
+**Result:** HTTP 200, 3,313 bytes, 128 ms.
 
 **Response fields:**
 
@@ -873,7 +850,7 @@ back empty; drawing weights in `GetDrawings` and `Drawing_Get` are filled.
 
 **Gotchas:**
 
-- Refused with "Permission denied" for the API user. Grant the matching permission to the PowerFab External User and rerun.
+- PowerFab answered "Permission denied." for the API user (the PowerFab External User the service logs in as).
 
 ### `GetRFIDetails`
 
@@ -887,7 +864,7 @@ back empty; drawing weights in `GetDrawings` and `Drawing_Get` are filled.
 {"JobNumber":"EPM-001"}
 ```
 
-**Result:** HTTP 200, 641 bytes, 128 ms.
+**Result:** HTTP 200, 641 bytes, 106 ms.
 
 **Response fields:**
 
@@ -952,10 +929,6 @@ back empty; drawing weights in `GetDrawings` and `Drawing_Get` are filled.
 }
 ```
 
-**Feature ideas:**
-
-- Flag pieces affected by open RFIs (one piece on EPM-001 has `Remark` "GC RFI 27").
-
 ### `GetChangeOrderDetails`
 
 **Status:** ✅ data
@@ -968,7 +941,7 @@ back empty; drawing weights in `GetDrawings` and `Drawing_Get` are filled.
 {"JobNumber":"EPM-001"}
 ```
 
-**Result:** HTTP 200, 703 bytes, 771 ms.
+**Result:** HTTP 200, 703 bytes, 78 ms.
 
 **Response fields:**
 

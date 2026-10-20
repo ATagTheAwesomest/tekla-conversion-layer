@@ -8,7 +8,7 @@
   "note": "Trimmed: lists keep their first 3 items. Names, phones and street addresses are masked.",
   "response": {
     "Successful": "1",
-    "CommandGUID": "4941F0D5-ECC0-41E6-B69E-19D3093C9BAB",
+    "CommandGUID": "6F82415E-2758-4744-834E-3213332D90B6",
     "ReportType": {
       "ReportTypeID": "32",
       "Description": "All",

@@ -8,7 +8,7 @@
   "note": "Trimmed: lists keep their first 3 items. Names, phones and street addresses are masked.",
   "response": {
     "Successful": "1",
-    "CommandGUID": "6B3FDBBE-56B1-4928-B39F-013EFD306645",
+    "CommandGUID": "06F59521-8931-4668-86F9-980CABD767FC",
     "Locations": {
       "Location": [
         "",

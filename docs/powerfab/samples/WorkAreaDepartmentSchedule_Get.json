@@ -1,0 +1,87 @@
+{
+  "command": "WorkAreaDepartmentSchedule_Get",
+  "request": {
+    "JobNumber": "EPM-001"
+  },
+  "status": 200,
+  "bytes": 4054,
+  "note": "Trimmed: lists keep their first 3 items. Names, phones and street addresses are masked.",
+  "response": {
+    "Successful": "1",
+    "ResultData": {
+      "LastLogID": "20",
+      "GetOptions": "",
+      "WorkAreaDepartmentSchedule": [
+        {
+          "WorkAreaDepartmentScheduleID": "1",
+          "WorkAreaDepartmentID": "1",
+          "WorkshopID": "1",
+          "WorkAreaID": "1",
+          "DepartmentID": "1",
+          "StartDate": "2026-10-11",
+          "EndDate": "2026-10-17",
+          "TotalCapacityWeight": "100000",
+          "TotalCapacityHours": "1000",
+          "ScheduledWeight": "0",
+          "ScheduledWeightProduction": "0",
+          "ScheduledWeightFuture": "0",
+          "ScheduledHours": "0",
+          "ScheduledHoursProduction": "0",
+          "ScheduledHoursFuture": "0",
+          "CompletedWeight": "0",
+          "CompletedHours": "0",
+          "AvailableCapacityWeight": "100000",
+          "AvailableCapacityHours": "1000",
+          "NextWorkAreaDepartmentScheduleID": "2"
+        },
+        {
+          "WorkAreaDepartmentScheduleID": "2",
+          "WorkAreaDepartmentID": "1",
+          "WorkshopID": "1",
+          "WorkAreaID": "1",
+          "DepartmentID": "1",
+          "StartDate": "2026-10-18",
+          "EndDate": "2026-10-24",
+          "TotalCapacityWeight": "100000",
+          "TotalCapacityHours": "1000",
+          "ScheduledWeight": "0",
+          "ScheduledWeightProduction": "0",
+          "ScheduledWeightFuture": "0",
+          "ScheduledHours": "0",
+          "ScheduledHoursProduction": "0",
+          "ScheduledHoursFuture": "0",
+          "CompletedWeight": "0",
+          "CompletedHours": "0",
+          "AvailableCapacityWeight": "100000",
+          "AvailableCapacityHours": "1000",
+          "PreviousWorkAreaDepartmentScheduleID": "1",
+          "NextWorkAreaDepartmentScheduleID": "3"
+        },
+        {
+          "WorkAreaDepartmentScheduleID": "3",
+          "WorkAreaDepartmentID": "1",
+          "WorkshopID": "1",
+          "WorkAreaID": "1",
+          "DepartmentID": "1",
+          "StartDate": "2026-10-25",
+          "EndDate": "2026-10-31",
+          "TotalCapacityWeight": "100000",
+          "TotalCapacityHours": "1000",
+          "ScheduledWeight": "0",
+          "ScheduledWeightProduction": "0",
+          "ScheduledWeightFuture": "0",
+          "ScheduledHours": "0",
+          "ScheduledHoursProduction": "0",
+          "ScheduledHoursFuture": "0",
+          "CompletedWeight": "0",
+          "CompletedHours": "0",
+          "AvailableCapacityWeight": "100000",
+          "AvailableCapacityHours": "1000",
+          "PreviousWorkAreaDepartmentScheduleID": "2",
+          "NextWorkAreaDepartmentScheduleID": "4"
+        },
+        "… 4 more"
+      ]
+    }
+  }
+}

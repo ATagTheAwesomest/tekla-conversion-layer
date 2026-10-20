@@ -33,7 +33,7 @@ samples, people's names, usernames, phone numbers and street addresses are maske
 {"JobNumber":"EPM-001"}
 ```
 
-**Result:** HTTP 200, 128 bytes, 113 ms.
+**Result:** HTTP 200, 128 bytes, 99 ms.
 
 **Response fields:**
 
@@ -51,10 +51,6 @@ samples, people's names, usernames, phone numbers and street addresses are maske
 }
 ```
 
-**Feature ideas:**
-
-- Connection indicator in the apps.
-
 ### `Firm_Get`
 
 **Status:** ✅ data
@@ -69,7 +65,7 @@ samples, people's names, usernames, phone numbers and street addresses are maske
 {"GetOptions":{"IncludeAddresses":1,"IncludeContacts":1,"IncludeInactive":1}}
 ```
 
-**Result:** HTTP 200, 11,469 bytes, 155 ms.
+**Result:** HTTP 200, 11,469 bytes, 103 ms.
 
 **Response fields:**
 
@@ -173,10 +169,6 @@ samples, people's names, usernames, phone numbers and street addresses are maske
   …
 ```
 
-**Feature ideas:**
-
-- Ship-to address on the shipping ticket.
-
 ### `FirmAddress_Get`
 
 **Status:** ✅ data
@@ -189,7 +181,7 @@ samples, people's names, usernames, phone numbers and street addresses are maske
 {"JobNumber":"EPM-001"}
 ```
 
-**Result:** HTTP 200, 9,767 bytes, 54 ms.
+**Result:** HTTP 200, 9,919 bytes, 119 ms.
 
 **Response fields:**
 
@@ -204,6 +196,7 @@ samples, people's names, usernames, phone numbers and street addresses are maske
 | `ResultData.FirmAddressList[].Firm.Code` | text | 10 | `Detailer`, `Galvanizer` |
 | `ResultData.FirmAddressList[].Firm.PrimaryCurrency` | object | 10 |  |
 | `ResultData.FirmAddressList[].Firm.PrimaryCurrency.@ID` | number (as text) | 10 | `1` |
+| `ResultData.FirmAddressList[].Firm.PrimaryCurrency.#text` | text | 10 | `USD` |
 | `ResultData.FirmAddressList[].Firm.ShipToAddress` | object | 10 |  |
 | `ResultData.FirmAddressList[].Firm.ShipToAddress.FirmAddressID` | number (as text) | 10 | `12`, `10` |
 | `ResultData.FirmAddressList[].Firm.ShipToAddress.FirmID` | number (as text) | 10 | `7`, `6` |
@@ -254,8 +247,7 @@ samples, people's names, usernames, phone numbers and street addresses are maske
 | `ResultData.FirmAddressList[].Firm.BillToAddress.Attn` | text | 5 | `<redacted>`, `<redacted>` |
 | `ResultData.FirmAddressList[].Firm.BillToAddress.Address2` | text | 5 | `<redacted>`, `<redacted>` |
 | `ResultData.FirmAddressList[].Firm.BillToAddress.Phone` | text | 5 | `<redacted>`, `<redacted>` |
-| `ResultData.FirmAddressList[].Firm.Contact.Phone` | text | 5 | `<redacted>`, `<redacted>` |
-| … | | | 18 more fields in the sample file |
+| … | | | 20 more fields in the sample file |
 
 **Sample** (trimmed; full trimmed sample in [samples/FirmAddress_Get.json](samples/FirmAddress_Get.json)):
 
@@ -269,7 +261,8 @@ samples, people's names, usernames, phone numbers and street addresses are maske
         "Name": "Detailer",
         "Code": "Detailer",
         "PrimaryCurrency": {
-          "@ID": "1"
+          "@ID": "1",
+          "#text": "USD"
         },
         "ShipToAddress": {
           "FirmAddressID": "12",
@@ -289,7 +282,6 @@ samples, people's names, usernames, phone numbers and street addresses are maske
           "Address1": "<redacted>",
           "City": "Kennesaw",
           "State": "GA",
-          "IsShipTo": "1",
   …
 ```
 
@@ -309,7 +301,7 @@ samples, people's names, usernames, phone numbers and street addresses are maske
 {"JobNumber":"EPM-001"}
 ```
 
-**Result:** HTTP 200, 3,146 bytes, 48 ms.
+**Result:** HTTP 200, 3,146 bytes, 113 ms.
 
 **Response fields:**
 
@@ -370,7 +362,7 @@ samples, people's names, usernames, phone numbers and street addresses are maske
 {"JobNumber":"EPM-001"}
 ```
 
-**Result:** HTTP 200, 1,556 bytes, 43 ms.
+**Result:** HTTP 200, 1,556 bytes, 109 ms.
 
 **Response fields:**
 
@@ -419,7 +411,7 @@ samples, people's names, usernames, phone numbers and street addresses are maske
 {"JobNumber":"EPM-001"}
 ```
 
-**Result:** HTTP 200, 398 bytes, 97 ms.
+**Result:** HTTP 200, 398 bytes, 467 ms.
 
 **Response fields:**
 
@@ -453,10 +445,6 @@ samples, people's names, usernames, phone numbers and street addresses are maske
 
 - Names and usernames are masked in the sample.
 
-**Feature ideas:**
-
-- "Loaded by" picker mapped to PowerFab users.
-
 ### `ValUser`
 
 **Status:** ✅ data
@@ -474,7 +462,7 @@ samples, people's names, usernames, phone numbers and street addresses are maske
 - `{"Username":"admin"}` → 200, 84 bytes
 - `{"JobNumber":"EPM-001"}` → 422: Username is required
 
-**Result:** HTTP 200, 84 bytes, 112 ms.
+**Result:** HTTP 200, 84 bytes, 114 ms.
 
 **Response fields:**
 
@@ -502,7 +490,7 @@ samples, people's names, usernames, phone numbers and street addresses are maske
 {"JobNumber":"EPM-001"}
 ```
 
-**Result:** HTTP 200, 192 bytes, 114 ms.
+**Result:** HTTP 200, 192 bytes, 118 ms.
 
 **Response fields:**
 
@@ -530,10 +518,6 @@ samples, people's names, usernames, phone numbers and street addresses are maske
 
 - Here `ShippingShip` is "Prevent" and the others "Prompt": a held piece cannot ship. The same block is repeated on many replies as `HoldSettings`.
 
-**Feature ideas:**
-
-- Warn on scan when a held piece is loaded, and block shipping it, matching PowerFab.
-
 ### `TrimbleViewpointSettings_Get`
 
 **Status:** ⛔ permission denied
@@ -552,7 +536,7 @@ samples, people's names, usernames, phone numbers and street addresses are maske
 
 **Gotchas:**
 
-- Refused with "Permission denied" for the API user. Grant the matching permission to the PowerFab External User and rerun.
+- PowerFab answered "Permission denied." for the API user (the PowerFab External User the service logs in as).
 
 ## Write commands (not run)
 

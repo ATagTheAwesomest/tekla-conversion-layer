@@ -151,8 +151,7 @@
               },
               "Grade": "A992",
               "Finish": "3-1"
-            },
-            "… 30 more"
+            }
           ]
         },
         {
@@ -280,8 +279,7 @@
               },
               "Grade": "A992",
               "Finish": "3-1"
-            },
-            "… 23 more"
+            }
           ]
         },
         {
@@ -408,11 +406,9 @@
               },
               "Grade": "A992",
               "Finish": "3-1"
-            },
-            "… 29 more"
+            }
           ]
-        },
-        "… 2 more"
+        }
       ],
       "Remaining": {
         "MaterialRemaining": [
@@ -493,8 +489,7 @@
             },
             "Grade": "A500C",
             "Finish": "3-1"
-          },
-          "… 940 more"
+          }
         ]
       }
     },

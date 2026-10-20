@@ -8,7 +8,7 @@
   "note": "Trimmed: lists keep their first 3 items. Names, phones and street addresses are masked.",
   "response": {
     "Successful": "1",
-    "CommandGUID": "7494F595-F913-495B-B8EB-26DA687FC549",
+    "CommandGUID": "C950C232-5D06-4602-B6FA-C4B5086F598E",
     "IdleTimeout": "43200",
     "SecondsBeforeIdleTimeout": "43199"
   }

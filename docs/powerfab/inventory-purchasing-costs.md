@@ -1,8 +1,7 @@
 # Inventory, purchasing and costs
 
-Almost all of this area is **refused for the API user** ("Permission denied"). What does work: the inventory
-location list, the location restriction, the last inventory transaction ID, currencies and the 4 MB price list.
-Turning on Inventory and Purchasing permissions for the PowerFab External User would open the rest.
+Most of this area answers "Permission denied." for the API user. Readable: the inventory location list,
+the location restriction, the last inventory transaction ID, currencies and the 4 MB price list.
 
 [← Back to the index](README.md)
 
@@ -55,7 +54,7 @@ Turning on Inventory and Purchasing permissions for the PowerFab External User w
 {"JobNumber":"EPM-001"}
 ```
 
-**Result:** HTTP 200, 414 bytes, 95 ms.
+**Result:** HTTP 200, 414 bytes, 117 ms.
 
 **Response fields:**
 
@@ -89,10 +88,6 @@ Turning on Inventory and Purchasing permissions for the PowerFab External User w
 
 - Plain list of strings; the first entry is an empty string.
 
-**Feature ideas:**
-
-- Location picker for the laydown app (where a bundle sits in the yard).
-
 ### `InventoryLocationRestriction_Get`
 
 **Status:** ✅ data
@@ -105,7 +100,7 @@ Turning on Inventory and Purchasing permissions for the PowerFab External User w
 {"JobNumber":"EPM-001"}
 ```
 
-**Result:** HTTP 200, 201 bytes, 126 ms.
+**Result:** HTTP 200, 201 bytes, 95 ms.
 
 **Response fields:**
 
@@ -146,7 +141,7 @@ Turning on Inventory and Purchasing permissions for the PowerFab External User w
 {"LastTransactionID":0}
 ```
 
-**Result:** HTTP 200, 97 bytes, 169 ms.
+**Result:** HTTP 200, 97 bytes, 131 ms.
 
 **Response fields:**
 
@@ -178,7 +173,7 @@ Turning on Inventory and Purchasing permissions for the PowerFab External User w
 {"JobNumber":"EPM-001"}
 ```
 
-**Result:** HTTP 200, 4,145,221 bytes, 5277 ms.
+**Result:** HTTP 200, 4,145,221 bytes, 4984 ms.
 
 **Response fields:**
 
@@ -261,7 +256,7 @@ Turning on Inventory and Purchasing permissions for the PowerFab External User w
 {"JobNumber":"EPM-001"}
 ```
 
-**Result:** HTTP 200, 211 bytes, 124 ms.
+**Result:** HTTP 200, 211 bytes, 94 ms.
 
 **Response fields:**
 
@@ -308,7 +303,7 @@ Turning on Inventory and Purchasing permissions for the PowerFab External User w
 
 **Gotchas:**
 
-- Refused with "Permission denied" for the API user. Grant the matching permission to the PowerFab External User and rerun.
+- PowerFab answered "Permission denied." for the API user (the PowerFab External User the service logs in as).
 
 ### `GetInventorySummary`
 
@@ -329,6 +324,7 @@ Turning on Inventory and Purchasing permissions for the PowerFab External User w
 
 **Gotchas:**
 
+- PowerFab answered "Permission denied." for the API user (the PowerFab External User the service logs in as).
 - Needs `SummaryField`, then refused: "Permission denied".
 
 ### `GetInventoryLocationSweeps`
@@ -369,7 +365,8 @@ Turning on Inventory and Purchasing permissions for the PowerFab External User w
 
 **Gotchas:**
 
-- Refused with "Permission denied" for the API user. Grant the matching permission to the PowerFab External User and rerun. `GetInventoryTransactions` returns the same number.
+- PowerFab answered "Permission denied." for the API user (the PowerFab External User the service logs in as).
+- `GetInventoryTransactions` returns the same number.
 
 ### `InventoryJobCostingTransaction_Get`
 
@@ -392,6 +389,7 @@ Turning on Inventory and Purchasing permissions for the PowerFab External User w
 
 **Gotchas:**
 
+- PowerFab answered "Permission denied." for the API user (the PowerFab External User the service logs in as).
 - Needs `Workflow` (Tekla: consumed, reserved, Item) and `SinceInventoryTransactionID`, then refused: "Permission denied".
 
 ### `ValInventory`
@@ -432,7 +430,7 @@ Turning on Inventory and Purchasing permissions for the PowerFab External User w
 
 **Gotchas:**
 
-- Refused with "Permission denied" for the API user. Grant the matching permission to the PowerFab External User and rerun.
+- PowerFab answered "Permission denied." for the API user (the PowerFab External User the service logs in as).
 
 ### `GetPurchaseOrderInformation`
 
@@ -452,7 +450,7 @@ Turning on Inventory and Purchasing permissions for the PowerFab External User w
 
 **Gotchas:**
 
-- Refused with "Permission denied" for the API user. Grant the matching permission to the PowerFab External User and rerun.
+- PowerFab answered "Permission denied." for the API user (the PowerFab External User the service logs in as).
 
 ### `GetPurchaseOrderInformationTransactions`
 
@@ -472,7 +470,7 @@ Turning on Inventory and Purchasing permissions for the PowerFab External User w
 
 **Gotchas:**
 
-- Refused with "Permission denied" for the API user. Grant the matching permission to the PowerFab External User and rerun.
+- PowerFab answered "Permission denied." for the API user (the PowerFab External User the service logs in as).
 
 ### `PurchaseOrder_Get`
 
@@ -492,7 +490,7 @@ Turning on Inventory and Purchasing permissions for the PowerFab External User w
 
 **Gotchas:**
 
-- Refused with "Permission denied" for the API user. Grant the matching permission to the PowerFab External User and rerun.
+- PowerFab answered "Permission denied." for the API user (the PowerFab External User the service logs in as).
 
 ### `PurchaseOrderItem_Get`
 
@@ -512,7 +510,7 @@ Turning on Inventory and Purchasing permissions for the PowerFab External User w
 
 **Gotchas:**
 
-- Refused with "Permission denied" for the API user. Grant the matching permission to the PowerFab External User and rerun.
+- PowerFab answered "Permission denied." for the API user (the PowerFab External User the service logs in as).
 
 ### `PurchaseOrderSummary_Get`
 
@@ -556,6 +554,7 @@ Turning on Inventory and Purchasing permissions for the PowerFab External User w
 
 **Gotchas:**
 
+- PowerFab answered "Permission denied." for the API user (the PowerFab External User the service logs in as).
 - Needs `ExportedSinceUnixTime`, then refused: "Permission denied".
 
 ### `PurchaseOrderFOB_Get`
@@ -576,7 +575,7 @@ Turning on Inventory and Purchasing permissions for the PowerFab External User w
 
 **Gotchas:**
 
-- Refused with "Permission denied" for the API user. Grant the matching permission to the PowerFab External User and rerun.
+- PowerFab answered "Permission denied." for the API user (the PowerFab External User the service logs in as).
 
 ### `PurchaseOrderPaymentTerm_Get`
 
@@ -596,7 +595,7 @@ Turning on Inventory and Purchasing permissions for the PowerFab External User w
 
 **Gotchas:**
 
-- Refused with "Permission denied" for the API user. Grant the matching permission to the PowerFab External User and rerun.
+- PowerFab answered "Permission denied." for the API user (the PowerFab External User the service logs in as).
 
 ### `PurchaseOrderPOType_Get`
 
@@ -616,7 +615,7 @@ Turning on Inventory and Purchasing permissions for the PowerFab External User w
 
 **Gotchas:**
 
-- Refused with "Permission denied" for the API user. Grant the matching permission to the PowerFab External User and rerun.
+- PowerFab answered "Permission denied." for the API user (the PowerFab External User the service logs in as).
 
 ### `PurchaseOrderShippingMethod_Get`
 
@@ -636,7 +635,7 @@ Turning on Inventory and Purchasing permissions for the PowerFab External User w
 
 **Gotchas:**
 
-- Refused with "Permission denied" for the API user. Grant the matching permission to the PowerFab External User and rerun.
+- PowerFab answered "Permission denied." for the API user (the PowerFab External User the service logs in as).
 
 ### `PurchaseOrderSubcontractItem_Get`
 
@@ -656,7 +655,7 @@ Turning on Inventory and Purchasing permissions for the PowerFab External User w
 
 **Gotchas:**
 
-- Refused with "Permission denied" for the API user. Grant the matching permission to the PowerFab External User and rerun.
+- PowerFab answered "Permission denied." for the API user (the PowerFab External User the service logs in as).
 
 ### `EstimateSummary_Get`
 
@@ -677,6 +676,7 @@ Turning on Inventory and Purchasing permissions for the PowerFab External User w
 
 **Gotchas:**
 
+- PowerFab answered "Permission denied." for the API user (the PowerFab External User the service logs in as).
 - Needs `EstimateID`, then refused: "Permission denied".
 
 ### `EstimateJobCostSummary_Get`
@@ -741,7 +741,7 @@ Turning on Inventory and Purchasing permissions for the PowerFab External User w
 
 **Gotchas:**
 
-- Refused with "Permission denied" for the API user. Grant the matching permission to the PowerFab External User and rerun.
+- PowerFab answered "Permission denied." for the API user (the PowerFab External User the service logs in as).
 
 ### `CostType_Get`
 
@@ -761,7 +761,7 @@ Turning on Inventory and Purchasing permissions for the PowerFab External User w
 
 **Gotchas:**
 
-- Refused with "Permission denied" for the API user. Grant the matching permission to the PowerFab External User and rerun.
+- PowerFab answered "Permission denied." for the API user (the PowerFab External User the service logs in as).
 
 ### `LaborRate_Get`
 
@@ -781,7 +781,7 @@ Turning on Inventory and Purchasing permissions for the PowerFab External User w
 
 **Gotchas:**
 
-- Refused with "Permission denied" for the API user. Grant the matching permission to the PowerFab External User and rerun.
+- PowerFab answered "Permission denied." for the API user (the PowerFab External User the service logs in as).
 
 ### `GetCountries`
 
@@ -801,7 +801,7 @@ Turning on Inventory and Purchasing permissions for the PowerFab External User w
 
 **Gotchas:**
 
-- Refused with "Permission denied" for the API user. Grant the matching permission to the PowerFab External User and rerun.
+- PowerFab answered "Permission denied." for the API user (the PowerFab External User the service logs in as).
 
 ## Write commands (not run)
 

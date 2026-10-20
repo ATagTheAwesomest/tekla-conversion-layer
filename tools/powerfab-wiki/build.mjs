@@ -1,10 +1,11 @@
 // Builds the PowerFab wiki (docs/powerfab/) from raw replies saved by probe.mjs.
 //
-//   node tools/powerfab-wiki/build.mjs <raw dir>
+//   node tools/powerfab-wiki/build.mjs <raw dir> [more raw dirs]
 //
-// Prose (purpose, gotchas, feature ideas, groups) lives in meta.mjs. Field tables, results and
-// samples come from the replies, so rerunning probe.mjs + build.mjs refreshes the wiki. It also
-// writes calls.json: every request that was sent, so probe.mjs can repeat the run.
+// Prose (purpose, gotchas, groups) lives in meta.mjs. Field tables, results and samples come from
+// the replies, so rerunning probe.mjs + build.mjs refreshes the wiki. It also writes calls.json:
+// every request that was sent, so probe.mjs can repeat the run. A record marked fromSample was
+// rebuilt from an earlier trimmed sample, for a reply the API user can no longer get.
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -14,8 +15,8 @@ const here = path.dirname(fileURLToPath(import.meta.url));
 const repo = path.resolve(here, '..', '..');
 const docs = path.join(repo, 'docs', 'powerfab');
 const samplesDir = path.join(docs, 'samples');
-const [, , rawDir] = process.argv;
-if (!rawDir) { console.error('usage: node build.mjs <raw dir>'); process.exit(1); }
+const rawDirs = process.argv.slice(2);
+if (!rawDirs.length) { console.error('usage: node build.mjs <raw dir> [more raw dirs]'); process.exit(1); }
 
 // ---- command table (same source as the service) ----
 const cs = fs.readFileSync(path.join(repo, 'src', 'TeklaConversionLayer', 'PowerFabCommands.cs'), 'utf8');
@@ -24,11 +25,11 @@ const extraReads = [...cs.match(/ExtraReads =\s*\[([\s\S]*?)\];/)[1].matchAll(/"
 const isRead = n => n.startsWith('Get') || n.endsWith('_Get') || extraReads.includes(n);
 
 // ---- raw replies ----
-const records = fs.readdirSync(rawDir).filter(f => f.endsWith('.json'))
-  .map(f => JSON.parse(fs.readFileSync(path.join(rawDir, f), 'utf8')))
+const records = rawDirs.flatMap(dir => fs.readdirSync(dir).filter(f => f.endsWith('.json'))
+  .map(f => JSON.parse(fs.readFileSync(path.join(dir, f), 'utf8'))))
   .sort((a, b) => a.id.localeCompare(b.id));
 fs.writeFileSync(path.join(here, 'calls.json'),
-  JSON.stringify(records.map(r => ({ id: r.id, command: r.command, body: r.body })), null, 1) + '\n');
+  JSON.stringify(records.filter(r => !r.fromSample).map(r => ({ id: r.id, command: r.command, body: r.body })), null, 1) + '\n');
 
 // Envelope fields PowerFab repeats on many replies; documented once in the README.
 const COMMON = ['InputDisplayUnits', 'FilterSet', 'PRJFilterSet', 'HoldSettings', 'FieldSettings'];
@@ -173,19 +174,20 @@ function block(name) {
     }
   }
   if (state === 'data' || state === 'empty') {
-    out.push(`**Result:** HTTP ${best.status}, ${best.bytes.toLocaleString('en-US')} bytes, ${best.ms} ms${state === 'empty' ? '. **Came back empty**: no data beyond the reply envelope.' : '.'}`, '');
+    out.push(`**Result:** HTTP ${best.status}, ${best.bytes.toLocaleString('en-US')} bytes${best.ms == null ? '' : `, ${best.ms} ms`}${state === 'empty' ? '. **Came back empty**: no data beyond the reply envelope.' : '.'}`, '');
+    if (best.fromSample) out.push('_This reply is from an earlier run. The API user can no longer read this job, so the field table is built from the trimmed sample (first 3 items of each list)._', '');
     if (state === 'data') {
       out.push('**Response fields:**', '', fields(best.response), '');
       out.push(`**Sample** (trimmed; full trimmed sample in [samples/${name}.json](samples/${name}.json)):`, '', fence('json', shortSample(best.response, name)), '');
     }
   }
   const gotchas = [...(m.gotchas ?? [])];
+  if (state === 'denied') gotchas.unshift('PowerFab answered "Permission denied." for the API user (the PowerFab External User the service logs in as).');
   if (state === 'data') {
     const om = oneOrMany(best.response);
     if (om.length) gotchas.push(`One or many: ${om.map(p => '`' + p + '`').join(', ')} came back as an object in one place and a list in another. Always normalise to a list.`);
   }
   if (gotchas.length) out.push('**Gotchas:**', '', ...gotchas.map(g => '- ' + g), '');
-  if (m.ideas?.length) out.push('**Feature ideas:**', '', ...m.ideas.map(i => '- ' + i), '');
   return out.join('\n');
 }
 

@@ -8,7 +8,7 @@
   "note": "Trimmed: lists keep their first 3 items. Names, phones and street addresses are masked.",
   "response": {
     "Successful": "1",
-    "CommandGUID": "10BD446A-8FA3-477F-9F9D-E1457016A00B",
+    "CommandGUID": "847C20D4-0993-4C44-83AD-BF183AB8C642",
     "RouteID": "1",
     "Route": "SP",
     "Description": "Sample - Painted",

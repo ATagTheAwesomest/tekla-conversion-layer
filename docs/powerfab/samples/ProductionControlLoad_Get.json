@@ -202,8 +202,7 @@
               "Remark": "GIRDER_BEAM(B10)",
               "PayCategory": "3",
               "InstanceTracking": "0"
-            },
-            "… 30 more"
+            }
           ]
         },
         {
@@ -401,8 +400,7 @@
               "Remark": "COLUMN(C8)",
               "PayCategory": "8",
               "InstanceTracking": "0"
-            },
-            "… 23 more"
+            }
           ]
         },
         {
@@ -582,11 +580,9 @@
               "Remark": "COLUMN(C8)",
               "PayCategory": "8",
               "InstanceTracking": "0"
-            },
-            "… 29 more"
+            }
           ]
-        },
-        "… 2 more"
+        }
       ],
       "ProductionControlJob": {
         "ProductionControlID": "80",

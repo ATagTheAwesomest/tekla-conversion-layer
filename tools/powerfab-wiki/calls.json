@@ -28,6 +28,15 @@
   }
  },
  {
+  "id": "Department_Get__shifts",
+  "command": "Department_Get",
+  "body": {
+   "GetOptions": {
+    "IncludeDepartmentShifts": 1
+   }
+  }
+ },
+ {
   "id": "DepartmentShift_Get__EPM-001",
   "command": "DepartmentShift_Get",
   "body": {
@@ -445,21 +454,21 @@
   }
  },
  {
-  "id": "GetLoads__25-351_full",
-  "command": "GetLoads",
-  "body": {
-   "JobNumber": "25-351",
-   "IncludeLoads": true,
-   "IncludeUnshippedLoads": true,
-   "IncludeCompletedMaterial": true,
-   "IncludeRemainingMaterial": true
-  }
- },
- {
   "id": "GetLoads__EPM-001",
   "command": "GetLoads",
   "body": {
    "JobNumber": "EPM-001"
+  }
+ },
+ {
+  "id": "GetLoads__EPM-001_full_r2",
+  "command": "GetLoads",
+  "body": {
+   "JobNumber": "EPM-001",
+   "IncludeLoads": true,
+   "IncludeUnshippedLoads": true,
+   "IncludeCompletedMaterial": true,
+   "IncludeRemainingMaterial": true
   }
  },
  {
@@ -865,6 +874,14 @@
   }
  },
  {
+  "id": "PlanningRuleWarning_Get__wp3",
+  "command": "PlanningRuleWarning_Get",
+  "body": {
+   "Type": "WorkPackage",
+   "ID": 3
+  }
+ },
+ {
   "id": "PlanningRuleWarning_Get__x",
   "command": "PlanningRuleWarning_Get",
   "body": {
@@ -937,17 +954,6 @@
     "IncludeFirmDetails": 1,
     "IncludeMaterial": 1,
     "IncludeAttachedFiles": 1
-   }
-  }
- },
- {
-  "id": "ProductionControlLoad_Get__pc80",
-  "command": "ProductionControlLoad_Get",
-  "body": {
-   "ProductionControlID": 80,
-   "GetOptions": {
-    "IncludeJobDetails": 1,
-    "IncludeMaterial": 1
    }
   }
  },
@@ -1342,10 +1348,33 @@
   }
  },
  {
+  "id": "WorkPackage_Get__pc13",
+  "command": "WorkPackage_Get",
+  "body": {
+   "ProductionControlID": 13
+  }
+ },
+ {
+  "id": "WorkPackage_Get__wp3",
+  "command": "WorkPackage_Get",
+  "body": {
+   "WorkPackageID": 3
+  }
+ },
+ {
   "id": "WorkPackageDepartment_Get__EPM-001",
   "command": "WorkPackageDepartment_Get",
   "body": {
    "JobNumber": "EPM-001"
+  }
+ },
+ {
+  "id": "WorkPackageDepartmentTask_Get__completions",
+  "command": "WorkPackageDepartmentTask_Get",
+  "body": {
+   "GetOptions": {
+    "IncludeDepartmentTaskCompletions": 1
+   }
   }
  },
  {
@@ -1360,6 +1389,15 @@
   "command": "WorkPackageDepartmentTaskCompletion_Get",
   "body": {
    "JobNumber": "EPM-001"
+  }
+ },
+ {
+  "id": "WorkPackageDepartmentTaskCompletion_Get__nested",
+  "command": "WorkPackageDepartmentTaskCompletion_Get",
+  "body": {
+   "WorkPackageDepartmentTaskCompletion": {
+    "WorkPackageDepartmentTaskID": 1
+   }
   }
  },
  {

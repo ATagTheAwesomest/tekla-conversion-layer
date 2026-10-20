@@ -8,7 +8,7 @@
   "note": "Trimmed: lists keep their first 3 items. Names, phones and street addresses are masked.",
   "response": {
     "Successful": "1",
-    "CommandGUID": "B3DA48AA-D66E-430D-B4D2-E11FB0742017",
+    "CommandGUID": "09CEDDA6-0A05-4393-8CD2-D8E7688671DD",
     "ProductionControlID": "13",
     "JobNumber": "EPM-001",
     "JobDescription": "Tekla EPM Demo",

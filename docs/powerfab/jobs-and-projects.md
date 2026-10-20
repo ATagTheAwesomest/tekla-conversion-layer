@@ -12,8 +12,8 @@ side; 4 for EPM-001). `GetProjectStatus` returns both in one call, so call it fi
 |---|---|---|
 | [`GetProjectStatus`](#getprojectstatus) | ✅ data | What are a job's ProductionControlID and ProjectID, and how big is it? |
 | [`ValJob`](#valjob) | ✅ data | Does this job number exist? |
-| [`GetProductionControlJobs`](#getproductioncontroljobs) | ✅ data | Which open jobs are there? |
-| [`ProductionControlJob_Get`](#productioncontroljob_get) | ⚪ empty |  |
+| [`GetProductionControlJobs`](#getproductioncontroljobs) | ⚪ empty | Which open jobs are there? |
+| [`ProductionControlJob_Get`](#productioncontroljob_get) | ✅ data |  |
 | [`Project_Get`](#project_get) | ✅ data | Who is the client and detailer on a job, and is it open or closed? |
 | [`GetProductionControlJobInformation`](#getproductioncontroljobinformation) | ✅ data |  |
 | [`GetProductionControlJobInformationTransactions`](#getproductioncontroljobinformationtransactions) | ✅ data |  |
@@ -42,7 +42,7 @@ side; 4 for EPM-001). `GetProjectStatus` returns both in one call, so call it fi
 {"JobNumber":"EPM-001"}
 ```
 
-**Result:** HTTP 200, 1,060 bytes, 491 ms.
+**Result:** HTTP 200, 1,060 bytes, 150 ms.
 
 **Response fields:**
 
@@ -107,11 +107,6 @@ side; 4 for EPM-001). `GetProjectStatus` returns both in one call, so call it fi
 
 - Call this first: most `*_Get` commands need `ProductionControlID` or `ProjectID`, not `JobNumber`.
 
-**Feature ideas:**
-
-- Job header in every app: description, piece count, drawing approval progress (386 of 1131 approved on EPM-001).
-- `TrimbleConnect.ProjectID` could open the 3D model in Trimble Connect from the laydown or lookup app.
-
 ### `ValJob`
 
 **Status:** ✅ data
@@ -126,7 +121,7 @@ side; 4 for EPM-001). `GetProjectStatus` returns both in one call, so call it fi
 {"JobNumber":"EPM-001"}
 ```
 
-**Result:** HTTP 200, 71 bytes, 89 ms.
+**Result:** HTTP 200, 71 bytes, 77 ms.
 
 **Response fields:**
 
@@ -144,13 +139,9 @@ side; 4 for EPM-001). `GetProjectStatus` returns both in one call, so call it fi
 
 - Unknown jobs come back as HTTP 422 "The job 'X' does not exist." (seen for EMP-001 and 26123).
 
-**Feature ideas:**
-
-- Validate the job field before starting a load in terra-loads-web.
-
 ### `GetProductionControlJobs`
 
-**Status:** ✅ data
+**Status:** ⚪ empty
 
 **Purpose.** Lists production-control jobs.
 
@@ -162,54 +153,16 @@ side; 4 for EPM-001). `GetProjectStatus` returns both in one call, so call it fi
 {"JobStatus":"Closed"}
 ```
 
-**Result:** HTTP 200, 293 bytes, 136 ms.
-
-**Response fields:**
-
-| Field | Type | Times seen | Example |
-|---|---|---|---|
-| `ProductionControlJob` | object | 1 |  |
-| `ProductionControlJob.ProductionControlID` | number (as text) | 1 | `80` |
-| `ProductionControlJob.JobNumber` | text | 1 | `25-351` |
-| `ProductionControlJob.JobDescription` | text | 1 |  |
-| `ProductionControlJob.JobLocation` | text | 1 |  |
-| `ProductionControlJob.GroupName` | text | 1 |  |
-| `ProductionControlJob.GroupName2` | text | 1 |  |
-| `ProductionControlJob.JobStatus` | text | 1 | `Open` |
-| `ProductionControlJob.ProjectID` | number (as text) | 1 | `28` |
-| `JobGroups` | object | 1 |  |
-| `JobGroups.GroupName` | text | 1 |  |
-| `JobGroups.GroupName2` | text | 1 |  |
-
-**Sample** (trimmed; full trimmed sample in [samples/GetProductionControlJobs.json](samples/GetProductionControlJobs.json)):
-
-```json
-{
-  "ProductionControlJob": {
-    "ProductionControlID": "80",
-    "JobNumber": "25-351",
-    "JobDescription": "",
-    "JobLocation": "",
-    "GroupName": "",
-    "GroupName2": "",
-    "JobStatus": "Open",
-    "ProjectID": "28"
-  }
-}
-```
+**Result:** HTTP 200, 116 bytes, 129 ms. **Came back empty**: no data beyond the reply envelope.
 
 **Gotchas:**
 
 - Lists **open jobs only**. EPM-001 is Closed and never appears, even with `JobStatus: "Closed"` (that field was ignored). Sending `JobNumber: "EPM-001"` returned no job at all.
 - With one job the `ProductionControlJob` is an object, not a list.
 
-**Feature ideas:**
-
-- Job picker for the apps (open jobs only); let users type a closed job and check it with `ValJob`.
-
 ### `ProductionControlJob_Get`
 
-**Status:** ⚪ empty
+**Status:** ✅ data
 
 **Purpose.** Newer-style job read. Returned no job for any input tried.
 
@@ -219,7 +172,58 @@ side; 4 for EPM-001). `GetProjectStatus` returns both in one call, so call it fi
 {"JobNumber":"EPM-001"}
 ```
 
-**Result:** HTTP 200, 81 bytes, 104 ms. **Came back empty**: no data beyond the reply envelope.
+**Result:** HTTP 200, 499 bytes, 346 ms.
+
+**Response fields:**
+
+| Field | Type | Times seen | Example |
+|---|---|---|---|
+| `ResultData` | object | 1 |  |
+| `ResultData.LastLogID` | number (as text) | 1 | `270` |
+| `ResultData.GetOptions` | object | 1 |  |
+| `ResultData.GetOptions.FilterSet` | text | 1 | common block, see README |
+| `ResultData.ProductionControlJob` | object | 1 |  |
+| `ResultData.ProductionControlJob.ProductionControlID` | number (as text) | 1 | `13` |
+| `ResultData.ProductionControlJob.JobNumber` | text | 1 | `EPM-001` |
+| `ResultData.ProductionControlJob.JobDescription` | text | 1 | `Tekla EPM Demo` |
+| `ResultData.ProductionControlJob.JobStatus` | object | 1 |  |
+| `ResultData.ProductionControlJob.JobStatus.JobStatusID` | number (as text) | 1 | `2` |
+| `ResultData.ProductionControlJob.JobStatus.Description` | text | 1 | `Closed` |
+| `ResultData.ProductionControlJob.JobStatus.Purpose` | number (as text) | 1 | `10` |
+| `ResultData.ProductionControlJob.JobStatus.IsDefault` | number (as text) | 1 | `0` |
+| `ResultData.ProductionControlJob.JobStatus.Active` | number (as text) | 1 | `1` |
+| `ResultData.ProductionControlJob.JobDate` | text | 1 | `2020-08-31` |
+| `ResultData.ProductionControlJob.TFSDropOption` | number (as text) | 1 | `1000` |
+| `ResultData.ProductionControlJob.InputDisplayUnits` | object | 1 | common block, see README |
+
+**Sample** (trimmed; full trimmed sample in [samples/ProductionControlJob_Get.json](samples/ProductionControlJob_Get.json)):
+
+```json
+{
+  "ProductionControlJob": {
+    "ProductionControlID": "13",
+    "JobNumber": "EPM-001",
+    "JobDescription": "Tekla EPM Demo",
+    "JobStatus": {
+      "JobStatusID": "2",
+      "Description": "Closed",
+      "Purpose": "10",
+      "IsDefault": "0",
+      "Active": "1"
+    },
+    "JobDate": "2020-08-31",
+    "TFSDropOption": "1000",
+    "InputDisplayUnits": {
+      "SizeUOM": "Imperial",
+      "LengthUOM": "Imperial",
+      "LengthTypeIDMetric": "101",
+      "LengthTypeIDImperial": "1",
+      "WeightUOM": "Imperial",
+      "PriceUOM": "Imperial"
+    }
+  }
+}
+```
 
 **Gotchas:**
 
@@ -239,7 +243,7 @@ side; 4 for EPM-001). `GetProjectStatus` returns both in one call, so call it fi
 {"JobNumber":"EPM-001","GetOptions":{"IncludeDrawingLogs":1,"IncludeFirms":1}}
 ```
 
-**Result:** HTTP 200, 5,091 bytes, 124 ms.
+**Result:** HTTP 200, 3,805 bytes, 118 ms.
 
 **Response fields:**
 
@@ -250,34 +254,34 @@ side; 4 for EPM-001). `GetProjectStatus` returns both in one call, so call it fi
 | `ResultData.GetOptions` | object | 1 |  |
 | `ResultData.GetOptions.IncludeDrawingLogs` | number (as text) | 1 | `1` |
 | `ResultData.GetOptions.IncludeFirms` | number (as text) | 1 | `1` |
-| `ResultData.Project` | list (2–2) | 1 |  |
-| `ResultData.Project[].ProjectID` | number (as text) | 2 | `4`, `28` |
-| `ResultData.Project[].JobNumber` | text | 2 | `EPM-001`, `25-351` |
-| `ResultData.Project[].JobDescription` | text | 1 | `Tekla EPM Demo` |
-| `ResultData.Project[].JobLocation` | text | 1 | `Trimble Solutions USA` |
-| `ResultData.Project[].JobDate` | text | 2 | `2020-08-31`, `2026-07-22` |
-| `ResultData.Project[].JobStatus` | object | 2 |  |
-| `ResultData.Project[].JobStatus.JobStatusID` | number (as text) | 2 | `2`, `1` |
-| `ResultData.Project[].JobStatus.Description` | text | 2 | `Closed`, `Open` |
-| `ResultData.Project[].JobStatus.Purpose` | number (as text) | 2 | `10`, `0` |
-| `ResultData.Project[].JobStatus.IsDefault` | number (as text) | 2 | `0`, `1` |
-| `ResultData.Project[].JobStatus.Active` | number (as text) | 2 | `1` |
-| `ResultData.Project[].DrawingLog` | list (5–5) | 2 |  |
-| `ResultData.Project[].DrawingLog[].DrawingLogID` | number (as text) | 10 | `21`, `22` |
-| `ResultData.Project[].DrawingLog[].ProjectID` | number (as text) | 10 | `4`, `28` |
-| `ResultData.Project[].DrawingLog[].DrawingType` | text | 10 | `Design`, `Detail` |
-| `ResultData.Project[].DrawingLog[].DrawingLogName` | text | 10 | `Design`, `Assembly` |
-| `ResultData.Project[].DrawingLog[].PDCLink` | number (as text) | 10 | `0`, `20` |
-| `ResultData.Project[].DrawingLog[].SubdirectoryPath` | text | 10 | `Design`, `Detail\Assembly drawings` |
-| `ResultData.Project[].DrawingLog[].DrawingLogMapping` | text | 10 | `Details`, `General Arrangement⏎Erection sheets⏎GA` |
-| `ResultData.Project[].ProjectFirm` | list (5–5) | 1 |  |
-| `ResultData.Project[].ProjectFirm[].FirmType` | text | 5 | `Client`, `Detailer` |
-| `ResultData.Project[].ProjectFirm[].FirmID` | number (as text) | 5 | `1`, `7` |
-| `ResultData.Project[].ProjectFirm[].ShipToFirmAddressID` | number (as text) | 5 | `11`, `12` |
-| `ResultData.Project[].ProjectFirm[].BillToFirmAddressID` | number (as text) | 5 | `6`, `12` |
-| `ResultData.Project[].ProjectFirm[].FirmContactID` | number (as text) | 5 | `8`, `11` |
-| `ResultData.Project[].ProjectFirm[].Description` | text | 5 | `Project Manager`, `Detailer` |
-| `ResultData.Project[].InputDisplayUnits` | object | 2 | common block, see README |
+| `ResultData.Project` | object | 1 |  |
+| `ResultData.Project.ProjectID` | number (as text) | 1 | `4` |
+| `ResultData.Project.JobNumber` | text | 1 | `EPM-001` |
+| `ResultData.Project.JobDescription` | text | 1 | `Tekla EPM Demo` |
+| `ResultData.Project.JobLocation` | text | 1 | `Trimble Solutions USA` |
+| `ResultData.Project.JobDate` | text | 1 | `2020-08-31` |
+| `ResultData.Project.JobStatus` | object | 1 |  |
+| `ResultData.Project.JobStatus.JobStatusID` | number (as text) | 1 | `2` |
+| `ResultData.Project.JobStatus.Description` | text | 1 | `Closed` |
+| `ResultData.Project.JobStatus.Purpose` | number (as text) | 1 | `10` |
+| `ResultData.Project.JobStatus.IsDefault` | number (as text) | 1 | `0` |
+| `ResultData.Project.JobStatus.Active` | number (as text) | 1 | `1` |
+| `ResultData.Project.DrawingLog` | list (5–5) | 1 |  |
+| `ResultData.Project.DrawingLog[].DrawingLogID` | number (as text) | 5 | `21`, `22` |
+| `ResultData.Project.DrawingLog[].ProjectID` | number (as text) | 5 | `4` |
+| `ResultData.Project.DrawingLog[].DrawingType` | text | 5 | `Design`, `Detail` |
+| `ResultData.Project.DrawingLog[].DrawingLogName` | text | 5 | `Design`, `Assembly` |
+| `ResultData.Project.DrawingLog[].PDCLink` | number (as text) | 5 | `0`, `20` |
+| `ResultData.Project.DrawingLog[].SubdirectoryPath` | text | 5 | `Design`, `Detail\Assembly drawings` |
+| `ResultData.Project.DrawingLog[].DrawingLogMapping` | text | 5 | `Details`, `General Arrangement⏎Erection sheets⏎GA` |
+| `ResultData.Project.ProjectFirm` | list (5–5) | 1 |  |
+| `ResultData.Project.ProjectFirm[].FirmType` | text | 5 | `Client`, `Detailer` |
+| `ResultData.Project.ProjectFirm[].FirmID` | number (as text) | 5 | `1`, `7` |
+| `ResultData.Project.ProjectFirm[].ShipToFirmAddressID` | number (as text) | 5 | `11`, `12` |
+| `ResultData.Project.ProjectFirm[].BillToFirmAddressID` | number (as text) | 5 | `6`, `12` |
+| `ResultData.Project.ProjectFirm[].FirmContactID` | number (as text) | 5 | `8`, `11` |
+| `ResultData.Project.ProjectFirm[].Description` | text | 5 | `Project Manager`, `Detailer` |
+| `ResultData.Project.InputDisplayUnits` | object | 1 | common block, see README |
 | `ResultData.Firm` | list (2–2) | 1 |  |
 | `ResultData.Firm[].FirmID` | number (as text) | 2 | `1`, `7` |
 | `ResultData.Firm[].FirmType` | text | 2 | `Client`, `Detailer` |
@@ -311,35 +315,35 @@ side; 4 for EPM-001). `GetProjectStatus` returns both in one call, so call it fi
 
 ```json
 {
-  "Project": [
-    {
-      "ProjectID": "4",
-      "JobNumber": "EPM-001",
-      "JobDescription": "Tekla EPM Demo",
-      "JobLocation": "Trimble Solutions USA",
-      "JobDate": "2020-08-31",
-      "JobStatus": {
-        "JobStatusID": "2",
-        "Description": "Closed",
-        "Purpose": "10",
-        "IsDefault": "0",
-        "Active": "1"
+  "Project": {
+    "ProjectID": "4",
+    "JobNumber": "EPM-001",
+    "JobDescription": "Tekla EPM Demo",
+    "JobLocation": "Trimble Solutions USA",
+    "JobDate": "2020-08-31",
+    "JobStatus": {
+      "JobStatusID": "2",
+      "Description": "Closed",
+      "Purpose": "10",
+      "IsDefault": "0",
+      "Active": "1"
+    },
+    "DrawingLog": [
+      {
+        "DrawingLogID": "21",
+        "ProjectID": "4",
+        "DrawingType": "Design",
+        "DrawingLogName": "Design",
+        "PDCLink": "0",
+        "SubdirectoryPath": "Design",
+        "DrawingLogMapping": ""
       },
-      "DrawingLog": [
-        {
-          "DrawingLogID": "21",
-          "ProjectID": "4",
-          "DrawingType": "Design",
-          "DrawingLogName": "Design",
-          "PDCLink": "0",
-          "SubdirectoryPath": "Design",
-          "DrawingLogMapping": ""
-        },
-        "… 4 more"
-      ],
-      "ProjectFirm": [
-        {
-          "FirmType": "Client",
+      "… 4 more"
+    ],
+    "ProjectFirm": [
+      {
+        "FirmType": "Client",
+        "FirmID": "1",
   …
 ```
 
@@ -347,10 +351,6 @@ side; 4 for EPM-001). `GetProjectStatus` returns both in one call, so call it fi
 
 - `JobNumber` does **not** filter: the reply held both EPM-001 and 25-351. Filter the `Project` list yourself.
 - `JobStatus` is an object (`Description`: "Open"/"Closed").
-
-**Feature ideas:**
-
-- Show the client and ship-to firm on shipping paperwork.
 
 ### `GetProductionControlJobInformation`
 
@@ -364,7 +364,7 @@ side; 4 for EPM-001). `GetProjectStatus` returns both in one call, so call it fi
 {"JobNumber":"EPM-001"}
 ```
 
-**Result:** HTTP 200, 231 bytes, 128 ms.
+**Result:** HTTP 200, 231 bytes, 99 ms.
 
 **Response fields:**
 
@@ -390,10 +390,6 @@ side; 4 for EPM-001). `GetProjectStatus` returns both in one call, so call it fi
 }
 ```
 
-**Feature ideas:**
-
-- Show job notes to the yard crew.
-
 ### `GetProductionControlJobInformationTransactions`
 
 **Status:** ✅ data
@@ -406,7 +402,7 @@ side; 4 for EPM-001). `GetProjectStatus` returns both in one call, so call it fi
 {"JobNumber":"EPM-001"}
 ```
 
-**Result:** HTTP 200, 451 bytes, 97 ms.
+**Result:** HTTP 200, 451 bytes, 91 ms.
 
 **Response fields:**
 
@@ -448,10 +444,6 @@ side; 4 for EPM-001). `GetProjectStatus` returns both in one call, so call it fi
 }
 ```
 
-**Feature ideas:**
-
-- Audit trail: who changed job info and when (needs a sync loop using `LastLogID`).
-
 ### `GetSequences`
 
 **Status:** ✅ data
@@ -466,7 +458,7 @@ side; 4 for EPM-001). `GetProjectStatus` returns both in one call, so call it fi
 {"JobNumber":"EPM-001"}
 ```
 
-**Result:** HTTP 200, 1,215 bytes, 139 ms.
+**Result:** HTTP 200, 1,215 bytes, 115 ms.
 
 **Response fields:**
 
@@ -509,10 +501,6 @@ side; 4 for EPM-001). `GetProjectStatus` returns both in one call, so call it fi
 - Weight is `{"@UOM":"kg","#text":"77814.45…"}`: kilograms with long decimals, even though `InputDisplayUnits` says Imperial. Multiply by 2.20462 for lb.
 - EPM-001 sequences are `1`–`5`; 25-351 sequences are 4 digits (`5231`). Do not assume the sequence is the first 4 characters of a mark: EPM-001 marks look like `1B1`.
 
-**Feature ideas:**
-
-- Sequence filter and per-sequence progress bars in the shipping and laydown apps.
-
 ### `GetLots`
 
 **Status:** ✅ data
@@ -525,7 +513,7 @@ side; 4 for EPM-001). `GetProjectStatus` returns both in one call, so call it fi
 {"JobNumber":"EPM-001"}
 ```
 
-**Result:** HTTP 200, 723 bytes, 198 ms.
+**Result:** HTTP 200, 723 bytes, 169 ms.
 
 **Response fields:**
 
@@ -572,7 +560,7 @@ side; 4 for EPM-001). `GetProjectStatus` returns both in one call, so call it fi
 {"JobNumber":"EPM-001"}
 ```
 
-**Result:** HTTP 200, 112 bytes, 125 ms. **Came back empty**: no data beyond the reply envelope.
+**Result:** HTTP 200, 112 bytes, 78 ms. **Came back empty**: no data beyond the reply envelope.
 
 ### `GetFilterSetDetails`
 
@@ -586,7 +574,7 @@ side; 4 for EPM-001). `GetProjectStatus` returns both in one call, so call it fi
 {"JobNumber":"EPM-001"}
 ```
 
-**Result:** HTTP 200, 125 bytes, 187 ms. **Came back empty**: no data beyond the reply envelope.
+**Result:** HTTP 200, 125 bytes, 102 ms. **Came back empty**: no data beyond the reply envelope.
 
 **Gotchas:**
 
@@ -607,9 +595,9 @@ side; 4 for EPM-001). `GetProjectStatus` returns both in one call, so call it fi
 **Attempts:**
 
 - `{"JobNumber":"EPM-001"}` → 422: FilterName - Value is required
-- `{"FilterName":"Job #"}` → 200, 285 bytes
+- `{"FilterName":"Job #"}` → 200, 214 bytes
 
-**Result:** HTTP 200, 285 bytes, 135 ms.
+**Result:** HTTP 200, 214 bytes, 95 ms.
 
 **Response fields:**
 
@@ -620,12 +608,12 @@ side; 4 for EPM-001). `GetProjectStatus` returns both in one call, so call it fi
 | `ResultData.Filter.Name` | text | 1 | `Job #` |
 | `ResultData.Filter.DisplayName` | text | 1 | `Job #` |
 | `ResultData.Filter.FilterItems` | object | 1 |  |
-| `ResultData.Filter.FilterItems.TotalCount` | number (as text) | 1 | `2` |
-| `ResultData.Filter.FilterItems.FilterItem` | list (2–2) | 1 |  |
-| `ResultData.Filter.FilterItems.FilterItem[].@Field1` | number (as text) | 2 | `80`, `13` |
-| `ResultData.Filter.FilterItems.FilterItem[].@Field2` | text | 2 | `25-351`, `EPM-001` |
-| `ResultData.Filter.FilterItems.FilterItem[].@Included` | number (as text) | 2 | `1` |
-| `ResultData.Filter.FilterItems.FilterItem[].#text` | text | 2 | `25-351`, `EPM-001` |
+| `ResultData.Filter.FilterItems.TotalCount` | number (as text) | 1 | `1` |
+| `ResultData.Filter.FilterItems.FilterItem` | object | 1 |  |
+| `ResultData.Filter.FilterItems.FilterItem.@Field1` | number (as text) | 1 | `13` |
+| `ResultData.Filter.FilterItems.FilterItem.@Field2` | text | 1 | `EPM-001` |
+| `ResultData.Filter.FilterItems.FilterItem.@Included` | number (as text) | 1 | `1` |
+| `ResultData.Filter.FilterItems.FilterItem.#text` | text | 1 | `EPM-001` |
 | `ResultData.GetOptions` | text | 1 |  |
 
 **Sample** (trimmed; full trimmed sample in [samples/FilterSelections_PDC_Get.json](samples/FilterSelections_PDC_Get.json)):
@@ -636,16 +624,13 @@ side; 4 for EPM-001). `GetProjectStatus` returns both in one call, so call it fi
     "Name": "Job #",
     "DisplayName": "Job #",
     "FilterItems": {
-      "TotalCount": "2",
-      "FilterItem": [
-        {
-          "@Field1": "80",
-          "@Field2": "25-351",
-          "@Included": "1",
-          "#text": "25-351"
-        },
-        "… 1 more"
-      ]
+      "TotalCount": "1",
+      "FilterItem": {
+        "@Field1": "13",
+        "@Field2": "EPM-001",
+        "@Included": "1",
+        "#text": "EPM-001"
+      }
     }
   }
 }
@@ -673,7 +658,7 @@ side; 4 for EPM-001). `GetProjectStatus` returns both in one call, so call it fi
 - `{"ProjectID":4,"FilterName":"Job #"}` → 200, 97 bytes
 - `{"ProjectID":4}` → 422: FilterName - Value is required
 
-**Result:** HTTP 200, 97 bytes, 936 ms.
+**Result:** HTTP 200, 97 bytes, 96 ms.
 
 **Response fields:**
 
@@ -717,7 +702,7 @@ side; 4 for EPM-001). `GetProjectStatus` returns both in one call, so call it fi
 - `{"JobNumber":"EPM-001"}` → 422: Type - Value is required
 - `{"Type":"PDC"}` → 200, 8686 bytes
 
-**Result:** HTTP 200, 8,686 bytes, 150 ms.
+**Result:** HTTP 200, 8,686 bytes, 121 ms.
 
 **Response fields:**
 
@@ -753,10 +738,6 @@ side; 4 for EPM-001). `GetProjectStatus` returns both in one call, so call it fi
 **Gotchas:**
 
 - `Type: "PDC"` worked; other types were not tried.
-
-**Feature ideas:**
-
-- Discover which filters can be passed in `GetOptions.FilterSet` to the newer `*_Get` commands.
 
 ### `GetProjectSchedule`
 
@@ -798,7 +779,7 @@ side; 4 for EPM-001). `GetProjectStatus` returns both in one call, so call it fi
 
 **Gotchas:**
 
-- Refused with "Permission denied" for the API user. Grant the matching permission to the PowerFab External User and rerun.
+- PowerFab answered "Permission denied." for the API user (the PowerFab External User the service logs in as).
 
 ### `GetProjectScheduleSnapshots`
 

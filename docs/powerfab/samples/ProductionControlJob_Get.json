@@ -4,7 +4,7 @@
     "JobNumber": "EPM-001"
   },
   "status": 200,
-  "bytes": 81,
+  "bytes": 499,
   "note": "Trimmed: lists keep their first 3 items. Names, phones and street addresses are masked.",
   "response": {
     "Successful": "1",
@@ -12,6 +12,28 @@
       "LastLogID": "270",
       "GetOptions": {
         "FilterSet": ""
+      },
+      "ProductionControlJob": {
+        "ProductionControlID": "13",
+        "JobNumber": "EPM-001",
+        "JobDescription": "Tekla EPM Demo",
+        "JobStatus": {
+          "JobStatusID": "2",
+          "Description": "Closed",
+          "Purpose": "10",
+          "IsDefault": "0",
+          "Active": "1"
+        },
+        "JobDate": "2020-08-31",
+        "TFSDropOption": "1000",
+        "InputDisplayUnits": {
+          "SizeUOM": "Imperial",
+          "LengthUOM": "Imperial",
+          "LengthTypeIDMetric": "101",
+          "LengthTypeIDImperial": "1",
+          "WeightUOM": "Imperial",
+          "PriceUOM": "Imperial"
+        }
       }
     }
   }
