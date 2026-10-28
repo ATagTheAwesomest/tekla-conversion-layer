@@ -83,9 +83,18 @@ command (its message is passed through), `502` PowerFab unreachable or replied w
 | GET | `/api/commands/{command}?Field=value` | that command | Read commands only. Query string becomes the fields; a repeated key becomes a list. |
 | POST | `/api/commands/{command}` | that command | Any command. Body is the command's fields as JSON. |
 | POST | `/api/powerfab/{command}` | any | Pass-through by name, including names not in the table. |
+| GET | `/api/files` | none | Files: on or off, size limit, types taken. |
+| GET | `/api/files/{job}/{load}` | none | Files: what has been saved for a load. |
+| POST | `/api/files/{job}/{load}` | none | Files: save photos (multipart `file` fields, optional `mark`). Needs `FILES_ENABLED`. |
+| GET | `/api/files/help` | none | Files: the full setup guide ([docs/FILES.md](docs/FILES.md)) as Markdown. |
 
 Load, unload, ship and every write command are refused until `POWERFAB_ALLOW_WRITES=true`. That
 keeps the service read-only while it is being checked against real data.
+
+**Files.** The app can send photos of a load, or of a piece on it. They are saved in a folder for the
+job and a folder per load, under `FILES_ROOT` or wherever a regex rule in `file-rules.json` points that
+job. Off until `FILES_ENABLED=true`. Setup, the rules file format, limits and checks are in
+[docs/FILES.md](docs/FILES.md), which also ships next to the exe and is served at `GET /api/files/help`.
 
 **Every command.** [PowerFabCommands.cs](src/TeklaConversionLayer/PowerFabCommands.cs) holds all 252
 commands of PowerFab's `FabSuiteXMLRequest`, copied from the property list of `fsreqFabSuiteXMLRequest`

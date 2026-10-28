@@ -3,6 +3,8 @@ WORKDIR /src
 COPY src/TeklaConversionLayer/TeklaConversionLayer.csproj src/TeklaConversionLayer/
 RUN dotnet restore src/TeklaConversionLayer/TeklaConversionLayer.csproj
 COPY src/ src/
+COPY docs/FILES.md docs/
+COPY windows/file-rules.example.json windows/
 RUN dotnet publish src/TeklaConversionLayer/TeklaConversionLayer.csproj -c Release -o /app --no-restore
 
 FROM mcr.microsoft.com/dotnet/aspnet:10.0

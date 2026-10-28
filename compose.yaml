@@ -6,6 +6,9 @@ services:
     # Only reachable from this machine. The web app reaches it through the tunnel below.
     ports:
       - "127.0.0.1:8080:8080"
+    # For FILES_ENABLED (docs/FILES.md): mount the folder photos go in and set FILES_ROOT=/files.
+    # volumes:
+    #   - D:/TerraFiles:/files
 
   # Cloudflare Tunnel: publishes the API over HTTPS without opening a port on the firewall.
   # Create a tunnel in the Cloudflare dashboard, route its public hostname to http://api:8080,
