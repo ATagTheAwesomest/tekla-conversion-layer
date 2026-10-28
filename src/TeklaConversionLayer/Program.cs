@@ -2,6 +2,7 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Text.Json.Nodes;
 using System.Xml.Linq;
+using Microsoft.AspNetCore.Http.Features;
 using Microsoft.AspNetCore.Mvc;
 using TeklaConversionLayer;
 using TeklaPowerFab.TeklaPowerFabAPI;
@@ -19,6 +20,11 @@ var settings = Settings.From(builder.Configuration);
 
 builder.Services.AddSingleton(settings);
 builder.Services.AddSingleton<MockPowerFab>();
+builder.Services.AddSingleton(settings.Files);
+builder.Services.AddSingleton<FileStore>();
+// A whole upload (every file in it) may be up to FILES_MAX_PER_UPLOAD files of FILES_MAX_MB each.
+var uploadLimit = settings.Files.MaxBytes * settings.Files.MaxFiles + 1024 * 1024;
+builder.Services.Configure<FormOptions>(o => o.MultipartBodyLengthLimit = uploadLimit);
 builder.Services.AddSingleton(sp =>
 {
     if (settings.MockMode)
@@ -33,7 +39,7 @@ builder.Services.AddCors(options => options.AddDefaultPolicy(policy =>
 var app = builder.Build();
 app.UseCors();
 
-app.MapGet("/health", () => new { status = "ok", mode = settings.MockMode ? "mock" : "remote", writesEnabled = settings.AllowWrites });
+app.MapGet("/health", () => new { status = "ok", mode = settings.MockMode ? "mock" : "remote", writesEnabled = settings.AllowWrites, filesEnabled = settings.Files.Enabled });
 
 var api = app.MapGroup("/api").AddEndpointFilter(async (context, next) =>
 {
@@ -100,7 +106,102 @@ api.MapPost("/powerfab/{command}", (string command, JsonObject? fields, PowerFab
     return RunCommand(pf, known, fields, ct);
 });
 
+// Files (photos) the app sends for a load. Off unless FILES_ENABLED. Folder layout, the rules file and
+// limits are in docs/FILES.md, which GET /api/files/help returns.
+api.MapGet("/files", (FileStore files) => new
+{
+    enabled = files.Settings.Enabled,
+    maxBytes = files.Settings.MaxBytes,
+    maxFiles = files.Settings.MaxFiles,
+    types = files.Settings.Types,
+});
+
+api.MapGet("/files/help", () => Results.Text(FilesHelp(), "text/markdown; charset=utf-8"));
+
+api.MapGet("/files/{job}/{load}", (string job, string load, FileStore files) =>
+    FilesAsync(files, () => Task.FromResult(Results.Json(new { job, load, files = files.List(job, load) }))));
+
+api.MapPost("/files/{job}/{load}", async (string job, string load, HttpRequest request, FileStore files, CancellationToken ct) =>
+{
+    if (!files.Settings.Enabled)
+        return FilesDisabled();
+    if (!request.HasFormContentType)
+        return Results.Problem("Send the files as multipart/form-data, each in a field named \"file\".", statusCode: 400);
+    IFormCollection form;
+    try
+    {
+        form = await request.ReadFormAsync(ct);
+    }
+    catch (Exception ex) when (ex is InvalidDataException or BadHttpRequestException)
+    {
+        return Results.Problem($"The upload is too big or broken: {ex.Message}", statusCode: 413);
+    }
+
+    var uploads = form.Files.GetFiles("file");
+    if (uploads.Count == 0)
+        return Results.Problem("No files. Send each one in a multipart field named \"file\".", statusCode: 400);
+    if (uploads.Count > files.Settings.MaxFiles)
+        return Results.Problem($"{uploads.Count} files in one upload; the limit is {files.Settings.MaxFiles} (FILES_MAX_PER_UPLOAD).", statusCode: 413);
+    var mark = form["mark"].ToString();
+
+    return await FilesAsync(files, async () =>
+    {
+        // Every file is checked (and the folder worked out) before any is saved.
+        files.LoadFolder(job, load);
+        if (mark != "")
+            FileStore.CleanName(mark.Trim(), "Mark");
+        var types = new List<string>();
+        foreach (var upload in uploads)
+        {
+            var head = new byte[16];
+            await using (var s = upload.OpenReadStream())
+                head = head[..await s.ReadAtLeastAsync(head, head.Length, throwOnEndOfStream: false, ct)];
+            types.Add(files.CheckFile(upload.Length, head, upload.FileName is { Length: > 0 } n ? $"\"{n}\"" : "A file"));
+        }
+
+        var saved = new List<object>();
+        for (var i = 0; i < uploads.Count; i++)
+        {
+            await using var s = uploads[i].OpenReadStream();
+            var name = await files.SaveAsync(job, load, mark, types[i], s, ct);
+            saved.Add(new { name, bytes = uploads[i].Length });
+        }
+        return Results.Json(new { job, load, saved }, statusCode: 201);
+    });
+}).WithMetadata(new RequestSizeLimitAttribute(uploadLimit)).DisableAntiforgery();
+
 app.Run();
+
+static async Task<IResult> FilesAsync(FileStore files, Func<Task<IResult>> action)
+{
+    if (!files.Settings.Enabled)
+        return FilesDisabled();
+    try
+    {
+        return await action();
+    }
+    catch (BadNameException ex)
+    {
+        return Results.Problem(ex.Message, statusCode: 400);
+    }
+    catch (BadFileException ex)
+    {
+        return Results.Problem(ex.Message, statusCode: ex.StatusCode);
+    }
+    catch (FileRulesException ex)
+    {
+        return Results.Problem($"The server's file settings are wrong: {ex.Message}", statusCode: 500);
+    }
+}
+
+static IResult FilesDisabled() =>
+    Results.Problem("This server doesn't take files (FILES_ENABLED is off).", statusCode: 403);
+
+static string FilesHelp()
+{
+    using var stream = typeof(FileStore).Assembly.GetManifestResourceStream("TeklaConversionLayer.FILES.md");
+    return stream is null ? "docs/FILES.md is missing from this build." : new StreamReader(stream).ReadToEnd();
+}
 
 Task<IResult> RunCommand(PowerFabClient pf, PowerFabCommand command, JsonObject? fields, CancellationToken ct) =>
     command.IsWrite && !settings.AllowWrites ? Task.FromResult(WritesDisabled()) : Run(pf, command.Name, fields, ct);

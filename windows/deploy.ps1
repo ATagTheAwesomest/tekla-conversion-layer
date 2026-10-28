@@ -2,7 +2,7 @@
 # Builds the repo's checked-out code and deploys it to the installed Windows service.
 # Pulls the latest code, builds it, and deploys it to the installed service.
 # Usage (elevated PowerShell, from the repo root):  .\windows\deploy.ps1
-# local.settings.json in the install folder is never overwritten.
+# local.settings.json and file-rules.json in the install folder are never overwritten.
 param(
     [string]$InstallDir = 'C:\TeklaConversionLayer',
     [string]$ServiceName = 'TeklaConversionLayer',
@@ -46,8 +46,8 @@ if (Get-Service $ServiceName -ErrorAction SilentlyContinue) {
     (Get-Service $ServiceName).WaitForStatus('Stopped', [TimeSpan]::FromSeconds(30))
 }
 
-# 3. Copy the build over the install folder, leaving local.settings.json alone.
-robocopy $publishDir $InstallDir /E /XF local.settings.json /NFL /NDL /NJH /NJS | Out-Null
+# 3. Copy the build over the install folder, leaving local.settings.json and file-rules.json alone.
+robocopy $publishDir $InstallDir /E /XF local.settings.json file-rules.json /NFL /NDL /NJH /NJS | Out-Null
 if ($LASTEXITCODE -ge 8) { throw "robocopy failed with exit code $LASTEXITCODE" }
 
 # 4. Start the service and check health on the port from local.settings.json.
