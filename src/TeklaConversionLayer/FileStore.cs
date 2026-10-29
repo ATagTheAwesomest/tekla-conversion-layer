@@ -209,6 +209,56 @@ public sealed class FileStore(FileSettings settings, ILogger<FileStore> log)
             .ToList();
     }
 
+    /// <summary>
+    /// One saved file of a load, by the name <see cref="List"/> gave it. The name must be a plain file
+    /// name (the same checks as job and load, and not starting with "."), and the file must be there.
+    /// </summary>
+    public FileInfo Find(string job, string load, string name)
+    {
+        var folder = LoadFolder(job, load);
+        name = CleanName(name, "File name");
+        if (name.StartsWith('.'))
+            throw new BadNameException($"File name \"{name}\" can't start with a dot.");
+        var file = new FileInfo(Inside(folder, Path.Combine(folder, name)));
+        if (!file.Exists)
+            throw new FileNotFoundException($"There is no file {name} for job {job} load {load}.");
+        return file;
+    }
+
+    /// <summary>
+    /// Deletes a saved file by moving it into the load's <c>.deleted</c> folder, so a mistake can be
+    /// undone on the server by moving it back. Returns where it went (relative to the load folder).
+    /// </summary>
+    public string Delete(string job, string load, string name)
+    {
+        var file = Find(job, load, name);
+        var trash = Directory.CreateDirectory(Path.Combine(file.DirectoryName!, DeletedFolder)).FullName;
+        var stem = Path.GetFileNameWithoutExtension(file.Name);
+        for (var n = 1; ; n++)
+        {
+            var target = Path.Combine(trash, n == 1 ? file.Name : $"{stem} ({n}){file.Extension}");
+            if (File.Exists(target))
+                continue;
+            file.MoveTo(target);
+            log.LogInformation("Deleted {File} for job {Job} load {Load} (moved to {Target})", name, job, load, target);
+            return Path.Combine(DeletedFolder, Path.GetFileName(target));
+        }
+    }
+
+    /// <summary>The folder inside each load folder that deleted files are moved to.</summary>
+    public const string DeletedFolder = ".deleted";
+
+    /// <summary>The Content-Type a saved file is sent with.</summary>
+    public static string ContentType(string name) => Path.GetExtension(name).ToLowerInvariant() switch
+    {
+        ".jpg" or ".jpeg" => "image/jpeg",
+        ".png" => "image/png",
+        ".webp" => "image/webp",
+        ".heic" => "image/heic",
+        ".pdf" => "application/pdf",
+        _ => "application/octet-stream",
+    };
+
     // Fills {job}, {load} and the rule's regex groups ({1}, {name}) into a folder template.
     static string Fill(string template, string job, string? load, Match? match, string source, bool folder = true)
     {

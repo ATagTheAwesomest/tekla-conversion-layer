@@ -70,6 +70,60 @@ public sealed class FileTests : IDisposable
     }
 
     [Fact]
+    public async Task Saved_files_can_be_viewed_and_deleted_into_a_deleted_folder()
+    {
+        var client = Start();
+        var saved = await (await client.PostAsync("/api/files/J1/8", Form("1001-C1", Jpeg))).Content.ReadFromJsonAsync<JsonObject>();
+        var name = (string)saved!["saved"]![0]!["name"]!;
+
+        var view = await client.GetAsync($"/api/files/J1/8/{Uri.EscapeDataString(name)}");
+        Assert.Equal(HttpStatusCode.OK, view.StatusCode);
+        Assert.Equal("image/jpeg", view.Content.Headers.ContentType!.MediaType);
+        Assert.Equal(Jpeg, await view.Content.ReadAsByteArrayAsync());
+        Assert.Contains("nosniff", view.Headers.GetValues("X-Content-Type-Options"));
+
+        var deleted = await client.DeleteAsync($"/api/files/J1/8/{Uri.EscapeDataString(name)}");
+        Assert.Equal(HttpStatusCode.OK, deleted.StatusCode);
+        Assert.Empty((await client.GetFromJsonAsync<JsonObject>("/api/files/J1/8"))!["files"]!.AsArray());
+        Assert.True(File.Exists(Path.Combine(Root, "J1", "8", ".deleted", name)));
+        Assert.Equal(HttpStatusCode.NotFound, (await client.GetAsync($"/api/files/J1/8/{Uri.EscapeDataString(name)}")).StatusCode);
+        Assert.Equal(HttpStatusCode.NotFound, (await client.DeleteAsync($"/api/files/J1/8/{Uri.EscapeDataString(name)}")).StatusCode);
+
+        // The same name deleted twice keeps both copies.
+        File.Copy(Path.Combine(Root, "J1", "8", ".deleted", name), Path.Combine(Root, "J1", "8", name));
+        Assert.Equal(HttpStatusCode.OK, (await client.DeleteAsync($"/api/files/J1/8/{Uri.EscapeDataString(name)}")).StatusCode);
+        Assert.Equal(2, Directory.GetFiles(Path.Combine(Root, "J1", "8", ".deleted")).Length);
+    }
+
+    [Theory]
+    [InlineData("..")]
+    [InlineData(".deleted")]
+    [InlineData("..%5Cx.jpg")]
+    [InlineData("a%3Ab.jpg")]
+    [InlineData(".upload-x.tmp")]
+    public async Task View_and_delete_only_take_a_plain_file_name(string name)
+    {
+        var client = Start();
+        await client.PostAsync("/api/files/J1/8", Form(null, Jpeg));
+        File.WriteAllText(Path.Combine(dir, "outside.jpg"), "x");
+        foreach (var response in new[] { await client.GetAsync($"/api/files/J1/8/{name}"), await client.DeleteAsync($"/api/files/J1/8/{name}") })
+            Assert.True(response.StatusCode is HttpStatusCode.BadRequest or HttpStatusCode.NotFound or HttpStatusCode.MethodNotAllowed, $"{name}: {response.StatusCode}");
+        Assert.Single(Directory.GetFiles(Path.Combine(Root, "J1", "8")));
+        Assert.True(File.Exists(Path.Combine(dir, "outside.jpg")));
+    }
+
+    [Fact]
+    public async Task View_and_delete_need_files_on_and_the_key()
+    {
+        var off = Start(enabled: false);
+        Assert.Equal(HttpStatusCode.Forbidden, (await off.GetAsync("/api/files/J1/8/a.jpg")).StatusCode);
+        Assert.Equal(HttpStatusCode.Forbidden, (await off.DeleteAsync("/api/files/J1/8/a.jpg")).StatusCode);
+        var on = Start();
+        on.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", "wrong");
+        Assert.Equal(HttpStatusCode.Unauthorized, (await on.DeleteAsync("/api/files/J1/8/a.jpg")).StatusCode);
+    }
+
+    [Fact]
     public async Task Same_second_uploads_never_overwrite()
     {
         var client = Start();

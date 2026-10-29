@@ -97,6 +97,9 @@ To check a rule without the app, list a load's files (this creates nothing):
   the app gives a file is ignored; the server names every file itself and never overwrites one
   (a second photo in the same second gets ` (2)`).
 - Every file in an upload is checked before any is saved.
+- View and delete take a file name exactly as the list gives it: the same name checks, no name
+  starting with `.` (so `.deleted` and half-written uploads can't be reached), and it must be inside the
+  load folder.
 
 ## API
 
@@ -108,10 +111,18 @@ All need `Authorization: Bearer <API_TOKEN>`. Errors are JSON problem details wi
 | GET | `/api/files/help` | This document, as Markdown. Works when off. |
 | GET | `/api/files/{job}/{load}` | `{ "job", "load", "files": [{ "name", "bytes", "modified" }] }`, oldest first. Empty list if the folder doesn't exist yet. |
 | POST | `/api/files/{job}/{load}` | `multipart/form-data`: one or more `file` fields, optional `mark` field (the piece the photos are of; left out = the whole load). 201 `{ "job", "load", "saved": [{ "name", "bytes" }] }`. |
+| GET | `/api/files/{job}/{load}/{name}` | The file itself, to view, with its type (`image/jpeg`...). `{name}` is a name from the list. |
+| DELETE | `/api/files/{job}/{load}/{name}` | Deletes it: the file is **moved** to a `.deleted` folder inside the load folder, never erased. `{ "job", "load", "deleted", "movedTo": ".deleted\\<name>" }`. |
 
-`{job}` is the PowerFab job number and `{load}` the app's load number (`8`, not PowerFab's split
-`8.1010`), URL-encoded. Status codes: 400 bad name or no files, 401 bad key, 403 files off, 413 too
-big or too many, 415 type not taken, 500 rules file wrong.
+`{job}` is the PowerFab job number and `{load}` the load number (`8`), URL-encoded. Status codes:
+400 bad name or no files, 401 bad key, 403 files off, 404 no such file, 413 too big or too many,
+415 type not taken, 500 rules file wrong.
+
+**Deleting.** The app deletes a photo only after a 1.5 second hold on its Delete button. On the server
+it lands in `<load folder>\.deleted\` (a second one with the same name gets ` (2)`), which the list,
+view and delete routes never show. To undo, move it back out of `.deleted`. To free the space, empty
+the `.deleted` folders by hand now and then, for example
+`Get-ChildItem D:\TerraFiles -Recurse -Directory -Filter .deleted -Force | Remove-Item -Recurse -Force`.
 
 ```bash
 curl -H "Authorization: Bearer $API_TOKEN" -F file=@photo.jpg -F mark=1001-C1 \
@@ -122,6 +133,8 @@ curl -H "Authorization: Bearer $API_TOKEN" -F file=@photo.jpg -F mark=1001-C1 \
 $h = @{ Authorization = "Bearer $token" }
 Invoke-RestMethod http://127.0.0.1:8090/api/files -Headers $h
 Invoke-RestMethod http://127.0.0.1:8090/api/files/EPM-001/8 -Headers $h
+Invoke-WebRequest "http://127.0.0.1:8090/api/files/EPM-001/8/20261028-143502_load.jpg" -Headers $h -OutFile photo.jpg
+Invoke-RestMethod "http://127.0.0.1:8090/api/files/EPM-001/8/20261028-143502_load.jpg" -Headers $h -Method Delete
 ```
 
 ## Setting it up on the server (checklist)
