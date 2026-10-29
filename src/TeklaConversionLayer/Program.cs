@@ -121,6 +121,21 @@ api.MapGet("/files/help", () => Results.Text(FilesHelp(), "text/markdown; charse
 api.MapGet("/files/{job}/{load}", (string job, string load, FileStore files) =>
     FilesAsync(files, () => Task.FromResult(Results.Json(new { job, load, files = files.List(job, load) }))));
 
+// One saved file, to view. Names come from the list above.
+api.MapGet("/files/{job}/{load}/{name}", (string job, string load, string name, FileStore files, HttpResponse response) =>
+    FilesAsync(files, () =>
+    {
+        var file = files.Find(job, load, name);
+        // A saved file is only ever treated as the type its name says, and never kept by a shared cache.
+        response.Headers.XContentTypeOptions = "nosniff";
+        response.Headers.CacheControl = "private, max-age=3600";
+        return Task.FromResult(Results.File(file.FullName, FileStore.ContentType(file.Name), enableRangeProcessing: true));
+    }));
+
+// Deletes a saved file: it is moved to the load's .deleted folder, not erased.
+api.MapDelete("/files/{job}/{load}/{name}", (string job, string load, string name, FileStore files) =>
+    FilesAsync(files, () => Task.FromResult(Results.Json(new { job, load, deleted = name, movedTo = files.Delete(job, load, name) }))));
+
 api.MapPost("/files/{job}/{load}", async (string job, string load, HttpRequest request, FileStore files, CancellationToken ct) =>
 {
     if (!files.Settings.Enabled)
@@ -187,6 +202,10 @@ static async Task<IResult> FilesAsync(FileStore files, Func<Task<IResult>> actio
     catch (BadFileException ex)
     {
         return Results.Problem(ex.Message, statusCode: ex.StatusCode);
+    }
+    catch (FileNotFoundException ex)
+    {
+        return Results.Problem(ex.Message, statusCode: 404);
     }
     catch (FileRulesException ex)
     {

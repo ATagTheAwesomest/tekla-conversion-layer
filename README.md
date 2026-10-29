@@ -86,6 +86,8 @@ command (its message is passed through), `502` PowerFab unreachable or replied w
 | GET | `/api/files` | none | Files: on or off, size limit, types taken. |
 | GET | `/api/files/{job}/{load}` | none | Files: what has been saved for a load. |
 | POST | `/api/files/{job}/{load}` | none | Files: save photos (multipart `file` fields, optional `mark`). Needs `FILES_ENABLED`. |
+| GET | `/api/files/{job}/{load}/{name}` | none | Files: one saved file, to view. |
+| DELETE | `/api/files/{job}/{load}/{name}` | none | Files: delete one (moved to the load's `.deleted` folder). |
 | GET | `/api/files/help` | none | Files: the full setup guide ([docs/FILES.md](docs/FILES.md)) as Markdown. |
 
 Load, unload, ship and every write command are refused until `POWERFAB_ALLOW_WRITES=true`. That
