@@ -9,8 +9,7 @@ public sealed record Settings(
     string Username,
     string Password,
     bool AllowWrites,
-    string[] CorsOrigins,
-    FileSettings Files)
+    string[] CorsOrigins)
 {
     public static Settings From(IConfiguration config)
     {
@@ -30,8 +29,7 @@ public sealed record Settings(
             config["POWERFAB_USERNAME"] ?? "",
             config["POWERFAB_PASSWORD"] ?? "",
             bool.TryParse(config["POWERFAB_ALLOW_WRITES"], out var writes) && writes,
-            (config["CORS_ORIGINS"] ?? "").Split(',', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries),
-            FileSettings.From(config));
+            (config["CORS_ORIGINS"] ?? "").Split(',', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries));
 
         if (!settings.MockMode && (settings.Host == "" || settings.Username == "" || settings.Password == ""))
             throw new InvalidOperationException("Remote mode needs POWERFAB_HOST, POWERFAB_USERNAME and POWERFAB_PASSWORD.");
