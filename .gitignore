@@ -5,4 +5,3 @@ obj/
 .env
 dist/
 local.settings.json
-file-rules.json

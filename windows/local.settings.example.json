@@ -7,9 +7,5 @@
   "POWERFAB_USERNAME": "",
   "POWERFAB_PASSWORD": "",
   "POWERFAB_ALLOW_WRITES": "false",
-  "CORS_ORIGINS": "",
-  "FILES_ENABLED": "false",
-  "FILES_ROOT": "D:\\TerraFiles",
-  "FILES_RULES": "file-rules.json",
-  "FILES_MAX_MB": "25"
+  "CORS_ORIGINS": ""
 }
