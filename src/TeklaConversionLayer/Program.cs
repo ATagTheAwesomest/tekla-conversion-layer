@@ -2,7 +2,6 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Text.Json.Nodes;
 using System.Xml.Linq;
-using Microsoft.AspNetCore.Mvc;
 using TeklaConversionLayer;
 using TeklaPowerFab.TeklaPowerFabAPI;
 
@@ -28,7 +27,7 @@ builder.Services.AddSingleton(sp =>
     return new PowerFabClient(xml => api.ExecuteRemote(settings.Host, settings.Port, xml), settings.Username, settings.Password);
 });
 builder.Services.AddCors(options => options.AddDefaultPolicy(policy =>
-    policy.WithOrigins(settings.CorsOrigins).WithHeaders("Authorization", "Content-Type").WithMethods("GET", "POST", "DELETE")));
+    policy.WithOrigins(settings.CorsOrigins).WithHeaders("Authorization", "Content-Type").WithMethods("GET", "POST")));
 
 var app = builder.Build();
 app.UseCors();
@@ -44,29 +43,6 @@ var api = app.MapGroup("/api").AddEndpointFilter(async (context, next) =>
         SHA256.HashData(Encoding.UTF8.GetBytes(settings.ApiToken)));
     return ok ? await next(context) : Results.Unauthorized();
 });
-
-// Loads on a job. `load` narrows to one load / truck number.
-api.MapGet("/jobs/{job}/loads", (string job, string? load, PowerFabClient pf, CancellationToken ct) =>
-    Run(pf, "GetLoads", new JsonObject
-    {
-        ["JobNumber"] = job,
-        ["LoadNumber"] = load,
-        ["IncludeLoads"] = true,
-        ["IncludeUnshippedLoads"] = true,
-        ["IncludeCompletedMaterial"] = true,
-        ["IncludeRemainingMaterial"] = true,
-    }, ct));
-
-api.MapPost("/jobs/{job}/trucks/{truck}/pieces", (string job, string truck, PieceRequest piece, PowerFabClient pf, CancellationToken ct) =>
-    LoadPiece(pf, job, truck, piece, "Save", ct));
-
-api.MapDelete("/jobs/{job}/trucks/{truck}/pieces", (string job, string truck, [FromBody] PieceRequest piece, PowerFabClient pf, CancellationToken ct) =>
-    LoadPiece(pf, job, truck, piece, "Delete", ct));
-
-api.MapPost("/jobs/{job}/trucks/{truck}/ship", (string job, string truck, ShipRequest? ship, PowerFabClient pf, CancellationToken ct) =>
-    settings.AllowWrites
-        ? Run(pf, "Ship", new JsonObject { ["CommitType"] = "Save", ["JobNumber"] = job, ["TruckNumber"] = truck, ["Date"] = ship?.Date }, ct)
-        : Task.FromResult(WritesDisabled()));
 
 // Every PowerFab command gets its own route, generated from PowerFabCommands. Reads answer GET (query
 // string as the command's fields) and POST (JSON body); writes answer POST only and need POWERFAB_ALLOW_WRITES.
@@ -105,24 +81,6 @@ app.Run();
 Task<IResult> RunCommand(PowerFabClient pf, PowerFabCommand command, JsonObject? fields, CancellationToken ct) =>
     command.IsWrite && !settings.AllowWrites ? Task.FromResult(WritesDisabled()) : Run(pf, command.Name, fields, ct);
 
-Task<IResult> LoadPiece(PowerFabClient pf, string job, string truck, PieceRequest piece, string commitType, CancellationToken ct)
-{
-    if (!settings.AllowWrites)
-        return Task.FromResult(WritesDisabled());
-    if (string.IsNullOrWhiteSpace(piece.MainMark) || piece.Quantity < 1)
-        return Task.FromResult(Results.Problem("mainMark is required and quantity must be at least 1.", statusCode: 400));
-
-    return Run(pf, "Load", new JsonObject
-    {
-        ["CommitType"] = commitType,
-        ["JobNumber"] = job,
-        ["TruckNumber"] = truck,
-        ["MainMark"] = piece.MainMark.Trim(),
-        ["Sequence"] = piece.Sequence,
-        ["Quantity"] = piece.Quantity,
-    }, ct);
-}
-
 static async Task<IResult> Run(PowerFabClient pf, string command, JsonObject? fields, CancellationToken ct)
 {
     // Unset optional fields are left out of the XML rather than sent empty.
@@ -160,8 +118,5 @@ static JsonObject QueryFields(IQueryCollection query)
 
 static IResult WritesDisabled() =>
     Results.Problem("Writing to PowerFab is turned off (POWERFAB_ALLOW_WRITES).", statusCode: 403);
-
-record PieceRequest(string MainMark, int Quantity = 1, string? Sequence = null);
-record ShipRequest(string? Date);
 
 public partial class Program;

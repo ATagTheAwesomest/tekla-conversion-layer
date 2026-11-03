@@ -19,7 +19,7 @@ import path from 'node:path';
 const TEST_JOBS = { JobNumber: ['EPM-001', 'TESTTEST'], ProductionControlID: ['13', '90'], ProjectID: ['4', '29'] };
 const [, , file, outDir] = process.argv;
 const key = process.env.PF_KEY;
-const base = (process.env.PF_URL ?? 'https://terra-api.helpiminthe.icu') + '/api/powerfab/';
+const base = (process.env.PF_URL ?? 'http://127.0.0.1:8090') + '/api/powerfab/';
 if (!key || !file || !outDir) { console.error('usage: PF_KEY=... node scenario.mjs scenario.json outDir'); process.exit(1); }
 fs.mkdirSync(outDir, { recursive: true });
 const sections = JSON.parse(fs.readFileSync(file, 'utf8'));

@@ -17,7 +17,7 @@ if (Get-Service $name -ErrorAction SilentlyContinue) {
     Start-Sleep 2
 }
 New-Service -Name $name -BinaryPathName "`"$exe`"" -DisplayName 'Tekla Conversion Layer' `
-    -Description 'JSON API bridge between terra-loads-web and Tekla PowerFab' -StartupType Automatic | Out-Null
+    -Description 'JSON API bridge between terra-tekla-server and Tekla PowerFab' -StartupType Automatic | Out-Null
 # Restart automatically after a crash.
 sc.exe failure $name reset= 86400 actions= restart/5000/restart/5000/restart/30000 | Out-Null
 Start-Service $name

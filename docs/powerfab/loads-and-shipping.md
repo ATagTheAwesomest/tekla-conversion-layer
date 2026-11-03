@@ -869,8 +869,8 @@ Run on the test jobs only (EPM-001, TESTTEST), each change undone afterwards. "N
 
 | Command | Status | What it does |
 |---|---|---|
-| [`Load`](#load) | ✅ data | Puts pieces on a truck (`CommitType` Save) or takes them off (Delete). Used by the service's `/trucks/{truck}/pieces` routes. |
-| [`Ship`](#ship) | ✅ data | Marks a truck as shipped. Used by the service's `/trucks/{truck}/ship` route. |
+| [`Load`](#load) | ✅ data | Puts pieces on a truck (`CommitType` Save) or takes them off (Delete). The older by-truck command; TERRA uses the `ProductionControlLoadMaterial_*` commands instead. |
+| [`Ship`](#ship) | ✅ data | Marks a truck as shipped. The older by-truck command; TERRA uses `ProductionControlLoad_Ship` instead. |
 | [`Return`](#return) | ⚠️ refused | Returns shipped material (from the name). |
 | [`ProductionControlLoad_Insert`](#productioncontrolload_insert) | ✅ data | Creates a load (from the name). |
 | [`ProductionControlLoad_Update`](#productioncontrolload_update) | ✅ data | Edits a load (from the name). |

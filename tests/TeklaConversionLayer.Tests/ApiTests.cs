@@ -38,19 +38,16 @@ public class ApiTests
     {
         var (factory, _) = Start(allowWrites: false);
         var anonymous = factory.CreateClient();
-        Assert.Equal(HttpStatusCode.Unauthorized, (await anonymous.GetAsync("/api/jobs/J1/loads")).StatusCode);
+        Assert.Equal(HttpStatusCode.Unauthorized, (await anonymous.PostAsJsonAsync("/api/powerfab/GetLoads", new { JobNumber = "J1" })).StatusCode);
 
         anonymous.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", "wrong");
-        Assert.Equal(HttpStatusCode.Unauthorized, (await anonymous.GetAsync("/api/jobs/J1/loads")).StatusCode);
+        Assert.Equal(HttpStatusCode.Unauthorized, (await anonymous.PostAsJsonAsync("/api/powerfab/GetLoads", new { JobNumber = "J1" })).StatusCode);
     }
 
     [Fact]
     public async Task Writes_are_blocked_unless_enabled()
     {
         var (_, client) = Start(allowWrites: false);
-        var load = await client.PostAsJsonAsync("/api/jobs/J1/trucks/1/pieces", new { mainMark = "1001-C1" });
-        Assert.Equal(HttpStatusCode.Forbidden, load.StatusCode);
-
         var passthroughWrite = await client.PostAsJsonAsync("/api/powerfab/Ship", new { JobNumber = "J1" });
         Assert.Equal(HttpStatusCode.Forbidden, passthroughWrite.StatusCode);
 
@@ -59,27 +56,25 @@ public class ApiTests
     }
 
     [Fact]
-    public async Task Load_unload_and_ship_a_truck()
+    public async Task Load_unload_and_ship_a_truck_through_the_pass_through()
     {
         var (_, client) = Start(allowWrites: true);
+        Task<HttpResponseMessage> Load(string commit, string mark, int qty = 1) => client.PostAsJsonAsync("/api/powerfab/Load",
+            new JsonObject { ["CommitType"] = commit, ["JobNumber"] = "J1", ["TruckNumber"] = "7", ["MainMark"] = mark, ["Sequence"] = "1", ["Quantity"] = qty });
 
-        Assert.Equal(HttpStatusCode.OK, (await client.PostAsJsonAsync("/api/jobs/J1/trucks/7/pieces", new { mainMark = "1001-C1", quantity = 2, sequence = "1" })).StatusCode);
-        Assert.Equal(HttpStatusCode.OK, (await client.PostAsJsonAsync("/api/jobs/J1/trucks/7/pieces", new { mainMark = "1002-B1", sequence = "1" })).StatusCode);
+        Assert.Equal(HttpStatusCode.OK, (await Load("Save", "1001-C1", 2)).StatusCode);
+        Assert.Equal(HttpStatusCode.OK, (await Load("Save", "1002-B1")).StatusCode);
+        Assert.Equal(HttpStatusCode.OK, (await Load("Delete", "1001-C1")).StatusCode);
 
-        var unload = new HttpRequestMessage(HttpMethod.Delete, "/api/jobs/J1/trucks/7/pieces")
-        {
-            Content = JsonContent.Create(new { mainMark = "1001-C1", quantity = 1, sequence = "1" }),
-        };
-        Assert.Equal(HttpStatusCode.OK, (await client.SendAsync(unload)).StatusCode);
-
-        var loads = await client.GetFromJsonAsync<JsonObject>("/api/jobs/J1/loads");
+        var reply = await client.PostAsJsonAsync("/api/powerfab/GetLoads", new JsonObject { ["JobNumber"] = "J1" });
+        var loads = await reply.Content.ReadFromJsonAsync<JsonObject>();
         var material = loads!["Load"]!["Material"]!.AsArray();
         Assert.Equal("1", (string?)material.Single(m => (string?)m!["MainMark"] == "1001-C1")!["Quantity"]);
         Assert.Equal("1", (string?)material.Single(m => (string?)m!["MainMark"] == "1002-B1")!["Quantity"]);
 
-        Assert.Equal(HttpStatusCode.OK, (await client.PostAsJsonAsync("/api/jobs/J1/trucks/7/ship", new { date = "2026-10-19" })).StatusCode);
+        Assert.Equal(HttpStatusCode.OK, (await client.PostAsJsonAsync("/api/powerfab/Ship", new JsonObject { ["CommitType"] = "Save", ["JobNumber"] = "J1", ["TruckNumber"] = "7", ["Date"] = "2026-10-19" })).StatusCode);
 
-        var lateLoad = await client.PostAsJsonAsync("/api/jobs/J1/trucks/7/pieces", new { mainMark = "1003-W2" });
+        var lateLoad = await Load("Save", "1003-W2");
         Assert.Equal(HttpStatusCode.UnprocessableEntity, lateLoad.StatusCode);
         Assert.Contains("already shipped", await lateLoad.Content.ReadAsStringAsync());
     }
@@ -88,10 +83,10 @@ public class ApiTests
     public async Task Reconnects_when_the_powerfab_session_expires()
     {
         var (factory, client) = Start(allowWrites: false);
-        Assert.Equal(HttpStatusCode.OK, (await client.GetAsync("/api/jobs/J1/loads")).StatusCode);
+        Assert.Equal(HttpStatusCode.OK, (await client.PostAsJsonAsync("/api/powerfab/GetLoads", new { JobNumber = "J1" })).StatusCode);
 
         factory.Services.GetRequiredService<MockPowerFab>().ExpireSessions();
-        Assert.Equal(HttpStatusCode.OK, (await client.GetAsync("/api/jobs/J1/loads")).StatusCode);
+        Assert.Equal(HttpStatusCode.OK, (await client.PostAsJsonAsync("/api/powerfab/GetLoads", new { JobNumber = "J1" })).StatusCode);
     }
 
     [Fact]

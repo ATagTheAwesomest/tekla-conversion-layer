@@ -34,7 +34,7 @@ response fields, sample, gotchas), and every sample is real data, trimmed.
 Every call goes through the service with the bearer token:
 
 ```bash
-curl -s -X POST "https://terra-api.helpiminthe.icu/api/powerfab/GetProjectStatus" -H "Authorization: Bearer $PF_KEY" -H "Content-Type: application/json" -d '{"JobNumber":"EPM-001"}'
+curl -s -X POST "http://127.0.0.1:8090/api/powerfab/GetProjectStatus" -H "Authorization: Bearer $PF_KEY" -H "Content-Type: application/json" -d '{"JobNumber":"EPM-001"}'
 ```
 
 1. **Find the job's IDs.** `GetProjectStatus` with `JobNumber` returns `ProductionControlID` and `ProjectID`.
