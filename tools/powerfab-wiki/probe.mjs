@@ -12,7 +12,7 @@ import path from 'node:path';
 
 const [, , callsFile, outDir] = process.argv;
 const key = process.env.PF_KEY;
-const base = (process.env.PF_URL ?? 'https://terra-api.helpiminthe.icu') + '/api/powerfab/';
+const base = (process.env.PF_URL ?? 'http://127.0.0.1:8090') + '/api/powerfab/';
 if (!key || !callsFile || !outDir) {
   console.error('usage: PF_KEY=... node probe.mjs calls.json outDir');
   process.exit(1);
